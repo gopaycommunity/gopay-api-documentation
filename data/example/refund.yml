@@ -1,0 +1,24 @@
+
+request:
+    shell: |
+        curl v https://gw.sandbox.gopay.com/api/payments/payment/3000006620/refund \
+        -X "POST" \
+        -H "Accept: application/json" \
+        -H "Content-Type:application/x-www-form-urlencoded"\
+        -H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969" \
+        -d "amount=1000"
+    php: |
+        <?php
+        $response = $gopay->refund(3000006620, 1000);
+
+response:
+    json: |
+        {
+         "id":3000006620,
+         "result":"FINISHED"
+        }
+    php: |
+        <?php
+        if ($response->hasSucceed()) {
+            echo $response;
+        }

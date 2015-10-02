@@ -4,7 +4,7 @@
 - create-recurrent
 - gateInit
 - status
-- paymentRefund
+- refund
 - createRecurrence
 - cancelRecurrence
 - cancelPreAuthorization

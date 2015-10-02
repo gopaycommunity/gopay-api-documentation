@@ -8,35 +8,7 @@ You can find additional information about refundations in [help center](https://
 
 > Request
 
-```shell
-curl v https://gw.sandbox.gopay.com/api/payments/payment/3000006620/refund \
--X "POST" \
--H "Accept: application/json" \
--H "Content-Type:application/x-www-form-urlencoded"\
--H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969" \
--d "amount=1000"
-```
-
-```php
-<?php
-$ch = curl_init();
-
-$data = "amount=1000";
-
-curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/payments/payment/".$id."/refund");
-//pass payment id
-curl_setopt($ch, CURLOPT_HTTPHEADER, 
-  array('Accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded',
-        'Authorization: Bearer ' . $token));
-//get token first at scope=payment-all
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
-$result = curl_exec($ch);
-?>
-```
+<%= partial "includes/examples", :locals => { :example => data.example.refund.request } %>
 
 ###Request
 ```POST /api/payments/payment/{id}/refund```
@@ -57,12 +29,7 @@ amount|Refunded amount|YES|long > 0
 
 > Response
 
-```json
-{
- "id":3000006620,
- "result":"FINISHED"
-}
-```
+<%= partial "includes/examples", :locals => { :example => data.example.refund.response } %>
 
 ###Response 
 Parameter name|Parameter description| Data´s type

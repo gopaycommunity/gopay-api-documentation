@@ -11,21 +11,6 @@ toc_footers:
   - <a href='http://www.platebnibrana.cz'>www.platebnibrana.cz</a>
   - <a href='http://help.gopay.com'>help.gopay.com</a>
 
-includes:
-  - cs/oauth
-  - cs/create-standard
-  - cs/create-preauthorized
-  - cs/recurrentPayment
-  - cs/gateInit
-  - cs/paymentState
-  - cs/paymentRefund
-  - cs/createRecurrence
-  - cs/cancelRecurrence
-  - cs/cancelPreAuthorization
-  - cs/capturePreAuthorization
-  - cs/objects
-  - cs/codes
-
 search: true
 ---
 

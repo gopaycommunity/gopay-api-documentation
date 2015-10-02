@@ -1,0 +1,14 @@
+- oauth
+- create-standard
+- create-preauthorized
+- recurrentPayment
+- gateInit
+- paymentState
+- paymentRefund
+- createRecurrence
+- cancelRecurrence
+- cancelPreAuthorization
+- capturePreAuthorization
+- objects
+- codes
+- errors

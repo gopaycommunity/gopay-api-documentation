@@ -1,6 +1,6 @@
 ---
 title: GoPay REST API
-
+locale: en
 language_tabs:
   - shell: curl
   - php

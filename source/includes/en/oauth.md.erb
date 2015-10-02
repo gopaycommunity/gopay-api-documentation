@@ -19,9 +19,7 @@ If you do not have Client ID and Client Secret, please, contact us on e-mail int
 
 > Request
 
-<%= partial "includes/code", :locals => { :language => 'php', :example => data.example.oauth.request.php.en } %>
-
-<%= partial "includes/code", :locals => { :language => 'shell', :example => data.example.oauth.request.shell } %>
+<%= partial "includes/examples", :locals => { :example => data.example.oauth.request } %>
 
 
 ###Header of the request
@@ -40,9 +38,7 @@ grant_type|client_credentials|YES
 
 > Response
 
-<%= partial "includes/code", :locals => { :language => 'php', :example => data.example.oauth.response.php.en } %>
-
-<%= partial "includes/code", :locals => { :language => 'json', :example => data.example.oauth.response.json } %>
+<%= partial "includes/examples", :locals => { :example => data.example.oauth.response } %>
 
 
 ###Response

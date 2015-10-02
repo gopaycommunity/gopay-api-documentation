@@ -19,11 +19,13 @@ activate :syntax
 activate :relative_assets
 set :relative_links, true
 
+# ignore assets
+ignore 'includes/*';
+ignore 'javascripts/*';
+ignore 'stylesheets/*';
+
 # Build-specific configuration
 configure :build do
-  # ignore inlined assets
-  ignore 'javascripts/*';
-  ignore 'stylesheets/*';
 
   # For example, change the Compass output style for deployment
   activate :minify_css, inline:true

@@ -14,7 +14,10 @@ request:
                 'goid' => '...',
                 'clientId' => '...',
                 'clientSecret' => '...',
-                'isProductionMode' => false
+                'isProductionMode' => false,
+                'scope' => GoPay\Definition\TokenScope::ALL,
+                'language' => GoPay\Definition\Language::CZECH,
+                'timeout' => 30
             ]);
             // token získá SDK interně, není třeba volat žádnou metodu pro získáí tokenu
         en: |
@@ -23,7 +26,10 @@ request:
                 'goid' => '...',
                 'clientId' => '...',
                 'clientSecret' => '...',
-                'isProductionMode' => false
+                'isProductionMode' => false,
+                'scope' => GoPay\Definition\TokenScope::ALL,
+                'language' => GoPay\Definition\Language::ENGLISH,
+                'timeout' => 30
             ]);
             // token is retrieved automatically, you don't have to call some method `getToken`
 

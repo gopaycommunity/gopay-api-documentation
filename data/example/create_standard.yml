@@ -1,0 +1,120 @@
+
+request:
+    shell: |
+        curl -v https://gw.sandbox.gopay.com/api/payments/payment \
+        -X "POST" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer xzZnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p" \
+        -d '{
+            "payer": {
+                        "default_payment_instrument":"BANK_ACCOUNT",
+                        "allowed_payment_instruments":["BANK_ACCOUNT"],
+                        "default_swift":"FIOBCZPP",
+                        "allowed_swifts":["FIOBCZPP","BREXCZPP"],
+                        "contact":{"first_name":"Zbynek",
+                                   "last_name":"Zak",
+                                   "email":"zbynek.zak@gopay.cz",
+                                   "phone_number":"+420777456123",
+                                   "city":"C.Budejovice",
+                                   "street":"Plana 67",
+                                   "postal_code":"373 01",
+                                   "country_code":"CZE"
+                                  }
+                      },
+            "target": {
+                        "type":"ACCOUNT",
+                        "goid":"8123456789"
+                      },
+            "amount":"1000",
+            "currency":"CZK",
+            "order_number":"001",
+            "order_description":"pojisteni01",
+            "items":[{"name":"item01","amount":"500"},
+                     {"name":"item02","amount":"500"}
+                    ],
+            "additional_params":[{"name":"invoicenumber",
+                                  "value":"2015001003"
+                                }],
+            "callback":{
+                        "return_url":"http://www.eshop.cz/return",
+                        "notification_url":"http://www.eshop.cz/notify"
+                      },
+            "lang":"cs"
+        }'
+    php: |
+        <?php
+        use GoPay\Definition\Payment\Currency;
+        use GoPay\Definition\Payment\PaymentInstrument;
+        use GoPay\Definition\Payment\BankSwiftCode;
+
+        $response = $gopay->createPayment([
+            'payer' => [
+                'default_payment_instrument' => PaymentInstrument::BANK_ACCOUNT,
+                'allowed_payment_instruments' => [PaymentInstrument::BANK_ACCOUNT],
+                'default_swift' => BankSwiftCode::FIO_BANKA,
+                'allowed_swifts' => [BankSwiftCode::FIO_BANKA, BankSwiftCode::MBANK],
+                'contact' => [
+                    'first_name' => 'Zbynek',
+                    'last_name' => 'Zak',
+                    'email' => 'zbynek.zak@gopay.cz',
+                    'phone_number' => '+420777456123',
+                    'city' => 'C.Budejovice',
+                    'street' => 'Plana 67',
+                    'postal_code' => '373 01',
+                    'country_code' => 'CZE',
+                ],
+            ],
+            'amount' => 1000,
+            'currency' => Currency::CZECH_CROWNS,
+            'order_number' => '001',
+            'order_description' => 'pojisteni01',
+            'items' => [
+                ['name' => 'item01', 'amount' => 50],
+                ['name' => 'item02', 'amount' => 100],
+            ],
+            'additional_params' => [
+                array('name' => 'invoicenumber', 'value' => '2015001003')
+            ],
+            'callback' => [
+                'return_url' => 'http://www.your-url.tld/return',
+                'notification_url' => 'http://www.your-url.tld/notify'
+            ]
+        ]);
+
+response:
+    json: |
+        {
+          "id":3000006529,
+          "order_number":"001",
+          "state":"CREATED",
+          "amount":1000,"currency":"CZK",
+          "payer":{
+                   "default_payment_instrument":"BANK_ACCOUNT",
+                   "allowed_payment_instruments":["BANK_ACCOUNT"],
+                   "default_swift":"FIOBCZPP",
+                   "contact":{"first_name":"Zbynek",
+                              "last_name":"Zak",
+                              "email":" zbynek.zak@gopay.cz ",
+                              "phone_number":"+420777456123",
+                              "city":"C.Budejovice",
+                              "street":"Plana 67",
+                              "postal_code":"37301",
+                              "country_code":"CZE"
+                            }
+                  },
+          "target":{"type":"ACCOUNT",
+                    "goid":8123456789
+                  },
+          "additional_params":[{"name":"invoicenumber",
+                                "value":"2015001003"
+                              }],
+          "lang":"cs",
+          "gw_url":" https://gw.sandbox.gopay.com/gw/v3/bCcvmwTKK5hrJx2aGG8ZnFyBJhAvF"
+        }  
+    php: |
+        <?php
+        if ($response->hasSucceed()) {
+            $url = $response->json['gw_url'];
+            echo $response;
+        }

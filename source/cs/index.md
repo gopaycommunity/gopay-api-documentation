@@ -14,7 +14,7 @@ toc_footers:
 includes:
   - cs/oauth
   - cs/create-standard
-  - cs/preAuthorizePayment
+  - cs/create-preauthorized
   - cs/recurrentPayment
   - cs/gateInit
   - cs/paymentState

@@ -21,6 +21,10 @@ set :relative_links, true
 
 # Build-specific configuration
 configure :build do
+  # ignore inlined assets
+  ignore 'javascripts/*';
+  ignore 'stylesheets/*';
+
   # For example, change the Compass output style for deployment
   activate :minify_css, inline:true
 

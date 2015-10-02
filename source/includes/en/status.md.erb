@@ -1,0 +1,44 @@
+#Other payment operations
+
+##Status of the payment
+The payment status funcionality allows the point of sale to determine, whether the payment was successfully paid or not. 
+By default, the payment status is queried after receiving of a notification about the payment status change.
+
+More information about payment state you can find in [help center](https://help.gopay.com/en/s/3).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.status.request } %>
+
+###Request
+
+```GET /api/payments/payment/{id}```
+
+###Header of request
+
+Parameter name|Parameter description| Required
+----------------|-----------------|--------
+Accept|application/json|YES
+Content-Type|application/x-www-form-urlencoded|YES
+Authorization|Bearer [```<access-token>```](#access-token)|YES
+
+> Response.
+
+<%= partial "includes/examples", :locals => { :example => data.example.status.response } %>
+
+###Response
+
+Parameter name|Parameter description|Data´s type
+---------------|---------------|-----------
+id|Payment ID|long
+order_number|Order identification within the point of sale|string, alphanumeric characters only (128 characters)
+[state](#payment-status)|Payment status| string, can gain values see [state](#payment-status)
+amount|Amount in cents|long > 0
+[currency](#currency)|Payment currency| string, can gain values see [currency](#currency)
+[payment_instrument](#payment_instrument)| Code of chosen payment method | string, can gain values see [payment_instrument](#payment_instrument)
+[payer](#payer)|Object describing the payer of payment | Object
+[target](#target)| Object describing the target of payment (payee) | Object
+[recurrence](#recurrence)| Object describing the recurring payment| Object
+[additional_params](#additional_params)|Additional parameters of the payment|Object array
+[lang](#lang)|Payment language|string, can gain values see [lang](#lang)
+gw_url|URL for redirecting to the payment gateway|string

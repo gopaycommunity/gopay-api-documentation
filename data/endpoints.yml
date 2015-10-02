@@ -3,7 +3,7 @@
 - create-preauthorized
 - create-recurrent
 - gateInit
-- paymentState
+- status
 - paymentRefund
 - createRecurrence
 - cancelRecurrence

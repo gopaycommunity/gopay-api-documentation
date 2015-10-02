@@ -11,7 +11,7 @@ request:
         cs: |
             <?php
             $gopay = GoPay\payments([
-                'goid' => '...',
+                'goid' => '8123456789',
                 'clientId' => '...',
                 'clientSecret' => '...',
                 'isProductionMode' => false,

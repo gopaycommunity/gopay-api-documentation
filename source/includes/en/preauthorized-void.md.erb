@@ -1,0 +1,29 @@
+##Cancellation of the pre-authorized payment
+The functionality allows you to cancel previously created​ pre-authorized payment.​ [created payment](#pre-authorized payment)
+   
+More information about pre-authorized payments you can find in [help center](https://help.gopay.com/en/s/7).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.preauthorized_void.request } %>
+
+###Request
+```POST /api/payments/payment/{id}/void-authorization```
+
+###Header of request
+
+Parameter name|Parameter description| Required
+----------------|-----------------|--------
+Accept|application/json|YES
+Content-Type|application/x-www-form-urlencoded|YES
+Authorization|Bearer [```<access-token>```](#access-token)|YES
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.preauthorized_void.response } %>
+
+###Response
+Parameter name|Parameter description| Data´s type
+---------------|---------------|----------
+id|payment ID|long
+[result](#result)|Object describing of request status|long

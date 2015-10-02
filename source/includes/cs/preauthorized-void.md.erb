@@ -1,0 +1,29 @@
+##Zrušení předautorizace platby
+Provede zrušení předautorizaci dříve [vytvořené platby](#předautorizovaná-platba).
+   
+Podrobné informace k předautorizovaným platbám naleznete v [centru nápovědy](https://help.gopay.com/cs/s/hV).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.preauthorized_void.request } %>
+
+###Request
+```POST /api/payments/payment/{id}/void-authorization```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.preauthorized_void.response } %>
+
+###Response
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|----------
+id|ID platby|long
+[result](#result)|Objekt popisující stav požadavku|long

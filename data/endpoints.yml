@@ -7,7 +7,7 @@
 - refund
 - recurrence-ondemand
 - recurrence-void
-- cancelPreAuthorization
+- preauthorized-void
 - capturePreAuthorization
 - objects
 - codes

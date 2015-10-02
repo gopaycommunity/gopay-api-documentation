@@ -5,7 +5,7 @@
 - gateInit
 - status
 - refund
-- createRecurrence
+- recurrence-ondemand
 - cancelRecurrence
 - cancelPreAuthorization
 - capturePreAuthorization

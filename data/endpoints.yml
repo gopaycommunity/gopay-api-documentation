@@ -1,7 +1,7 @@
 - oauth
 - create-standard
 - create-preauthorized
-- recurrentPayment
+- create-recurrent
 - gateInit
 - paymentState
 - paymentRefund

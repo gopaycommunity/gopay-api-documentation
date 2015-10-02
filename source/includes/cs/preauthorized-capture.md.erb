@@ -1,0 +1,31 @@
+##Stržení předautorizované platby
+Pomocí volání je možné strhnout předautorizaci finančních prostředků dříve vytvořené
+[předautorizované platby](#předautorizovaná-platba).   
+   
+Podrobné informace k předautorizovaným platbám naleznete v [centru nápovědy](https://help.gopay.com/cs/s/hV).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.preauthorized_capture.request } %>
+
+###Request
+```POST /api/payments/payment/{id}/capture```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.preauthorized_capture.request } %>
+
+###Response
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|----------
+id|ID platby|long
+[result](#result)|Objekt popisující stav požadavku| Objekt

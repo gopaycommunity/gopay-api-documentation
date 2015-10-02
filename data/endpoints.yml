@@ -8,7 +8,7 @@
 - recurrence-ondemand
 - recurrence-void
 - preauthorized-void
-- capturePreAuthorization
+- preauthorized-capture
 - objects
 - codes
 - errors

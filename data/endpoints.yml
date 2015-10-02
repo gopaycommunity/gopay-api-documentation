@@ -6,7 +6,7 @@
 - status
 - refund
 - recurrence-ondemand
-- cancelRecurrence
+- recurrence-void
 - cancelPreAuthorization
 - capturePreAuthorization
 - objects

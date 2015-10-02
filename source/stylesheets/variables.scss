@@ -19,47 +19,51 @@ under the License.
 // CUSTOMIZE SLATE
 ////////////////////////////////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
-
+$color-primary: #1999d6;
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
-$examples-bg: #393939;
-$code-bg: #292929;
-$code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
-$lang-select-border: #000;
-$lang-select-bg: #222;
+$nav-bg: #fff;
+$examples-bg: #122b3b;
+$code-bg: $examples-bg;
+$code-annotation-bg: $code-bg;
+$nav-subitem-bg: #f0f0f0;
+$nav-active-bg: $color-primary;
+$lang-select-border: #194E7B;
+$lang-select-bg: #1A384C;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
+$main-bg: #fff;
 $aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
+$aside-warning-bg: rgb(244, 126, 0);
 $aside-success-bg: #6ac174;
 $search-notice-bg: #c97a7e;
+$table-bg: #F5F5F5;
 
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333; // main content text color
-$nav-text: #fff;
+$main-text: #6D6D6D; // main content text color
+$nav-text: $color-primary;
 $nav-active-text: #fff;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
+$heading-text: #302E31;
+$warning-text: #fff;
 
+$hover-darken-percentage: 20%;
 
 // SIZES
 ////////////////////
 $nav-width: 230px; // width of the navbar
-$examples-width: 50%; // portion of the screen taken up by code examples
+$examples-width: 45%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px; // padding to left and right of content & examples
 $nav-padding: 15px; // padding to left and right of navbar
 $nav-v-padding: 10px; // padding used vertically around search boxes and results
 $nav-indent: 10px; // extra padding for ToC subitems
-$code-annotation-padding: 13px; // padding inside code annotations
+$code-annotation-padding: 6px; // padding inside code annotations
 $h1-margin-bottom: 21px; // padding under the largest header tags
 $tablet-width: 930px; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size
@@ -68,8 +72,8 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-family: museo-sans, sans-serif;;
+  font-size: 15px;
 }
 
 %header-font {
@@ -87,11 +91,11 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // OTHER
 ////////////////////
 $nav-active-shadow: #000;
-$nav-footer-border-color: #666;
+$nav-footer-border-color: #E6E6E6;
 $nav-embossed-border-top: #000;
 $nav-embossed-border-bottom: #939393;
 $main-embossed-text-shadow: 0px 1px 0px #fff;
-$search-box-border-color: #666;
+$search-box-border-color: #E6E6E6;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -109,4 +113,25 @@ $search-box-border-color: #666;
 -webkit-hyphens: auto;
    -moz-hyphens: auto;
         hyphens: auto;
+}
+
+.tocify-wrapper > img {
+    margin: 2em auto;
+}
+.content pre.endpoints {
+    h4 {
+        margin: 0;
+        color: #ccc;
+    }
+    a {
+        border-bottom: 0;
+        &:hover, &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+aside.warning {
+    color: $warning-text;
+    margin-left: 28px;
 }

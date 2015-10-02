@@ -1,0 +1,1476 @@
+---
+title: GoPay REST API
+
+language_tabs:
+  - shell: curl
+  - php
+
+
+toc_footers:
+  - <a href='http://www.gopay.cz'>www.gopay.cz</a>
+  - <a href='http://www.platebnibrana.cz'>www.platebnibrana.cz</a>
+  - <a href='http://help.gopay.com'>help.gopay.com</a>
+
+includes:
+  - errors
+
+search: true
+---
+
+# Dokumentace GoPay REST API
+
+> API ENDPOINT
+>     
+> testovací prostředí - https://gw.sandbox.gopay.com/api  
+> provozní prostředí - https://gate.gopay.cz/api   
+>  
+> DOSTUPNÉ METODY  
+>  
+> [/oauth2/token](#přístupový-token)  
+> [/payments/payment](#založení-platby)  
+> [/payments/payment/{id}](#stav-platby)  
+> [/payments/payment/{id}/refund](#refundace-platby-(storno))  
+> [/payments/payment/{id}/create-recurrence](#opakování-platby-(na-vyžádání))   
+> [/payments/payment/{id}/void-recurrence](#zrušení-opakování-platby)  
+> [/payments/payment/{id}/void-authorization](#zrušení-předautorizace-platby)  
+> [/payments/payment/{id}/capture](#stržení-předautorizované-platby)  
+
+GoPay REST API je dostupné v testovacím prostředí na adrese ```https://gw.sandbox.gopay.com/api```.    
+
+Provozní API se nachází na adrese ```https://gate.gopay.cz/api```. 
+  
+Pro veškerou příchozí i odchozí komunikaci s API je použito kódování UTF-8.  
+  
+Detailní popis jednotlivých kroků nutných pro provedení standardní integrace naleznete v [centru nápovědy](https://help.gopay.com/cs/s/i4).
+
+
+# OAuth
+
+GoPay REST API používá pro autorizaci přístupu k API principu [OAuth2.0](http://tools.ietf.org/html/rfc6749), 
+konkrétně metodu klientské autentizace viz [http://tools.ietf.org/html/rfc6749#section-4.4](http://tools.ietf.org/html/rfc6749#section-4.4)
+
+## Přístupový token
+
+Základním prvkem veškeré komunikace přes REST API je přístupový token, který je vytvořen na základě předávaných přístupových údajů ve formě ```<Client ID>```:```<Client Secret>```.
+ Token je předáván jako autorizační parametr v hlavičce HTTP dotazu prostřednictvím ```Authorization: Bearer <Access-Token>```. Získaný přístupový token je předáván pro každý další požadavek na API.   
+ Životnost tokenu je vždy omezena na 30 minut. Po jeho vypršení je nutné vytvořit nový přístupový token.
+<aside class="notice">
+  Pokud ještě nemáte Client ID a Client Secret, kontaktujte nás na integrace@gopay.cz.
+</aside>
+
+###Request
+
+```POST /api/oauth2/token```
+
+> Request
+
+```shell
+curl -v https://gw.sandbox.gopay.com/api/oauth2/token \
+-X "POST" \
+-H "Accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-u "<Client ID>:<Client Secret>" \
+-d "grant_type=client_credentials&scope=payment-create"
+```
+
+```php
+<?php
+$ch = curl_init();
+
+$data = array(
+           'grant_type' => 'client_credentials',
+           'scope' => 'payment-create'
+       );
+
+$data_send = http_build_query($data);
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/oauth2/token");
+curl_setopt($ch, CURLOPT_HTTPHEADER,
+  array('Accept: application/json',
+        'Content-Type: application/x-www-form-urlencoded'));
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_USERPWD, $clientID.":".$clientSecret); 
+//nutno doplnit client id a client secret ziskane pri zahajini integrace
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_send);
+
+$result = curl_exec($ch);
+?>
+```
+
+###Hlavička požadavku
+Název parametru|Popis parametru|Povinný
+---------------|---------------|-------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization|[HTTP basic authentication](http://cs.wikipedia.org/wiki/Basic_access_authentication) pomocí níž předáváte ```<Client ID>```:```<Client Secret>```|ANO
+
+###Tělo požadavku
+
+Název parametru|Popis parametru|Povinný
+---------------|---------------|-------
+[scope](#scope)|Definuje kategorii funkcionalit které může daná akce obsluhovat|ANO
+grant_type|client_credentials|ANO
+
+> Response
+
+```json
+{
+  "token_type":"bearer",
+  "access_token":"AAAnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p",
+  "expires_in":1800,
+}
+```
+
+
+###Response
+
+Název parametru|Popis parametru|Povinný
+---------------|---------------|-------
+token_type|bearer|ANO
+access_token|Přístupový token|ANO
+expires_in|Čas expirace tokenu v sekundách|ANO
+
+<aside class="notice">
+Přístupový token pro scope payment-create je určen výhradně k založení platby. Další funkcionality,
+jako např. dotaz na stav, refundace platby musí být doprovázeny tokenem, který je určen pro
+obsluhování operací s platbami (scope payment-all).
+</aside>
+
+
+
+# Založení platby
+
+Před vyvoláním platební brány je nutné provést založení platby. Ve výsledku volání vám zopakujeme parametry platby spolu s parametrem ```gw_url```, který použijete pro inicializaci [inline](#inline-varianta) nebo [redirect](#redirect-varianta) platební brány.   
+  
+Příjemce platby je identifikován ```goid``` v objektu [target](##target). Získáte jej při integraci platební brány pro identifikaci konkrétního prodejního místa, např. [www.goshop.cz](http://www.goshop.cz).
+<aside class='notice'>
+Pokud ještě nemáte goid, kontaktujte nás na integrace@gopay.cz
+</aside>
+  
+Platící strana je v rámci platby popsána objektem [payer](##payer), který identifikuje platícího, a případně určuje množinu povolených platebních metod, včetně metody defaultní.  
+
+## Standardní platba
+Platba je určena pro úhradu objednávky platební kartou, bankovním převodem, GoPay účtem a jinými platebními metodami.  
+
+Podrobný popis kroků nutných pro provedení standardní platby naleznete v [centru nápovědy](https://help.gopay.com/cs/s/i4).
+
+> Request
+
+```shell
+curl -v https://gw.sandbox.gopay.com/api/payments/payment \
+-X "POST" \
+-H "Accept: application/json" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer xzZnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p" \
+-d '{
+    "payer": {
+                "default_payment_instrument":"BANK_ACCOUNT",
+                "allowed_payment_instruments":["BANK_ACCOUNT"],
+                "default_swift":"FIOBCZPP",
+                "allowed_swifts":["FIOBCZPP","BREXCZPP"],
+                "contact":{"first_name":"Zbynek",
+                           "last_name":"Zak",
+                           "email":"zbynek.zak@gopay.cz",
+                           "phone_number":"+420777456123",
+                           "city":"C.Budejovice",
+                           "street":"Plana 67",
+                           "postal_code":"373 01",
+                           "country_code":"CZE"
+                          }
+              },
+    "target": {
+                "type":"ACCOUNT",
+                "goid":"8123456789"
+              },
+    "amount":"1000",
+    "currency":"CZK",
+    "order_number":"001",
+    "order_description":"pojisteni01",
+    "items":[{"name":"item01","amount":"500"},
+             {"name":"item02","amount":"500"}
+            ],
+    "additional_params":[{"name":"invoicenumber",
+                          "value":"2015001003"
+                        }],
+    "callback":{
+                "return_url":"http://www.eshop.cz/return",
+                "notification_url":"http://www.eshop.cz/notify"
+              },
+    "lang":"cs"
+}'
+```
+
+```php
+<?php
+$ch = curl_init();
+
+$data = array(
+  'payer' => array(
+      'default_payment_instrument' => 'BANK_ACCOUNT',
+      'allowed_payment_instruments' => array('BANK_ACCOUNT'),
+      'default_swift' => 'FIOBCZPP',
+      'allowed_swifts' => array('FIOBCZPP','BREXCZPP'),
+      'contact' => array(
+          'first_name' => 'Zbynek',
+          'last_name' => 'Zak',
+          'email' => 'zbynek.zak@gopay.cz',
+          'phone_number' => '+420777456123',
+          'city' => 'C.Budejovice',
+          'street' => 'Plana 67',
+          'postal_code' => '373 01',
+          'country_code' => 'CZE',
+      ),
+  ),
+  'target' => array('type' => 'ACCOUNT',
+                    'goid' => '8123456789'),
+  'amount' => '1000',
+  'currency' => 'CZK',
+  'order_number' => '001',
+  'order_description' => 'pojisteni01',
+  'items' => array(
+      array('name' => 'item01', 'amount' => '500'),
+      array('name' => 'item02', 'amount' => '500')
+  ),
+  'additional_params' => array(
+      array('name' => 'invoicenumber', 'value' => '2015001003')
+  ),
+  'callback' => array(
+      'return_url' => 'http://www.eshop.cz/return',
+      'notification_url' => 'http://www.eshop.cz/notify'
+  ),
+  'lang' => 'cs'
+);
+
+$data_send = json_encode($data);
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/payments/payment");
+curl_setopt($ch, CURLOPT_HTTPHEADER,
+  array('Accept: application/json',
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . $token));
+//nejprve je nutne ziskat token
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_send);
+
+$result = curl_exec($ch);
+?>
+```
+
+###Request
+```POST /api/payments/payment```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization| Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+Název parametru | Popis parametru | Povinný | Datový typ
+----------------|-----------------|---------|-----------
+[payer](#payer)|Objekt popisující plátce platby|NE| Objekt
+[target](#target)|Objekt popisující příjemce platby|ANO| Objekt
+amount|Částka v haléřích|ANO| long > 0
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO| string
+order_number|Identifikace objednávky v rámci prodejního místa|ANO| string, pouze alfanumerické znaky (128 znaků)
+order_description|Popis objednávky|ANO|string, pouze alfanumerické znaky (256 znaků)
+[items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Objekt
+[callback](#callback)|Návratové URL a notifikační URL pro oznámení změny stavu platby|ANO| Objekt
+[additional_params](#additional_params)|Doplňkové parametry platby|NE| Pole objektů
+[lang](#lang)|Parametr definuje jazyk platby|NE| string, může nabývat hodnot viz [lang](#lang)
+
+>Response
+
+```json
+{
+  "id":3000006529,
+  "order_number":"001",
+  "state":"CREATED",
+  "amount":1000,"currency":"CZK",
+  "payer":{
+           "default_payment_instrument":"BANK_ACCOUNT",
+           "allowed_payment_instruments":["BANK_ACCOUNT"],
+           "default_swift":"FIOBCZPP",
+           "contact":{"first_name":"Zbynek",
+                      "last_name":"Zak",
+                      "email":" zbynek.zak@gopay.cz ",
+                      "phone_number":"+420777456123",
+                      "city":"C.Budejovice",
+                      "street":"Plana 67",
+                      "postal_code":"37301",
+                      "country_code":"CZE"
+                    }
+          },
+  "target":{"type":"ACCOUNT",
+            "goid":8123456789
+          },
+  "additional_params":[{"name":"invoicenumber",
+                        "value":"2015001003"
+                      }],
+  "lang":"cs",
+  "gw_url":" https://gw.sandbox.gopay.com/gw/v3/bCcvmwTKK5hrJx2aGG8ZnFyBJhAvF"
+}  
+```                          
+                
+###Response 
+  
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+id|ID platby|long
+order_number|ID objednávky| string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby| string, může nabývat hodnot viz [state](#stavy-plateb)
+amount|Částka v haléřích| long > 0
+[currency](##currency)|Měna platby| string, může nabývat hodnot viz [currency](##currency)
+[payer](#payer)| Objekt popisující plátce platby| Objekt
+[target](#target)| Objekt popisující příjemce platby| Objekt
+[additional_params](#additional_params)|Doplňkové parametry platby| Pole objektů
+[lang](#lang)|Parametr definuje jazyk platby| string, může nabývat hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány|string
+
+<aside class='notice'>
+Pro vytvoření platby je nutné použít přístupový token vytvořený ve scope payment-create.
+</aside>
+
+## Předautorizovaná platba
+
+Předautorizace umožní při platbě kartou zablokovat po dobu 4 dnů prostředky na účtu zákazníka. Blokované prostředky lze následně strnout pomocí API volání [stržení předautorizované platby](#stržení-předautorizované-platby). Předautorizovanou platbu založíte nastavením parametru ```preauthorization``` na ```true``` .   
+   
+Podrobný popis kroků nutných k provedení předautorizované platby naleznete v [centru nápovědy](https://help.gopay.com/cs/s/hV).
+
+> Request
+
+```shell
+curl -v https://gw.sandbox.gopay.com/api/payments/payment \
+-X "POST" \
+-H "Accept: application/json" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer xzZnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p" \
+-d '{
+    "payer": {
+              "contact":{
+                           "first_name":"Zbynek",
+                           "last_name":"Zak",
+                           "email":"zbynek.zak@gopay.cz",
+                           "phone_number":"+420777456123",
+                           "city":"C.Budejovice",
+                           "street":"Plana 67",
+                           "postal_code":"373 01",
+                           "country_code":"CZE"
+                          }
+              },
+    "target": {"type":"ACCOUNT",
+               "goid":"8123456789"
+              },
+    "amount":"1000",
+    "currency":"CZK",
+    "order_number":"001",
+    "order_description":"pojisteni01",
+    "items":[{"name":"item01","amount":"500"},
+             {"name":"item02","amount":"500"}],
+    "preauthorization":"true",
+    "additional_params":[{"name":"invoicenumber",
+                          "value":"2015001003"
+                        }],
+    "callback":{
+                "return_url":"http://www.eshop.cz/return",
+                "notification_url":"http://www.eshop.cz/notify"
+               }
+}'
+```
+```php
+<?php
+$ch = curl_init();
+
+$data = array(
+  'payer' => array(
+      'contact' => array(
+          'first_name' => 'Zbynek',
+          'last_name' => 'Zak',
+          'email' => 'zbynek.zak@gopay.cz',
+          'phone_number' => '+420777456123',
+          'city' => 'C.Budejovice',
+          'street' => 'Plana 67',
+          'postal_code' => '373 01',
+          'country_code' => 'CZE',
+      ),
+  ),
+  'target' => array('type' => 'ACCOUNT',
+                    'goid' => '8123456789'),
+  'amount' => '1000',
+  'currency' => 'CZK',
+  'order_number' => '001',
+  'order_description' => 'pojisteni01',
+  'items' => array(
+      array('name' => 'item01', 'amount' => '500'),
+      array('name' => 'item02', 'amount' => '500')
+  ),
+  'preauthorization' => 'true',
+  'additional_params' => array(
+       array('name' => 'invoicenumber', 'value' => '2015001003')
+  ),
+  'callback' => array(
+      'return_url' => 'http://www.eshop.cz/return',
+      'notification_url' => 'http://www.eshop.cz/notify'
+  )
+);
+
+$data_send = json_encode($data);
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/payments/payment");
+curl_setopt($ch, CURLOPT_HTTPHEADER, 
+  array('Accept: application/json',
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . $token));
+//mejprve je nutne ziskat token
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_send);
+
+$result = curl_exec($ch);
+?>
+```
+
+###Request
+```POST /api/payments/payment```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+Název parametru | Popis parametru | Povinný | Datový typ
+----------------|-----------------|---------|--------
+[payer](#payer)|Objekt popisující plátce platby|NE| Objekt
+[target](#target)|Objekt popisující příjemce platby|ANO| Objekt
+amount| Částka v haléřích|ANO| long > 0
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO|string, může nabývat hodnot viz [currency](#currency)
+order_number|Identifikace objednávky v rámci prodejního místa|ANO| string, pouze alfanumerické znaky (128 znaků)
+order_description|Popis objednávky|ANO| string, pouze alfanumerické znaky (256 znaků)
+[items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Pole objektů
+preauthorization|Aktivace předautorizované platby|NE| bool
+[additional_params](#additional_params)|Doplňkové parametry platby|NE| Pole objektů
+[callback](#callback)|Návratové URL a notifikační URL pro oznámení změny stavu platby|ANO| Objekt
+
+> Response
+
+```json
+{
+  "id":3000006542,
+  "order_number":"001",
+  "state":"CREATED",
+  "amount":1000,"currency":"CZK",
+  "payer":{
+           "contact":{"first_name":"Zbynek",
+                      "last_name":"Zak",
+                      "email":" zbynek.zak@gopay.cz ",
+                      "phone_number":"+420777456123",
+                      "city":"C.Budejovice",
+                      "street":"Plana 67",
+                      "postal_code":"37301",
+                      "country_code":"CZE"
+                    }
+          },
+  "target":{"type":"ACCOUNT",
+            "goid":8123456789
+          },
+  "preauthorization":{"requested":true,
+                      "state":"REQUESTED"
+                    },
+  "additional_params":[{"name":"invoicenumber",
+                        "value":"2015001003"
+                      }],
+  "lang":"cs",
+  "gw_url":" https://gw.sandbox.gopay.com/gw/v3/bCcvmwTKK5hrJx2aGG8ZnFyBJhAvF "
+}
+```
+
+###Response
+  
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+id|ID platby|long
+order_number| ID objednávky| string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby| string, může nabývat hodnot viz [state](#stavy-plateb)
+amount|Částka v haléřích|long > 0
+[payer](#payer)| Objekt popisující plátce platby| Objekt
+[target](#target)| Objekt popisující příjemce platby| Objekt
+[preauthorization](#preauthorization)| Objekt popisující předautorizaci| Objekt
+[additional_params](#additional_params)| Volitelné parametry platby| Pole objektů
+[lang](#lang)|Jazyk platby| string, může nabývat hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány| string
+
+## Opakovaná platba
+Opakovaná platba je funkcionalita, která umožňuje přijímat platby kartou od zákazníka na pravidelné bázi.
+Založení opakované platby je rozšířeno o parametr ```recurrence```.  Po úspěšném založení inicializační platby jsou platby prováděny automatizovaně, např. s denní periodou ```DAY``` nebo na vyžádání ```ON_DEMAND```.
+
+Podrobný popis kroků nutných k provedení opakované platby naleznete v [centru nápovědy](https://help.gopay.com/cs/s/hT).
+
+V případě platby na vyžádání je následná platba provedena  API voláním [opakování platby](#opakování-platby-(na-vyžádání))
+
+> Request
+
+```shell
+curl -v https://gw.sandbox.gopay.com/api/payments/payment \
+-X "POST" \
+-H "Accept: application/json" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer xzZnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p" \
+-d '{
+    "payer": {
+      "contact":{"first_name":"Zbynek",
+                 "last_name":"Zak",
+                 "email":"zbynek.zak@gopay.cz",
+                 "phone_number":"+420777456123",
+                 "city":"C.Budejovice",
+                 "street":"Plana 67",
+                 "postal_code":"373 01",
+                 "country_code":"CZE"
+                }
+    },
+    "target":{"type":"ACCOUNT",
+               "goid":"8123456789"
+             },
+    "amount":"1000",
+    "currency":"CZK",
+    "order_number":"001",
+    "order_description":"pojisteni01",
+    "items":[{"name":"item01","amount":"500"},
+             {"name":"item02","amount":"500"}
+            ],
+    "recurrence":{"recurrence_cycle":"DAY",
+                  "recurrence_period":"7",
+                  "recurrence_date_to":"2015-12-31"},
+    "additional_params":[{"name":"invoicenumber",
+                          "value":"2015001003"
+                        }],
+    "callback":{
+                "return_url":"http://www.eshop.cz/return",
+                "notification_url":"http://www.eshop.cz/notify"
+               }
+}'
+```
+```php
+<?php
+$ch = curl_init();
+
+$data = array(
+  'payer' => array(
+      'contact' => array(
+          'first_name' => 'Zbynek',
+          'last_name' => 'Zak',
+          'email' => 'zbynek.zak@gopay.cz',
+          'phone_number' => '+420777456123',
+          'city' => 'C.Budejovice',
+          'street' => 'Plana 67',
+          'postal_code' => '373 01',
+          'country_code' => 'CZE',
+      ),
+  ),
+  'target' => array('type' => 'ACCOUNT',
+                    'goid' => '8123456789'),
+  'amount' => '1000',
+  'currency' => 'CZK',
+  'order_number' => '001',
+  'order_description' => 'pojisteni01',
+  'items' => array(
+      array('name' => 'item01','amount' => '500'),
+      array('name' => 'item02','amount' => '500')
+  ),
+  'recurrence' => array(
+      'recurrence_cycle' => 'DAY',
+      'recurrence_period' => "7",
+      'recurrence_date_to' => '2015-12-31'
+  ),
+  'additional_params' => array(
+      array('name' => 'invoicenumber', 'value' => '2015001003')
+  ),
+  'callback' => array(
+      'return_url' => 'http://www.eshop.cz/return',
+      'notification_url' => 'http://www.eshop.cz/notify'
+  )
+);
+
+$data_send = json_encode($data);
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/payments/payment");
+curl_setopt($ch, CURLOPT_HTTPHEADER, 
+  array('Accept: application/json',
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . $token));
+//nejprve je nutne ziskat token
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_send);
+
+$result = curl_exec($ch);
+?>
+```
+
+###Request
+```POST /api/payments/payment```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+Název parametru | Popis parametru | Povinný | Datový typ
+----------------|-----------------|---------|--------
+[payer](#payer)|Objekt popisující plátce platby|NE| Objekt
+[target](#target)|Objekt popisující příjemce platby|ANO| Objekt
+amount|Částka v haléřích|ANO| long
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO|string, může nabývat hodnot viz [currency](#currency)
+order_number|Identifikace objednávky v rámci prodejního místa|ANO|string, pouze alfanumerické znaky (128 znaků)
+order_description|Popis objednávky|ANO|string, pouze alfanumerické znaky (256 znaků)
+[items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO|Pole objektů
+[recurrence](#recurrence)|Objekt popisující opakovanou platbu|NE| Objekt
+[additional_params](#additional_params)|Doplňkové parametry platby|NE|Pole objektů
+[callback](#callback)|Návratové URL a notifikační URL pro oznámení změny stavu platby|ANO|Objekt
+
+
+> Response
+
+```json
+{
+  "id":3000006542,
+  "order_number":"001",
+  "state":"CREATED",
+  "amount":1000,"currency":"CZK",
+  "payer":{
+           "contact":{"first_name":"Zbynek",
+                      "last_name":"Zak",
+                      "email":" zbynek.zak@gopay.cz",
+                      "phone_number":"+420777456123",
+                      "city":"C.Budejovice",
+                      "street":"Plana 67",
+                      "postal_code":"37301",
+                      "country_code":"CZE"
+                    }
+          },
+    "target":{"type":"ACCOUNT","goid":8123456789},
+    "recurrence":{"recurrence_cycle":"DAY",
+                  "recurrence_period":7,
+                  "recurrence_date_to":"2015-12-31",
+                  "recurrence_state":"REQUESTED"
+                },
+    "additional_params":[{"name":"invoicenumber",
+                          "value":"2015001003"
+                        }],
+    "lang":"cs",
+    "gw_url":" https://gw.sandbox.gopay.com/gw/v3/bCcvmwTKK5hrJx2aGG8ZnFyBJhAvF "
+}
+```
+###Response 
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-------
+id|ID platby|long
+order_number|ID objednávky| string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby| Objekt
+amount|Částka v haléřích|long > 0
+[payer](#payer)| Objekt popisující plátce platby| Objekt
+[target](#target)| Objekt popisující příjemce platby| Objekt
+[recurrence](#recurrence)| Objekt popisující opakovanou platbu| Objekt
+[additional_params](#additional_params)| Volitelné parametry platby| Pole objektů
+[lang](#lang)|Parametr popisující jazyk platby| string, může nabývat hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány| string
+
+# Vyvolání nové platební brány
+Pro vyvolání platební brány je možné použít HTML formulář, který pomocí javascriptu
+provede inicializaci platební brány. 
+
+## Inline varianta
+
+>Formulář pro vyvolání inline platební brány
+
+```html
+<form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF"
+  method="post" id="gopay-payment-button">
+  <button name="pay" type="submit">Zaplatit</button>
+  <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
+</form>
+```
+Inline platební brána je vyvolána přímo nad portálem obchodníka, nedochází tedy k přesměrování.
+
+URL (action) formuláře nastavte dle ```gw_url``` z [vytvoření platby](#založení-platby).
+
+Parametr formuláře|Popis|Povinný
+------------------|-----|--------
+action|gw_url založené platby|ANO
+method|HTTP metoda|ANO
+id|id formuláře|ANO| Vždy nastaveno na gopay-payment-button
+
+<aside class='notice'>
+  Podrobný popis všech kroků nutných k vyvolání platební brány naleznete v našem <a href="https://help.gopay.com/cs/s/i4">centru nápovědy</a>
+</aside>
+
+## Redirect varianta
+
+>Formulář pro přesměrování na Redirect platební bránu
+
+```html
+<form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF"
+  method="post">
+  <button name="pay" type="submit">Zaplatit</button>
+</form>
+```
+
+Platební bránu lze provozovat i ve variantě s přesměrováním. Lze použít formulář viz níže
+nebo provést přesměrování na URL předané při [vytvoření platby](#založení-platby) ```gw_url```.
+
+Parametr formuláře|Popis|Povinný
+-----------------|-----|--------
+action|gw_url založené platby|ANO
+method|HTTP metoda|ANO
+
+#Další platební operace
+
+##Stav platby
+Funkcionalita stav platby umožní prodejnímu místu zjistit jaký je aktuální stav dříve vytvořené platby. Standardně je stav platby dotazován po doručení notifikace o změně stavu platby.
+   
+Podrobnější informace k dotazu na stav platby naleznete v našem [centru nápovědy](https://help.gopay.com/cs/s/h3).
+
+> Request
+
+```shell
+curl -v https://gw.sandbox.gopay.com/api/payments/payment/3000006542 \
+-X "GET" \
+-H "Accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969"
+```
+
+```php
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/payments/payment/".$id);
+//nutno doplnit id dotazovane platby
+curl_setopt($ch, CURLOPT_HTTPHEADER, 
+  array('Accept: application/json',
+        'Content-Type: application/x-www-form-urlencoded',
+        'Authorization: Bearer ' . $token));
+//nutno nejprve ziskat token vytvoreny ve scope=payment-all
+curl_setopt($ch, CURLOPT_HTTPGET, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$result = curl_exec($ch);
+?>
+```
+
+###Request
+
+```GET /api/payments/payment/{id}```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+> Response.
+
+```json
+{
+"id":3000006542,
+"order_number":"001",
+"state":"CREATED",
+"amount":1000,
+"currency":"CZK",
+"payment_instrument":"PAYMENT_CARD",
+"payer":{
+         "contact":{"first_name":"Zbynek",
+                    "last_name":"Zak",
+                    "email":" zbynek.zak@gopay.cz ",
+                    "phone_number":"+420777456123",
+                    "city":"C.Budejovice",
+                    "street":"Plana 67",
+                    "postal_code":"37301",
+                    "country_code":"CZE"
+                  }
+        },
+"target":{"type":"ACCOUNT",
+          "goid":8123456789
+         },
+"recurrence":{"recurrence_cycle":"DAY",
+              "recurrence_period":7,
+              "recurrence_date_to":"2015-12-31",
+              "recurrence_state":"REQUESTED"
+            },
+"additional_params":[{"name":"invoicenumber",
+                      "value":"2015001003"
+                    }],
+"lang":"cs",
+"gw_url":"https://gw.sandbox.gopay.com/gw/v3/bCcvmwTKK5hrJx2aGG8ZnFyBJhAvF"
+}
+```
+
+###Response
+
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+id|ID platby|long
+order_number|Identifikace objednávky v rámci prodejního místa|string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby| string, nabývající hodnot viz [state](#stavy-plateb)
+amount|Částka v haléřích|long > 0
+[currency](#currency)|Měna platby| string, nabývající hodnot viz [currency](#currency)
+[payment_instrument](#payment_instrument)| Kód zvolené platební metody | string, nabývající hodnot viz [payment_instrument](#payment_instrument)
+[payer](#payer)|Objekt popisující plátce platby | Objekt
+[target](#target)| Objekt popisující příjemce platby | Objekt
+[recurrence](#recurrence)| Objekt popisující opakovanou platbu| Objekt
+[additional_params](#additional_params)|Volitelné parametry platby|Pole objektů
+[lang](#lang)|Jazyk platby|string, nabývající hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány|string
+
+##Refundace platby (storno)
+Refundace platby umožňuje navrácení finančních prostředků za již
+provedenou platbu zpět zákazníkovi.
+
+Refundace lze provádět dvěma způsoby. Plná refundace platby umožňuje na základě parametru ```amount``` vrácení celé částky,
+zatímco částečná refundace specifikuje částku pro vrácení.
+
+Doplňující informace k refundaci plateb naleznete v našem [centru nápovědy](https://help.gopay.com/cs/s/hZ).
+
+> Request
+
+```shell
+curl v https://gw.sandbox.gopay.com/api/payments/payment/3000006620/refund \
+-X "POST" \
+-H "Accept: application/json" \
+-H "Content-Type:application/x-www-form-urlencoded"\
+-H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969" \
+-d "amount=1000"
+```
+```php
+<?php
+$ch = curl_init();
+
+$data = "amount=1000";
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/payments/payment/".$id."/refund");
+//nutno predat id refundovane platby
+curl_setopt($ch, CURLOPT_HTTPHEADER, 
+  array('Accept: application/json',
+        'Content-Type: application/x-www-form-urlencoded',
+        'Authorization: Bearer ' . $token));
+//nutno nejdrive vytvorit token ve scope=payment-all
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+$result = curl_exec($ch);
+?>
+```
+
+###Request
+```POST /api/payments/payment/{id}/refund```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+
+Název parametru|Popis parametru|Povinný| Datový typ
+---------------|---------------|-------|-------
+amount|Refundovaná částka|ANO|long > 0
+
+> Response
+
+```json
+{
+ "id":3000006620,
+ "result":"FINISHED"
+}
+```
+
+###Response 
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+id|ID platby|long
+[result](#result)|Stav požadavku| Objekt
+
+
+##Opakování platby (na vyžádání)
+
+Pomocí požadavku je možné opakovat platbu na základě dříve založené opakované platby v
+režimu ```ON_DEMAND```. Opakováním v tomto režimu je založena následná platba v libovolné částce. O provedení
+platby je prodejní místo informováno formou notifikace o změně stavu platby.
+   
+Podrobné informace k provádění opakovaných plateb naleznete v našem [centru nápovědy](https://help.gopay.com/cs/s/hT).
+
+```shell
+curl - v https://gw.sandbox.gopay.com/api/payments/payment/3000006542/create-recurrence\
+-X "POST" \
+-H "Accept: application/json" \
+-H "Content-Type:application/json" \
+-H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969" \
+-d'{
+    "amount":"500",
+    "currency":"CZK",
+    "order_number":"002”,
+    "order_description":"pojisteni02",
+    "items":[{"name":"item01","amount":"500"}],
+    "additional_params":[{
+                          "name":"invoicenumber",
+                          "value":"2015001004"
+                        }]
+}'
+```
+```php
+<?php
+$ch = curl_init();
+
+$data = array(
+    'amount' => '500',
+    'currency' => 'CZK',
+    'order_number' => '002',
+    'order_description' => 'pojisteni02',
+    'items' => array(
+      array('name' => 'item01', 'amount' => '500')
+    ),
+    'additional_params' => array(
+      array('name' => 'invoicenumber', 'value' => '2015001004')
+    )
+);
+
+$data_send = json_encode($data);
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/payments/payment/".$id."/create-recurrence");
+//nutno predat id refundovane platby
+curl_setopt($ch, CURLOPT_HTTPHEADER,
+  array('Accept: application/json',
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . $token));
+//nutno predat token vytvoreny ve scope=payment-all
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_send);
+
+$result = curl_exec($ch);
+?>
+```
+###Request
+
+```POST /api/payments/payment/{id}/create-recurrence```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+
+Název parametru|Popis parametru|Povinný|Datový typ
+---------------|---------------|-------|-------
+amount|Částka|ANO|long > 0
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO|string, nabývající hodnot viz [currency](#currency)
+order_number|ID objednávky|Identifikace objednávky v rámci prodejního místa|string, pouze alfanumerické znaky (128 znaků)
+order_description|Popis objednávky|ANO|string, pouze alfanumerické znaky (256 znaků)
+[items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO|Objekt
+[additional_params](#additional_params)|Doplňkové parametry platby|NE|Objekt
+
+> Response
+
+```json
+{
+"id":3000006621,
+"parent_id":3000006542,
+"order_number":"002",
+"state":"CREATED",
+"amount":1000,
+"currency":"CZK",
+"payment_instrument":"PAYMENT_CARD",
+"payer": {
+         "contact":{"first_name":"Zbynek",
+                    "last_name":"Zak",
+                    "email":" zbynek.zak@gopay.cz",
+                    "phone_number":"+420777456123",
+                    "city":"C.Budejovice",
+                    "street":"Plana 67",
+                    "postal_code":"37301",
+                    "country_code":"CZE"
+          }
+},
+"target":{"type":"ACCOUNT",
+         "goid":8123456789
+        },
+"additional_params":[{"name":"invoicenumber","value":"2015001004"}],
+"lang":"cs",
+"gw_url":"https://gw.sandbox.gopay.com/gw/v3/bCcvmwTKK5hrJx2aGG8ZnFyBJhAvF"
+}
+```
+
+###Response 
+  
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+id|ID platby|long
+parent_id|ID zakládající platby|long
+order_number|ID objednávky|string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby|Objekt
+amount|Částka v haléřích|long > 0
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|string, nabývající hodnot viz [currency](#currency)
+[payment_instrument](#payment_instrument)| Kód zvolené platební metody | string, nabývající hodnot viz [payment_instrument](#payment_instrument)
+[payer](#payer)| Objekt popisující plátce platby|Objekt
+[target](#target)| Objekt popisující příjemce platby|Objekt
+[additional_params](#additional_params)| Volitelné parametry platby|Pole objektů
+[lang](#lang)|Jazyk platby|string, nabývající hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány|string
+
+##Zrušení opakování platby
+
+Umožňuje zrušit opakování dříve [vytvořené platby](#opakovaná-platba). Uživatel má stejnou možnost
+v přihlášeném GoPay účtu.   
+   
+Podrobné informace k provádění opakovaných plateb naleznete v našem [centru nápovědy](https://help.gopay.com/cs/s/hT).
+
+> Request
+
+```shell
+curl v https://gw.sandbox.gopay.com/api/payments/payment/3000006542/void-recurrence\
+-X "POST" \
+-H "Accept: application/json" \
+-H "Content-Type:application/x-www-form-urlencoded"\
+-H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969"
+```
+```php
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/payments/payment/".$id."/void-recurrence");
+//nutno predat id platby u ktere se rusi opakovani
+curl_setopt($ch, CURLOPT_HTTPHEADER, 
+  array('Accept: application/json',
+        'Content-Type: application/x-www-form-urlencoded',
+        'Authorization: Bearer '.$token));
+//nutno predat token vytvoreny ve scope=payment-all
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, false);
+
+$result = curl_exec($ch);
+?>
+```
+###Request
+
+```POST /api/payments/payment/{id}/void-recurrence```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+> Response
+
+```json
+{
+ "id":3000006542,
+ "result":"FINISHED"
+}
+````
+
+###Response
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+id|ID platby|long
+[result](#result)|Objekt popisující stav požadavku| Objekt
+
+
+##Zrušení předautorizace platby
+Provede zrušení předautorizaci dříve [vytvořené platby](#předautorizovaná-platba).
+   
+Podrobné informace k předautorizovaným platbám naleznete v [centru nápovědy](https://help.gopay.com/cs/s/hV).
+
+> Request
+
+```shell
+curl -v https://gw.sandbox.gopay.com/api/payments/payment/3000006542/void-authorization\
+-X "POST" \
+-H "Accept: application/json" \
+-H "Content-Type:application/x-www-form-urlencoded"\
+-H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969"
+```
+```php
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/payments/payment/".$id."/void-authorization");
+//nutno predat id refundovane platby
+curl_setopt($ch, CURLOPT_HTTPHEADER, 
+  array('Accept: application/json',
+        'Content-Type: application/x-www-form-urlencoded',
+        'Authorization: Bearer ' . $token));
+//nutno predat token vytvoreny ve scope=payment-all
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, false);
+
+$result = curl_exec($ch);
+?>
+```
+###Request
+```POST /api/payments/payment/{id}/void-authorization```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+> Response
+
+```json
+{
+ "id":3000006542,
+ "result":"FINISHED"
+}
+```
+
+###Response
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|----------
+id|ID platby|long
+[result](#result)|Objekt popisující stav požadavku|long
+
+
+##Stržení předautorizované platby
+Pomocí volání je možné strhnout předautorizaci finančních prostředků dříve vytvořené
+[předautorizované platby](#předautorizovaná-platba).   
+   
+Podrobné informace k předautorizovaným platbám naleznete v [centru nápovědy](https://help.gopay.com/cs/s/hV).
+
+> Request
+
+```shell
+curl -v https://gw.sandbox.gopay.com/api/payments/payment/3000006542/capture \
+-X "POST" \
+-H "Accept: application/json" \
+-H "Content-Type:application/x-www-form-urlencoded"\
+-H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969"
+```
+```php
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/payments/payment/".$id."/capture");
+//nutno predat id platby pro kterou m byt strzena autorizace
+curl_setopt($ch, CURLOPT_HTTPHEADER, 
+  array('Accept: application/json',
+        'Content-Type: application/x-www-form-urlencoded',
+        'Authorization: Bearer ' . $token));
+//nutno predat token vytvoreny ve scope=payment-all
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, false);
+
+$result = curl_exec($ch);
+?>
+```
+###Request
+```POST /api/payments/payment/{id}/capture```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+> Response
+
+```json
+{ 
+ "id":3000006542,
+ "result":"FINISHED"
+}
+```
+
+###Response
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|----------
+id|ID platby|long
+[result](#result)|Objekt popisující stav požadavku| Objekt
+
+
+#Objekty
+Popis jednotlivých objektů použitých při komunikaci s platební bránou
+
+##payer
+Definice plátce platby
+
+```json
+ {
+   "allowed_payment_instruments":["PAYMENT_CARD", "BANK_ACCOUNT"],
+   "default_payment_instrument":"BANK_ACCOUNT",
+   "default_swift":"GIBACZPX",
+   "allowed_swifts":["FIOBCZPP","BREXCZPP"],
+   "contact": {...}
+ }
+```
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|----------
+[allowed_payment_instruments](#payment_instrument)|Pole povolených platebních metod|string, nabývající hodnot viz [payment_instrument](#payment_instrument)
+[default_payment_instrument](#payment_instrument)|Preferovaná platební metoda|string, nabývající hodnot viz [payment_instrument](#payment_instrument)
+[default_swift](#swift)|Preferová banka pokud je default_payment_instrument nastaveno na BANK_ACCOUNT, nastaveno pomocí SWIFT kódu banky|string, nabývající hodnot viz [SWIFT](#swift)
+[allowed_swifts](#swift)| Pole povolených kódů bank| string, nabývající hodnot viz [SWIFT](#swift) 
+[contact](#contact)|Údaje o zákaníkovi|Objekt
+
+
+##contact
+Zákaznické informace
+
+```json
+{
+   "first_name":"Zbynek",
+   "last_name":"Zak",
+   "email":"zbynek.zak@gopay.cz",
+   "phone_number":"+420777456123",
+   "city":"C.Budejovice",
+   "street":"Plana 67",
+   "postal_code":"373 01",
+   "country_code":"CZE"
+}
+```
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+first_name|Jméno zákazníka|string, 256 znaků
+last_name|Příjmení zákazníka|string, 256 znaků
+email|E-mail zákazníka|string, 128 znaků
+phone_number|Telefonní číslo zákazníka|string 128 znaků
+city|Město zákazníka|string, 128 znaků
+street|Ulice zákazníka|string, 128 znaků
+postal_code|Poštovní směrovací číslo zákazníka|string 16 znaků
+country_code|Kód státu zákazníka| string [ISO 3166-1 alpha-3](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
+
+##target
+Identifikace příjemce platby
+
+```json
+{
+  "type":"ACCOUNT",
+  "goid":"8123456789"
+}
+```
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+type|Popis příjemce platby|string, nastaveno na ACCOUNT
+goid|Jedinečný identifikátor eshopu v systému platební brány|long
+
+##items
+Jednotlivé položky objednávky spolu s cenou
+
+```json
+[
+   {"name":"item01","amount":"500"},
+   {"name":"item02","amount":"500"},
+   {...}
+]
+```
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+name|Název produktu|string, alfanumerické znaky (256 znaků)
+amount|Cena produktu| long > 0
+
+
+##callback
+Definice návratové a notifikační URL
+
+```json
+{
+   "return_url":"http://www.eshop.cz/return",
+   "notification_url":"http://www.eshop.cz/notify"
+}
+```
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+return_url|URL adresa pro návrat na eshop|string
+notification_url|URL adresa pro odeslání asynchronní notifikace v případě změny stavu platby|string
+
+
+##additional_params
+Dodatečné parametry platby
+
+```json
+[{
+    "name":"invoicenumber",
+    "value":"2015001003"
+  },
+  {...}
+]
+```
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+name|Název parametru|string
+value|Hodnota volitelného parametru|string
+
+
+##recurrence
+Nastavení opakované platby
+
+> Opakování každý sedmý den
+
+```json
+{
+  "recurrence_cycle":"DAY",
+  "recurrence_period":"7",
+  "recurrence_date_to":"2015-12-31"
+}
+```
+
+> Opakování každý třetí den
+
+```json
+{
+  "recurrence_cycle":"DAY",
+  "recurrence_period":"3",
+  "recurrence_date_to":"2015-12-31"
+}
+```
+
+> Opakování každý druhý měsíc
+
+```json
+{
+  "recurrence_cycle":"MONTH",
+  "recurrence_period":"2",
+  "recurrence_date_to":"2015-12-31"
+}
+```
+
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+[recurrence_cycle](#recurrence_cycle)|Časový úsek opakování|string, nabývá hodnot viz [recurrence_cycle](#recurrence_cycle)
+recurrence_period|Perioda opakování opakované platby| long
+recurrence_date_to|Doba platnosti opakované platby| string yyyy-mm-dd
+recurrence_state|Popis stavu opakované platby| string, nabývá hodnot REQUESTED, STARTED, STOPPED 
+
+
+#Číselníky
+##recurrence_cycle
+Cyklus opakované platby
+
+Hodnota parametru|Popis
+-----------------|-----
+DAY| Denní opakování
+WEEK| Týdenní opakování
+MONTH| Měsíční opakování
+ON_DEMAND| U opakovaných plateb na vyžádání
+
+
+##currency
+Měna platby
+
+Hodnota paramentru|Popis
+------------------|-----
+CZK | České koruny
+EUR | Eura
+
+##scope
+Parametr popisující množinu získaných práv
+
+Hodnota|Popis
+-------|-----
+payment-create|Umožňuje pouze zakládání plateb
+payment-all|Umožňuje provádět veškeré operace nad platbami
+
+##result
+Výsledek operace
+
+Název parametru|Popis parametru
+---------------|---------------
+ACCEPTED| Požadavek přijat
+FINISHED| Operace provedena
+FAILED| Operace skončila chybou
+
+##Stavy plateb
+Platba může nabývat následujících stavů
+
+Název stavu|Popis parametru stavu
+-----------|---------------------
+CREATED|Platba založena
+PAYMENT_METHOD_CHOSEN|Platební metoda vybrána
+PAID|Platba zaplacena
+AUTHORIZED|Platba předautorizována
+CANCELED|Platba zrušena
+TIMEOUTED|Vypršelá platnost platby
+REFUNDED|Platba refundována
+PARTIALLY_REFUNDED|Platba částečně refundována
+
+##lang
+Natavení jazyka platební brány
+
+Kód jazyka|Jazyk
+----------|-----
+CS| Čeština
+EN| Angličtina
+SK| Slovenština
+DE| Němčina
+RU| Ruština
+
+##payment_instrument
+Kódy platebních metod
+
+Kód platební metody|Popis platební metody
+-------------------|---------------------
+PAYMENT_CARD| Platební karty
+BANK_ACCOUNT| Bankovní převody
+PRSMS|Premium SMS
+MPAYMENT|Mplatba
+PAYSAFECARD|paysafecard
+SUPERCASH|superCASH
+GOPAY|GoPay účet
+PAYPAL|PayPal účet
+
+##SWIFT
+Kódy jednotlivých bank
+
+Kód banky|Název banky
+---------|-----------
+GIBACZPX| Česká spořitelna
+​​KOMBCZPP| Komerční Banka
+RZBCCZPP| Raiffeisenbank
+BREXCZPP| mBank
+FIOBCZPP| FIO Banka
+CEKOCZPP| ČSOB
+CEKOCZPP-ERA| ERA 
+SUBASKBX| Všeobecná úverová banka Banka
+TATRSKBX| Tatra Banka
+UNCRSKBX| Unicredit Bank SK
+GIBASKBX| Slovenská spořitelna
+OTPVSKBX| OTP Banka
+POBNSKBA| Poštová Banka
+CEKOSKBX| ČSOB SK
+LUBASKBX| Sberbank Slovensko

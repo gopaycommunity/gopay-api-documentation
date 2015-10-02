@@ -1,0 +1,93 @@
+# OAuth
+
+GoPay uses REST API for authorization of the access to API principal OAuth2.0,
+in specific method of client authentication, see [http://tools.ietf.org/html/rfc6749#section-4.4](http://tools.ietf.org/html/rfc6749#section-4.4)
+
+## Access token
+
+The basic element of all communication via REST API is an access token that is created by using the access data in the form of ```<Client ID>```:```<Client Secret>```. 
+A token is set as an authorization parameter in HTTP request header through ```Authorization: Bearer <Access-Token>```. This token is set for every requirement for API. 
+Token expires after 30 minutes. After expiry of the token, it is necessary to create a new access token.
+<aside class="notice">
+If you do not have Client ID and Client Secret, please, contact us on e-mail integrace@gopay.cz.
+</aside>
+
+
+###Request
+
+```POST /api/oauth2/token```
+
+> Request
+
+```shell
+curl -v https://gw.sandbox.gopay.com/api/oauth2/token \
+-X "POST" \
+-H "Accept: application/json" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-u "<Client ID>:<Client Secret>" \
+-d "grant_type=client_credentials&scope=payment-create"
+```
+
+```php
+<?php
+$ch = curl_init();
+
+$data = array(
+           'grant_type' => 'client_credentials',
+           'scope' => 'payment-create'
+       );
+
+$data_send = http_build_query($data);
+
+curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/oauth2/token");
+curl_setopt($ch, CURLOPT_HTTPHEADER,
+  array('Accept: application/json',
+        'Content-Type: application/x-www-form-urlencoded'));
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_USERPWD, $clientID.":".$clientSecret); 
+//need to pass clinet id and client secret
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_send);
+
+$result = curl_exec($ch);
+?>
+```
+
+###Header of the request
+Parameter name|Parameter description|Required
+---------------|---------------|-------
+Accept|application/json|YES
+Content-Type|application/x-www-form-urlencoded|YES
+Authorization|[HTTP basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) which is set as ```<Client ID>```:```<Client Secret>```|YES
+
+###Body of the request
+
+Parameter name|Parameter description|Required
+---------------|---------------|-------
+[scope](#scope)|Defines a category of functionalities that can operate a given action|YES
+grant_type|client_credentials|YES
+
+> Response
+
+```json
+{
+  "token_type":"bearer",
+  "access_token":"AAAnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p",
+  "expires_in":1800,
+}
+```
+
+
+###Response
+
+Parameter name|Parameter description|Required
+---------------|---------------|-------
+token_type|bearer|YES
+access_token|Access token|YES
+expires_in|Token expiry time in seconds|YES
+
+<aside class="notice">
+Access token for the scope payment-create is intended exclusively to establish the payment. Other functions, 
+such as query about the status of payment, refund of payment, must be accompanied by a token, which is intended for 
+servicing operations connected with payments (scope payment-all).
+</aside>

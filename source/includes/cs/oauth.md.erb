@@ -18,9 +18,9 @@ Základním prvkem veškeré komunikace přes REST API je přístupový token, k
 
 > Request
 
-<%= partial "includes/code", :locals => { :language => 'shell', :example => data.example.oauth.request.shell } %>
+<%= partial "includes/code", :locals => { :language => 'php', :example => data.example.oauth.request.php.cs } %>
 
-<%= partial "includes/code", :locals => { :language => 'php', :example => data.example.oauth.request.phpcurl.cs } %>
+<%= partial "includes/code", :locals => { :language => 'shell', :example => data.example.oauth.request.shell } %>
 
 ###Hlavička požadavku
 Název parametru|Popis parametru|Povinný
@@ -38,8 +38,9 @@ grant_type|client_credentials|ANO
 
 > Response
 
-<%= partial "includes/code", :locals => { :language => 'json', :example => data.example.oauth.response.json } %>
+<%= partial "includes/code", :locals => { :language => 'php', :example => data.example.oauth.response.php.cs } %>
 
+<%= partial "includes/code", :locals => { :language => 'json', :example => data.example.oauth.response.json } %>
 
 ###Response
 

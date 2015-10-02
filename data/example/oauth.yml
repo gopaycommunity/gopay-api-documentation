@@ -7,51 +7,25 @@ request:
         -H "Content-Type: application/x-www-form-urlencoded" \
         -u "<Client ID>:<Client Secret>" \
         -d "grant_type=client_credentials&scope=payment-create"
-    phpcurl:
+    php:
         cs: |
             <?php
-            $ch = curl_init();
-
-            $data = array(
-                       'grant_type' => 'client_credentials',
-                       'scope' => 'payment-create'
-                   );
-
-            $data_send = http_build_query($data);
-
-            curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/oauth2/token");
-            curl_setopt($ch, CURLOPT_HTTPHEADER,
-              array('Accept: application/json',
-                    'Content-Type: application/x-www-form-urlencoded'));
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_USERPWD, $clientID.":".$clientSecret); 
-            // nutno doplnit client id a client secret ziskane pri zahájení integrace
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_send);
-
-            $result = curl_exec($ch);
+            $gopay = GoPay\payments([
+                'goid' => '...',
+                'clientId' => '...',
+                'clientSecret' => '...',
+                'isProductionMode' => false
+            ]);
+            // token získá SDK interně, není třeba volat žádnou metodu pro získáí tokenu
         en: |
             <?php
-            $ch = curl_init();
-
-            $data = array(
-                       'grant_type' => 'client_credentials',
-                       'scope' => 'payment-create'
-                   );
-
-            $data_send = http_build_query($data);
-
-            curl_setopt($ch, CURLOPT_URL, "https://gw.sandbox.gopay.com/api/oauth2/token");
-            curl_setopt($ch, CURLOPT_HTTPHEADER,
-              array('Accept: application/json',
-                    'Content-Type: application/x-www-form-urlencoded'));
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_USERPWD, $clientID.":".$clientSecret); 
-            // need to pass client id and client secret
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_send);
-
-            $result = curl_exec($ch);
+            $gopay = GoPay\payments([
+                'goid' => '...',
+                'clientId' => '...',
+                'clientSecret' => '...',
+                'isProductionMode' => false
+            ]);
+            // token is retrieved automatically, you don't have to call some method `getToken`
 
 response:
     json: |
@@ -60,3 +34,12 @@ response:
             "access_token":"AAAnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p",
             "expires_in":1800,
         }
+    php:
+        cs: |
+            <?php
+            // informace o cacheování access tokenů:
+            // https://github.com/gopaycommunity/payments-sdk-php#cache-access-token
+        en: |
+            <?php
+            // information about caching access tokens:
+            // https://github.com/gopaycommunity/payments-sdk-php#cache-access-token

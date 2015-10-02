@@ -19,9 +19,9 @@ If you do not have Client ID and Client Secret, please, contact us on e-mail int
 
 > Request
 
-<%= partial "includes/code", :locals => { :language => 'shell', :example => data.example.oauth.request.shell } %>
+<%= partial "includes/code", :locals => { :language => 'php', :example => data.example.oauth.request.php.en } %>
 
-<%= partial "includes/code", :locals => { :language => 'php', :example => data.example.oauth.request.phpcurl.en } %>
+<%= partial "includes/code", :locals => { :language => 'shell', :example => data.example.oauth.request.shell } %>
 
 
 ###Header of the request
@@ -39,6 +39,8 @@ Parameter name|Parameter description|Required
 grant_type|client_credentials|YES
 
 > Response
+
+<%= partial "includes/code", :locals => { :language => 'php', :example => data.example.oauth.response.php.en } %>
 
 <%= partial "includes/code", :locals => { :language => 'json', :example => data.example.oauth.response.json } %>
 

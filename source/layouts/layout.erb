@@ -36,6 +36,7 @@ under the License.
   </head>
 
   <body class="<%= page_classes %>">
+    <% if build? %>
      <!-- Google Tag Manager -->
     <noscript>
       <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NC6KVF"height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -44,6 +45,7 @@ under the License.
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NC6KVF');
     </script>
   <!-- End Google Tag Manager -->
+    <% end %>
     <a href="#" id="nav-button">
       <span>
         MENU
@@ -84,8 +86,8 @@ under the License.
       <div class="content">
           <br />
         <%= yield %>
-        <% current_page.data.includes && current_page.data.includes.each do |include| %>
-          <%= partial "includes/#{include}" %>
+        <% data.endpoints.each do |endpoint| %>
+          <%= partial "includes/#{current_page.data.locale}/#{endpoint}" %>
         <% end %>
       </div>
       <div class="dark-box">

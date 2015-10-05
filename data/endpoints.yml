@@ -1,0 +1,14 @@
+- oauth
+- create-standard
+- create-preauthorized
+- create-recurrent
+- gateInit
+- status
+- refund
+- recurrence-ondemand
+- recurrence-void
+- preauthorized-void
+- preauthorized-capture
+- objects
+- codes
+- errors

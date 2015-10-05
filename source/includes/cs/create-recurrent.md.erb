@@ -1,0 +1,54 @@
+## Opakovaná platba
+Opakovaná platba je funkcionalita, která umožňuje přijímat platby kartou od zákazníka na pravidelné bázi.
+Založení opakované platby je rozšířeno o parametr ```recurrence```.  Po úspěšném založení inicializační platby jsou platby prováděny automatizovaně, např. s denní periodou ```DAY``` nebo na vyžádání ```ON_DEMAND```.
+
+Podrobný popis kroků nutných k provedení opakované platby naleznete v [centru nápovědy](https://help.gopay.com/cs/s/hT).
+
+V případě platby na vyžádání je následná platba provedena  API voláním [opakování platby](#opakování-platby-(na-vyžádání))
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_recurrent.request } %>
+
+###Request
+```POST /api/payments/payment```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+Název parametru | Popis parametru | Povinný | Datový typ
+----------------|-----------------|---------|--------
+[payer](#payer)|Objekt popisující plátce platby|NE| Objekt
+[target](#target)|Objekt popisující příjemce platby|ANO| Objekt
+amount|Částka v haléřích|ANO| long
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO|string, může nabývat hodnot viz [currency](#currency)
+order_number|Identifikace objednávky v rámci prodejního místa|ANO|string, pouze alfanumerické znaky (128 znaků)
+order_description|Popis objednávky|ANO|string, pouze alfanumerické znaky (256 znaků)
+[items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO|Pole objektů
+[recurrence](#recurrence)|Objekt popisující opakovanou platbu|NE| Objekt
+[additional_params](#additional_params)|Doplňkové parametry platby|NE|Pole objektů
+[callback](#callback)|Návratové URL a notifikační URL pro oznámení změny stavu platby|ANO|Objekt
+
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_recurrent.response } %>
+
+###Response 
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-------
+id|ID platby|long
+order_number|ID objednávky| string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby| Objekt
+amount|Částka v haléřích|long > 0
+[payer](#payer)| Objekt popisující plátce platby| Objekt
+[target](#target)| Objekt popisující příjemce platby| Objekt
+[recurrence](#recurrence)| Objekt popisující opakovanou platbu| Objekt
+[additional_params](#additional_params)| Volitelné parametry platby| Pole objektů
+[lang](#lang)|Parametr popisující jazyk platby| string, může nabývat hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány| string

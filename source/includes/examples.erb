@@ -1,0 +1,19 @@
+
+<%
+current_page.data.language_tabs.each do |lang|
+    lang = lang.is_a?(Hash) ? lang.keys.first : lang
+%>
+
+<% example %>
+
+<% if example.has_key?(lang) %>
+<%= partial "includes/code",
+    :locals => { :language => lang, :example => example[lang] } %>
+<% end %>
+
+<% end %>
+
+<% if example.has_key?('json') %>
+<%= partial "includes/code",
+    :locals => { :language => 'json', :example => example['json'] } %>
+<% end %>

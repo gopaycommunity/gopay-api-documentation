@@ -1,0 +1,51 @@
+
+request:
+    shell: |
+        curl -v https://gw.sandbox.gopay.com/api/oauth2/token \
+        -X "POST" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/x-www-form-urlencoded" \
+        -u "<Client ID>:<Client Secret>" \
+        -d "grant_type=client_credentials&scope=payment-create"
+    php:
+        cs: |
+            <?php
+            $gopay = GoPay\payments([
+                'goid' => '8123456789',
+                'clientId' => '...',
+                'clientSecret' => '...',
+                'isProductionMode' => false,
+                'scope' => GoPay\Definition\TokenScope::ALL,
+                'language' => GoPay\Definition\Language::CZECH,
+                'timeout' => 30
+            ]);
+            // token získá SDK interně, není třeba volat žádnou metodu pro získáí tokenu
+        en: |
+            <?php
+            $gopay = GoPay\payments([
+                'goid' => '...',
+                'clientId' => '...',
+                'clientSecret' => '...',
+                'isProductionMode' => false,
+                'scope' => GoPay\Definition\TokenScope::ALL,
+                'language' => GoPay\Definition\Language::ENGLISH,
+                'timeout' => 30
+            ]);
+            // token is retrieved automatically, you don't have to call some method `getToken`
+
+response:
+    json: |
+        {
+            "token_type":"bearer",
+            "access_token":"AAAnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p",
+            "expires_in":1800,
+        }
+    php:
+        cs: |
+            <?php
+            // informace o cacheování access tokenů:
+            // https://github.com/gopaycommunity/payments-sdk-php#cache-access-token
+        en: |
+            <?php
+            // information about caching access tokens:
+            // https://github.com/gopaycommunity/payments-sdk-php#cache-access-token

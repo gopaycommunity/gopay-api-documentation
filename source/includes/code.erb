@@ -1,0 +1,8 @@
+<%
+code = example.is_a?(Hash) ? example[current_page.data.locale] : example
+codeWithLocalizedLang = code.gsub('_LOCALE_', current_page.data.locale)
+%>
+
+```<%= language %>
+<%=codeWithLocalizedLang %>
+```

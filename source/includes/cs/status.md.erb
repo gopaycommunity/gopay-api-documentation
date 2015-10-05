@@ -1,0 +1,43 @@
+#Další platební operace
+
+##Stav platby
+Funkcionalita stav platby umožní prodejnímu místu zjistit jaký je aktuální stav dříve vytvořené platby. Standardně je stav platby dotazován po doručení notifikace o změně stavu platby.
+   
+Podrobnější informace k dotazu na stav platby naleznete v našem [centru nápovědy](https://help.gopay.com/cs/s/h3).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.status.request } %>
+
+###Request
+
+```GET /api/payments/payment/{id}```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+> Response.
+
+<%= partial "includes/examples", :locals => { :example => data.example.status.response } %>
+
+###Response
+
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+id|ID platby|long
+order_number|Identifikace objednávky v rámci prodejního místa|string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby| string, nabývající hodnot viz [state](#stavy-plateb)
+amount|Částka v haléřích|long > 0
+[currency](#currency)|Měna platby| string, nabývající hodnot viz [currency](#currency)
+[payment_instrument](#payment_instrument)| Kód zvolené platební metody | string, nabývající hodnot viz [payment_instrument](#payment_instrument)
+[payer](#payer)|Objekt popisující plátce platby | Objekt
+[target](#target)| Objekt popisující příjemce platby | Objekt
+[recurrence](#recurrence)| Objekt popisující opakovanou platbu| Objekt
+[additional_params](#additional_params)|Volitelné parametry platby|Pole objektů
+[lang](#lang)|Jazyk platby|string, nabývající hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány|string

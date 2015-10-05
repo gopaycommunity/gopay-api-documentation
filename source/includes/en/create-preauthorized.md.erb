@@ -1,0 +1,53 @@
+## Pre-authorized payment
+
+Via the credit card, you can block the payment for 4 days using the pre-authorization. Blocked funds can be received by API calling [transaction is completed via pre-autorized payment](#transaction completed via pre-authorized payment)
+Pre-authorized payment can be created by setting of a parameter ```preauthorization``` to ```true``` .    
+   
+Additional information about pre-authorized payments you can find in our [help center](https://help.gopay.com/en/s/7).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized.request } %>
+
+###Request
+```POST /api/payments/payment```
+
+###Header of request
+Parameter name | Parameter description | Required
+----------------|-----------------|--------
+Accept|application/json|YES
+Content-Type|application/json|YES
+Authorization|Bearer [```<access-token>```](#access-token)|YES
+
+###Body of request
+Parameter name | Parameter description | Required | Data´s type
+----------------|-----------------|---------|--------
+[payer](#payer)|Object describing the payer of the payment|NO| Object
+[target](#target)|Object describing the target of the payment (payee)|YES| Object
+amount| Amount in cents|YES| long > 0
+[currency](#currency)|Specifies the currency of the payment, currency format corresponding to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|YES|string, can gain values see [currency](#currency)
+order_number|Order identification within the point of sale|YES| string, alphanumeric characters only (128 characters)
+order_description|Description of goods / service|YES| string, alphanumeric characters only (256 characters)
+[items](#items)|Itemized in detail each item of the order|YES| Object array
+preauthorization|Activation of pre-authorized payment|NO| bool
+[additional_params](#additional_params)|Additional parameters of the payment|NO| Object array
+[callback](#callback)|Callback URL and notification URL for change in the payment status|YES| Object
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized.response } %>
+
+###Response
+  
+Parameter name|Parameter description|Data´s type
+---------------|---------------|-------
+id|Payment ID|long
+order_number| order ID| string, alphanumeric characters only (128 characters)
+[state](#payment-status)|Payment status| string, can gain values see[state](#payment-status)
+amount|Amount in cents|long > 0
+[payer](#payer)| Object describing the payer of the payment| Object
+[target](#target)| Object describing the target of the payment (payee)| Object
+[preauthorization](#preauthorization)| Object describing the pre-authorization| Object
+[additional_params](#additional_params)| Additional parameters of the payment| Object array
+[lang](#lang)|Payment language| string, can gain values see [lang](#lang)
+gw_url|URL to initiate the payment gateway| string

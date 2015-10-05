@@ -1,6 +1,6 @@
 ---
 title: GoPay REST API
-
+locale: cs
 language_tabs:
   - shell: curl
   - php
@@ -10,21 +10,6 @@ toc_footers:
   - <a href='http://www.gopay.cz'>www.gopay.cz</a>
   - <a href='http://www.platebnibrana.cz'>www.platebnibrana.cz</a>
   - <a href='http://help.gopay.com'>help.gopay.com</a>
-
-includes:
-  - cs/oauth
-  - cs/basePayment
-  - cs/preAuthorizePayment
-  - cs/recurrentPayment
-  - cs/gateInit
-  - cs/paymentState
-  - cs/paymentRefund
-  - cs/createRecurrence
-  - cs/cancelRecurrence
-  - cs/cancelPreAuthorization
-  - cs/capturePreAuthorization
-  - cs/objects
-  - cs/codes
 
 search: true
 ---

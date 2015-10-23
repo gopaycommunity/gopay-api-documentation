@@ -30,7 +30,7 @@ Customer´s information
 {
    "first_name":"Zbynek",
    "last_name":"Zak",
-   "email":"zbynek.zak@gopay.cz",
+   "email":"test@test.cz",
    "phone_number":"+420777456123",
    "city":"C.Budejovice",
    "street":"Plana 67",

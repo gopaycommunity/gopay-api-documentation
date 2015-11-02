@@ -8,7 +8,7 @@ request:
         -H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969"
     php: |
         <?php
-        $response = $gopay->recurrenceVoid(3000006542);
+        $response = $gopay->voidRecurrence(3000006542);
 
 response:
     json: |

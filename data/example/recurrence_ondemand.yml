@@ -19,7 +19,7 @@ request:
         }'
     php: |
         <?php
-        $response = $gopay->recurrenceOnDemand(
+        $response = $gopay->createRecurrence(
             3000006542,
             [
                 'amount' => '500',

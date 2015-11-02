@@ -9,7 +9,7 @@ request:
         -d "amount=1000"
     php: |
         <?php
-        $response = $gopay->refund(3000006620, 1000);
+        $response = $gopay->refundPayment(3000006620, 1000);
 
 response:
     json: |

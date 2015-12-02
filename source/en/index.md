@@ -1,10 +1,6 @@
 ---
 title: GoPay REST API
 locale: en
-language_tabs:
-  - shell: curl
-  - php
-
 toc_footers:
   - <a href='http://www.gopay.cz'>www.gopay.cz</a>
   - <a href='http://www.platebnibrana.cz'>www.platebnibrana.cz</a>

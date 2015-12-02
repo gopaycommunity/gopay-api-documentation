@@ -65,7 +65,7 @@ response:
         {
             "token_type":"bearer",
             "access_token":"AAAnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p",
-            "expires_in":1800,
+            "expires_in":1800
         }
     php:
         cs: |

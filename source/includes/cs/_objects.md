@@ -10,7 +10,7 @@ Definice plátce platby
    "default_payment_instrument":"BANK_ACCOUNT",
    "default_swift":"GIBACZPX",
    "allowed_swifts":["FIOBCZPP","BREXCZPP"],
-   "contact": {...}
+   "contact": {}
  }
 ```
 
@@ -71,8 +71,7 @@ Jednotlivé položky objednávky spolu s cenou
 ```json
 [
    {"name":"item01","amount":"500"},
-   {"name":"item02","amount":"500"},
-   {...}
+   {"name":"...","amount":"..."}
 ]
 ```
 
@@ -102,11 +101,9 @@ notification_url|URL adresa pro odeslání asynchronní notifikace v případě 
 Dodatečné parametry platby
 
 ```json
-[{
-    "name":"invoicenumber",
-    "value":"2015001003"
-  },
-  {...}
+[
+   {"name":"invoicenumber","value":"2015001003"},
+   {"name":"...","value":"..."}
 ]
 ```
 

@@ -10,7 +10,7 @@ Definition of the payer or the payment
    "default_payment_instrument":"BANK_ACCOUNT",
    "default_swift":"GIBACZPX",
    "allowed_swifts":["FIOBCZPP","BREXCZPP"],
-   "contact": {...}
+   "contact": {}
  }
 ```
 
@@ -72,8 +72,7 @@ Each item of the order and its price
 ```json
 [
    {"name":"item01","amount":"500"},
-   {"name":"item02","amount":"500"},
-   {...}
+   {"name":"...","amount":"..."}
 ]
 ```
 
@@ -103,11 +102,9 @@ notification_url|URL address for sending  asynchronous notification in the case 
 Additional parameters of the payment
 
 ```json
-[{
-    "name":"invoicenumber",
-    "value":"2015001003"
-  },
-  {...}
+[
+   {"name":"invoicenumber","value":"2015001003"},
+   {"name":"...","value":"..."}
 ]
 ```
 

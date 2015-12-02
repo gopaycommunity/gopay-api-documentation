@@ -9,6 +9,8 @@ request:
     php: |
         <?php
         $response = $gopay->getStatus(3000006529);
+    python: |
+        response = api.get_status(3000006529)
 
 response:
     json: |
@@ -45,3 +47,6 @@ response:
         if ($response->hasSucceed()) {
             echo $response;
         }
+    python: |
+        if response.has_succeed():
+            print(response)

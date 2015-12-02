@@ -9,6 +9,8 @@ request:
     php: |
         <?php
         $response = $gopay->voidAuthorization(3000006542);
+    python: |
+        response = api.void_authorization(3000006542)
 
 response:
     json: |
@@ -21,3 +23,6 @@ response:
         if ($response->hasSucceed()) {
             echo $response;
         }
+    python: |
+        if response.has_succeed():
+            print(response)

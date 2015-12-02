@@ -10,6 +10,8 @@ request:
     php: |
         <?php
         $response = $gopay->refundPayment(3000006620, 1000);
+    python: |
+        response = api.refund_payment(3000006620, 1000)
 
 response:
     json: |
@@ -22,3 +24,6 @@ response:
         if ($response->hasSucceed()) {
             echo $response;
         }
+    python: |
+        if response.has_succeed():
+            print(response)

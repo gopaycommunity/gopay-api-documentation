@@ -1,0 +1,68 @@
+- language: curl
+  syntax: shell
+  info:
+    cs: |
+        API ENDPOINT
+
+        Testovací prostředí - https://gw.sandbox.gopay.com/api  
+        Provozní prostředí - https://gate.gopay.cz/api   
+
+        DOSTUPNÉ METODY  
+
+        [/oauth2/token](#přístupový-token)  
+        [/payments/payment](#založení-platby)  
+        [/payments/payment/{id}](#stav-platby)  
+        [/payments/payment/{id}/refund](#refundace-platby-(storno))  
+        [/payments/payment/{id}/create-recurrence](#opakování-platby-(na-vyžádání))   
+        [/payments/payment/{id}/void-recurrence](#zrušení-opakování-platby)  
+        [/payments/payment/{id}/void-authorization](#zrušení-předautorizace-platby)  
+        [/payments/payment/{id}/capture](#stržení-předautorizované-platby)  
+
+    en: |
+        API ENDPOINTS
+
+        Test enviroment - https://gw.sandbox.gopay.com/api  
+        Production enviroment - https://gate.gopay.cz/api   
+
+        AVAILABLE METHODS  
+
+        [/oauth2/token](#access-token)  
+        [/payments/payment](#establishment-of-payment)  
+        [/payments/payment/{id}](#status-of-the-payment)  
+        [/payments/payment/{id}/refund](#refund-of-the-payment-(cancelation))  
+        [/payments/payment/{id}/create-recurrence](#cancellation-of-the-recurring-payment)   
+        [/payments/payment/{id}/void-recurrence](#cancellation-of-the-recurring-payment)  
+        [/payments/payment/{id}/void-authorization](#cancellation-of-the-pre-authorized-payment)  
+        [/payments/payment/{id}/capture](#charge-of-pre-authorized-payment)  
+
+- language: php
+  syntax: php
+  info:
+    cs: |
+        PHP SDK
+
+        * [https://github.com/gopaycommunity/gopay-php-api](https://github.com/gopaycommunity/gopay-php-api)
+        * Požadavky: `PHP >= 5.4.0`
+        * Instalace: **`composer require gopay/payments-sdk-php`**
+    en: |
+        PHP SDK
+
+        * [https://github.com/gopaycommunity/gopay-php-api](https://github.com/gopaycommunity/gopay-php-api)
+        * Requirements: `PHP >= 5.4.0`
+        * Installation: **`composer require gopay/payments-sdk-php`**
+
+- language: python
+  syntax: python
+  info:
+    cs: |
+        Python SDK
+
+        * [https://github.com/gopaycommunity/gopay-python-sdk](https://github.com/gopaycommunity/gopay-python-sdk)
+        * Požadavky: `Python >= 2.6, Python 3`
+        * Instalace: **`pip install gopay`**
+    en: |
+        Python SDK
+
+        * [https://github.com/gopaycommunity/gopay-python-sdk](https://github.com/gopaycommunity/gopay-python-sdk)
+        * Requirements: `Python >= 2.6, Python 3`
+        * Installation: **`pip install gopay`**

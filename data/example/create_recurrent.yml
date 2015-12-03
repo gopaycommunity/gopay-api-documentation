@@ -84,6 +84,47 @@ request:
                 'notification_url' => 'http://www.your-url.tld/notify'
             ]
         ]);
+    python: |
+        from gopay.enums import PaymentInstrument, BankSwiftCode, Currency, Recurrence
+
+        response = api.create_payment({
+            'payer': {
+                'default_payment_instrument': PaymentInstrument.BANK_ACCOUNT,
+                'allowed_payment_instruments': [PaymentInstrument.BANK_ACCOUNT],
+                'default_swift': BankSwiftCode.FIO_BANKA,
+                'allowed_swifts': [BankSwiftCode.FIO_BANKA, BankSwiftCode.MBANK],
+                'contact': {
+                    'first_name': 'Zbynek',
+                    'last_name': 'Zak',
+                    'email': 'test@test.cz',
+                    'phone_number': '+420777456123',
+                    'city': 'C.Budejovice',
+                    'street': 'Plana 67',
+                    'postal_code': '373 01',
+                    'country_code': 'CZE',
+                },
+            },
+            'amount': 150,
+            'currency': Currency.CZECH_CROWNS,
+            'order_number': '001',
+            'order_description': 'pojisteni01',
+            'items': [
+                {'name': 'item01', 'amount': 50},
+                {'name': 'item02', 'amount': 100},
+            ],
+            'recurrence': {
+                'recurrence_cycle': Recurrence.DAILY,
+                'recurrence_period': "7",
+                'recurrence_date_to': '2015-12-31'
+            },
+            'additional_params': [
+                {'name': 'invoicenumber', 'value': '2015001003'}
+            ],
+            'callback': {
+                'return_url': 'http://www.your-url.tld/return',
+                'notification_url': 'http://www.your-url.tld/notify'
+            }
+        })
 
 response:
     json: |
@@ -121,3 +162,7 @@ response:
             $url = $response->json['gw_url'];
             echo $response;
         }
+    python: |
+        if response.has_succeed():
+            url = response.json['gw_url']
+            print(response)

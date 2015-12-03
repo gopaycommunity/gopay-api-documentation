@@ -1,0 +1,5 @@
+<% data.languages.each do |lang| %>
+<blockquote class="highlight <%= lang.syntax %>">
+    <%= Tilt['markdown'].new {lang.info[current_page.data.locale]}.render %>
+</blockquote>
+<% end %>

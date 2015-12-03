@@ -34,6 +34,22 @@ request:
                 ]
             ]
         );
+    python: |
+        response = api.create_recurrence(
+            3000006542,
+            {
+                'amount': '500',
+                'currency': 'CZK',
+                'order_number': '002',
+                'order_description': 'pojisteni02',
+                'items': {
+                    {'name': 'item01', 'amount': '500'}
+                },
+                'additional_params': {
+                    {'name': 'invoicenumber', 'value': '2015001004'}
+                }
+            }
+        )
 
 response:
     json: |
@@ -68,3 +84,6 @@ response:
         if ($response->hasSucceed()) {
             echo $response;
         }
+    python: |
+        if response.has_succeed():
+            print(response)

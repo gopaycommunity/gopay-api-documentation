@@ -19,7 +19,7 @@ request:
                 'language' => GoPay\Definition\Language::CZECH,
                 'timeout' => 30
             ]);
-            // token získá SDK interně, není třeba volat žádnou metodu pro získáí tokenu
+            // token získá SDK interně, není třeba volat žádnou metodu pro získání tokenu
         en: |
             <?php
             $gopay = GoPay\payments([
@@ -32,13 +32,40 @@ request:
                 'timeout' => 30
             ]);
             // token is retrieved automatically, you don't have to call some method `getToken`
+    python:
+        cs: |
+            import gopay
+
+            api = gopay.payments({
+                'goid': '8302931681',
+                'clientId': '1061399163',
+                'clientSecret': 'stDTmVXF',
+                'isProductionMode': False,
+                'scope': gopay.TokenScope.ALL,
+                'language': gopay.Language.CZECH,
+                'timeout': 30
+            })
+            # token získá SDK interně, není třeba volat žádnou metodu pro získání tokenu
+        en: |
+            import gopay
+
+            api = gopay.payments({
+                'goid': '8302931681',
+                'clientId': '1061399163',
+                'clientSecret': 'stDTmVXF',
+                'isProductionMode': False,
+                'scope': gopay.TokenScope.ALL,
+                'language': gopay.Language.ENGLISH,
+                'timeout': 30
+            })
+            # token is retrieved automatically, you don't have to call some method `get_token`
 
 response:
     json: |
         {
             "token_type":"bearer",
             "access_token":"AAAnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p",
-            "expires_in":1800,
+            "expires_in":1800
         }
     php:
         cs: |
@@ -49,3 +76,10 @@ response:
             <?php
             // information about caching access tokens:
             // https://github.com/gopaycommunity/payments-sdk-php#cache-access-token
+    python:
+        cs: |
+            # informace o cacheování access tokenů:
+            # https://github.com/gopaycommunity/payments-sdk-php#cache-access-token
+        en: |
+            # information about caching access tokens:
+            # https://github.com/gopaycommunity/payments-sdk-php#cache-access-token

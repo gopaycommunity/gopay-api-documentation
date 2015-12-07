@@ -9,7 +9,7 @@
 Language | Installation |
 -------- | ------------ |
 [PHP](https://github.com/gopaycommunity/gopay-php-api) | `composer require gopay/payments-sdk-php` |
-[Python](https://github.com/gopaycommunity/gopay-python-sdk) | `pip install gopay` |
+[Python](https://github.com/gopaycommunity/gopay-python-api) | `pip install gopay` |
 
 ## Contributing
 

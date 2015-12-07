@@ -57,12 +57,12 @@
     cs: |
         Python SDK
 
-        * [https://github.com/gopaycommunity/gopay-python-sdk](https://github.com/gopaycommunity/gopay-python-sdk)
+        * [https://github.com/gopaycommunity/gopay-python-api](https://github.com/gopaycommunity/gopay-python-api)
         * Požadavky: `Python >= 2.6, Python 3`
         * Instalace: **`pip install gopay`**
     en: |
         Python SDK
 
-        * [https://github.com/gopaycommunity/gopay-python-sdk](https://github.com/gopaycommunity/gopay-python-sdk)
+        * [https://github.com/gopaycommunity/gopay-python-api](https://github.com/gopaycommunity/gopay-python-api)
         * Requirements: `Python >= 2.6, Python 3`
         * Installation: **`pip install gopay`**

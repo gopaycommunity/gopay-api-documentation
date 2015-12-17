@@ -1,0 +1,67 @@
+
+inline: 
+    shell: |
+      <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post" id="gopay-payment-button">
+      <button name="pay" type="submit">Zaplatit</button>
+      <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
+      </form>
+    php: |
+      <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post" id="gopay-payment-button">
+      <button name="pay" type="submit">Zaplatit</button>
+      <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
+      </form>
+    python: |
+      <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post" id="gopay-payment-button">
+      <button name="pay" type="submit">Zaplatit</button>
+      <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
+      </form>
+    objective_c: |
+      #import <GPAPIWebView.h>
+
+      GPAPIWebView *webView = [[GPAPIWebView alloc] init];
+      webView.openInSafariUrls = [[GPAPI sharedAPI] bankURLs];
+      webView.url = payment.gw_url; // z vytvorene platby ziskame url brany, kterou otevreme v GPAPIWebView
+
+      webView.webViewDidDone = ^(long long paymentID) {
+      [self dismissViewControllerAnimated:YES completion:nil];
+      };
+
+      webView.webViewCanceled = ^{
+      [self dismissViewControllerAnimated:YES completion:nil];
+      };
+
+      UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:webView];
+      navController.modalPresentationStyle = UIModalPresentationFormSheet;
+      [self presentViewController:navController animated:YES completion:nil]; // otevreme GPAPIWebView jako modal view
+
+redirect: 
+    shell: |
+      <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post">
+      <button name="pay" type="submit">Zaplatit</button>
+      </form>
+    php: |
+      <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post">
+      <button name="pay" type="submit">Zaplatit</button>
+      </form>
+    python: |
+      <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post">
+      <button name="pay" type="submit">Zaplatit</button>
+      </form>
+    objective_c: |
+      #import <GPAPIWebView.h>
+
+      GPAPIWebView *webView = [[GPAPIWebView alloc] init];
+      webView.openInSafariUrls = [[GPAPI sharedAPI] bankURLs];
+      webView.url = payment.gw_url; // z vytvorene platby ziskame url brany, kterou otevreme v GPAPIWebView
+
+      webView.webViewDidDone = ^(long long paymentID) {
+      [self dismissViewControllerAnimated:YES completion:nil];
+      };
+
+      webView.webViewCanceled = ^{
+      [self dismissViewControllerAnimated:YES completion:nil];
+      };
+
+      UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:webView];
+      navController.modalPresentationStyle = UIModalPresentationFormSheet;
+      [self presentViewController:navController animated:YES completion:nil]; // otevreme GPAPIWebView jako modal view

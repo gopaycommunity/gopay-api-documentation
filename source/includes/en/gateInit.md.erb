@@ -2,16 +2,11 @@
 
 >Form to initiate the inline payment gateway
 
-```html
-<form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF"
-  method="post" id="gopay-payment-button">
-  <button name="pay" type="submit">Pay</button>
-  <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
-</form>
-```
+<%= partial "includes/examples", :locals => { :example => data.example.gateInit.inline } %> 
+
 Inline payment gateway is initiated directly above the point of sale, there is no redirection. 
 
-URL (action) form set according to ```gw_url``` from [creation of the payment](creation-payment). 
+URL (action) form set according to ```gw_url``` from [creation of the payment](#standard-payment). 
 
 
 Form parameter|Description|Required
@@ -28,15 +23,10 @@ id|Form ID|YES| Always sets on gopay-payment-button
 
 >Form to redirect to "redirect" the payment gateway
 
-```html
-<form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF"
-  method="post">
-  <button name="pay" type="submit">Pay</button>
-</form>
-```
+<%= partial "includes/examples", :locals => { :example => data.example.gateInit.redirect } %>   
 
 The payment gateway can also be operated in the option with redirection. You can use the form below 
-or redirect to the URL obtained during [creation of the payment](creation-payment) ```gw_url```.
+or redirect to the URL obtained during [creation of the payment](#standard-payment) ```gw_url```.
 
 
 Form parameter|Description|Required

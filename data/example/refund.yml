@@ -12,7 +12,12 @@ request:
         $response = $gopay->refundPayment(3000006620, 1000);
     python: |
         response = api.refund_payment(3000006620, 1000)
+    objective_c: |
+        [[GPAPI sharedAPI] refundPaymentWithID:3000006620 amount:10000 withHandleSuccess:^(GPAPIResult result) {
+        } failure:^(NSError *error) {
 
+        }];
+        
 response:
     json: |
         {

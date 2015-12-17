@@ -73,6 +73,7 @@ PAYSAFECARD|Paysafecard
 SUPERCASH|superCASH
 GOPAY|GoPay account
 PAYPAL|PayPal account
+BITCOIN| Bitcoin payment
 
 ##SWIFT
 Bank SWIFT codes

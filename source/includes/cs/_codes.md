@@ -73,6 +73,7 @@ PAYSAFECARD|paysafecard
 SUPERCASH|superCASH
 GOPAY|GoPay účet
 PAYPAL|PayPal účet
+BITCOIN| Platba bitcoiny
 
 ##SWIFT
 Kódy jednotlivých bank

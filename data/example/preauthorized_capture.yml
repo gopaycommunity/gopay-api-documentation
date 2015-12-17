@@ -11,6 +11,12 @@ request:
         $response = $gopay->captureAuthorization(3000006542);
     python: |
         response = api.capture_authorization(3000006542)
+    objective_c: |
+        [[GPAPI sharedAPI] capturePaymentWithID:3000006542 withHandleSuccess:^(GPAPIResult result) {
+            
+        } failure:^(NSError *error) {
+                
+        }];
 
 response:
     json: |

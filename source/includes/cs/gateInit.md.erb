@@ -6,13 +6,8 @@ provede inicializaci platební brány.
 
 >Formulář pro vyvolání inline platební brány
 
-```html
-<form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF"
-  method="post" id="gopay-payment-button">
-  <button name="pay" type="submit">Zaplatit</button>
-  <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
-</form>
-```
+<%= partial "includes/examples", :locals => { :example => data.example.gateInit.inline } %> 
+
 Inline platební brána je vyvolána přímo nad portálem obchodníka, nedochází tedy k přesměrování.
 
 URL (action) formuláře nastavte dle ```gw_url``` z [vytvoření platby](#založení-platby).
@@ -31,12 +26,7 @@ id|id formuláře|ANO| Vždy nastaveno na gopay-payment-button
 
 >Formulář pro přesměrování na Redirect platební bránu
 
-```html
-<form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF"
-  method="post">
-  <button name="pay" type="submit">Zaplatit</button>
-</form>
-```
+<%= partial "includes/examples", :locals => { :example => data.example.gateInit.redirect } %>   
 
 Platební bránu lze provozovat i ve variantě s přesměrováním. Lze použít formulář viz níže
 nebo provést přesměrování na URL předané při [vytvoření platby](#založení-platby) ```gw_url```.

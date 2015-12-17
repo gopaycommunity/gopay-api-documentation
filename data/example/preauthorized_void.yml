@@ -11,6 +11,12 @@ request:
         $response = $gopay->voidAuthorization(3000006542);
     python: |
         response = api.void_authorization(3000006542)
+    objective_c: |
+        [[GPAPI sharedAPI] voidAuthorizationForPaymentWithID:3000006542 withHandleSuccess:^(GPAPIResult result) {
+
+        } failure:^(NSError *error) {
+                
+        }];
 
 response:
     json: |

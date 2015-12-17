@@ -11,6 +11,12 @@ request:
         $response = $gopay->getStatus(3000006529);
     python: |
         response = api.get_status(3000006529)
+    objective_c: |
+        [[GPAPI sharedAPI] getPaymentWithID:paymentID withHandleSuccess:^(GPPayment *payment) {  
+        NSLog(@"payment state: %@", [payment userReadableState]);
+        } failure:^(NSError *error) {  
+            NSLog(@"error: %@", error);
+        }];
 
 response:
     json: |

@@ -71,13 +71,14 @@ Each item of the order and its price
 
 ```json
 [
-   {"name":"item01","amount":"500"},
-   {"name":"...","amount":"..."}
+   {"count":"2","name":"item01","amount":"500"},
+   {"count":"...",name":"...","amount":"..."}
 ]
 ```
 
 Parameter name|Parameter description| Data´s type
 ---------------|---------------|-------
+count|Number of items| long > 0
 name|Product name|string, alphanumeric characters (256 characters)
 amount|Product price| long > 0
 

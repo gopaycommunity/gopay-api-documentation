@@ -70,13 +70,14 @@ Jednotlivé položky objednávky spolu s cenou
 
 ```json
 [
-   {"name":"item01","amount":"500"},
-   {"name":"...","amount":"..."}
+   {"count":"2","name":"item01","amount":"500"},
+   {"count":"...","name":"...","amount":"..."}
 ]
 ```
 
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
+count|Počet položek produktu| long > 0
 name|Název produktu|string, alfanumerické znaky (256 znaků)
 amount|Cena produktu| long > 0
 

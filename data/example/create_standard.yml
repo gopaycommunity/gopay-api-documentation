@@ -1,4 +1,3 @@
-
 request:
     shell: |
         curl -v https://gw.sandbox.gopay.com/api/payments/payment \
@@ -117,6 +116,38 @@ request:
                 'notification_url': 'http://www.your-url.tld/notify'
             }
         })
+    objective_c: |
+        GPPaymentRequest *payment = [[GPPaymentRequest alloc] init];
+        payment.amount = 20;
+        payment.currency = @"CZK";
+        payment.order_number = @"001";
+        payment.order_description = @"test";
+
+        GPPayer *payer = [[GPPayer alloc] init];
+        payer.allowed_payment_instruments = @[];
+        payer.default_payment_instrument = @"PAYMENT_CARD";
+        payer.contact.first_name = @"Zbynek";
+        payer.contact.last_name = @"Zak";
+        payer.contact.email = @"test@test.cz";
+        payer.contact.phone_number = @"+420777456123";
+        payer.contact.city = @"C.Budejovice";
+        payer.contact.street = @"Plana 67";
+        payer.contact.postal_code = @"370 01";
+        payer.contact.country_code = @"CZE";
+
+        payment.payer = payer;
+
+        GPTarget *target = [[GPTarget alloc] init];
+        target.type = PAY_TARGET_ACCOUNT;
+        target.goid = @"8035442195";
+
+        payment.target = target;
+
+        [GPAPI sharedAPI] createPayment:payment withHandleSuccess:^(GPPayment *payment) {
+
+        } failure:^(NSError *error) {
+
+        }];
 
 response:
     json: |

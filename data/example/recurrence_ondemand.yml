@@ -50,6 +50,19 @@ request:
                 }
             }
         )
+    objective_c: |
+        GPCreateNextPayment *createNextPayment = [[GPCreateNextPayment alloc] init];
+        createNextPayment.amount = 500;
+        createNextPayment.currency = @"CZK";
+        createNextPayment.order_number = @"002";
+        createNextPayment.order_description = @"pojisteni02";
+        createNextPayment.items = @[[[GPItem alloc] initWithName:@"item01" amount:500]];
+
+        [[GPAPI sharedAPI] createRecurrence:createNextPayment forPaymentWithID:3000006542 withHandleSuccess:^(GPPayment *payment) {
+                
+        } failure:^(NSError *error) {
+
+        }]; 
 
 response:
     json: |

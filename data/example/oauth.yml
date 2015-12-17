@@ -59,6 +59,17 @@ request:
                 'timeout': 30
             })
             # token is retrieved automatically, you don't have to call some method `get_token`
+    objective_c:
+        cs: |
+            #import <GPAPI.h>
+            [[GPAPI sharedAPI] setClientID:@"..." clientSecret:@"..." productionMode:NO];
+            // token získá SDK interně, není třeba volat žádnou metodu pro získání tokenu
+            // vhodne volat napriklad v - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions v AppDelegate
+        en: |
+            #import <GPAPI.h>
+            [[GPAPI sharedAPI] setClientID:@"..." clientSecret:@"..." productionMode:NO];
+            // token is retrieved automatically, you don't have to call some method `getToken`
+            // For example you can call this in - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions v AppDelegate
 
 response:
     json: |

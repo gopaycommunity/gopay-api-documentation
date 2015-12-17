@@ -66,3 +66,19 @@
         * [https://github.com/gopaycommunity/gopay-python-api](https://github.com/gopaycommunity/gopay-python-api)
         * Requirements: `Python >= 2.6, Python 3`
         * Installation: **`pip install gopay`**
+
+- language: iOS
+  syntax: objective_c
+  info:
+    cs: | 
+        iOS SDK
+        
+        * [https://github.com/gopaycommunity/gopay-iOS-api](https://github.com/gopaycommunity/gopay-iOS-api)
+        * Požadavky: `iOS SDK >= 7.0`
+        * Instalace: **`pod 'gopay-ios-api'`**
+    en: |
+        iOS SDK
+        
+        * [https://github.com/gopaycommunity/gopay-iOS-api](https://github.com/gopaycommunity/gopay-iOS-api)
+        * Requirements: `iOS SDK >= 7.0`
+        * Installation: **`pod 'gopay-ios-api'`**

@@ -11,6 +11,12 @@ request:
         $response = $gopay->voidRecurrence(3000006542);
     python: |
         response = api.void_recurrence(3000006529)
+    objective_c: |
+        [[GPAPI sharedAPI] voidRecurrenceForPaymentWithID:3000139597 withHandleSuccess:^(GPAPIResult result) {
+            
+        } failure:^(NSError *error) {
+                
+        }];
 
 response:
     json: |

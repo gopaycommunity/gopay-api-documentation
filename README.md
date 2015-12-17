@@ -1,8 +1,8 @@
 
 # GoPay's REST API Documentations
 
-* [Czech version](https://doc.gopay.com/)
-* [English version](https://doc.gopay.cz/)
+* [Czech version](https://doc.gopay.cz/)
+* [English version](https://doc.gopay.com/)
 
 ## SDK
 
@@ -10,6 +10,7 @@ Language | Installation |
 -------- | ------------ |
 [PHP](https://github.com/gopaycommunity/gopay-php-api) | `composer require gopay/payments-sdk-php` |
 [Python](https://github.com/gopaycommunity/gopay-python-api) | `pip install gopay` |
+[iOS](https://github.com/gopaycommunity/gopay-ios-api)| `pod 'gopay-ios-api'` |
 
 ## Contributing
 

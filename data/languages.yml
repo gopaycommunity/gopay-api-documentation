@@ -75,10 +75,10 @@
         
         * [https://github.com/gopaycommunity/gopay-iOS-api](https://github.com/gopaycommunity/gopay-iOS-api)
         * Požadavky: `iOS SDK >= 7.0`
-        * Instalace: **`pod 'gopay-ios-api'`**
+        * Instalace: **`pod 'gopay-ios-api', :git => 'https://github.com/gopaycommunity/gopay-ios-api.git', :tag => '1.0.0'`**
     en: |
         iOS SDK
         
         * [https://github.com/gopaycommunity/gopay-iOS-api](https://github.com/gopaycommunity/gopay-iOS-api)
         * Requirements: `iOS SDK >= 7.0`
-        * Installation: **`pod 'gopay-ios-api'`**
+        * Installation: **`pod 'gopay-ios-api', :git => 'https://github.com/gopaycommunity/gopay-ios-api.git', :tag => '1.0.0'`**

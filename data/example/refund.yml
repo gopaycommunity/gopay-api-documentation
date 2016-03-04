@@ -17,6 +17,16 @@ request:
         } failure:^(NSError *error) {
 
         }];
+    java: |
+        try {
+            PaymentResult result = connector.refundPayment(<PAYMENT_ID>, <AMOUNT>);
+        } catch (GPClientException e) {
+             for (ErrorElement err : e.getError().getErrorMessages()) {
+                int code = err.getErrorCode();
+                String message = err.getMessage();
+                String field = err.getField();
+            }              
+        }
         
 response:
     json: |

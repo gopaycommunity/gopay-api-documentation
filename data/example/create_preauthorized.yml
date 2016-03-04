@@ -148,7 +148,26 @@ request:
         } failure:^(NSError *error) {
                 
         }];
-
+    java: |
+        BasePayment payment = PaymentFactory.createBasePaymentBuilder()
+            .order(<ORDER_NUMBER>, <AMOUNT>, Currency.EUR, <DESCRIPTION>)
+            .addItem(<ITEM_NAME>, <AMOUNT>, <FEE>, <COUNT>)
+            .addAdditionalParameter(<Key>, <VALUE>)
+            .withCallback(<RETURN_URL>, <NOTIFY_URL>)
+            .payer(<Payer>)
+            .inLang(Lang.EN)
+            .toEshop(<GO_ID>)
+            .preauthorize()
+            .build();
+        try {
+            Payment result = connector.createPayment(payment);
+        } catch (GPClientException e) {
+             for (ErrorElement err : e.getError().getErrorMessages()) {
+                int code = err.getErrorCode();
+                String message = err.getMessage();
+                String field = err.getField();
+            }
+        }
 response:
     json: |
         {

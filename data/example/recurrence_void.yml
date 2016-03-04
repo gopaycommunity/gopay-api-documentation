@@ -17,6 +17,16 @@ request:
         } failure:^(NSError *error) {
                 
         }];
+    java: |
+        try {
+            PaymentResult voidRecurrency = connector.voidRecurrency(<ID>);
+        } catch (GPClientException ex) {
+              for (ErrorElement err : e.getError().getErrorMessages()) {
+                int code = err.getErrorCode();
+                String message = err.getMessage();
+                String field = err.getField();
+            }           
+        }
 
 response:
     json: |

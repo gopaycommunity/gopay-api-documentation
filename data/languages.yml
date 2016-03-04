@@ -82,3 +82,43 @@
         * [https://github.com/gopaycommunity/gopay-iOS-api](https://github.com/gopaycommunity/gopay-iOS-api)
         * Requirements: `iOS SDK >= 7.0`
         * Installation: **`pod 'gopay-ios-api', :git => 'https://github.com/gopaycommunity/gopay-ios-api.git', :tag => '1.0.0'`**
+
+- language: java
+  syntax: java
+  info: 
+    cs: |
+        JAVA SDK
+
+        * [https://github.com/gopaycommunity/gopay-java-api](https://github.com/gopaycommunity/gopay-java-api)
+        * Požadavky : `JAVA >= 7.0`
+        * Instalace :   
+                    **`git clone https://github.com/gopaycommunity/gopay-java-api.git`**  
+                    **`cd gopay-java-api`**  
+                    **`mvn package `**  
+  
+        * **`Všechny artefakty se nacházejí v centrálním repozitáři mavenu`**  
+        [http://mvnrepository.com/artifact/cz.gopay](http://mvnrepository.com/artifact/cz.gopay)
+  
+        * **`Pokud Vám nevyhovuje HTTP Client, tak je možné z api použít další dva frameworky:`**  
+            * ``Resteasy``  
+            * ``Apache CXF``  
+  
+        **`Více informací o integraci těchto frameworků naleznete na našem githubu`**
+    en: |
+        JAVA SDK
+
+        * [https://github.com/gopaycommunity/gopay-java-api](https://github.com/gopaycommunity/gopay-java-api)
+        * Requirements : `JAVA >= 7.0`
+        * Installation :   
+                    **`git clone https://github.com/gopaycommunity/gopay-java-api.git`**
+                    **`cd gopay-java-api`**  
+                    **`mvn package `**  
+  
+        * **`All artifacts are located in the maven central repository.`**  
+        [http://mvnrepository.com/artifact/cz.gopay](http://mvnrepository.com/artifact/cz.gopay)    
+  
+        * **`If Apache HTTP Client does not suit you, the api supports two frameworks:`**  
+            * ``Resteasy``  
+            * ``Apache CXF``  
+  
+        **`More info about frameworks integration can be found on our github`**

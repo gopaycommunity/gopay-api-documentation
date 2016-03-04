@@ -70,7 +70,17 @@ request:
             [[GPAPI sharedAPI] setClientID:@"..." clientSecret:@"..." productionMode:NO];
             // token is retrieved automatically, you don't have to call some method `getToken`
             // For example you can call this in - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions v AppDelegate
-
+    java:
+        cs: |
+            IGPConnector connector = HttpClientGPConnector.build(<API_URL>);
+            connector.getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>); 
+            // API_URL pro testovací server - https://gw.sandbox.gopay.com/api
+            // API_URL pro provozní server - https://gate.gopay.cz/api
+        en: |
+            IGPConnector connector = HttpClientGPConnector.build(<API_URL>);
+            connector.getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>); 
+            // API_URL for sandbox - https://gw.sandbox.gopay.com/api
+            // API_URL for production mode - https://gate.gopay.cz/api
 response:
     json: |
         {

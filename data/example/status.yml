@@ -12,11 +12,21 @@ request:
     python: |
         response = api.get_status(3000006529)
     objective_c: |
-        [[GPAPI sharedAPI] getPaymentWithID:paymentID withHandleSuccess:^(GPPayment *payment) {  
+        [[GPAPI sharedAPI] getPaymentWithID:paymentID withHandleSuccess:^(GPPayment *payment) {    
         NSLog(@"payment state: %@", [payment userReadableState]);
         } failure:^(NSError *error) {  
             NSLog(@"error: %@", error);
         }];
+    java: |
+        try {
+            Payment payment = connector.paymentStatus(<PAYMENT_ID>);
+        } catch (GPClientException e) {
+             for (ErrorElement err : e.getError().getErrorMessages()) {
+                int code = err.getErrorCode();
+                String message = err.getMessage();
+                String field = err.getField();
+            }            
+        }
 
 response:
     json: |
@@ -25,6 +35,7 @@ response:
           "order_number":"001",
           "state":"CREATED",
           "amount":1000,"currency":"CZK",
+          "payment_instrument": "BANK_ACCOUNT",
           "payer":{
                    "default_payment_instrument":"BANK_ACCOUNT",
                    "allowed_payment_instruments":["BANK_ACCOUNT"],

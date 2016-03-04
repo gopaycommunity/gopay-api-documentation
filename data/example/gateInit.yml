@@ -2,18 +2,18 @@
 inline: 
     shell: |
       <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post" id="gopay-payment-button">
-      <button name="pay" type="submit">Zaplatit</button>
-      <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
+        <button name="pay" type="submit">Zaplatit</button>
+        <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
       </form>
     php: |
       <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post" id="gopay-payment-button">
-      <button name="pay" type="submit">Zaplatit</button>
-      <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
+        <button name="pay" type="submit">Zaplatit</button>
+        <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
       </form>
     python: |
       <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post" id="gopay-payment-button">
-      <button name="pay" type="submit">Zaplatit</button>
-      <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
+        <button name="pay" type="submit">Zaplatit</button>
+        <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
       </form>
     objective_c: |
       #import <GPAPIWebView.h>
@@ -33,19 +33,24 @@ inline:
       UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:webView];
       navController.modalPresentationStyle = UIModalPresentationFormSheet;
       [self presentViewController:navController animated:YES completion:nil]; // otevreme GPAPIWebView jako modal view
+    java: |
+      <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post" id="gopay-payment-button">
+        <button name="pay" type="submit">Zaplatit</button>
+        <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
+      </form>
 
 redirect: 
     shell: |
       <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post">
-      <button name="pay" type="submit">Zaplatit</button>
+        <button name="pay" type="submit">Zaplatit</button>
       </form>
     php: |
       <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post">
-      <button name="pay" type="submit">Zaplatit</button>
+        <button name="pay" type="submit">Zaplatit</button>
       </form>
     python: |
       <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post">
-      <button name="pay" type="submit">Zaplatit</button>
+        <button name="pay" type="submit">Zaplatit</button>
       </form>
     objective_c: |
       #import <GPAPIWebView.h>
@@ -65,3 +70,7 @@ redirect:
       UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:webView];
       navController.modalPresentationStyle = UIModalPresentationFormSheet;
       [self presentViewController:navController animated:YES completion:nil]; // otevreme GPAPIWebView jako modal view
+    java: |
+      <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post">
+        <button name="pay" type="submit">Zaplatit</button>
+      </form>

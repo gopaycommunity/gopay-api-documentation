@@ -147,7 +147,6 @@ Nastavení opakované platby
 }
 ```
 
-
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 [recurrence_cycle](#recurrence_cycle)|Časový úsek opakování|string, nabývá hodnot viz [recurrence_cycle](#recurrence_cycle)
@@ -165,13 +164,6 @@ cs | Český název skupiny platebních metod
 
 ##group-codes
 Názvy skupin platebních metod
-
-Název skupiny|Popis skupiny|
--------------|--------------
-card-payment| Platby kartou
-bank-transfer| Bankovní Převody
-wallet| Platby prostřednictvím elektronických peněženek
-others| Ostatní platební metody
 
 ```json
 "groups": {
@@ -198,16 +190,16 @@ others| Ostatní platební metody
     }
 ```
 
+Název skupiny|Popis skupiny|
+-------------|--------------
+card-payment| Platby kartou
+bank-transfer| Bankovní Převody
+wallet| Platby prostřednictvím elektronických peněženek
+others| Ostatní platební metody
+
+
 ##enabledPaymentInstruments  
 Název každého objektu odpovídá [kódům platebních metod](#payment_instrument)
-
-Název parametru|Popis parametru|
----------------|---------------
-label| Objekt obsahující lokalizované názvy platební metody
-image| Logo platební metody dostupné ve dvou formátech - normal, large
-[currencies](#currency)| Měny podporované platební metodou, nabývá hodnot viz [currency](#currency)
-[group](#groups)| Skupina, do které platební metoda náleží viz [groups](#groups)
-[enabledSwifts](#swift)| Jednotlivé podobjekty reprezentují banky povolené pro platební metodu. Předává se pouze v případě metody BANK_ACCOUNT
 
 ```json
  "enabledPaymentInstruments": {
@@ -276,15 +268,16 @@ image| Logo platební metody dostupné ve dvou formátech - normal, large
         }
 ```
 
-##enabledSwifts   
-Název každého objektu odpovídá [SWIFT](#swift) kódům bank 
-
 Název parametru|Popis parametru|
 ---------------|---------------
-label| Objekt obsahující lokalizace názvu banky
-image| Logo banky dostupné ve dvou formátech - normal, large
-[currencies](#currencies)| Měny podporované bankou, nabývá hodnot viz [currency](#currency)
-isOnline| Stav symbolizující zda banka podporuje online převod
+label| Objekt obsahující lokalizované názvy platební metody
+image| Logo platební metody dostupné ve dvou formátech - normal, large
+[currencies](#currency)| Měny podporované platební metodou, nabývá hodnot viz [currency](#currency)
+[group](#groups)| Skupina, do které platební metoda náleží viz [groups](#groups)
+[enabledSwifts](#swift)| Jednotlivé podobjekty reprezentují banky povolené pro platební metodu. Předává se pouze v případě metody BANK_ACCOUNT
+
+##enabledSwifts   
+Název každého objektu odpovídá [SWIFT](#swift) kódům bank 
 
 ```json
   "GIBACZPX": {
@@ -320,3 +313,10 @@ isOnline| Stav symbolizující zda banka podporuje online převod
     },
     ...
 ```
+
+Název parametru|Popis parametru|
+---------------|---------------
+label| Objekt obsahující lokalizace názvu banky
+image| Logo banky dostupné ve dvou formátech - normal, large
+[currencies](#currencies)| Měny podporované bankou, nabývá hodnot viz [currency](#currency)
+isOnline| Stav symbolizující zda banka podporuje online převod

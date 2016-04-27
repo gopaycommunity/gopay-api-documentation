@@ -168,13 +168,6 @@ cs | Czech name of payment group
 ##group-codes
 Names of payment method groups
 
-Group name|Group description|
--------------|--------------
-card-payment| Payment card payments
-bank-transfer| Bank transfers
-wallet| E-wallet payments
-others| Other payment methods
-
 ```json
 "groups": {
         "card-payment": {
@@ -200,16 +193,15 @@ others| Other payment methods
     }
 ```
 
+Group name|Group description|
+-------------|--------------
+card-payment| Payment card payments
+bank-transfer| Bank transfers
+wallet| E-wallet payments
+others| Other payment methods
+
 ##enabledPaymentInstruments  
 Name of every object coresponds to [payment method codes](#payment_instrument)
-
-Parameter name|Parameter description|
----------------|--------------
-label| Object that contains localised name of payment method
-image| Logo of payment method avaliable in two formats - normal, large 
-[currencies](#currency)| Currencyes supported by peyment method coresponds to [currency](#currency)
-[group](#groups)| Group into which payment method belongs, coresponds to [groups](#groups)
-[enabledSwifts](#swift)| Each sub object represents allowed banks for payment method. It is set only for BANK_ACCOUNT
 
 ```json
  "enabledPaymentInstruments": {
@@ -278,15 +270,17 @@ image| Logo of payment method avaliable in two formats - normal, large
         }
 ```
 
+Parameter name|Parameter description|
+---------------|--------------
+label| Object that contains localised name of payment method
+image| Logo of payment method avaliable in two formats - normal, large 
+[currencies](#currency)| Currencyes supported by peyment method coresponds to [currency](#currency)
+[group](#groups)| Group into which payment method belongs, coresponds to [groups](#groups)
+[enabledSwifts](#swift)| Each sub object represents allowed banks for payment method. It is set only for BANK_ACCOUNT
+
+
 ##enabledSwifts   
 Name of each object coresponds to [SWIFT](#swift) codes 
-
-Parameter name|Parameter description|
----------------|---------------
-label| Object that contains localised name of bank 
-image| Logo of bank avaliable in two formats - normal, large 
-[currencies](#currencies)| Currencyes supported by peyment method coresponds to [currency](#currency)
-isOnline| State that symbolise if bank support online bank transfers
 
 ```json
   "GIBACZPX": {
@@ -322,3 +316,10 @@ isOnline| State that symbolise if bank support online bank transfers
     },
     ...
 ```
+
+Parameter name|Parameter description|
+---------------|---------------
+label| Object that contains localised name of bank 
+image| Logo of bank avaliable in two formats - normal, large 
+[currencies](#currencies)| Currencyes supported by peyment method coresponds to [currency](#currency)
+isOnline| State that symbolise if bank support online bank transfers

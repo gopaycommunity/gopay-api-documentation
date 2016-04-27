@@ -95,3 +95,4 @@ OTPVSKBX| OTP Banka
 POBNSKBA| Poštová Banka
 CEKOSKBX| ČSOB SK
 LUBASKBX| Sberbank Slovensko
+OTHERS| Special SWIFT without specific bank selected

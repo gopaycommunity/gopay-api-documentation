@@ -9,6 +9,7 @@
 - recurrence-void
 - preauthorized-void
 - preauthorized-capture
+- payment-method-list
 - objects
 - codes
 - errors

@@ -154,3 +154,169 @@ Název parametru|Popis parametru|Datový typ
 recurrence_period|Perioda opakování opakované platby| long
 recurrence_date_to|Doba platnosti opakované platby| string yyyy-mm-dd
 recurrence_state|Popis stavu opakované platby| string, nabývá hodnot REQUESTED, STARTED, STOPPED 
+
+##groups   
+Název každé skupiny odpovídá [kódům](#group-codes) skupin
+
+Název parametru|Popis parametru|
+---------------|---------------
+label| Objekt obsahující lokalizované názvy skupiny platebních metod
+cs | Český název skupiny platebních metod
+
+##group-codes
+Názvy skupin platebních metod
+
+Název skupiny|Popis skupiny|
+-------------|--------------
+card-payment| Platby kartou
+bank-transfer| Bankovní Převody
+wallet| Platby prostřednictvím elektronických peněženek
+others| Ostatní platební metody
+
+```json
+"groups": {
+        "card-payment": {
+            "label": {
+                "cs": "Platební karta"
+            }
+        },
+        "bank-transfer": {
+            "label": {
+                "cs": "Bankovní platba"
+            }
+        },
+        "wallet": {
+            "label": {
+                "cs": "Elektronické peněženky"
+            }
+        },
+        "others": {
+            "label": {
+                "cs": "Ostatní"
+            }
+        }
+    }
+```
+
+##enabledPaymentInstruments  
+Název každého objektu odpovídá [kódům platebních metod](#payment_instrument)
+
+Název parametru|Popis parametru|
+---------------|---------------
+label| Objekt obsahující lokalizované názvy platební metody
+image| Logo platební metody dostupné ve dvou formátech - normal, large
+[currencies](#currency)| Měny podporované platební metodou, nabývá hodnot viz [currency](#currency)
+[group](#groups)| Skupina, do které platební metoda náleží viz [groups](#groups)
+[enabledSwifts](#swift)| Jednotlivé podobjekty reprezentují banky povolené pro platební metodu. Předává se pouze v případě metody BANK_ACCOUNT
+
+```json
+ "enabledPaymentInstruments": {
+        "PAYMENT_CARD": {
+            "label": {
+                "cs": "Platební karta"
+            },
+            "image": {
+                "normal": "https://gate.gopay.cz/images/checkout/payment_card.png",
+                "large": "https://gate.gopay.cz/images/checkout/payment_card@2x.png"
+            },
+            "currencies": [
+                "CZK",
+                "EUR"
+            ],
+            "group": "card-payment",
+            "enabledSwifts": null
+        },
+        "BANK_ACCOUNT": {
+            "label": {
+                "cs": "Bankovní platba"
+            },
+            "image": {
+                "normal": "https://gate.gopay.cz/images/checkout/bank_account.png",
+                "large": "https://gate.gopay.cz/images/checkout/bank_account@2x.png"
+            },
+            "currencies": [
+                "CZK",
+                "EUR"
+            ],
+            "group": "bank-transfer",
+            "enabledSwifts": {
+                "GIBACZPX": {
+                    "label": {
+                        "cs": "Česká spořitelna"
+                    },
+                    "image": {
+                        "normal": "https://gate.gopay.cz/images/checkout/GIBACZPX.png",
+                        "large": "https://gate.gopay.cz/images/checkout/GIBACZPX@2x.png"
+                    },
+                    "currencies": {
+                        "CZK": {
+                            "isOnline": true
+                        }
+                    }
+                },
+                "OTHERS": {
+                    "label": {
+                        "cs": "Jiná banka"
+                    },
+                    "image": {
+                        "normal": "https://gate.gopay.cz/images/checkout/OTHERS.png",
+                        "large": "https://gate.gopay.cz/images/checkout/OTHERS@2x.png"
+                    },
+                    "currencies": {
+                        "CZK": {
+                            "isOnline": false
+                        },
+                        "EUR": {
+                            "isOnline": false
+                        }
+                    }
+                }
+            },
+            ...
+        }
+```
+
+##enabledSwifts   
+Název každého objektu odpovídá [SWIFT](#swift) kódům bank 
+
+Název parametru|Popis parametru|
+---------------|---------------
+label| Objekt obsahující lokalizace názvu banky
+image| Logo banky dostupné ve dvou formátech - normal, large
+[currencies](#currencies)| Měny podporované bankou, nabývá hodnot viz [currency](#currency)
+isOnline| Stav symbolizující zda banka podporuje online převod
+
+```json
+  "GIBACZPX": {
+        "label": {
+            "cs": "Česká spořitelna"
+        },
+        "image": {
+            "normal": "https://gate.gopay.cz/images/checkout/GIBACZPX.png",
+            "large": "https://gate.gopay.cz/images/checkout/GIBACZPX@2x.png"
+        },
+        "currencies": {
+            "CZK": {
+                "isOnline": true
+            }
+        }
+    },
+    "OTHERS": {
+        "label": {
+            "cs": "Jiná banka"
+        },
+        "image": {
+            "normal": "https://gate.gopay.cz/images/checkout/OTHERS.png",
+            "large": "https://gate.gopay.cz/images/checkout/OTHERS@2x.png"
+        },
+        "currencies": {
+            "CZK": {
+                "isOnline": false
+            },
+            "EUR": {
+                "isOnline": false
+            }
+        }
+    },
+    ...
+```

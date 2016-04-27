@@ -1,0 +1,30 @@
+##List of avaliable payment methods
+
+Retruns ```JSON``` structure of all avaliable payment methods on eshop profile.
+GoID of eshop must be passed in URL.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.payment_method_list.request } %>
+
+###REQUEST
+
+```GET /eshops/eshop/{goid}/payment-instruments```
+
+###HEADER OF THE REQUEST
+
+Parameter name|Parameter description|Required
+--------------|---------------------|--------
+Accept|application/json|ANO
+Authorization|Bearer [<access-token>](#oauth)|ANO
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.payment_method_list.response } %>
+
+###RESPONSE
+
+Parameter name|Parameter description
+---------------|---------------
+[groups](#groups)| Definition of payment method groups
+[enabledPaymentInstruments](#enabledpaymentinstruments)| Object that contains payment methods that are avaliable on eshop profile

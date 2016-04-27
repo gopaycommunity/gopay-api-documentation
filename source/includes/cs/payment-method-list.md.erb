@@ -1,0 +1,30 @@
+##Získání seznamu povolených platebních metod
+
+Metoda vrarcí ```JSON``` strukturu všech povolených platebních metod na eshopovém profilu.
+V URL požadavku je nutné předat GoID dotazovaného eshopu.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.payment_method_list.request } %>
+
+###REQUEST
+
+```GET /eshops/eshop/{goid}/payment-instruments```
+
+###HLAVIČKA POŽADAVKU
+
+Název parametru|Popis parametru|Povinný
+---------------|---------------|-------
+Accept|application/json|ANO
+Authorization|Bearer [<access-token>](#oauth)|ANO
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.payment_method_list.response } %>
+
+###RESPONSE
+
+Název parametru|Popis parametru
+---------------|---------------
+[groups](#groups)| Definice skupin platebních metod
+[enabledPaymentInstruments](#enabledpaymentinstruments)| Objekt obsahující platební metody povolené na eshopovém profilu

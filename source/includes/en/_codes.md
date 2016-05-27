@@ -86,7 +86,8 @@ RZBCCZPP| Raiffeisenbank
 BREXCZPP| mBank
 FIOBCZPP| FIO Bank
 CEKOCZPP| ČSOB
-CEKOCZPP-ERA| ERA 
+CEKOCZPP-ERA| ERA
+ZUNOCZPP| ZUNO
 SUBASKBX| Všeobecná úverová banka Banka
 TATRSKBX| Tatra Banka
 UNCRSKBX| Unicredit Bank SK
@@ -95,4 +96,5 @@ OTPVSKBX| OTP Banka
 POBNSKBA| Poštová Banka
 CEKOSKBX| ČSOB SK
 LUBASKBX| Sberbank Slovensko
+RIDBSKBX| ZUNO SK
 OTHERS| Special SWIFT without specific bank selected

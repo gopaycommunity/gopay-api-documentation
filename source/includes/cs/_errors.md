@@ -11,7 +11,7 @@ HTTP kód|Význam kódu
 
 ## Návratové chyby
 
-> Příklad chybové odpovědi - filed specific
+> Příklad chybové odpovědi - field specific
 
 ```json
 {"date_issued":1390336022001,
@@ -57,6 +57,7 @@ Kód|popis
 113|Nelze změnit
 114|Nelze smazat
 115|Nejednoznačné
+116|Neplatný požadavek
 
 ###Authentication, authorization
 Kód|popis
@@ -84,4 +85,5 @@ Kód|popis
 301|Platbu nelze vytvořit
 302|Platbu nelze provést
 303|Platba v chybném stavu
+304|Platba nebyla nalezena
 

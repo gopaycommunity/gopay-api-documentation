@@ -11,7 +11,7 @@ HTTP code|Meaning of code
 
 ## Return errors
 
-> Example of error response - filed specific
+> Example of error response - field specific
 
 ```json
 {"date_issued":1390336022001,
@@ -58,6 +58,7 @@ Code|Description
 113|Not possible to change 
 114|Not possible to delete
 115|Not clear
+116|Invalid request
 
 ###Authentication, authorization
 Code|Description
@@ -84,5 +85,6 @@ Code|Description
 333|Not sufficient funds on account 
 301|Not possible to create a payment
 302|Not possible to make a payment
-303|Payment in wrong state 
+303|Payment in wrong state
+304|Payment not found
 

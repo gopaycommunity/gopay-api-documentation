@@ -2,12 +2,12 @@
 
 Před vyvoláním platební brány je nutné provést založení platby. Ve výsledku volání vám zopakujeme parametry platby spolu s parametrem ```gw_url```, který použijete pro inicializaci [inline](#inline-varianta) nebo [redirect](#redirect-varianta) platební brány.   
   
-Příjemce platby je identifikován ```goid``` v objektu [target](##target). Získáte jej při integraci platební brány pro identifikaci konkrétního prodejního místa, např. [www.goshop.cz](http://www.goshop.cz).
+Příjemce platby je identifikován ```goid``` v objektu [target](#target). Získáte jej při integraci platební brány pro identifikaci konkrétního prodejního místa, např. [www.goshop.cz](http://www.goshop.cz).
 <aside class='notice'>
 Pokud ještě nemáte goid, kontaktujte nás na integrace@gopay.cz
 </aside>
   
-Platící strana je v rámci platby popsána objektem [payer](##payer), který identifikuje platícího, a případně určuje množinu povolených platebních metod, včetně metody defaultní.  
+Platící strana je v rámci platby popsána objektem [payer](#payer), který identifikuje platícího, a případně určuje množinu povolených platebních metod, včetně metody defaultní.  
 
 ## Standardní platba
 Platba je určena pro úhradu objednávky platební kartou, bankovním převodem, GoPay účtem a jinými platebními metodami.  
@@ -54,7 +54,7 @@ id|ID platby|long
 order_number|ID objednávky| string, pouze alfanumerické znaky (128 znaků)
 [state](#stavy-plateb)|Stav platby| string, může nabývat hodnot viz [state](#stavy-plateb)
 amount|Částka v haléřích| long > 0
-[currency](##currency)|Měna platby| string, může nabývat hodnot viz [currency](##currency)
+[currency](#currency)|Měna platby| string, může nabývat hodnot viz [currency](#currency)
 [payer](#payer)| Objekt popisující plátce platby| Objekt
 [target](#target)| Objekt popisující příjemce platby| Objekt
 [additional_params](#additional_params)|Doplňkové parametry platby| Pole objektů

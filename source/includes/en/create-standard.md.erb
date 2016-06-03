@@ -2,11 +2,11 @@
 
 Before initiating the payment gateway, it is necessary to establish the payment. In effect of calling, we repeat parameters of the payment including the parameter ```gw_url```, which you can initiate to [inline](#inline-option) or [redirect](#redirect-option) payment gateway.  
    
-The payee of the payment is identified by ```goid``` in object [target](##target). You can get it, when you integrate the payment gateway for identification of specific point of sale, e.g. [www.goshop.cz](http://www.goshop.cz).
+The payee of the payment is identified by ```goid``` in object [target](#target). You can get it, when you integrate the payment gateway for identification of specific point of sale, e.g. [www.goshop.cz](http://www.goshop.cz).
 <aside class='notice'>
 If you do not have GoID, contact us on e-mail integrace@gopay.cz. 
 </aside>  
-Within the payment, the paying party is described by an object [payer](##payer),  
+Within the payment, the paying party is described by an object [payer](#payer),  
 which identifies the payer and determines the set of permitted payment method,  
 including the default method. 
 
@@ -56,7 +56,7 @@ id|Payment ID|long
 order_number|Identification of order| string, alphanumeric characters only (128 characters)
 [state](#payment-status)|Payment status| string, can gain values see [state](#payment-status)
 amount|Amount in cents| long > 0
-[currency](##currency)|Specifies the currency of payment| string, can gain values see [currency](##currency)
+[currency](#currency)|Specifies the currency of payment| string, can gain values see [currency](#currency)
 [payer](#payer)| Object describing the payer of the payment| Object
 [target](#target)| Object describing the target of the payment (payee)| Object
 [additional_params](#additional_params)|Additional parameters of payments| Object array

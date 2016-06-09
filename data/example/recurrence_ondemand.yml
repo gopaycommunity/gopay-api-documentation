@@ -9,7 +9,7 @@ request:
         -d'{
             "amount":"500",
             "currency":"CZK",
-            "order_number":"002”,
+            "order_number":"002",
             "order_description":"pojisteni02",
             "items":[{"name":"item01","amount":"500"}],
             "additional_params":[{

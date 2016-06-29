@@ -88,7 +88,7 @@ FIOBCZPP| FIO Banka
 CEKOCZPP| ČSOB
 CEKOCZPP-ERA| ERA
 ZUNOCZPP| ZUNO
-SUBASKBX| Všeobecná úverová banka Banka
+SUBASKBX| Všeobecná úverová banka
 TATRSKBX| Tatra Banka
 UNCRSKBX| Unicredit Bank SK
 GIBASKBX| Slovenská spořitelna

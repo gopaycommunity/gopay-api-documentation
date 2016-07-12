@@ -26,7 +26,7 @@ Název parametru | Popis parametru | Povinný | Datový typ
 amount| Částka v haléřích|ANO| long > 0
 [currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO|string, může nabývat hodnot viz [currency](#currency)
 order_number|Identifikace objednávky v rámci prodejního místa|ANO| string, pouze alfanumerické znaky (128 znaků)
-order_description|Popis objednávky|ANO| string, pouze alfanumerické znaky (256 znaků)
+order_description|Popis objednávky|NE| string, pouze alfanumerické znaky (256 znaků)
 [items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Pole objektů
 preauthorization|Aktivace předautorizované platby|NE| bool
 [additional_params](#additional_params)|Doplňkové parametry platby|NE| Pole objektů

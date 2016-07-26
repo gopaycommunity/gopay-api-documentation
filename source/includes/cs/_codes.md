@@ -13,10 +13,14 @@ ON_DEMAND| U opakovaných plateb na vyžádání
 ##currency
 Měna platby
 
-Hodnota paramentru|Popis
+Hodnota parametru|Popis
 ------------------|-----
 CZK | České koruny
 EUR | Eura
+PLN | Polský złoty
+HUF | Maďarský forint
+GBP | Britská libra
+USD | Americký dolar
 
 ##scope
 Parametr popisující množinu získaných práv

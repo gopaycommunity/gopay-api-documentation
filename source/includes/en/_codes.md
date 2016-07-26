@@ -17,6 +17,10 @@ Parameter value|Description
 ------------------|-----
 CZK | Czech crowns
 EUR | Euros
+PLN | Polish złoty
+HUF | Hungarian forint
+GBP | British pound
+USD | US dollar
 
 ##scope
 Parameter describing group of acquired rights

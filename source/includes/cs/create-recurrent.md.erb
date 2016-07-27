@@ -25,7 +25,7 @@ Název parametru | Popis parametru | Povinný | Datový typ
 ----------------|-----------------|---------|--------
 [payer](#payer)|Objekt popisující plátce platby|NE| Objekt
 [target](#target)|Objekt popisující příjemce platby|ANO| Objekt
-amount|Částka v haléřích|ANO| long
+amount|Částka v haléřích|ANO| long > 0
 [currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO|string, může nabývat hodnot viz [currency](#currency)
 order_number|Identifikace objednávky v rámci prodejního místa|ANO|string, pouze alfanumerické znaky (128 znaků)
 order_description|Popis objednávky|NE|string, pouze alfanumerické znaky (256 znaků)

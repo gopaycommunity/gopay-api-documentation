@@ -12,6 +12,7 @@ Language | Installation |
 [Python](https://github.com/gopaycommunity/gopay-python-api) | `pip install gopay` |
 [iOS](https://github.com/gopaycommunity/gopay-ios-api)| `pod 'gopay-ios-api'` |
 [JAVA](https://github.com/gopaycommunity/gopay-java-api)|  `git clone https://github.com/gopaycommunity/gopay-java-api.git`<br>`cd gopay-java-api`<br>`mvn package `|
+[ANDROID](https://github.com/gopaycommunity/gopay-android-api)|  `git clone https://github.com/gopaycommunity/gopay-android-api.git`<br>`cd gopay-android-api`<br>`gradle clean build `|
 
 ## Contributing
 

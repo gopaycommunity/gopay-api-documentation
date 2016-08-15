@@ -65,13 +65,19 @@ request:
         }]; 
     java: |
       try {
-          PaymentResult capture = connector.capturePayment(<ID>);
+        NextPaymentBuilder builder = PaymentFactory.createNextPaymentBuilder();
+        ...
+        PaymentResult voidRecurrency = connector.createRecurrentPayment(<ID>, builder.build());
       } catch (GPClientException ex) {
-             for (ErrorElement err : e.getError().getErrorMessages()) {
-                int code = err.getErrorCode();
-                String message = err.getMessage();
-                String field = err.getField();
-            }          
+        //
+      }
+    javascript: |
+      try {
+        NextPaymentBuilder builder = PaymentFactory.createNextPaymentBuilder();
+        ...
+        PaymentResult voidRecurrency = connector.createRecurrentPayment(<ID>, builder.build());
+      } catch (GPClientException ex) {
+        //
       }
       
 response:

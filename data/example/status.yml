@@ -27,6 +27,12 @@ request:
                 String field = err.getField();
             }            
         }
+    javascript: |
+        try {
+            Payment payment = connector.paymentStatus(<PAYMENT_ID>);
+        } catch (GPClientException e) {
+          //
+        }
 
 response:
     json: |

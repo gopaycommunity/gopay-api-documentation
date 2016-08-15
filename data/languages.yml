@@ -58,13 +58,13 @@
         Python SDK
 
         * [https://github.com/gopaycommunity/gopay-python-api](https://github.com/gopaycommunity/gopay-python-api)
-        * Požadavky: `Python >= 2.6, Python 3`
+        * Požadavky: `Python >= 2.6`
         * Instalace: **`pip install gopay`**
     en: |
         Python SDK
 
         * [https://github.com/gopaycommunity/gopay-python-api](https://github.com/gopaycommunity/gopay-python-api)
-        * Requirements: `Python >= 2.6, Python 3`
+        * Requirements: `Python >= 2.6`
         * Installation: **`pip install gopay`**
 
 - language: iOS
@@ -122,3 +122,39 @@
             * ``Apache CXF``  
   
         **`More info about frameworks integration can be found on our github`**
+
+- language: android
+  syntax: javascript
+  info: 
+    cs: |
+        ANDROID API
+
+        * [https://github.com/gopaycommunity/gopay-android-api](https://github.com/gopaycommunity/gopay-android-api)
+        * Požadavky : `Android studio/Gradle`
+        * Instalace :   
+                    **`git clone https://github.com/gopaycommunity/gopay-android-api.git`**  
+                    **`cd gopay-android-api`**  
+                    **`gradle clean build`**  
+  
+        * **`Všechny artefakty se nacházejí v centrálním repozitáři maven jcenter`**  
+  
+        * `model classes, connector`  
+                    **`compile 'cz.gopay:androidapi:1.0.0'`**  
+        * `webview`  
+                    **`compile 'cz.gopay:androidui:1.0.0'`**  
+    en: |
+        ANDROID API
+
+        * [https://github.com/gopaycommunity/gopay-android-api](https://github.com/gopaycommunity/gopay-android-api)
+        * Requirements : `Android studio/Gradle`
+        * Installation :   
+                    **`git clone https://github.com/gopaycommunity/gopay-android-api.git`**  
+                    **`cd gopay-android-api`**  
+                    **`gradle clean build`**  
+  
+        * **`Artifacts are located in the maven jcenter repository`**  
+  
+        * `model classes, connector`  
+                    **`compile 'cz.gopay:androidapi:1.0.0'`**  
+        * `webview`  
+                    **`compile 'cz.gopay:androidui:1.0.0'`**  

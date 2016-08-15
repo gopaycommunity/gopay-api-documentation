@@ -27,6 +27,12 @@ request:
                 String field = err.getField();
             }           
         }
+    javascript: |
+        try {
+            PaymentResult voidRecurrency = connector.voidRecurrency(<ID>);
+        } catch (GPClientException ex) {
+            //
+        }
 
 response:
     json: |

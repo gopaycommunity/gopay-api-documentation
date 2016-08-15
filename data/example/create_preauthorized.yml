@@ -146,7 +146,6 @@ request:
         [GPAPI sharedAPI] createPayment:payment withHandleSuccess:^(GPPayment *payment) {
 
         } failure:^(NSError *error) {
-                
         }];
     java: |
         BasePayment payment = PaymentFactory.createBasePaymentBuilder()
@@ -168,6 +167,14 @@ request:
                 String field = err.getField();
             }
         }
+    javascript: |
+        Payment payment = PaymentFactory.createPaymentBuilder().preauthorize()...
+        try {
+            connector.createPayment(payment);
+        } catch (GPClientException ex) {
+            //
+        }
+
 response:
     json: |
         {

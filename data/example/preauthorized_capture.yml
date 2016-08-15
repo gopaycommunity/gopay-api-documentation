@@ -19,14 +19,16 @@ request:
         }];
     java: |
         try {
-            connector.createPayment(payment);
+            PaymentResult capture = connector.capturePayment(<ID>);
         } catch (GPClientException ex) {
-             for (ErrorElement err : e.getError().getErrorMessages()) {
-                int code = err.getErrorCode();
-                String message = err.getMessage();
-                String field = err.getField();
-            }            
+            //
         }
+    javascript: |
+        try {
+            PaymentResult capture = connector.capturePayment(<ID>);
+        } catch (GPClientException ex) {
+            //
+        }    
 
 response:
     json: |

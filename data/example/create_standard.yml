@@ -167,7 +167,21 @@ request:
                 String field = err.getField();
             }
         }
+    javascript: |
+        BasePayment payment = PaymentFactory.createBasePaymentBuilder()
+            .order(<ORDER_NUMBER>, <AMOUNT>, Currency.EUR, <DESCRIPTION>)
+            .addItem(<ITEM_NAME>, <AMOUNT>, <FEE>, <COUNT>)
+            .addAdditionalParameter(<Key>, <VALUE>)
+            .withCallback(<RETURN_URL>, <NOTIFY_URL>)
+            .payer(<Payer>)
+            .inLang(Lang.EN)
+            .toEshop(<GO_ID>)
+            .build();
+        try {
+            Payment result = connector.createPayment(payment);
+        } catch (GPClientException e) {
 
+        }
 response:
     json: |
         {

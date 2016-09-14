@@ -80,7 +80,7 @@ Parameter name|Parameter description| Data´s type
 ---------------|---------------|-------
 count|Number of items| long > 0
 name|Product name|string, alphanumeric characters (256 characters)
-amount|Product price| long > 0
+amount|Product price| long, positive or negative integers
 
 
 ##callback

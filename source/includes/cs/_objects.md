@@ -79,7 +79,7 @@ Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 count|Počet položek produktu| long > 0
 name|Název produktu|string, alfanumerické znaky (256 znaků)
-amount|Cena produktu| long > 0
+amount|Cena produktu| long, kladná nebo záporná celá čísla
 
 
 ##callback

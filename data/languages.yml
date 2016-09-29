@@ -158,3 +158,37 @@
                     **`compile 'cz.gopay:androidapi:1.0.0'`**  
         * `webview`  
                     **`compile 'cz.gopay:androidui:1.0.0'`**  
+
+- language: .NET
+  syntax: csharp
+  info: 
+    cs: |
+        .NET API
+
+        * [https://github.com/gopaycommunity/gopay-dotnet-api](https://github.com/gopaycommunity/gopay-dotnet-api)
+        * Požadavky : `.NET 4.0+`
+        * `NuGet`  
+                    **`PM> Install-Package GOPAY.NET`**  
+        * `Závislosti`  
+                    **`Newtonsoft.Json`**  
+                    **`Restsharp`**  
+                    **`Restsharp.Newtonsoft.Json`**  
+        * `Namespace`  
+                    **`using GoPay.Common;`**  
+                    **`using GoPay.Model;`**  
+                    **`using GoPay.Payment;`**  
+    en: |
+        .NET API
+
+        * [https://github.com/gopaycommunity/gopay-dotnet-api](https://github.com/gopaycommunity/gopay-dotnet-api)
+        * Requirements : `.NET 4.0+`
+        * `NuGet`  
+                    **`PM> Install-Package GOPAY.NET`**  
+        * `Dependencies`  
+                    **`Newtonsoft.Json`**  
+                    **`Restsharp`**  
+                    **`Restsharp.Newtonsoft.Json`**  
+        * `Namespace`  
+                    **`using GoPay.Common;`**  
+                    **`using GoPay.Model;`**  
+                    **`using GoPay.Payment;`**  

@@ -83,7 +83,10 @@ request:
             // API_URL for production mode - https://gate.gopay.cz/api
     javascript: |
             IGPConnector connector = GPAndroidConnector.build(<API_URL>);
-            connector.getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>);  
+            connector.getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>);
+    csharp: |
+            var connector = new GPConnector(<API_URL>,<USER_ID>, <USER_SECRET>);
+            connector.GetAppToken();   
 
 response:
     json: |

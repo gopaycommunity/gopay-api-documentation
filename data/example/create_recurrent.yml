@@ -207,6 +207,21 @@ request:
       } catch {GPClientException e) {
         //
       }
+    csharp: |
+      var recurrence = new Recurrence() 
+      {
+      Cycle = RecurrenceCycle.DAY,
+      DateTo = new DateTime(2020, 12, 12),
+      Period = 5
+      };
+      var payment = new BasePayment();
+      payment.Recurrence = recurrence;
+      
+      try {
+        connector.CreatePayment(payment);
+      } catch {GPClientException e) {
+      //
+      }
 
 response:
     json: |

@@ -182,6 +182,38 @@ request:
         } catch (GPClientException e) {
 
         }
+    csharp: |
+        var payment = new BasePayment()
+            {
+                Currency = <Currency>,
+                Lang = "ENG",
+                OrderNumber = "789456167879",
+                Amount = 7500,
+                Target = new Target()
+                {
+                    GoId = <GOID>,
+                    Type = Target.TargetType.ACCOUNT
+                },
+                Callback = new Callback()
+                {
+                    NotificationUrl = <NOTIFICATION_URL>,
+                    ReturnUrl = <RETURN_URL>
+                },
+                Payer = new Payer()
+                {
+                    Contact = new PayerContact()
+                    {
+                        Email = "test@test.cz"
+                    },
+                    DefaultPaymentInstrument = PaymentInstrument.PAYMENT_CARD
+                }
+            };
+            
+        try {
+             var result = connector.CreatePayment(payment);
+        } catch (GPClientException e) {
+        //
+        }
 response:
     json: |
         {

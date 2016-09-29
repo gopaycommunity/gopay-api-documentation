@@ -43,6 +43,11 @@ inline:
         <button name="pay" type="submit">Zaplatit</button>
         <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
       </form>
+    csharp: |
+      <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post" id="gopay-payment-button">
+        <button name="pay" type="submit">Zaplatit</button>
+        <script type="text/javascript" src="https://gw.sandbox.gopay.com/gp-gw/js/embed.js"></script>
+      </form>
 
 redirect: 
     shell: |
@@ -80,6 +85,10 @@ redirect:
         <button name="pay" type="submit">Zaplatit</button>
       </form>
     javascript: |
+      <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post">
+        <button name="pay" type="submit">Zaplatit</button>
+      </form>
+    csharp: |
       <form action="https://gw.sandbox.gopay.com/gw/v3/dfgvmwTKK5hrJx2aGG8ZnFyBJhAvF" method="post">
         <button name="pay" type="submit">Zaplatit</button>
       </form>

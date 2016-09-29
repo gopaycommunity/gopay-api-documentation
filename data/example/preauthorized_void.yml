@@ -33,6 +33,12 @@ request:
         } catch (GPClientException ex) {
             //
         }
+    csharp: |
+        try {
+            var result = connector.VoidAuthorization(<ID>);
+        } catch (GPClientException ex) {
+        //
+        }
 
 response:
     json: |

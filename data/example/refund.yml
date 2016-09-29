@@ -33,6 +33,12 @@ request:
         } catch (GPClientException e) {
             //
         }
+    csharp: |
+        try {
+            var result = connector.RefundPayment(<PAYMENT_ID>, <AMOUNT>);
+        } catch (GPClientException e) {
+        //
+        }
         
 response:
     json: |

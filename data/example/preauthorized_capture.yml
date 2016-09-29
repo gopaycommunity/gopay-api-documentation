@@ -28,6 +28,12 @@ request:
             PaymentResult capture = connector.capturePayment(<ID>);
         } catch (GPClientException ex) {
             //
+        }
+    csharp: |
+        try {
+            var capture = connector.CapturePayment(<ID>);
+        } catch (GPClientException ex) {
+        //
         }    
 
 response:

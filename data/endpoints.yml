@@ -10,6 +10,7 @@
 - preauthorized-void
 - preauthorized-capture
 - payment-method-list
+- statement
 - objects
 - codes
 - errors

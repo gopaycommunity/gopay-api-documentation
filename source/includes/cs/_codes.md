@@ -102,3 +102,17 @@ CEKOSKBX| ČSOB SK
 LUBASKBX| Sberbank Slovensko
 RIDBSKBX| ZUNO SK
 OTHERS| Speciální swift bez předvýběru konkrétní banky
+
+##format
+Formát souboru generovaného výpisu
+
+Hodnota parametru|Popis
+------------------|-----
+CSV_A | CSV typ A
+CSV_B | CSV typ B
+CSV_C | CSV typ C
+CSV_D | CSV typ D
+XLS_A | XLS typ A
+XLS_B | XLS typ B
+XLS_C | XLS typ C
+ABO | ABO (.gpc)

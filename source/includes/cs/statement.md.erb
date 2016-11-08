@@ -1,0 +1,37 @@
+##Generování výpisu obchodního účtu
+Funkcionalita umožňuje generovat výpisy z GoPay obchodního účtu pro konkrétní e-shop a měnu.
+Metoda vrací obsah souboru použitého formátu výpisu.
+Podrobný popis jednotlivých typů souborů generovaných výpisů naleznete v [centru nápovědy](https://help.gopay.com/cs/s/er).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.statement.request } %>
+
+###REQUEST
+
+```POST api/accounts/account-statement```
+
+###HLAVIČKA POŽADAVKU
+
+Název parametru|Popis parametru|Povinný
+---------------|---------------|-------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+Název parametru | Popis parametru | Povinný | Datový typ
+----------------|-----------------|---------|-----------
+date_from|Počáteční datum výpisu|ANO| string yyyy-mm-dd
+date_to|Koncové datum výpisu|ANO| string yyyy-mm-dd
+goid|Jedinečný identifikátor e-shopu v systému platební brány|ANO| long
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO| string
+[format](#format)|Určuje formát souboru generovaného výpisu|ANO|string
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.statement.response } %>
+
+###RESPONSE
+
+Odpověď typu application/octet-stream

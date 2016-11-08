@@ -102,3 +102,17 @@ CEKOSKBX| ČSOB SK
 LUBASKBX| Sberbank Slovensko
 RIDBSKBX| ZUNO SK
 OTHERS| Special SWIFT without specific bank selected
+
+##format
+Format of account statement file
+
+Parameter value|Description
+------------------|-----
+CSV_A | CSV type A
+CSV_B | CSV type B
+CSV_C | CSV type C
+CSV_D | CSV type D
+XLS_A | XLS type A
+XLS_B | XLS type B
+XLS_C | XLS type C
+ABO | ABO (.gpc)

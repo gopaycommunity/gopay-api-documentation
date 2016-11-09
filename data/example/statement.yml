@@ -13,11 +13,3 @@ request:
         "currency":"CZK",
         "format":"CSV_A"
         }'
-
-response:
-    json: |
-        {
-          "ID pohybu";"Datum";"Typ";"Protistrana";"ID objednávky/VS";"Částka";"Počáteční stav";"Koncový stav";"Měna";"ID Referenčního pohybu"
-          "8018628816";"2016-07-08 00:19:49";"Platba na E-shop";"444444******4448";"001";1,50;193720,39;193721,89;"CZK";""
-          ...
-        }

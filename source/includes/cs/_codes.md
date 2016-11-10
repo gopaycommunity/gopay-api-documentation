@@ -53,6 +53,16 @@ TIMEOUTED|Vypršelá platnost platby
 REFUNDED|Platba refundována
 PARTIALLY_REFUNDED|Platba částečně refundována
 
+##Podstav plateb
+Platba bankovním převodem může nabývat následujících podstavů
+
+Hodnota parametru|Popis parametru podstavu
+-----------|---------------------
+_101|Čekáme na potvrzení údajů o platbě
+_3001|Potvrzeno avízem
+_3002|Potvrzeno výpisem
+_3003|Bez potvrzení
+
 ##lang
 Natavení jazyka platební brány
 

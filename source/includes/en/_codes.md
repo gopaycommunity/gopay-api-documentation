@@ -53,6 +53,16 @@ TIMEOUTED|Payment timeouted
 REFUNDED|Payment refunded
 PARTIALLY_REFUNDED|Payment partially refunded
 
+##Payment substate
+Bank payment can gain values following substates
+
+Parameter value|Substate parameter description
+-----------|---------------------
+_101|Waiting for additional information from bank
+_3001|Confirmed by advice
+_3002|Confirmed by statement
+_3003|Without confirmation
+
 ##lang
 Setting of the language of the payment gateway
 

@@ -45,13 +45,20 @@ response:
         {
           "id":3000006529,
           "order_number":"001",
-          "state":"CREATED",
+          "state":"PAID",
+          "sub_state": "_3002",
           "amount":1000,"currency":"CZK",
           "payment_instrument": "BANK_ACCOUNT",
           "payer":{
                    "default_payment_instrument":"BANK_ACCOUNT",
                    "allowed_payment_instruments":["BANK_ACCOUNT"],
                    "default_swift":"FIOBCZPP",
+                   "bank_account":{
+                              "prefix":"670100",
+                              "account_number":"7654322",
+                              "bank_code":"0100",
+                              "account_name":"JAN NOVAK"
+                              },
                    "contact":{"first_name":"Zbynek",
                               "last_name":"Zak",
                               "email":" test@test.cz ",
@@ -60,7 +67,7 @@ response:
                               "street":"Plana 67",
                               "postal_code":"37301",
                               "country_code":"CZE"
-                            }
+                             }
                   },
           "target":{"type":"ACCOUNT",
                     "goid":8123456789

@@ -10,6 +10,7 @@ Definition of the payer or the payment
    "default_payment_instrument":"BANK_ACCOUNT",
    "default_swift":"GIBACZPX",
    "allowed_swifts":["FIOBCZPP","BREXCZPP"],
+   "bank_account":{},
    "contact": {}
  }
 ```
@@ -20,8 +21,26 @@ Parameter name|Parameter description| Data´s type
 [default_payment_instrument](#payment_instrument)|Preferred payment method|string, can gain values of [payment_instrument](#payment_instrument)
 [default_swift](#swift)|Preferred bank if default_payment_instrument is set to BANK_ACCOUNT, set by SWIFT code|string, can gain values of [SWIFT](#swift)
 [allowed_swifts](#swift)|Array of allowed bank codes| string, can gain values of [SWIFT](#swift)
+[bank_account](#bank_account)|Bank account information|Object
 [contact](#contact)|Customer´s data|Object
 
+##bank_account
+Bank account information
+
+```json
+{
+    "prefix":"670100",
+    "account_number":"7654322",
+    "bank_code":"0100",
+    "account_name":"JAN NOVAK"
+}
+```
+Parameter name|Parameter description| Data´s type
+---------------|---------------|-------
+prefix|Bank account prefix|string
+account_number|Bank account number|string
+bank_code|Bank account code|string
+account_name|Bank account name|string
 
 ##contact
 Customer´s information

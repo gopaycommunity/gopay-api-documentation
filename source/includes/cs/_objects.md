@@ -10,6 +10,7 @@ Definice plátce platby
    "default_payment_instrument":"BANK_ACCOUNT",
    "default_swift":"GIBACZPX",
    "allowed_swifts":["FIOBCZPP","BREXCZPP"],
+   "bank_account":{},
    "contact": {}
  }
 ```
@@ -19,9 +20,27 @@ Název parametru|Popis parametru|Datový typ
 [allowed_payment_instruments](#payment_instrument)|Pole povolených platebních metod|string, nabývající hodnot viz [payment_instrument](#payment_instrument)
 [default_payment_instrument](#payment_instrument)|Preferovaná platební metoda|string, nabývající hodnot viz [payment_instrument](#payment_instrument)
 [default_swift](#swift)|Preferová banka pokud je default_payment_instrument nastaveno na BANK_ACCOUNT, nastaveno pomocí SWIFT kódu banky|string, nabývající hodnot viz [SWIFT](#swift)
-[allowed_swifts](#swift)| Pole povolených kódů bank| string, nabývající hodnot viz [SWIFT](#swift) 
+[allowed_swifts](#swift)|Pole povolených kódů bank| string, nabývající hodnot viz [SWIFT](#swift)
+[bank_account](#bank_account)|Údaje o bankovním účtu plátce|Objekt
 [contact](#contact)|Údaje o zákaníkovi|Objekt
 
+##bank_account
+Údaje o bankovním účtu plátce
+
+```json
+{
+    "prefix":"670100",
+    "account_number":"7654322",
+    "bank_code":"0100",
+    "account_name":"JAN NOVAK"
+}
+```
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+prefix|Předčíslí bankovního účtu zákazníka|string
+account_number|Číslo bankovního účtu zákazníka|string
+bank_code|Kód banky zákazníka|string
+account_name|Jméno majitele bankovního účtu|string
 
 ##contact
 Zákaznické informace
@@ -44,10 +63,10 @@ Název parametru|Popis parametru|Datový typ
 first_name|Jméno zákazníka|string, 256 znaků
 last_name|Příjmení zákazníka|string, 256 znaků
 email|E-mail zákazníka|string, 128 znaků
-phone_number|Telefonní číslo zákazníka|string 128 znaků
+phone_number|Telefonní číslo zákazníka|string, 128 znaků
 city|Město zákazníka|string, 128 znaků
 street|Ulice zákazníka|string, 128 znaků
-postal_code|Poštovní směrovací číslo zákazníka|string 16 znaků
+postal_code|Poštovní směrovací číslo zákazníka|string, 16 znaků
 country_code|Kód státu zákazníka| string [ISO 3166-1 alpha-3](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
 
 ##target

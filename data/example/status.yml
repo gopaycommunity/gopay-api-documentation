@@ -1,7 +1,7 @@
 
 request:
     shell: |
-        curl -v https://gw.sandbox.gopay.com/api/payments/payment/3000006529 \
+        curl -v -N https://gw.sandbox.gopay.com/api/payments/payment/3000006529 \
         -X "GET" \
         -H "Accept: application/json" \
         -H "Content-Type: application/x-www-form-urlencoded" \

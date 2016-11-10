@@ -37,10 +37,10 @@ Název parametru|Popis parametru|Datový typ
 ```
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
-prefix|Předčíslí bankovního účtu zákazníka|string
-account_number|Číslo bankovního účtu zákazníka|string
-bank_code|Kód banky zákazníka|string
-account_name|Jméno majitele bankovního účtu|string
+prefix|Předčíslí bankovního účtu zákazníka|string, 64 znaků
+account_number|Číslo bankovního účtu zákazníka|string, 128 znaků
+bank_code|Kód banky zákazníka|string, 8 znaků
+account_name|Jméno majitele bankovního účtu|string, 70 znaků
 
 ##contact
 Zákaznické informace

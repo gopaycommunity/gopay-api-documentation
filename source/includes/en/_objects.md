@@ -37,10 +37,10 @@ Bank account information
 ```
 Parameter name|Parameter description| Data´s type
 ---------------|---------------|-------
-prefix|Bank account prefix|string
-account_number|Bank account number|string
-bank_code|Bank account code|string
-account_name|Bank account name|string
+prefix|Bank account prefix|string, 64 characters
+account_number|Bank account number|string, 128 characters
+bank_code|Bank account code|string, 8 characters
+account_name|Bank account name|string, 70 characters
 
 ##contact
 Customer´s information

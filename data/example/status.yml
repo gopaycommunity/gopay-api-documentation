@@ -49,7 +49,7 @@ response:
           "sub_state":"_3002",
           "amount":1000,
           "currency":"CZK",
-          "payment_instrument": "BANK_ACCOUNT",
+          "payment_instrument":"BANK_ACCOUNT",
           "payer":{
                    "default_payment_instrument":"BANK_ACCOUNT",
                    "allowed_payment_instruments":["BANK_ACCOUNT"],

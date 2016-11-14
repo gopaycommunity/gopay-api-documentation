@@ -58,7 +58,7 @@ Bank payment can gain values following substates
 
 Parameter value|Substate parameter description
 -----------|---------------------
-_101|Waiting for additional information from bank
+_101|Waiting for payment
 _3001|Confirmed by advice
 _3002|Confirmed by statement
 _3003|Without confirmation

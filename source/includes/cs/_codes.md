@@ -58,7 +58,7 @@ Platba bankovním převodem může nabývat následujících podstavů
 
 Hodnota parametru|Popis parametru podstavu
 -----------|---------------------
-_101|Čekáme na potvrzení údajů o platbě
+_101|Čekáme na provedení platby
 _3001|Potvrzeno avízem
 _3002|Potvrzeno výpisem
 _3003|Bez potvrzení

@@ -58,7 +58,8 @@ Payment can gain values following substates
 
 Parameter value|Substate parameter description
 -----------|---------------------
-_101|Payment pending. We are waiting for the payment to be made.
+_101|Payment pending. We are waiting for the online payment to be made.
+_102|Payment pending. We are waiting for the offline payment to be made.
 _2001|Payment successfully paid.
 _3001|Bank payment confirmed by letter of advice.
 _3002|Bank payment confirmed by statement.

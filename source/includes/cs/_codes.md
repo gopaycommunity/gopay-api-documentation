@@ -58,7 +58,8 @@ Platba může nabývat následujících podstavů
 
 Hodnota parametru|Popis parametru podstavu
 -----------|---------------------
-_101|Čekáme na provedení platby.
+_101|Čekáme na provedení online platby.
+_102|Čekáme na provedení offline platby.
 _2001|Platba byla úspěšně uhrazena.
 _3001|Bankovní platba potvrzena avízem.
 _3002|Bankovní platba potvrzena výpisem.

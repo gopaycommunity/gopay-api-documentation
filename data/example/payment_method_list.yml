@@ -2,7 +2,7 @@
 
 request:
     shell: |
-        curl -v -N https://gw.sandbox.gopay.com/api/eshops/eshop/{goid}/payment-instruments \
+        curl -v -N https://gw.sandbox.gopay.com/api/eshops/eshop/8123456789/payment-instruments/CZK \
         -X "GET" \
         -H "Accept: application/json" \
         -H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969"
@@ -10,90 +10,48 @@ request:
 response:
     json: |
         {
-            "groups": {
-                "card-payment": {
-                    "label": {
-                        "cs": "Platební karta"
-                    }
+        "groups":{
+            "card-payment":{
+                "label":{
+                    "cs":"Platební karta"}
                 },
-                "bank-transfer": {
-                    "label": {
-                        "cs": "Bankovní platba"
-                    }
+            "bank-transfer":{
+                "label":{
+                    "cs":"Rychlý bankovní převod"}
                 },
-                "wallet": {
-                    "label": {
-                        "cs": "Elektronické peněženky"
-                    }
+            "wallet":{
+                "label":{
+                    "cs":"Elektronické peněženky"}
                 },
-                "others": {
-                    "label": {
-                        "cs": "Ostatní"
-                    }
+            "others":{
+                "label":{
+                    "cs":"Ostatní"}
                 }
             },
-            "enabledPaymentInstruments": {
-                "PAYMENT_CARD": {
-                    "label": {
-                        "cs": "Platební karta"
-                    },
-                    "image": {
-                        "normal": "https://gate.gopay.cz/images/checkout/payment_card.png",
-                        "large": "https://gate.gopay.cz/images/checkout/payment_card@2x.png"
-                    },
-                    "currencies": [
-                        "CZK",
-                        "EUR"
-                    ],
-                    "group": "card-payment",
-                    "enabledSwifts": null
+        "enabledPaymentInstruments":[{
+            "paymentInstrument":"PAYMENT_CARD",
+                "label":{
+                    "cs":"Platební karta"
                 },
-                "BANK_ACCOUNT": {
-                    "label": {
-                        "cs": "Bankovní platba"
-                    },
-                    "image": {
-                        "normal": "https://gate.gopay.cz/images/checkout/bank_account.png",
-                        "large": "https://gate.gopay.cz/images/checkout/bank_account@2x.png"
-                    },
-                    "currencies": [
-                        "CZK",
-                        "EUR"
-                    ],
-                    "group": "bank-transfer",
-                    "enabledSwifts": {
-                        "GIBACZPX": {
-                            "label": {
-                                "cs": "Česká spořitelna"
-                            },
-                            "image": {
-                                "normal": "https://gate.gopay.cz/images/checkout/GIBACZPX.png",
-                                "large": "https://gate.gopay.cz/images/checkout/GIBACZPX@2x.png"
-                            },
-                            "currencies": {
-                                "CZK": {
-                                    "isOnline": true
-                                }
-                            }
-                        },
-                        "OTHERS": {
-                            "label": {
-                                "cs": "Jiná banka"
-                            },
-                            "image": {
-                                "normal": "https://gate.gopay.cz/images/checkout/OTHERS.png",
-                                "large": "https://gate.gopay.cz/images/checkout/OTHERS@2x.png"
-                            },
-                            "currencies": {
-                                "CZK": {
-                                    "isOnline": false
-                                },
-                                "EUR": {
-                                    "isOnline": false
-                                }
-                            }
-                        }
-                    },
-                    ...
-                }
-        }
+                "image":{
+                    "normal":"https://gate.gopay.cz/images/checkout/payment_card.png",
+                    "large":"https://gate.gopay.cz/images/checkout/payment_card@2x.png"},
+                "group":"card-payment",
+                "enabledSwifts":null
+                },
+            {"paymentInstrument":"BANK_ACCOUNT",
+                "label":{
+                    "cs":"Rychlý bankovní převod"},
+                "image":{
+                    "normal":"https://gate.gopay.cz/images/checkout/bank_account.png",
+                    "large":"https://gate.gopay.cz/images/checkout/bank_account@2x.png"},
+                "group":"bank-transfer",
+                "enabledSwifts":[{
+                    "swift":"GIBACZPX",
+                        "label":{"cs":"Platba 24"},
+                        "image":{
+                            "normal":"https://gate.gopay.cz/images/checkout/GIBACZPX.png",
+                            "large":"https://gate.gopay.cz/images/checkout/GIBACZPX@2x.png"},
+                        "isOnline":true},
+            ...]},
+        ]}

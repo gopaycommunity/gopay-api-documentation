@@ -1,7 +1,7 @@
 ##List of avaliable payment methods
 
 Retruns ```JSON``` structure of all avaliable payment methods on eshop profile.
-GoID of eshop must be passed in URL.
+GoID of eshop and code of currency must be passed in URL.
 
 > Request
 
@@ -9,7 +9,7 @@ GoID of eshop must be passed in URL.
 
 ###REQUEST
 
-```GET /eshops/eshop/{goid}/payment-instruments```
+```GET /eshops/eshop/{GoID}/payment-instruments/{currency}```
 
 ###HEADER OF THE REQUEST
 

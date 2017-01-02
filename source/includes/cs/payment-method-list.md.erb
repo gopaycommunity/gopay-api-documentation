@@ -1,7 +1,7 @@
 ##Získání seznamu povolených platebních metod
 
 Metoda vrarcí ```JSON``` strukturu všech povolených platebních metod na eshopovém profilu.
-V URL požadavku je nutné předat GoID dotazovaného eshopu.
+V URL požadavku je nutné předat GoID dotazovaného eshopu a kód měny.
 
 > Request
 
@@ -9,7 +9,7 @@ V URL požadavku je nutné předat GoID dotazovaného eshopu.
 
 ###REQUEST
 
-```GET /eshops/eshop/{goid}/payment-instruments```
+```GET /eshops/eshop/{GoID}/payment-instruments/{currency}```
 
 ###HLAVIČKA POŽADAVKU
 

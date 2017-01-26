@@ -15,17 +15,18 @@ Definition of the payer or the payment
  }
 ```
 
-Parameter name|Parameter description| Data´s type
+Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|----------
 [allowed_payment_instruments](#payment_instrument)|Array of allowed payment methods|string, can gain values of [payment_instrument](#payment_instrument)
 [default_payment_instrument](#payment_instrument)|Preferred payment method|string, can gain values of [payment_instrument](#payment_instrument)
 [default_swift](#swift)|Preferred bank if default_payment_instrument is set to BANK_ACCOUNT, set by SWIFT code|string, can gain values of [SWIFT](#swift)
 [allowed_swifts](#swift)|Array of allowed bank codes| string, can gain values of [SWIFT](#swift)
-[bank_account](#bank_account)|Bank account information|Object
+[bank_account](#bank_account)|Bank account´s information|Object
+[payment_card](#payment_card)|Payment card´s information|Object
 [contact](#contact)|Customer´s data|Object
 
 ##bank_account
-Bank account information
+Bank account´s information
 
 ```json
 {
@@ -35,12 +36,32 @@ Bank account information
     "account_name":"JAN NOVAK"
 }
 ```
-Parameter name|Parameter description| Data´s type
+Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 prefix|Bank account prefix|string, 64 characters
 account_number|Bank account number|string, 128 characters
 bank_code|Bank account code|string, 8 characters
 account_name|Bank account name|string, 70 characters
+
+##payment_card
+Payment card´s information
+
+```json
+{
+    "card_number":"444444******4448",
+    "card_expiration":"1909",
+    "card_brand":"VISA",
+    "card_issuer_country":"CZE",
+    "card_issuer_bank":"AIR BANK, A.S."
+}
+```
+Parameter´s name|Parameter´s description| Data´s type
+---------------|---------------|-------
+card_number|Masked payment card´s number|string, 16 characters
+card_expiration|Expiration date|string, 4 characters
+card_brand|Payment card´s type|string, 50 characters
+card_issuer_country|Country code of issuing bank|string, 3 characters
+card_issuer_bank|Issuing bank|string, 80 characters
 
 ##contact
 Customer´s information
@@ -58,7 +79,7 @@ Customer´s information
 }
 ```
 
-Parameter name|Parameter description| Data´s type
+Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 first_name|First name|string, 256 characters
 last_name|Last name|string, 256 characters
@@ -79,7 +100,7 @@ Identification of the payee
 }
 ```
 
-Parameter name|Parameter description| Data´s type
+Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 type|Description of payee|string, set to ACCOUNT
 goid|Unique identifier of an e-shop in the payment gateway system|long
@@ -95,7 +116,7 @@ Each item of the order and its price
 ]
 ```
 
-Parameter name|Parameter description| Data´s type
+Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 count|Number of items| long > 0
 name|Product name|string, alphanumeric characters (256 characters)
@@ -112,7 +133,7 @@ Definition of callback and notification URL
 }
 ```
 
-Parameter name|Parameter description| Data´s type
+Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 return_url|URL address for return to e-shop|string
 notification_url|URL address for sending  asynchronous notification in the case of changes in the payment status|string
@@ -128,7 +149,7 @@ Additional parameters of the payment
 ]
 ```
 
-Parameter name|Parameter description| Data´s type
+Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 name|Parameter name|string
 value|Value of optional parameter|string
@@ -169,7 +190,7 @@ Setting of recurring payment
 ```
 
 
-Parameter name|Parameter description| Data´s type
+Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 [recurrence_cycle](#recurrence_cycle)|Time period of recurring|string, can gain values see [recurrence_cycle](#recurrence_cycle)
 recurrence_period|Recurring period of recurring payment| long
@@ -179,7 +200,7 @@ recurrence_state|Describes state of recurring payment| string, can gain values R
 ##groups
 Name of every group corresponds to group [codes](#group-codes)
 
-Parameter name|Parameter description|
+Parameter´s name|Parameter´s description|
 ---------------|---------------
 label| Object that contains localised name of payment group
 cs | Czech name of payment group
@@ -248,7 +269,7 @@ Name of every object coresponds to [payment method codes](#payment_instrument)
             }]
 ```
 
-Parameter name|Parameter description|
+Parameter´s name|Parameter´s description|
 ---------------|--------------
 label| Object that contains localised name of payment method
 image| Logo of payment method avaliable in two formats - normal, large 
@@ -272,7 +293,7 @@ Name of each object coresponds to [SWIFT](#swift) codes
     ]}
 ```
 
-Parameter name|Parameter description|
+Parameter´s name|Parameter´s description|
 ---------------|---------------
 label| Object that contains localised name of bank 
 image| Logo of bank avaliable in two formats - normal, large 

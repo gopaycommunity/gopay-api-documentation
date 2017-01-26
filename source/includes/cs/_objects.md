@@ -22,6 +22,7 @@ Název parametru|Popis parametru|Datový typ
 [default_swift](#swift)|Preferová banka pokud je default_payment_instrument nastaveno na BANK_ACCOUNT, nastaveno pomocí SWIFT kódu banky|string, nabývající hodnot viz [SWIFT](#swift)
 [allowed_swifts](#swift)|Pole povolených kódů bank| string, nabývající hodnot viz [SWIFT](#swift)
 [bank_account](#bank_account)|Údaje o bankovním účtu plátce|Objekt
+[payment_card](#payment_card)|Údaje o použité platební kartě|Objekt
 [contact](#contact)|Údaje o zákaníkovi|Objekt
 
 ##bank_account
@@ -41,6 +42,26 @@ prefix|Předčíslí bankovního účtu zákazníka|string, 64 znaků
 account_number|Číslo bankovního účtu zákazníka|string, 128 znaků
 bank_code|Kód banky zákazníka|string, 8 znaků
 account_name|Jméno majitele bankovního účtu|string, 70 znaků
+
+##payment_card
+Údaje o použité platební kartě
+
+```json
+{
+    "card_number":"444444******4448",
+    "card_expiration":"1909",
+    "card_brand":"VISA",
+    "card_issuer_country":"CZE",
+    "card_issuer_bank":"AIR BANK, A.S."
+}
+```
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+card_number|Vymaskované číslo platební karty|string, 16 znaků
+card_expiration|Datum expirace|string, 4 znaky
+card_brand|Typ platební karty|string, 50 znaků
+card_issuer_country|Kód země vydavatelské banky|string, 3 znaky
+card_issuer_bank|Vydavatelská banka|string, 80 znaků
 
 ##contact
 Zákaznické informace

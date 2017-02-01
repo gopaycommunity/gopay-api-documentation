@@ -136,12 +136,12 @@
                     **`cd gopay-android-api`**  
                     **`gradle clean build`**  
   
-        * **`Všechny artefakty se nacházejí v centrálním repozitáři maven jcenter`**  
+        * `Všechny artefakty se nacházejí v centrálním repozitáři maven jcenter`  
   
         * `model classes, connector`  
-                    **`compile 'cz.gopay:androidapi:1.0.0'`**  
-        * `webview`  
-                    **`compile 'cz.gopay:androidui:1.0.0'`**  
+                    **`compile 'cz.gopay:androidapi:1.0.1'`**  
+        * `webview (v případě, že budete chtít využívat naše webview, registrujte jeho aktivitu v manifestu vaší Android aplikace)`  
+                    **`compile 'cz.gopay:androidui:1.0.1'`**  
     en: |
         ANDROID API
 
@@ -152,12 +152,12 @@
                     **`cd gopay-android-api`**  
                     **`gradle clean build`**  
   
-        * **`Artifacts are located in the maven jcenter repository`**  
+        * `Artifacts are located in the maven jcenter repository`  
   
         * `model classes, connector`  
-                    **`compile 'cz.gopay:androidapi:1.0.0'`**  
-        * `webview`  
-                    **`compile 'cz.gopay:androidui:1.0.0'`**  
+                    **`compile 'cz.gopay:androidapi:1.0.1'`**  
+        * `webview (in a case you would like to use our module gopay-ui register its activity into your android application manifest)`  
+                    **`compile 'cz.gopay:androidui:1.0.1'`**  
 
 - language: .NET
   syntax: csharp

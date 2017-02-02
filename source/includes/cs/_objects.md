@@ -84,7 +84,7 @@ Název parametru|Popis parametru|Datový typ
 first_name|Jméno zákazníka|string, 256 znaků
 last_name|Příjmení zákazníka|string, 256 znaků
 email|E-mail zákazníka|string, 128 znaků
-phone_number|Telefonní číslo zákazníka|string, 128 znaků
+phone_number|Telefonní číslo zákazníka s předvolbou|string, 128 znaků
 city|Město zákazníka|string, 128 znaků
 street|Ulice zákazníka|string, 128 znaků
 postal_code|Poštovní směrovací číslo zákazníka|string, 16 znaků

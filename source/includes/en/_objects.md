@@ -84,7 +84,7 @@ Parameter´s name|Parameter´s description| Data´s type
 first_name|First name|string, 256 characters
 last_name|Last name|string, 256 characters
 email|E-mail|string, 128 characters
-phone_number|Phone number|string 128 characters
+phone_number|Phone number with country code|string 128 characters
 city|City|string, 128 characters
 street|Street|string, 128 characters
 postal_code|Postal code|string 16 characters

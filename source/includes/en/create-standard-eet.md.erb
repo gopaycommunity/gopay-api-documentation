@@ -1,23 +1,10 @@
-# Establishment of payment
-
-Before initiating the payment gateway, it is necessary to establish the payment. In effect of calling, we repeat parameters of the payment including the parameter ```gw_url```, which you can initiate to [inline](#inline-option) or [redirect](#redirect-option) payment gateway.  
-   
-The payee of the payment is identified by ```goid``` in object [target](#target). You can get it, when you integrate the payment gateway for identification of specific point of sale, e.g. [www.goshop.cz](http://www.goshop.cz).
-<aside class='notice'>
-If you do not have GoID, contact us on e-mail integrace@gopay.cz. 
-</aside> 
-
-Within the payment, the paying party is described by an object [payer](#payer), which identifies the payer and determines the set of permitted payment method, including the default method. 
+# Registration of sales
 
 ## Standard payment
 
-The payment is determined for paying of an order by credit card, bank transfer, GoPay account and other payment methods.  
-
-For further information about all steps needed to make base payment check our [help center](https://help.gopay.com/en/s/ey).
-
 > Request
 
-<%= partial "includes/examples", :locals => { :example => data.example.create_standard.request } %>
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard_eet.request } %>
 
 ###Request
 ```POST /api/payments/payment```
@@ -39,13 +26,14 @@ amount|Amount in cents|YES| long > 0
 order_number|Identification of the order within the point of sale|YES| string, alphanumeric characters only (128 characters)
 order_description|Description of goods / service|NO|string, alphanumeric characters only (256 characters)
 [items](#items)|Itemized in detail each item of the order|YES| Object
+[eet](#eet)|Parameters for registration of sales|YES| Object
 [callback](#callback)|Callback URL for processing of the payment result / Notification URL for processing of change of payment status|YES| Object
 [additional_params](#additional_params)|Additional payment parameters|No| According to object
 [lang](#lang)|Parameters defines language of the payment|NO| string, can gain values see [lang](#lang)
 
 >Response
 
-<%= partial "includes/examples", :locals => { :example => data.example.create_standard.response } %>                   
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard_eet.response } %>                   
                 
 ###Response 
   

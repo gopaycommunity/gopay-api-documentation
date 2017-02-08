@@ -1,0 +1,61 @@
+# Elektronická evidence tržeb (EET)
+
+Pokud využíváte funkcionalitu elektronické evidence tržeb (EET) skrze platební bránu GoPay, je pro správnou funkcionalitu nutné na platební bránu odesílat specifické poaždavky pracující s EET parametry popisované níže.
+
+Funkcionality pro implementaci EET budou na testovacím prostředí platební brány GoPay dostupné dne <b>10.2.2017</b>, na provozním prostředí platební brány pak dne <b>17.2.2017</b>.
+
+## Standardní platba
+
+Požadavek založení platby vychází ze [standardního požadavku](#založení-platby), který je rozšírený o objekt [eet](#eet). Objekt [items](#items) je dále pro potřeby EET rozšíren o nové parametry.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard_eet.request } %>    
+
+###Request
+```POST /api/payments/payment```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization| Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+Název parametru | Popis parametru | Povinný | Datový typ
+----------------|-----------------|---------|-----------
+[payer](#payer)|Objekt popisující plátce platby|NE| Objekt
+[target](#target)|Objekt popisující příjemce platby|ANO| Objekt
+amount|Částka v haléřích|ANO| long > 0
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO| string
+order_number|Identifikace objednávky v rámci prodejního místa|ANO| string, pouze alfanumerické znaky (128 znaků)
+order_description|Popis objednávky|NE|string, pouze alfanumerické znaky (256 znaků)
+[items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Objekt
+[eet](#eet)|Parametry pro elektronickou evidenci tržeb|ANO|Objekt
+[callback](#callback)|Návratové URL a notifikační URL pro oznámení změny stavu platby|ANO| Objekt
+[additional_params](#additional_params)|Doplňkové parametry platby|NE| Pole objektů
+[lang](#lang)|Parametr definuje jazyk platby|NE| string, může nabývat hodnot viz [lang](#lang)
+
+>Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard_eet.response } %>                   
+                
+###Response 
+  
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+id|ID platby|long
+order_number|ID objednávky| string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby| string, může nabývat hodnot viz [state](#stavy-plateb)
+amount|Částka v haléřích| long > 0
+[currency](#currency)|Měna platby| string, může nabývat hodnot viz [currency](#currency)
+[payer](#payer)| Objekt popisující plátce platby| Objekt
+[target](#target)| Objekt popisující příjemce platby| Objekt
+[additional_params](#additional_params)|Doplňkové parametry platby| Pole objektů
+[lang](#lang)|Parametr definuje jazyk platby| string, může nabývat hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány|string
+
+<aside class='notice'>
+Pro vytvoření platby je nutné použít přístupový token vytvořený ve scope payment-create, nebo payment-all.
+</aside>

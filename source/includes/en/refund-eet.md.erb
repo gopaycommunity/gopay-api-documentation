@@ -1,0 +1,34 @@
+##Refund of the payment (cancelation)
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.refund_eet.request } %>
+
+###Request
+```POST /api/payments/payment/{id}/refund```
+
+###Header of request
+
+Parameter's name|Parameter's description| Required
+----------------|-----------------|--------
+Accept|application/json|YES
+Content-Type|application/json|YES
+Authorization|Bearer [```<access-token>```](#access-token)|YES
+
+###Body of request
+
+Parameter's name|Parameter's description| Required| Data's type
+---------------|---------------|-------|-------
+amount|Refunded amount|YES|long > 0
+[items](#items)|Itemized in detail each item of the order|YES| Object
+[eet](#eet)|Parameters for registration of sales|YES| Object
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.refund_eet.response } %>
+
+###Response 
+Parameter's name|Parameter's description| Data's type
+---------------|---------------|-------
+id|Payment ID|long
+[result](#result)|Status of request| Object

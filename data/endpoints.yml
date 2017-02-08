@@ -11,6 +11,11 @@
 - preauthorized-capture
 - payment-method-list
 - statement
+- create-standard-eet
+- create-recurrent-eet
+- recurrence-ondemand-eet
+- status-eet
+- refund-eet
 - objects
 - codes
 - errors

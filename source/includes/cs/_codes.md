@@ -196,3 +196,24 @@ XLS_A | XLS typ A
 XLS_B | XLS typ B
 XLS_C | XLS typ C
 ABO | ABO (.gpc)
+
+##type
+Typ řádku pro potřeby EET
+
+Hodnota parametru|Popis
+------------------|-----
+ITEM|Položka
+DELIVERY|Doprava
+DISCOUNT|Sleva
+POSTAGE|Poštovné
+
+
+##vat_rate
+Sazba daně pro potřeby EET
+
+Hodnota parametru|Popis
+------------------|-----
+0| Nulová daňová sazba
+10| Daňová sazba 10 %
+15| Daňová sazba 15 %
+21| Daňová sazba 21 %

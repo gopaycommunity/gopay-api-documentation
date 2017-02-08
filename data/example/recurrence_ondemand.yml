@@ -1,4 +1,3 @@
-
 request:
     shell: |
         curl -v -N https://gw.sandbox.gopay.com/api/payments/payment/3000006542/create-recurrence \

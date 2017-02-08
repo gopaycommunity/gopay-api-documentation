@@ -30,14 +30,14 @@ HTTP code|Meaning of code
 Detail of error is described in body of response as application/json datas of next structure
 
 
-Parameter |Parameter description 
+Parameter |Parameter's description
 --------|---------------
 date issued|timestamp of error moment
 [errors](#errors)|List of error messages 
 
 ###errors
 
-Parameter|Parameter description
+Parameter|Parameter's description
 --------|---------------
 scope|F - field specific, G - global
 field| Set only in case of validation error joined with field

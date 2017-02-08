@@ -2,7 +2,7 @@
 ##recurrence_cycle
 Cycle of recurring payment
 
-Parameter value|Description
+Parameter's value|Description
 -----------------|-----
 DAY| Daily recurring
 WEEK| Weekly recurring
@@ -13,7 +13,7 @@ ON_DEMAND| Set only at manual recurring payments
 ##currency
 Payment currency
 
-Parameter value|Description
+Parameter's value|Description
 ------------------|-----
 CZK | Czech crowns
 EUR | Euros
@@ -25,7 +25,7 @@ USD | US dollar
 ##scope
 Parameter describing group of acquired rights
 
-Parameter value|Description
+Parameter's value|Description
 -------|-----
 payment-create|Allows only the establishment of payments
 payment-all|Allows all operations above payments
@@ -33,7 +33,7 @@ payment-all|Allows all operations above payments
 ##result
 Result of operation
 
-Parameter name|Parameter description
+Parameter's name|Parameter's description
 ---------------|---------------
 ACCEPTED| Request accepted 
 FINISHED| Operation finished
@@ -42,7 +42,7 @@ FAILED| Operation failed
 ##Payment status 
 Payment can gain values following status
 
-Parameter name|Status parameter description
+Parameter's name|Parameter's description
 -----------|---------------------
 CREATED|Payment created 
 PAYMENT_METHOD_CHOSEN|Payment method chosen
@@ -56,7 +56,7 @@ PARTIALLY_REFUNDED|Payment partially refunded
 ##Payment substate
 Payment can gain values following substates
 
-Parameter value|Substate parameter description
+Parameter's value|Parameter's description
 -----------|---------------------
 _101|Payment pending. We are waiting for the online payment to be made.
 _102|Payment pending. We are waiting for the offline payment to be made.
@@ -102,7 +102,7 @@ _5047|Payment made after due date.
 ##lang
 Setting of the language of the payment gateway
 
-Language code|Language
+Language's code|Language
 ----------|-----
 CS| Czech
 EN| English
@@ -113,7 +113,7 @@ RU| Russian
 ##payment_instrument
 Payment method codes
 
-Payment method code|Payment method description
+Payment method's code|Payment method's description
 -------------------|---------------------
 PAYMENT_CARD| Payment cards
 BANK_ACCOUNT| Bank transfer
@@ -185,7 +185,7 @@ PBPBPLPW|POLSKI BANK PRZEDSIEBIORCZOSCI SPOLKA AKCYJNA
 ##format
 Format of account statement file
 
-Parameter value|Description
+Parameter's value|Description
 ------------------|-----
 CSV_A | CSV type A
 CSV_B | CSV type B
@@ -195,3 +195,24 @@ XLS_A | XLS type A
 XLS_B | XLS type B
 XLS_C | XLS type C
 ABO | ABO (.gpc)
+
+##type
+Type of row for the registration of sales
+
+Parameter's value|Description
+------------------|-----
+ITEM|Item
+DELIVERY|Delivery
+DISCOUNT|Discount
+POSTAGE|Postage
+
+
+##vat_rate
+VAT rate for the registration of sales
+
+Parameter's value|Description
+------------------|-----
+0| VAT rate 0 %
+10| VAT rate 10 %
+15| VAT rate 15 %
+21| VAT rate 21 %

@@ -106,22 +106,79 @@ type|Description of payee|string, set to ACCOUNT
 goid|Unique identifier of an e-shop in the payment gateway system|long
 
 ##items
-Each item of the order and its price
+Each item of the order
 
 
 ```json
 [
-   {"count":"2","name":"item01","amount":"500"},
-   {"count":"...",name":"...","amount":"..."}
+    "type":"ITEM", 
+    "name":"obuv",
+    "product_url":"https://www.eshop.cz/boty/lodicky", 
+    "ean":1234567890123,
+    "amount":119990,
+    "count":1,
+    "vat_rate":21
 ]
 ```
 
 Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
+[type](#type)|Type of row, for registration of sales|enum, can gain values see [type](#type)
+product_url|URL address of the product|string
+ean|[EAN code of the product](https://cs.wikipedia.org/wiki/European_Article_Number)|varchar, (13 characters)
 count|Number of items| long > 0
 name|Product name|string, alphanumeric characters (256 characters)
 amount|Product price| long, positive or negative integers
+[vat_rate](#vat_rate)|VAT rate, for registration of sales|can gain values see [vat_rate](#vat_rate)
 
+##eet
+Parameters for registration of sales
+
+```json
+[
+    "celk_trzba":139950,
+    "zakl_dan1":99165,
+    "dan1":20825,
+    "zakl_dan2":17357,
+    "dan2":2604,
+    "currency":"CZK"
+]
+```
+
+Parameter´s name|Parameter´s description| Data´s type
+---------------|---------------|-------
+dic_poverujiciho| DIČ of the entrustment taxpayer| varchar
+celk_trzba| The total amount| long in cents
+zakl_nepodl_dph| The total amount of supplies exempt from VAT| long in cents
+zakl_dan1| The total tax base amount, the basic VAT rate| long in cents
+dan1| The total amount of VAT, the basic rate| long in cents
+zakl_dan2| The total tax base amount with a first reduced rate of VAT| long in cents
+dan2| The total VAT amount with a first reduced rate| long in cents
+zakl_dan| The total tax base amount with a second reduced rate of VAT| long in cents
+dan3| The total VAT amount with a second reduced rate| long in cents
+cest_sluz| The total amount of the VAT regime for travel service| long in cents
+pouzit_zboz1| The total amount of the VAT regime for the sale of used goods with a basic rate| long in cents
+pouzit_zboz2| The total amount of the VAT regime for the sale of used goods with a first reduced rate|  long in cents
+pouzit_zboz3| The total amount of the VAT regime for the sale of used goods with a second reduced rate| long in cents
+urceno_cerp_zuct| The total amount of payments designated for subsequent pumping or settlement| long in cents
+cerp_zuct|The total amount of payments which are followed by pumping or settlement of the payment| long in cents
+currency|[Currency](#currency) of the parameters|string
+
+##eetCode
+Information about registration of sales
+
+```json
+{
+    "fik":"28da0811-e050-46c7-a62c-aa456d1f07ef-ff",
+    "bkp":"5d874afc-251f8661-ff0e0b13-c7cd8793-6bf0386a",
+    "pkp":"Ca8sTbURReQjjgcy/znXBKjPOnZof3AxWK5WySpyMrUXF0o7cz1BP6a....."
+}
+```
+Parameter´s name|Parameter´s description| Data´s type
+---------------|---------------|-------
+fik| Fiscal identification code (FIK)| varchar, 39 characters
+bkp| Security code of the taxpayer (BKP)| varchar, 44 characters
+pkp| Signature code of the taxpayer (PKP)| varchar, 344 characters
 
 ##callback
 Definition of callback and notification URL

@@ -106,21 +106,77 @@ type|Popis příjemce platby|string, nastaveno na ACCOUNT
 goid|Jedinečný identifikátor eshopu v systému platební brány|long
 
 ##items
-Jednotlivé položky objednávky spolu s cenou
+Jednotlivé položky objednávky
 
 ```json
 [
-   {"count":"2","name":"item01","amount":"500"},
-   {"count":"...","name":"...","amount":"..."}
+    "type":"ITEM", 
+    "name":"obuv",
+    "product_url":"https://www.eshop.cz/boty/lodicky", 
+    "ean":1234567890123,
+    "amount":119990,
+    "count":1,
+    "vat_rate":21
 ]
 ```
 
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
+[type](#type)|Typ řádku, pro potřeby EET|enum, nabývá hodnot viz [type](#type)
+product_url|URL adresa produktu|string
+ean|[EAN kód produktu](https://cs.wikipedia.org/wiki/European_Article_Number)|varchar, (13 znaků)
 count|Počet položek produktu| long > 0
 name|Název produktu|string, alfanumerické znaky (256 znaků)
-amount|Cena produktu| long, kladná nebo záporná celá čísla
+amount|Cena produktu s DPH| long, kladná nebo záporná celá čísla
+[vat_rate](#vat_rate)|Sazba daně, pro potřeby EET|nabývá hodnot viz [vat_rate](#vat_rate)
 
+##eet
+Parametry pro elektronickou evidenci tržeb (EET)
+
+```json
+[
+    "celk_trzba":139950,
+    "zakl_dan1":99165,
+    "dan1":20825,
+    "zakl_dan2":17357,
+    "dan2":2604,
+    "currency":"CZK"
+]
+```
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+dic_poverujiciho| DIČ pověřujícího poplatníka| varchar
+celk_trzba| Celková částka tržby| long v centech
+zakl_nepodl_dph| Celková částka plnění osvobozených od DPH| long v centech
+zakl_dan1| Celkový základ daně se základní sazbou DPH| long v centech
+dan1| Celková DPH se základní sazbou| long v centech
+zakl_dan2| Celkový základ daně s první sníženou sazbou DPH| long v centech
+dan2| Celková DPH s první sníženou sazbou| long v centech
+zakl_dan| Celkový základ daně s druhou sníženou sazbou DPH| long v centech
+dan3| Celková DPH s druhou sníženou sazbou| long v centech
+cest_sluz| Celková částka v režimu DPH pro cestovní službu| long v centech
+pouzit_zboz1| Celková částka v režimu DPH pro prodej použitého zboží se základní sazbou| long v centech
+pouzit_zboz2| Celková částka v režimu DPH pro prodej použitého zboží s první sníženou sazbou|  long v centech
+pouzit_zboz3| Celková částka v režimu DPH pro prodej použitého zboží s druhou sníženou sazbou| long v centech
+urceno_cerp_zuct| Celková částka plateb určená k následnému čerpání nebo zúčtování| long v centech
+cerp_zuct|Celková částka plateb, které jsou následným čerpáním nebo zúčtováním platby| long v centech
+currency|[Měna](#currency), ve které jsou údaje předávány|string
+
+##eetCode
+EET kódy účtenky
+
+```json
+{
+    "fik":"28da0811-e050-46c7-a62c-aa456d1f07ef-ff",
+    "bkp":"5d874afc-251f8661-ff0e0b13-c7cd8793-6bf0386a",
+    "pkp":"Ca8sTbURReQjjgcy/znXBKjPOnZof3AxWK5WySpyMrUXF0o7cz1BP6a....."
+}
+```
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+fik| Fiskální identifikační kód (FIK)| varchar, 39 znaků
+bkp| Bezpečnostní kód poplatníka (BKP)| varchar, 44 znaků
+pkp| Podpisový kód poplatníka (PKP)| varchar, 344 znaků
 
 ##callback
 Definice návratové a notifikační URL

@@ -1,13 +1,8 @@
 ##Recurring payment on demand
 
-The functionality allows you to recur the payment based on previously established recurring payment
-```ON_DEMAND``` mode. Recurring in this mode establishes the subsequent payment. The point of sale is informed through the notification about the change in the payment status.
-
-More information about reccuring payments you can find in [help center](https://help.gopay.com/en/s/5).
-
 > Request
 
-<%= partial "includes/examples", :locals => { :example => data.example.recurrence_ondemand.request } %>
+<%= partial "includes/examples", :locals => { :example => data.example.recurrence_ondemand_eet.request } %>
 
 ###Request
 
@@ -30,11 +25,12 @@ amount|Amount|YES|long > 0
 order_number|Order ID| 	Order identification within the point of sale|string, alphanumeric characters only (128 characters)
 order_description| 	Description of goods/service|YES|string, alphanumeric characters only (256 characters)
 [items](#items)|Itemized in detail of each item of the order|YES|Object
+[eet](#eet)|Parameters for registration of sales|YES| Object
 [additional_params](#additional_params)|Additional parameters of the payment|NO|Object
 
 > Response
 
-<%= partial "includes/examples", :locals => { :example => data.example.recurrence_ondemand.response } %>
+<%= partial "includes/examples", :locals => { :example => data.example.recurrence_ondemand_eet.response } %>
 
 ###Response 
   

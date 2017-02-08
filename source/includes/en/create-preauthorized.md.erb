@@ -13,14 +13,14 @@ Additional information about pre-authorized payments you can find in our [help c
 ```POST /api/payments/payment```
 
 ###Header of request
-Parameter name | Parameter description | Required
+Parameter's name | Parameter's description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
 Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 ###Body of request
-Parameter name | Parameter description | Required | Data´s type
+Parameter's name | Parameter's description | Required | Data's type
 ----------------|-----------------|---------|--------
 [payer](#payer)|Object describing the payer of the payment|NO| Object
 [target](#target)|Object describing the target of the payment (payee)|YES| Object
@@ -39,7 +39,7 @@ preauthorization|Activation of pre-authorized payment|NO| bool
 
 ###Response
   
-Parameter name|Parameter description|Data´s type
+Parameter's name|Parameter's description|Data's type
 ---------------|---------------|-------
 id|Payment ID|long
 order_number| order ID| string, alphanumeric characters only (128 characters)

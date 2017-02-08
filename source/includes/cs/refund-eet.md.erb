@@ -1,0 +1,39 @@
+##Refundace platby (storno)
+Refundace platby umožňuje navrácení finančních prostředků za již provedenou platbu zpět zákazníkovi.
+
+Požadavek provedení refundu pro elektronickou evidenci tržet (EET) se od [standardního požadavku](#refundace-platby-(storno)) liší hodnotou parametru Content-Type v hlavičce požadavku.
+
+V tělě požadavku je nutné předat rozšířený objekt [items](#items) a nový objekt [eet](#eet).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.refund_eet.request } %>
+
+###Request
+```POST /api/payments/payment/{id}/refund```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+
+Název parametru|Popis parametru|Povinný| Datový typ
+---------------|---------------|-------|-------
+amount|Refundovaná částka|ANO|long > 0
+[items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Objekt
+[eet](#eet)|Parametry pro elektronickou evidenci tržeb|ANO|Objekt
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.refund_eet.response } %>
+
+###Response 
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+id|ID platby|long
+[result](#result)|Stav požadavku| Objekt

@@ -24,7 +24,7 @@ request:
                 "celk_trzba":119990,
                 "zakl_dan1":99165,
                 "dan1":20825,
-                "currency":"CZK"
+                "mena":"CZK"
             },
             "additional_params":[{
                 "name":"invoicenumber",

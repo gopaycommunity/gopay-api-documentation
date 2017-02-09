@@ -141,7 +141,7 @@ Parameters for registration of sales
     "dan1":20825,
     "zakl_dan2":17357,
     "dan2":2604,
-    "currency":"CZK"
+    "mena":"CZK"
 ]
 ```
 
@@ -162,7 +162,7 @@ pouzit_zboz2| The total amount of the VAT regime for the sale of used goods with
 pouzit_zboz3| The total amount of the VAT regime for the sale of used goods with a second reduced rate| long in cents
 urceno_cerp_zuct| The total amount of payments designated for subsequent pumping or settlement| long in cents
 cerp_zuct|The total amount of payments which are followed by pumping or settlement of the payment| long in cents
-currency|[Currency](#currency) of the parameters|string
+mena|[Currency](#currency) of the parameters|string
 
 ##eetCode
 Information about registration of sales

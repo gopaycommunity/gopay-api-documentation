@@ -49,7 +49,7 @@ request:
                     "dan1":20825,
                     "zakl_dan2":17357,
                     "dan2":2604,
-                    "currency":"CZK"
+                    "mena":"CZK"
                     },
               "recurrence":{"recurrence_cycle":"DAY",
                             "recurrence_period":"7",

@@ -140,7 +140,7 @@ Parametry pro elektronickou evidenci tržeb (EET)
     "dan1":20825,
     "zakl_dan2":17357,
     "dan2":2604,
-    "currency":"CZK"
+    "mena":"CZK"
 ]
 ```
 Název parametru|Popis parametru|Datový typ
@@ -160,7 +160,7 @@ pouzit_zboz2| Celková částka v režimu DPH pro prodej použitého zboží s p
 pouzit_zboz3| Celková částka v režimu DPH pro prodej použitého zboží s druhou sníženou sazbou| long v centech
 urceno_cerp_zuct| Celková částka plateb určená k následnému čerpání nebo zúčtování| long v centech
 cerp_zuct|Celková částka plateb, které jsou následným čerpáním nebo zúčtováním platby| long v centech
-currency|[Měna](#currency), ve které jsou údaje předávány|string
+mena|[Měna](#currency), ve které jsou údaje předávány|string
 
 ##eetCode
 EET kódy účtenky

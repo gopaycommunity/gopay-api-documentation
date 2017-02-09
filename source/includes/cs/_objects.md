@@ -152,7 +152,7 @@ zakl_dan1| Celkový základ daně se základní sazbou DPH| long v centech
 dan1| Celková DPH se základní sazbou| long v centech
 zakl_dan2| Celkový základ daně s první sníženou sazbou DPH| long v centech
 dan2| Celková DPH s první sníženou sazbou| long v centech
-zakl_dan| Celkový základ daně s druhou sníženou sazbou DPH| long v centech
+zakl_dan3| Celkový základ daně s druhou sníženou sazbou DPH| long v centech
 dan3| Celková DPH s druhou sníženou sazbou| long v centech
 cest_sluz| Celková částka v režimu DPH pro cestovní službu| long v centech
 pouzit_zboz1| Celková částka v režimu DPH pro prodej použitého zboží se základní sazbou| long v centech

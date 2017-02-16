@@ -43,7 +43,7 @@ response:
           "additional_params":[{"name":"invoicenumber",
                                 "value":"2015001003"
                               }],
-          "eetCode":{
+          "eet_code":{
                 "fik":"28da0811-e050-46c7-a62c-aa456d1f07ef-ff",
                 "bkp":"5d874afc-251f8661-ff0e0b13-c7cd8793-6bf0386a",
                 "pkp":"Ca8sTbURReQjjgcy/znXBKjPOnZof3AxWK5WySpyMrUXF0o7cz1BP6a....."

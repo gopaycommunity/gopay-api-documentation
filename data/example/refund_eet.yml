@@ -25,7 +25,30 @@ request:
                     "dan2":-2604
                 }
             }'
-   
+    php: |
+        <?php
+            use GoPay\Definition\Payment\VatRate;
+            use GoPay\Definition\Payment\PaymentItemType;
+            
+            $response = $gopay->refundPayment(3000006620, [
+            'amount' => 119990,
+            'items' => [
+                    [
+                            'type' => PaymentItemType::ITEM,
+                            'name' => 'lodicky',
+                            'product_url' => 'https://www.eshop.cz/boty/damske/lodicky-cervene',
+                            'ean' => 1234567890123,
+                            'amount' => -119990,
+                            'count' => 1,
+                            'vat_rate' => VatRate::RATE_4
+                    ]],
+            'eet' => [
+                    'celk_trzba' => -119990,
+                    'zakl_dan1' => -99165,
+                    'dan1' => -20825,
+                    'dan2' => -2604
+            ]
+        ]);
 response:
     json: |
         {

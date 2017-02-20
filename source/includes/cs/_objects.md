@@ -162,7 +162,7 @@ urceno_cerp_zuct| Celková částka plateb určená k následnému čerpání ne
 cerp_zuct|Celková částka plateb, které jsou následným čerpáním nebo zúčtováním platby| long v centech
 mena|[Měna](#currency), ve které jsou údaje předávány|string
 
-##eetCode
+##eet_code
 EET kódy účtenky
 
 ```json

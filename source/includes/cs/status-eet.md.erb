@@ -3,9 +3,9 @@ Funkcionalita stav platby umožní prodejnímu místu zjistit jaký je aktuáln�
    
 Podrobnější informace k dotazu na stav platby naleznete v našem [centru nápovědy](https://help.gopay.com/cs/s/h3).
 
-Pro potřeby EET obsahuje odpověď požadavku dotazu na stav platby objekt [eetCode](#eetcode).
+Pro potřeby EET obsahuje odpověď požadavku dotazu na stav platby objekt [eet_code](#eet_code).
 
-Obsahem objektu [eetCode](#eetcode) jsou údaje Fiskální identifikační kód (FIK), Bezpečnostní kód poplatníka (BKP) a Podpisový kód poplatníka (PKP).
+Obsahem objektu [eet_code](#eet_code) jsou údaje Fiskální identifikační kód (FIK), Bezpečnostní kód poplatníka (BKP) a Podpisový kód poplatníka (PKP).
 
 > Request
 
@@ -42,6 +42,6 @@ amount|Částka v haléřích|long > 0
 [target](#target)| Objekt popisující příjemce platby | Objekt
 [recurrence](#recurrence)| Objekt popisující opakovanou platbu| Objekt
 [additional_params](#additional_params)|Volitelné parametry platby|Pole objektů
-[eet_code](#eetcode)|EET kódy účtenky|Objekt
+[eet_code](#eet_code)|EET kódy účtenky|Objekt
 [lang](#lang)|Jazyk platby|string, nabývající hodnot viz [lang](#lang)
 gw_url|URL pro inicializaci platební brány|string

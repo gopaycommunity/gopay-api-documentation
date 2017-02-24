@@ -198,7 +198,7 @@ XLS_C | XLS typ C
 ABO | ABO (.gpc)
 
 ##type
-Typ řádku pro potřeby EET
+Typ položky
 
 Hodnota parametru|Popis
 ------------------|-----

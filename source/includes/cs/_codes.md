@@ -203,10 +203,8 @@ Typ položky
 Hodnota parametru|Popis
 ------------------|-----
 ITEM|Položka
-DELIVERY|Doprava
+DELIVERY|Poštovné
 DISCOUNT|Sleva
-POSTAGE|Poštovné
-
 
 ##vat_rate
 Sazba daně pro potřeby EET

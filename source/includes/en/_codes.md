@@ -204,8 +204,6 @@ Parameter's value|Description
 ITEM|Item
 DELIVERY|Delivery
 DISCOUNT|Discount
-POSTAGE|Postage
-
 
 ##vat_rate
 VAT rate for the registration of sales

@@ -18,7 +18,6 @@ response:
           "date_last_attempt":"2017-03-03T15:21:00.450+0100",
           "date_next_attempt":"2017-03-03T15:21:00.226+0100",
           "eet_mode":"EET",
-          "mena":"CZK",
           "uuid_zprava":"e382c8e5-195f-4b30-b6f4-eef15899240f",
           "date_odesl":1488550860241,
           "dic_popl":"CZ1212121218",

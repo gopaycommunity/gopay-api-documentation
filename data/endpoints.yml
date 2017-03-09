@@ -16,6 +16,8 @@
 - recurrence-ondemand-eet
 - status-eet
 - refund-eet
+- eet-payment-receipt
+- eet-receipt-list
 - objects
 - codes
 - errors

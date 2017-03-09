@@ -1,0 +1,66 @@
+##List EET účtenek
+Funkcionalita vrátí seznam všech účtenek za dané období pro konkrétní provozovnu. Maximální rozsah datumů je 30 dní.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.eet_receipt_list.request } %>
+
+###Request
+```POST /api/eet-receipts```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+
+Název parametru|Popis parametru|Povinný| Datový typ
+---------------|---------------|-------|-------
+date_from|Počáteční datum|ANO|string yyyy-mm-dd
+date_to|Koncové datum|ANO|string yyyy-mm-dd
+id_provozovny|Označení provozovny|ANO|long
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.eet_receipt_list.response } %>
+
+###Response 
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+dic_poverujiciho| DIČ pověřujícího poplatníka| varchar
+celk_trzba| Celková částka tržby| long v centech
+zakl_nepodl_dph| Celková částka plnění osvobozených od DPH| long v centech
+zakl_dan1| Celkový základ daně se základní sazbou DPH| long v centech
+dan1| Celková DPH se základní sazbou| long v centech
+zakl_dan2| Celkový základ daně s první sníženou sazbou DPH| long v centech
+dan2| Celková DPH s první sníženou sazbou| long v centech
+zakl_dan3| Celkový základ daně s druhou sníženou sazbou DPH| long v centech
+dan3| Celková DPH s druhou sníženou sazbou| long v centech
+cest_sluz| Celková částka v režimu DPH pro cestovní službu| long v centech
+pouzit_zboz1| Celková částka v režimu DPH pro prodej použitého zboží se základní sazbou| long v centech
+pouzit_zboz2| Celková částka v režimu DPH pro prodej použitého zboží s první sníženou sazbou|  long v centech
+pouzit_zboz3| Celková částka v režimu DPH pro prodej použitého zboží s druhou sníženou sazbou| long v centech
+urceno_cerp_zuct| Celková částka plateb určená k následnému čerpání nebo zúčtování| long v centech
+cerp_zuct|Celková částka plateb, které jsou následným čerpáním nebo zúčtováním platby| long v centech
+payment_id|ID platby| long
+state|Stav doručení účtenky|nabývá hodnot [state](#state)
+date_last_attempt|Datum a čas posledního pokusu o evidenci|yyyy-MM-dd'T'HH:mm:ss.SSSZ
+date_next_attempt|Datum a čas dalšího pokusu o evidenci|yyyy-MM-dd'T'HH:mm:ss.SSSZ
+eet_mode|Varianta EET| nabývá hodnot [eet_mode](#eet_mode)
+uuid_zprava|UUID zprávy| string
+date_odesl|Datum a čas odeslání EET účtenky|yyyy-MM-dd'T'HH:mm:ss.SSSZ
+dic_popl|DIČ poplatníka|varchar
+id_provoz|Označení provozovny|integer
+id_pokl|Označení pokladního zařízení|string
+dat_trzby|Datum a čas přijetí tržby|yyyy-MM-dd'T'HH:mm:ss.SSSZ
+porad_cis|Pořadové číslo účtenky|long
+kod_chyby|Chyba způsobená při komunikaci se službou EET|integer
+error_code|Kód chyby EET|integer
+kody_varovani|Kód varování EET|string
+fik| Fiskální identifikační kód (FIK)| varchar, 39 znaků
+bkp| Bezpečnostní kód poplatníka (BKP)| varchar, 44 znaků
+pkp| Podpisový kód poplatníka (PKP)| varchar, 344 znaků

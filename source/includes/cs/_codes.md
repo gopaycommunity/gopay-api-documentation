@@ -65,7 +65,6 @@ _3002|Bankovní platba potvrzena výpisem.
 _3003|Bankovní platba nebyla potvrzena.
 _5002|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu dosažení limitů na platební kartě.
 _5003|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu problémů na straně vydavatele platební karty.
-_5002|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu dosažení limitů na platební kartě.
 _5004|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu problému na straně vydavatele platební karty.
 _5005|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu zablokované platební karty.
 _5006|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu nedostatku peněžních prostředků na platební kartě.
@@ -137,16 +136,13 @@ BREXCZPP| mBank
 FIOBCZPP| FIO Banka
 CEKOCZPP| ČSOB
 CEKOCZPP-ERA| ERA
-ZUNOCZPP| ZUNO
 SUBASKBX| Všeobecná úverová banka
 TATRSKBX| Tatra Banka
 UNCRSKBX| Unicredit Bank SK
 GIBASKBX| Slovenská spořitelna
-OTPVSKBX| OTP Banka
 POBNSKBA| Poštová Banka
 CEKOSKBX| ČSOB SK
 LUBASKBX| Sberbank Slovensko
-RIDBSKBX| ZUNO SK
 OTHERS| Speciální swift bez předvýběru konkrétní banky
 BREXPLPW|mBank
 CITIPLPX|Citi Handlowy
@@ -195,7 +191,7 @@ CSV_D | CSV typ D
 XLS_A | XLS typ A
 XLS_B | XLS typ B
 XLS_C | XLS typ C
-ABO | ABO (.gpc)
+ABO_A | ABO (.gpc)
 
 ##type
 Typ položky
@@ -215,3 +211,20 @@ Hodnota parametru|Popis
 10| Daňová sazba 10 %
 15| Daňová sazba 15 %
 21| Daňová sazba 21 %
+
+##state
+Popis stavu EET účtenky
+
+Hodnota parametru|Popis
+------------------|-----
+CREATED|Vytvořena
+DELIVERY_FAILED|Doručení selhalo
+DELIVERED|Doručena
+
+##eet_mode
+Varianta EET, viz [popis variant](https://help.gopay.com/cs/s/vX)
+
+Hodnota parametru|Popis
+------------------|-----
+AUTO|varianta A
+EET|varianta B

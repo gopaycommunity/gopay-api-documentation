@@ -128,7 +128,7 @@ product_url|URL address of the product|string
 ean|[EAN code of the product](https://cs.wikipedia.org/wiki/European_Article_Number)|varchar, (13 characters)
 count|Number of items| long > 0
 name|Product name|string, alphanumeric characters (256 characters)
-amount|Product price| long, positive or negative integers
+amount|Product price in cents| long, positive or negative integers
 [vat_rate](#vat_rate)|VAT rate, for registration of sales|can gain values see [vat_rate](#vat_rate)
 
 ##eet

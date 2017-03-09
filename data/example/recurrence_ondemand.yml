@@ -66,7 +66,7 @@ request:
       try {
         NextPaymentBuilder builder = PaymentFactory.createNextPaymentBuilder();
         ...
-        PaymentResult voidRecurrency = connector.createRecurrentPayment(<ID>, builder.build());
+        PaymentResult recurrentPayment = connector.createRecurrentPayment(<ID>, builder.build());
       } catch (GPClientException ex) {
         //
       }
@@ -74,7 +74,7 @@ request:
       try {
         NextPaymentBuilder builder = PaymentFactory.createNextPaymentBuilder();
         ...
-        PaymentResult voidRecurrency = connector.createRecurrentPayment(<ID>, builder.build());
+        PaymentResult recurrentPayment = connector.createRecurrentPayment(<ID>, builder.build());
       } catch (GPClientException ex) {
         //
       }

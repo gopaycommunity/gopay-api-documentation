@@ -1,0 +1,60 @@
+##EET payment receipts
+
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.eet_payment_receipt.request } %>
+
+###Request
+
+```GET /api/payments/payment/{id}/eet-receipts```
+
+###Header of request
+
+Parameter's name | Parameter's description | Required
+----------------|-----------------|--------
+Accept|application/json|YES
+Content-Type|application/json|YES
+Authorization| Bearer [```<access-token>```](#access-token)|YES
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.eet_payment_receipt.response } %>
+
+###Response
+
+Parameter's name|Parameter's description|Data's type
+---------------|---------------|-----------
+dic_poverujiciho| DIČ of the entrustment taxpayer| varchar
+celk_trzba| The total amount| long in cents
+zakl_nepodl_dph| The total amount of supplies exempt from VAT| long in cents
+zakl_dan1| The total tax base amount, the basic VAT rate| long in cents
+dan1| The total amount of VAT, the basic rate| long in cents
+zakl_dan2| The total tax base amount with a first reduced rate of VAT| long in cents
+dan2| The total VAT amount with a first reduced rate| long in cents
+zakl_dan| The total tax base amount with a second reduced rate of VAT| long in cents
+dan3| The total VAT amount with a second reduced rate| long in cents
+cest_sluz| The total amount of the VAT regime for travel service| long in cents
+pouzit_zboz1| The total amount of the VAT regime for the sale of used goods with a basic rate| long in cents
+pouzit_zboz2| The total amount of the VAT regime for the sale of used goods with a first reduced rate|  long in cents
+pouzit_zboz3| The total amount of the VAT regime for the sale of used goods with a second reduced rate| long in cents
+urceno_cerp_zuct| The total amount of payments designated for subsequent pumping or settlement| long in cents
+cerp_zuct|The total amount of payments which are followed by pumping or settlement of the payment| long in cents
+payment_id|ID of payment| long
+state|Receipt delivery status|can gain values of [state](#state)
+date_last_attempt|Date and time of last attempt to registration of transaction|yyyy-MM-dd'T'HH:mm:ss.SSSZ
+date_next_attempt|Date and time of next attempt to registration of transaction|yyyy-MM-dd'T'HH:mm:ss.SSSZ
+eet_mode|EET mode variant| can gain values of [eet_mode](#eet_mode)
+uuid_zprava|UUID of message| string
+date_odesl|Date and time of registration of transaction|yyyy-MM-dd'T'HH:mm:ss.SSSZ
+dic_popl|DIČ of the taxpayer|varchar
+id_provoz|ID of virtual workshop|integer
+id_pokl|ID of cash register|string
+dat_trzby|Date and time of the payment receive|yyyy-MM-dd'T'HH:mm:ss.SSSZ
+porad_cis|ID of receipt|long
+kod_chyby|Every possible fault caused during communication with EET service|integer
+error_code|EET error code|integer
+kody_varovani|EET warning code|string
+fik| Fiscal identification code (FIK)| varchar, 39 characters
+bkp| Security code of the taxpayer (BKP)| varchar, 44 characters
+pkp| Signature code of the taxpayer (PKP)| varchar, 344 characters

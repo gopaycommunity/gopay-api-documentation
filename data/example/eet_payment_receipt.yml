@@ -1,0 +1,32 @@
+
+request:
+    shell: |
+        curl -v -N https://gw.sandbox.gopay.com/api/payments/payment/3048468774/eet-receipts \
+        -X "GET" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer 1437hmoAEdbMRcfdQeXz052Dt9MRKzcsC/+zVwfZIUVUZ3Ki+Xcf+EER9JfQ3uFKq50WLkEjBR"
+
+response:
+    json: |
+        [{
+          "celk_trzba":139950,
+          "zakl_dan1":99165,
+          "dan1":20825,
+          "payment_id":3048468774,
+          "state":"DELIVERED",
+          "date_last_attempt":"2017-03-03T15:21:00.450+0100",
+          "date_next_attempt":"2017-03-03T15:21:00.226+0100",
+          "eet_mode":"EET",
+          "mena":"CZK",
+          "uuid_zprava":"e382c8e5-195f-4b30-b6f4-eef15899240f",
+          "date_odesl":1488550860241,
+          "dic_popl":"CZ1212121218",
+          "id_provoz":11,
+          "id_pokl":"1",
+          "dat_trzby":"2017-03-03T15:21:00.162+0100",
+          "porad_cis":"3048468774",
+          "fik":"5f4286a4-ab97-496f-b860-cd8542911449-ff",
+          "bkp":"713FB9FD-8EC9D865-4F6E5A49-68992939-408F9E59",
+          "pkp":"Kzvh4JmZszaytn1XPy1wTKpJ2eqtxyQsHRlULOgKbJBPrXVeNw18uwzA1/JxViPEFKdGBRsImKH5Y4V07ZrekVs5HZGK11h+mww4P6q2KtA79/CO9S7NnBr44vwesK5PXX6gcSq4p0ptk6H5uTpmsyCxQjVesNXI1m5zduxQ93SoaZ/3kMBbhUaaqekMvxKpsxgtlbm8h8J6Fh+jvkF2NyPkEfgTyI/s9OuEq6JQ8rvTcTpz3phNXX+Cvb3oJpSNk8mtn3/uo6a/hmgdpG+W3f8pwUFZ1hQ0A5+/jyrv+pURS67l3Mh+ElUVLBEE2/Iai/jqxjklGeAa8hjQowsy3g=="
+        }]

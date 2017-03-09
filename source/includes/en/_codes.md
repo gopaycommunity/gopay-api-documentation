@@ -65,7 +65,6 @@ _3002|Bank payment confirmed by statement.
 _3003|Bank payment not authorised.
 _5002|Payment declined by the customer's bank authorization centre. The payment card limit had been reached.
 _5003|Payment declined by the customer's bank authorization centre. There are some issues at the card issuer side.
-_5002|Payment declined by the customer's bank authorization centre. The payment card limit had been reached.
 _5004|Payment declined by the customer's bank authorization centre. Issues at the card issuer side.
 _5005|Payment declined by the customer's bank authorization centre.  Payment card blocked.
 _5006|Payment declined by the customer's bank authorization centre. Insufficient funds at the payment card. 
@@ -137,16 +136,13 @@ BREXCZPP| mBank
 FIOBCZPP| FIO Bank
 CEKOCZPP| ČSOB
 CEKOCZPP-ERA| ERA
-ZUNOCZPP| ZUNO
 SUBASKBX| Všeobecná úverová banka
 TATRSKBX| Tatra Banka
 UNCRSKBX| Unicredit Bank SK
 GIBASKBX| Slovenská spořitelna
-OTPVSKBX| OTP Banka
 POBNSKBA| Poštová Banka
 CEKOSKBX| ČSOB SK
 LUBASKBX| Sberbank Slovensko
-RIDBSKBX| ZUNO SK
 OTHERS| Special SWIFT without specific bank selected
 BREXPLPW|mBank
 CITIPLPX|Citi Handlowy
@@ -194,7 +190,7 @@ CSV_D | CSV type D
 XLS_A | XLS type A
 XLS_B | XLS type B
 XLS_C | XLS type C
-ABO | ABO (.gpc)
+ABO_A | ABO (.gpc)
 
 ##type
 Type of row for the registration of sales
@@ -214,3 +210,18 @@ Parameter's value|Description
 10| VAT rate 10 %
 15| VAT rate 15 %
 21| VAT rate 21 %
+
+##state
+
+Parameter's value|Description
+------------------|-----
+CREATED|Created
+DELIVERY_FAILED|Delivery failed
+DELIVERED|Delivered
+
+##eet_mode
+
+Parameter's value|Description
+------------------|-----
+AUTO|variant A
+EET|variant B

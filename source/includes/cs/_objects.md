@@ -127,7 +127,7 @@ product_url|URL adresa produktu|string
 ean|[EAN kód produktu](https://cs.wikipedia.org/wiki/European_Article_Number)|varchar, (13 znaků)
 count|Počet položek produktu| long > 0
 name|Název produktu|string, alfanumerické znaky (256 znaků)
-amount|Cena produktu s DPH v haléřích| long, kladná nebo záporná celá čísla
+amount|Celková cena položek s DPH v haléřích| long, kladná nebo záporná celá čísla
 [vat_rate](#vat_rate)|Sazba daně, pro potřeby EET|nabývá hodnot viz [vat_rate](#vat_rate)
 
 ##eet

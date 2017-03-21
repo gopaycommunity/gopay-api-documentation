@@ -78,7 +78,7 @@ request:
             'payer' => [
                     'default_payment_instrument' => PaymentInstrument::BANK_ACCOUNT,
                     'allowed_payment_instruments' => [PaymentInstrument::BANK_ACCOUNT],
-                    'default_swift' => BankSwiftCode::FIO_BANKA,'FIOBCZPP',
+                    'default_swift' => BankSwiftCode::FIO_BANKA,
                     'allowed_swifts' => [BankSwiftCode::FIO_BANKA, BankSwiftCode::MBANK],
                     'contact' => ['first_name' => 'Zbynek',
                             'last_name' => 'Zak',
@@ -89,10 +89,6 @@ request:
                             'postal_code' => '373 01',
                             'country_code' => 'CZE'
                     ]
-            ],
-            'target' => [
-                    'type' => 'ACCOUNT',
-                    'goid' => '8123456789'
             ],
             'amount' => 139951,
             'currency' => Currency::CZECH_CROWNS,
@@ -128,8 +124,8 @@ request:
                     'value' => '2015001003'
             ]],
             'callback' => [
-                    'return_url' => 'https=>//www.eshop.cz/return',
-                    'notification_url' => 'https=>//www.eshop.cz/notify'
+                    'return_url' => 'https://www.eshop.cz/return',
+                    'notification_url' => 'https://www.eshop.cz/notify'
             ],
             'lang' => Language::CZECH
         ]);

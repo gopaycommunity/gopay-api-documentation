@@ -81,9 +81,6 @@ request:
                             'country_code' => 'CZE'
                     ]
             ],
-            'target' => ['type' => 'ACCOUNT',
-                    'goid' => '8123456789'
-            ],
             'amount' => 139951,
             'currency' => Currency::CZECH_CROWNS,
             'order_number' => '001',
@@ -121,8 +118,8 @@ request:
                     'value' => '2015001003'
             ]],
             'callback' => [
-                    'return_url' => 'http=>//www.eshop.cz/return',
-                    'notification_url' => 'http=>//www.eshop.cz/notify'
+                    'return_url' => 'http://www.eshop.cz/return',
+                    'notification_url' => 'http://www.eshop.cz/notify'
             ]
         ]);
 response:

@@ -14,7 +14,7 @@ response:
           "order_number":"001",
           "state":"PAID",
           "sub_state":"_3002",
-          "amount":1000,
+          "amount":139951,
           "currency":"CZK",
           "payment_instrument":"BANK_ACCOUNT",
           "payer":{

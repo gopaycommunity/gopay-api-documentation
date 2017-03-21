@@ -10,16 +10,18 @@ request:
 response:
     json: |
         [{
-          "celk_trzba":139950,
-          "zakl_dan1":99165,
-          "dan1":20825,
+          "celk_trzba":139951,
+          "zakl_dan1":99160,
+          "dan1":20830,
+          "zakl_dan2":17358,
+          "dan2":2603,
           "payment_id":3048468774,
           "state":"DELIVERED",
           "date_last_attempt":"2017-03-03T15:21:00.450+0100",
           "date_next_attempt":"2017-03-03T15:21:00.226+0100",
           "eet_mode":"EET",
           "uuid_zprava":"e382c8e5-195f-4b30-b6f4-eef15899240f",
-          "date_odesl":1488550860241,
+          "date_odesl":"2017-03-03T15:21:00.241+0100",
           "dic_popl":"CZ1212121218",
           "id_provoz":11,
           "id_pokl":"1",

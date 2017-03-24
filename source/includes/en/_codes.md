@@ -130,7 +130,7 @@ Bank SWIFT codes
 Bank SWIFT code|Bank name
 ---------|-----------
 GIBACZPX| Česká spořitelna
-​​KOMBCZPP| Komerční Banka
+KOMBCZPP| Komerční Banka
 RZBCCZPP| Raiffeisenbank
 BREXCZPP| mBank
 FIOBCZPP| FIO Bank

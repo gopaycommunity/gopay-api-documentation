@@ -130,7 +130,7 @@ Kódy jednotlivých bank
 Kód banky|Název banky
 ---------|-----------
 GIBACZPX| Česká spořitelna
-​​KOMBCZPP| Komerční Banka
+KOMBCZPP| Komerční Banka
 RZBCCZPP| Raiffeisenbank
 BREXCZPP| mBank
 FIOBCZPP| FIO Banka

@@ -192,8 +192,8 @@ Definition of callback and notification URL
 
 Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
-return_url|URL address for return to e-shop|string
-notification_url|URL address for sending  asynchronous notification in the case of changes in the payment status|string
+return_url|URL address for return to e-shop (with protocol)|string
+notification_url|URL address for sending  asynchronous notification in the case of changes in the payment status (with protocol)|string
 
 
 ##additional_params

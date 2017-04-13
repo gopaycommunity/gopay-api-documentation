@@ -177,6 +177,9 @@
                     **`using GoPay.Common;`**  
                     **`using GoPay.Model;`**  
                     **`using GoPay.Payment;`**  
+                    **`using GoPay.Model.Payments;`**  
+                    **`using GoPay.EETProp;`**  
+                    **`using GoPay.Account;`**  
     en: |
         .NET API
 
@@ -192,3 +195,6 @@
                     **`using GoPay.Common;`**  
                     **`using GoPay.Model;`**  
                     **`using GoPay.Payment;`**  
+                    **`using GoPay.Model.Payments;`**  
+                    **`using GoPay.EETProp;`**  
+                    **`using GoPay.Account;`**  

@@ -79,18 +79,21 @@ request:
         //
       }
     csharp: |
-      var recurrence = new NextPayment() 
+      var nextPayment = new NextPayment()
         {
-        Amount = <Amount>,
-        Currency = <Currency>,
-        OrderNumber = <OrderNumber>
+          Amount = <Amount>,
+          Currency = <Currency>,
+          OrderNumber = <OrderNumber>,
+          OrderDescription = <OrderDescription>
         };
-        
-      try {
-        connector.CreateRecurrentPayment(payment);
-      } catch {GPClientException e) {
-      //
-      }
+      try
+        {
+          connector.CreateRecurrentPayment(<IdOfPaidOnDemandPayment>, nextPayment)
+        }
+          catch (GPClientExcepetion exception)
+        {
+          //
+        }
       
 response:
     json: |

@@ -38,6 +38,8 @@ Bank account´s information
 ```
 Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
+iban|International bank account number|string, 50 characters
+bic|Business identification code (SWIFT)|string, 11 characters
 prefix|Bank account prefix|string, 64 characters
 account_number|Bank account number|string, 128 characters
 bank_code|Bank account code|string, 8 characters

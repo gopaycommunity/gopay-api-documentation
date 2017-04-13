@@ -38,6 +38,8 @@ Název parametru|Popis parametru|Datový typ
 ```
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
+iban|Kód IBAN bankovního účtu zákazníka|string, 50 znaků
+bic|SWIFT kód banky zákazníka|string, 11 znaků
 prefix|Předčíslí bankovního účtu zákazníka|string, 64 znaků
 account_number|Číslo bankovního účtu zákazníka|string, 128 znaků
 bank_code|Kód banky zákazníka|string, 8 znaků

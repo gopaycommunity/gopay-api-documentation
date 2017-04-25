@@ -99,7 +99,7 @@ _5046|Platba nebyla uhrazena v plné výši.
 _5047|Platba byla provedena po splatnosti.
 
 ##lang
-Natavení jazyka platební brány
+Nastavení jazyka platební brány
 
 Kód jazyka|Jazyk
 ----------|-----
@@ -108,6 +108,9 @@ EN| Angličtina
 SK| Slovenština
 DE| Němčina
 RU| Ruština
+PL| Polština
+HU| Maďarština
+FR| Francouzština
 
 ##payment_instrument
 Kódy platebních metod

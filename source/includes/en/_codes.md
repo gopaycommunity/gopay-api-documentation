@@ -108,6 +108,9 @@ EN| English
 SK| Slovak
 DE| German
 RU| Russian
+PL| Polish
+HU| Hungarian
+FR| French
 
 ##payment_instrument
 Payment method codes

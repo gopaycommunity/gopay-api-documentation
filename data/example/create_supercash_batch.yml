@@ -1,0 +1,39 @@
+request:
+    shell: |
+        curl -v -N https://gw.sandbox.gopay.com/api/supercash/coupon/batch \
+        -X "POST" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer cwY6kMhLcXGVWTOR3qIV92uonFcKtdLm0sJQurAOLORcPHw9PV3AoBQWumnJJq4pmCIU1xC1ZNxDgdzMrJuD3PMgk1pSv1Qf0cu/ILubBgY=" \
+        -d '{
+            "go_id":8123456789,
+            "batch_completed_notification_url":"http://http-notify.cz/supercash",
+            "defaults":{
+                "sub_type":"POSTPAID",
+                "amounts":[300,400,500,600,700,800,900,1000],
+                "order_description":"supercash batch test"
+            },
+            "coupons":[
+                {
+                    "buyer_email":"zakaznik1@example.com",
+                    "custom_id":"ID-123457",
+                    "buyer_phone":"+420777666111",
+                    "amounts":[100]
+                },
+                {
+                    "buyer_email":"zakaznik2@example.com",
+                    "custom_id":"ID-123458",
+                    "buyer_phone":"+420777666222",
+                    "amounts":[200]
+                },
+                {
+                    "buyer_email":"zakaznik3@example.com",
+                    "custom_id":"ID-123459",
+                    "buyer_phone":"+420777666333"
+                }
+            ]
+        }'
+    
+response:
+    json: |
+        {"batch_request_id":951806260} 

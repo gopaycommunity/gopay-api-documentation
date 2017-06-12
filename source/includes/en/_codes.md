@@ -228,3 +228,23 @@ Parameter's value|Description
 ------------------|-----
 AUTO|variant A
 EET|variant B
+
+##state of superCASH batch
+
+Parameter's value|Description
+------------------|-----
+CREATED|Created
+RUNNING|Running
+QUEUED|Queued
+SCHEDULED|Scheduled
+COMPLETED|Completed
+STOPPED|Stopped
+FAILED|Failed
+
+##sub_type
+Type of superCASH coupon
+
+Parameter's value|Description
+------------------|-----
+POSTPAID|Coupon suitable for one-time payment. Payment is generated with coupon creation.
+PREPAID|Coupon suitable for multiple payments. Payment is generated after each customer's payment.

@@ -85,7 +85,7 @@ Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 first_name|Jméno zákazníka|string, 256 znaků
 last_name|Příjmení zákazníka|string, 256 znaků
-email|E-mail zákazníka|string, 128 znaků
+email|Validní e-mail zákazníka|string, 128 znaků
 phone_number|Telefonní číslo zákazníka s předvolbou|string, 128 znaků
 city|Město zákazníka|string, 128 znaků
 street|Ulice zákazníka|string, 128 znaků
@@ -353,3 +353,63 @@ Název parametru|Popis parametru|
 label| Objekt obsahující lokalizace názvu banky
 image| Logo banky dostupné ve dvou formátech - normal, large
 isOnline| Stav symbolizující zda banka podporuje online převod
+
+##defaults
+Výchozí hodnoty superCASH kupónů
+
+```json
+"defaults":{
+    "sub_type":"POSTPAID",
+    "amounts":[300,400,500,600,700,800,900,1000],
+    "order_description":"supercash batch test"
+}
+```
+
+Název parametru|Popis parametru|
+---------------|---------------
+[sub_type](#sub_type)|Typ superCASH kupónu
+custom_id|Vlastní ID pro kupón
+amounts|Pole částek v haléřích
+order_number|Identifikace objednávky v rámci prodejního místa
+order_description|Popis objednávky
+buyer_email|Validní e-mail zákazníka
+buyer_phone|Telefonní číslo zákazníka s předvolbou
+date_valid_to|Datum platnosti kupónu
+notification_url|URL adresa pro odeslání asynchronní notifikace v případě změny stavu kupónu (včetně protokolu)
+
+##coupons
+Specifické hodnoty superCASH kupónů
+
+```json
+"coupons":[
+                {
+                    "buyer_email":"zakaznik1@example.com",
+                    "custom_id":"ID-123457",
+                    "buyer_phone":"+420777666111",
+                    "amounts":[100]
+                },
+                {
+                    "buyer_email":"zakaznik2@example.com",
+                    "custom_id":"ID-123458",
+                    "buyer_phone":"+420777666222",
+                    "amounts":[200]
+                },
+                {
+                    "buyer_email":"zakaznik3@example.com",
+                    "custom_id":"ID-123459",
+                    "buyer_phone":"+420777666333"
+                }
+            ]
+```
+
+Název parametru|Popis parametru|
+---------------|---------------
+[sub_type](#sub_type)|Typ superCASH kupónu
+custom_id|Vlastní ID pro kupón
+amounts|Pole částek v haléřích
+order_number|Identifikace objednávky v rámci prodejního místa
+order_description|Popis objednávky
+buyer_email|Validní e-mail zákazníka
+buyer_phone|Telefonní číslo zákazníka s předvolbou
+date_valid_to|Datum platnosti kupónu
+notification_url|URL adresa pro odeslání asynchronní notifikace v případě změny stavu kupónu (včetně protokolu)

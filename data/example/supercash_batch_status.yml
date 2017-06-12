@@ -1,0 +1,17 @@
+
+request:
+    shell: |
+        curl -v -N https://gw.sandbox.gopay.com/api/batch/951806260 \
+        -X "GET" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/x-www-form-urlencoded" \
+        -H "Authorization: Bearer m/7OTknCbdIiHTNfFW6GWMyfL7XO40OfOKixtzUvkp+eLw9gWBl96+Lk4fPz7BrpFUGWvA3bi29Ywc8gC5tOONeUJQvXmruhjJQNw7QyeqQ=" \
+
+response:
+    json: |
+        {
+            "state":"COMPLETED",
+            "batch_completed":true,
+            "items_finished":10,
+            "items_count":10
+        }

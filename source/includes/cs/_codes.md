@@ -231,3 +231,25 @@ Hodnota parametru|Popis
 ------------------|-----
 AUTO|varianta A
 EET|varianta B
+
+
+##stav superCASH batche
+Stav dokončení skupiny (batche) superCASH kupónů
+
+Hodnota parametru|Popis
+------------------|-----
+CREATED|Vytvořen
+RUNNING|Probíhá
+QUEUED|Čeká ve frontě
+SCHEDULED|Naplánován
+COMPLETED|Dokončen
+STOPPED|Zastaven
+FAILED|Selhal
+
+##sub_type
+Typ superCASH kupónu
+
+Hodnota parametru|Popis
+------------------|-----
+POSTPAID|Kupón určený pro jednorázové uhrazení. Při vytvoření vzniká platba.
+PREPAID|Kupón určený pro vícenásobné uhrazení. Platba vzniká po první úhradě zákazníkem.

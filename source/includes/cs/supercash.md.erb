@@ -1,0 +1,232 @@
+# Rozšířené možnosti superCASH
+
+Rozšířené možnosti platební metody superCASH umožňují vytvořit hromadně skupinu (batch) kupónů pro získání platebních údajů,
+včetně čárových kódů. Zákazník tak nepřichází do styku s platební bránou GoPay. Potřebné údaje pro platbu offline platební metodou
+superCASH je možné zákazníkovi zobrazit předem např. na fakturu za objednávku na e-shopu.
+
+## Vytvoření superCASH batche
+
+Volání vytvoří skupinu (batch) superCASH kupónů. Po vytvoření všech kuponů bude zavolána URL uvedená v parametru "batch_completed_notification_url".
+Parametry kupónů definuje objekt "[defaults](#defaults)", případně pole kupónů v objektu "[coupons](#coupons)". 
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_supercash_batch.request } %>    
+
+###Request
+```POST /api/supercash/coupon/batch```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization| Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+Název parametru | Popis parametru | Povinný | Datový typ
+----------------|-----------------|---------|-----------
+go_id|Jedinečný identifikátor eshopu v systému platební brány|ANO|long
+batch_completed_notification_url|URL adresa pro odeslání asynchronní notifikace v případě změny stavu skupiny (včetně protokolu)|ANO|string
+[defaults](#defaults)|Výchozí hodnoty superCASH kupónů|ANO| Objekt
+[coupons](#coupons)|Specifické parametry jednotlivých kupónů|ANO| Objekt
+
+>Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_supercash_batch.response } %>                   
+                
+###Response 
+  
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+batch_request_id|ID vytvořené skupiny kupónů|long
+
+
+## Vytvoření superCASH kupónu
+
+Volání vytvoří superCASH kupón. Po vytvoření kupónu bude zavolána URL uvedená v parametru "notification_url".
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_supercash_coupon.request } %>    
+
+###Request
+```POST /api/supercash/coupon```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization| Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+Název parametru | Popis parametru | Povinný | Datový typ
+----------------|-----------------|---------|-----------
+go_id|Jedinečný identifikátor eshopu v systému platební brány|ANO|long
+[sub_type](#sub_type)|Typ superCASH kupónu|ANO|Nabývá hodnot, viz [sub_type](#sub_type)
+custom_id|Vlastní ID pro kupón|NE|string, pouze alfanumerické znaky (256 znaků)
+amount|Částka v haléřích|ANO|long > 0
+order_number|Identifikace objednávky v rámci prodejního místa|NE| string, pouze alfanumerické znaky (128 znaků)
+order_description|Popis objednávky|NE|string, pouze alfanumerické znaky (256 znaků)
+buyer_email|Validní e-mail zákazníka|ANO|string
+buyer_phone|Telefonní číslo zákazníka s předvolbou|ANO|string
+date_valid_to|Datum platnosti kupónu|ANO|string, yyyy-mm-dd
+notification_url|URL adresa pro odeslání asynchronní notifikace v případě změny stavu kupónu (včetně protokolu)|ANO|string
+
+>Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_supercash_coupon.response } %>                   
+                
+###Response 
+  
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+supercash_coupon_id|ID superCASH kupónu|string
+custom_id|Vlastní ID pro kupón|string
+barcode_image_url|Odkaz na JPG soubor s čárovým kódem superCASH|string
+supercash_number|Číslo superCASH|string
+barcode|Číslo čárového kódu superCASH|string
+date_created|Datum vytvoření kupónu|yyyy-MM-dd’T'HH:mm:ss.SSSZ
+date_valid_to|Datum platnosti kupónu|string, yyyy-mm-dd
+payment_session_id_list|List ID plateb|string
+
+
+
+## Stav vytvoření batche
+
+Umožňuje zjistit stav vytvářeného superCASH batche.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.supercash_batch_status.request } %>    
+
+###Request
+```GET /api/batch/{id_batche}```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization| Bearer [```<access-token>```](#přístupový-token)|ANO
+
+>Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.supercash_batch_status.response } %>                   
+                
+###Response 
+  
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+[state](#stav-supercash-batche)|Stav dokončení batche|string, může nabývat hodnot viz [state](#stav-supercash-batche)
+batch_completed|Batch dokončen|boolean
+items_finished|Počet dokončných kupónů|long
+items_count|Celkový počet kupónů|long
+
+## Detaily superCASH kupónů batche
+
+Funkcionalita vypisuje detaily superCASH kupónů daného batche, uvedeného jako GET parametr v URL požadavku.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.supercash_batch_detail.request } %>    
+
+###Request
+```GET /api/supercash/coupon/find?batch_request_id={id_batche}&go_id={goid_eshopu}```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization| Bearer [```<access-token>```](#přístupový-token)|ANO
+
+>Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.supercash_batch_detail.response } %>                   
+                
+###Response 
+  
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+supercash_coupon_id|ID superCASH kupónu|string
+custom_id|Identifikace objednávky v rámci prodejního místa|string
+barcode_image_url|Odkaz na JPG soubor s čárovým kódem superCASH|string
+supercash_number|Číslo superCASH|string
+barcode|Číslo čárového kódu superCASH|string
+date_created|Datum vytvoření kupónu|yyyy-MM-dd’T'HH:mm:ss.SSSZ
+date_valid_to|Datum platnosti kupónu|string, yyyy-mm-dd
+payment_session_id_list|List ID plateb|string
+
+## Detaily superCASH kupónů platby
+
+Funkcionalita vypisuje detaily superCASH kupónů pro konkrétní ID platby, uvedené jako GET parametr v URL požadavku.
+
+Více ID plateb je v URL požadavku odděleno čárkou.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.supercash_payment_detail.request } %>    
+
+###Request
+```GET /api/supercash/coupon/find?payment_session_id_list={id_platby}&go_id={goid_eshopu}```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization| Bearer [```<access-token>```](#přístupový-token)|ANO
+
+>Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.supercash_payment_detail.response } %>                   
+                
+###Response 
+  
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+supercash_coupon_id|ID superCASH kupónu|string
+custom_id|Identifikace objednávky v rámci prodejního místa|string
+barcode_image_url|Odkaz na JPG soubor s čárovým kódem superCASH|string
+supercash_number|Číslo superCASH|string
+barcode|Číslo čárového kódu superCASH|string
+date_created|Datum vytvoření kupónu|yyyy-MM-dd’T'HH:mm:ss.SSSZ
+date_valid_to|Datum platnosti kupónu|string, yyyy-mm-dd
+payment_session_id_list|List ID plateb|string
+
+## Detaily superCASH kupónu
+
+Funkcionalita vypisuje detaily konkrétního superCASH kupónu.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.supercash_coupon_detail.request } %>    
+
+###Request
+```GET /api/supercash/coupon/{id_kuponu}```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization| Bearer [```<access-token>```](#přístupový-token)|ANO
+
+>Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.supercash_coupon_detail.response } %>                   
+                
+###Response 
+  
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+supercash_coupon_id|ID superCASH kupónu|string
+custom_id|Identifikace objednávky v rámci prodejního místa|string
+barcode_image_url|Odkaz na JPG soubor s čárovým kódem superCASH|string
+supercash_number|Číslo superCASH|string
+barcode|Číslo čárového kódu superCASH|string
+date_created|Datum vytvoření kupónu|yyyy-MM-dd’T'HH:mm:ss.SSSZ
+date_valid_to|Datum platnosti kupónu|string, yyyy-mm-dd
+payment_session_id_list|List ID plateb|string

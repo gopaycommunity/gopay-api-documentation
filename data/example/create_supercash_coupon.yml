@@ -13,7 +13,7 @@ request:
             "order_number":"1",
             "amount":100,
             "order_description":"supercash test",
-            "buyer_email":"zakznik@example.com",
+            "buyer_email":"zakaznik@example.com",
             "buyer_phone":"+420777666111",
             "date_valid_to":"2018-12-31",
             "notification_url":"http://http-notify.cz/supercash"

@@ -6,7 +6,50 @@ request:
         -H "Accept: application/json" \
         -H "Content-Type: application/x-www-form-urlencoded" \
         -H "Authorization: Bearer Ufgxd1w6C4rvm/UD8PovgE4fV9phwJKTEbWFQeoWY69w9Ph7+qFCajyBxVz75k7/G6yGhQpwFmgPfB9cahnJR6wp8ja/mX8x/0wAlgbX1o8=" \
+    python: |
+        def _get_supercash_coupon(self):
+                coupon_id = 100154175
+    java: |
+        public void testGetSupercashCoupon() {
+                IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL);
+                
+                long couponId = 100154175;
+                
+                SupercashPayment supercashPayment = null;
+                
+                try {
+                    supercashPayment = connector
+                            .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                            .getSupercashCoupon(couponId);
+                } catch (GPClientException e) {
+                    TestUtils.handleException(e, logger);
+                }
+                Assert.assertNotNull(supercashPayment);
+                System.out.println(supercashPayment.toString());
+            }
+    csharp: |
+        public void GPConnectorTestGetSupercashCoupon()
+               {
+                   var connector = new GPConnector(TestUtils.API_URL, TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);
+                   long couponId = 100154175;
 
+                   try
+                   {
+                       SupercashPayment result = connector.GetAppToken().GetSupercashCoupon(couponId);
+                       Assert.IsNotNull(result);
+                       Console.WriteLine(result.ToString());
+                   }
+                   catch (GPClientException ex)
+                   {
+                       Console.WriteLine("Get Supercash Coupon ERROR");
+                       var err = ex.Error;
+                       DateTime date = err.DateIssued;
+                       foreach (var element in err.ErrorMessages)
+                       {
+                           //
+                       }
+                   }
+               }
 response:
     json: |
         {

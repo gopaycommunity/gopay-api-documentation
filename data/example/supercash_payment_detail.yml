@@ -6,7 +6,53 @@ request:
         -H "Accept: application/json" \
         -H "Content-Type: application/x-www-form-urlencoded" \
         -H "Authorization: Bearer CuuEOc6RJ14G0cWuVgXVb5U5VcrW4h6/mmu9wjbKj4Kfhy/0VzhRb2rBOasX5QHFlBjPlHl8XH5Q10BPWa0MYyVQgXN4cC3M4jiU6e5yMzc=" \
+    python: |
+        def _find_supercash_coupons(self):
+               payment_session_id = [3050857992, 3050858018]
+               #payment_session_id = 3050857992
+    java: |
+        public void testFindSupercashCoupons() {
+                IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL);
+                
+        //      long paymentSessionIds = 3050857992L;
+                Long[] paymentSessionIds = new Long[] { 3050857992L, 3050858018L };
+                
+                SupercashBatch supercashBatch = null;
+                
+                try {
+                    supercashBatch = connector
+                            .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                            .findSupercashCoupons(8712700986L, paymentSessionIds);
+                } catch (GPClientException e) {
+                    TestUtils.handleException(e, logger);
+                }
+                Assert.assertNotNull(supercashBatch);
+                System.out.println(supercashBatch.toString());
+            }
+    csharp: |
+        public void GPConnectorTestFindSupercashCoupons()
+                {
+                    var connector = new GPConnector(TestUtils.API_URL, TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);
+                    //long[] paymentSessionIds = new long[] { 3050857992, 3050858018 };
+                    long paymentSessionIds = 3050857992;
 
+                    try
+                    {
+                        SupercashBatch result = connector.GetAppToken().FindSupercashCoupons(TestUtils.GOID, paymentSessionIds);
+                        Assert.IsNotNull(result);
+                        Console.WriteLine(result.ToString());
+                    }
+                    catch (GPClientException ex)
+                    {
+                        Console.WriteLine("Find Supercash Coupons ERROR");
+                        var err = ex.Error;
+                        DateTime date = err.DateIssued;
+                        foreach (var element in err.ErrorMessages)
+                        {
+                            //
+                        }
+                    }
+                }
 response:
     json: |
         {

@@ -6,7 +6,50 @@ request:
         -H "Accept: application/json" \
         -H "Content-Type: application/x-www-form-urlencoded" \
         -H "Authorization: Bearer UQH6YC1vnL4byosE+tquq/OzQAvRvWfkTAT/70UzF8Gfl8zfWybisHZ+jkJ2/cGcyigfPGZrWcAjYypwNwoc7DLSgs8Qyhbf3RqpMhY+s2o=" \
+    python: |
+        def _get_suppercash_coupon_batch(self):
+               batch_id = 961667719
+    java: |
+        public void testGetSupercashCouponBatch() {
+                IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL);
+                
+                long batchId = 961667719;
+                
+                SupercashBatch supercashBatch = null;
+                
+                try {
+                    supercashBatch = connector
+                            .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                            .getSupercashCouponBatch(8712700986L, batchId);
+                } catch (GPClientException e) {
+                    TestUtils.handleException(e, logger);
+                }
+                Assert.assertNotNull(supercashBatch);
+                System.out.println(supercashBatch.toString());
+            }
+    csharp: |
+        public void GPConnectorTestGetSupercashCouponBatch()
+                {
+                    var connector = new GPConnector(TestUtils.API_URL, TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);
+                    var batchId = 961667719;
 
+                    try
+                    {
+                        SupercashBatch result = connector.GetAppToken().GetSupercashCouponBatch(batchId, TestUtils.GOID);
+                        Assert.IsNotNull(result);
+                        Console.WriteLine(result.ToString());
+                    }
+                    catch (GPClientException ex)
+                    {
+                        Console.WriteLine("Get Supercash Coupon Batch ERROR");
+                        var err = ex.Error;
+                        DateTime date = err.DateIssued;
+                        foreach (var element in err.ErrorMessages)
+                        {
+                            //
+                        }
+                    }
+                }
 response:
     json: |
         {

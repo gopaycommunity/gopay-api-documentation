@@ -6,7 +6,50 @@ request:
         -H "Accept: application/json" \
         -H "Content-Type: application/x-www-form-urlencoded" \
         -H "Authorization: Bearer m/7OTknCbdIiHTNfFW6GWMyfL7XO40OfOKixtzUvkp+eLw9gWBl96+Lk4fPz7BrpFUGWvA3bi29Ywc8gC5tOONeUJQvXmruhjJQNw7QyeqQ=" \
+    python: |
+        def _get_supercash_coupon_batch_status(self):
+            batch_id = 961667719
+    java: |
+        public void testGetSupercashCouponBatchStatus() {
+                IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL);
+                
+                long batchId = 961667719;
+                SupercashBatchState batchState = null;
+                
+                try {
+                    batchState = connector
+                            .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                            .getSupercashCouponBatchStatus(batchId);
+                    
+                } catch (GPClientException e) {
+                    TestUtils.handleException(e, logger);
+                }
+                Assert.assertNotNull(batchState);
+                System.out.println(batchState.toString());
+            }
+    csharp: |
+        public void GPConnectorTestGetSupercashCouponBatchStatus()
+               {
+                   var connector = new GPConnector(TestUtils.API_URL, TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);
+                   var batchId = 961667719;
 
+                   try
+                   {
+                       SupercashBatchState result = connector.GetAppToken().GetSupercashCouponBatchStatus(batchId);
+                       Assert.IsNotNull(result);
+                       Console.WriteLine(result.ToString());
+                   }
+                   catch (GPClientException ex)
+                   {
+                       Console.WriteLine("Get Supercash Coupon Batch Status ERROR");
+                       var err = ex.Error;
+                       DateTime date = err.DateIssued;
+                       foreach (var element in err.ErrorMessages)
+                       {
+                           //
+                       }
+                   }
+               }
 response:
     json: |
         {

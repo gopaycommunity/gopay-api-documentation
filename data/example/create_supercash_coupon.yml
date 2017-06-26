@@ -18,6 +18,91 @@ request:
             "date_valid_to":"2018-12-31",
             "notification_url":"http://http-notify.cz/supercash"
         }'
+    python: |
+        def test_create_supercash_coupon(self):
+            base_coupon = {
+                'sub_type' : SupercashSubType.SUB_TYPE_POSTPAID,
+                'custom_id' : 'ID-123457',
+                'amount' : 100,
+                'order_number' : '1',
+                'order_description' : 'supercash_coupon_test',
+                'buyer_email' : 'zakaznik@example.com',
+                'buyer_phone' : '+420777123456',
+                'date_valid_to' : '2018-12-31',
+                'notification_url' : 'http://www.example-notify.cz/supercash',
+            }
+    java: |
+        public void testCreateSupercashCoupon() {
+            IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL);
+            
+            SupercashRequestBuilder couponRequestBuilder = new SupercashRequestBuilder();
+            
+            SupercashCouponRequest couponRequest = couponRequestBuilder
+                    .forGoId(TestUtils.GOID)
+                    .subType(SubType.POSTPAID)
+                    .withAmount(100L)
+                    .customId("ID-123457")
+                    .orderNumber("1")
+                    .orderDescription("Supercash Coupon Test")
+                    .withBuyerEmail("zakaznik@example.com")
+                    .withBuyerPhone("+420777123456")
+                    .validTo(new Date(2018, 12, 31))
+                    .notificationUrl("http://www.example-notify.cz/supercash")
+                    .buildCouponRequest();
+            
+            SupercashCoupon coupon = null;
+            
+            try {
+                coupon = connector
+                        .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                        .createSupercashCoupon(couponRequest);
+                
+            } catch (GPClientException e) {
+                TestUtils.handleException(e, logger);
+            }
+            
+            Assert.assertNotNull(coupon.getSupercashCouponId());
+            System.out.println(coupon.toString());
+        }
+    csharp: |
+        public void GPConnectorTestCreateSupercashCoupon()
+                {
+                    var connector = new GPConnector(TestUtils.API_URL, TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);
+
+                    SupercashCouponRequest couponRequest = new SupercashCouponRequest()
+                    {
+                        GoId = TestUtils.GOID,
+                        SubType = SubType.POSTPAID,
+                        CustomId = "ID-123457",
+                        Amount = 100,
+                        OrderNumber = "1",
+                        OrderDescription = "Supercash Coupon Test",
+                        BuyerEmail = "zakaznik@example.com",
+                        BuyerPhone = "+420777123456",
+                        DateValidTo = new DateTime(2018, 12, 31),
+                        NotificiationUrl = "http://www.example-notify.cz/supercash"
+                    };
+
+                    try
+                    {
+                        SupercashCoupon result = connector.GetAppToken().CreateSupercashCoupon(couponRequest);
+                        Assert.IsNotNull(result);
+
+                        Console.WriteLine("SC coupon id: {0}", result.SupercashCouponId);
+                        Console.WriteLine("SC custom id: {0}", result.CustomId);
+                        Console.WriteLine("SC coupon number: {0}", result.SupercashNumber);
+                    }
+                    catch (GPClientException ex)
+                    {
+                        Console.WriteLine("Create Supercash Coupon ERROR");
+                        var err = ex.Error;
+                        DateTime date = err.DateIssued;
+                        foreach (var element in err.ErrorMessages)
+                        {
+                            //
+                        }
+                    }
+                }    
 
 response:
     json: |

@@ -10,23 +10,18 @@ request:
         def _get_suppercash_coupon_batch(self):
                batch_id = 961667719
     java: |
-        public void testGetSupercashCouponBatch() {
-                IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL);
-                
                 long batchId = 961667719;
                 
                 SupercashBatch supercashBatch = null;
                 
                 try {
                     supercashBatch = connector
-                            .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                            .getAppToken(CLIENT_ID, CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
                             .getSupercashCouponBatch(8712700986L, batchId);
                 } catch (GPClientException e) {
-                    TestUtils.handleException(e, logger);
+                    //
                 }
-                Assert.assertNotNull(supercashBatch);
-                System.out.println(supercashBatch.toString());
-            }
+
     csharp: |
         public void GPConnectorTestGetSupercashCouponBatch()
                 {

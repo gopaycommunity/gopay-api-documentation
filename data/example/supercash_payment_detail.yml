@@ -11,9 +11,6 @@ request:
                payment_session_id = [3050857992, 3050858018]
                #payment_session_id = 3050857992
     java: |
-        public void testFindSupercashCoupons() {
-                IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL);
-                
         //      long paymentSessionIds = 3050857992L;
                 Long[] paymentSessionIds = new Long[] { 3050857992L, 3050858018L };
                 
@@ -21,13 +18,12 @@ request:
                 
                 try {
                     supercashBatch = connector
-                            .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                            .getAppToken(CLIENT_ID, CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
                             .findSupercashCoupons(8712700986L, paymentSessionIds);
                 } catch (GPClientException e) {
-                    TestUtils.handleException(e, logger);
+                    //
                 }
-                Assert.assertNotNull(supercashBatch);
-                System.out.println(supercashBatch.toString());
+
             }
     csharp: |
         public void GPConnectorTestFindSupercashCoupons()

@@ -65,16 +65,13 @@ request:
             }
             }
     java: |
-        public void testCreateSupercashCouponBatch() {
-                IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL);
-                
                 SupercashRequestBuilder batchItemBuilder = new SupercashRequestBuilder();
                 
                 SupercashRequestBuilder batchRequestBuilder = new SupercashRequestBuilder();
                 
                 SupercashBatchRequest batchRequest = batchRequestBuilder
-                        .forGoId(TestUtils.GOID)
-                        .batchNotificationUrl("http://www.notify.cz/super")
+                        <GOID>
+                        <NOTIFY_URL>
                         .withDefaults(batchItemBuilder
                                 .subType(SubType.POSTPAID)
                                 .withAmounts(Arrays.asList(300L, 400L, 500L, 600L, 700L, 800L, 900L, 1000L))
@@ -111,16 +108,13 @@ request:
                 
                 try {
                     batchResult = connector
-                            .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                            .getAppToken(CLIENT_ID, CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
                             .createSupercashCouponBatch(batchRequest);
                     
                 } catch (GPClientException e) {
-                    TestUtils.handleException(e, logger);
+                    //
                 }
                 
-                Assert.assertNotNull(batchResult.getBatchRequestId());
-                System.out.println(batchResult.toString());
-            }
     csharp: |
         public void GPConnectorTestCreateSupercashCouponBatch()
                 {

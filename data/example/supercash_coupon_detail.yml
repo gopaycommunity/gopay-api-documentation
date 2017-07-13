@@ -10,23 +10,18 @@ request:
         def _get_supercash_coupon(self):
                 coupon_id = 100154175
     java: |
-        public void testGetSupercashCoupon() {
-                IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL);
-                
                 long couponId = 100154175;
                 
                 SupercashPayment supercashPayment = null;
                 
                 try {
                     supercashPayment = connector
-                            .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                            .getAppToken(CLIENT_ID, CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
                             .getSupercashCoupon(couponId);
                 } catch (GPClientException e) {
-                    TestUtils.handleException(e, logger);
+                    //
                 }
-                Assert.assertNotNull(supercashPayment);
-                System.out.println(supercashPayment.toString());
-            }
+
     csharp: |
         public void GPConnectorTestGetSupercashCoupon()
                {

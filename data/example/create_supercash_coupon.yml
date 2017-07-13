@@ -32,13 +32,10 @@ request:
                 'notification_url' : 'http://www.example-notify.cz/supercash',
             }
     java: |
-        public void testCreateSupercashCoupon() {
-            IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL);
-            
             SupercashRequestBuilder couponRequestBuilder = new SupercashRequestBuilder();
             
             SupercashCouponRequest couponRequest = couponRequestBuilder
-                    .forGoId(TestUtils.GOID)
+                    <GOID>
                     .subType(SubType.POSTPAID)
                     .withAmount(100L)
                     .customId("ID-123457")
@@ -47,23 +44,20 @@ request:
                     .withBuyerEmail("zakaznik@example.com")
                     .withBuyerPhone("+420777123456")
                     .validTo(new Date(2018, 12, 31))
-                    .notificationUrl("http://www.example-notify.cz/supercash")
+                    <NOTIFY_URL>
                     .buildCouponRequest();
             
             SupercashCoupon coupon = null;
             
             try {
                 coupon = connector
-                        .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                        .getAppToken(CLIENT_ID, CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
                         .createSupercashCoupon(couponRequest);
                 
             } catch (GPClientException e) {
-                TestUtils.handleException(e, logger);
+                //
             }
-            
-            Assert.assertNotNull(coupon.getSupercashCouponId());
-            System.out.println(coupon.toString());
-        }
+
     csharp: |
         public void GPConnectorTestCreateSupercashCoupon()
                 {

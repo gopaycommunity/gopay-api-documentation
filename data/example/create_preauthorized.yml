@@ -149,7 +149,7 @@ request:
         }];
     java: |
         BasePayment payment = PaymentFactory.createBasePaymentBuilder()
-            .order(<ORDER_NUMBER>, <AMOUNT>, Currency.EUR, <DESCRIPTION>)
+            .order(<ORDER_NUMBER>, <AMOUNT>, <CURRENCY>, <DESCRIPTION>)
             .addItem(<ITEM_NAME>, <AMOUNT>, <FEE>, <COUNT>)
             .addAdditionalParameter(<Key>, <VALUE>)
             .withCallback(<RETURN_URL>, <NOTIFY_URL>)

@@ -28,7 +28,6 @@ request:
                    try
                    {
                        SupercashBatchState result = connector.GetAppToken().GetSupercashCouponBatchStatus(batchId);
-                       Assert.IsNotNull(result);
                        Console.WriteLine(result.ToString());
                    }
                    catch (GPClientException ex)

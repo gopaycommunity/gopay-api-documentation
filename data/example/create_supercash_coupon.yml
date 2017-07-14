@@ -76,7 +76,6 @@ request:
                     try
                     {
                         SupercashCoupon result = connector.GetAppToken().CreateSupercashCoupon(couponRequest);
-                        Assert.IsNotNull(result);
 
                         Console.WriteLine("SC coupon id: {0}", result.SupercashCouponId);
                         Console.WriteLine("SC custom id: {0}", result.CustomId);

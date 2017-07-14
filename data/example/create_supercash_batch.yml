@@ -154,7 +154,6 @@ request:
                     try
                     {
                         SupercashBatchResult result = connector.GetAppToken().CreateSupercashCouponBatch(batchRequest);
-                        Assert.IsNotNull(result);
                         Console.WriteLine(result.ToString());
                     }
                     catch (GPClientException ex)

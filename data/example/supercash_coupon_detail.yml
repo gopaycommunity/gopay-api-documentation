@@ -23,9 +23,6 @@ request:
                 }
 
     csharp: |
-        public void GPConnectorTestGetSupercashCoupon()
-               {
-                   var connector = new GPConnector(TestUtils.API_URL, TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);
                    long couponId = 100154175;
 
                    try
@@ -36,15 +33,8 @@ request:
                    }
                    catch (GPClientException ex)
                    {
-                       Console.WriteLine("Get Supercash Coupon ERROR");
-                       var err = ex.Error;
-                       DateTime date = err.DateIssued;
-                       foreach (var element in err.ErrorMessages)
-                       {
-                           //
-                       }
+                       //
                    }
-               }
 response:
     json: |
         {

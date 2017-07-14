@@ -116,13 +116,9 @@ request:
                 }
                 
     csharp: |
-        public void GPConnectorTestCreateSupercashCouponBatch()
-                {
-                    var connector = new GPConnector(TestUtils.API_URL, TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);
-
                     SupercashBatchRequest batchRequest = new SupercashBatchRequest()
                     {
-                        GoId = TestUtils.GOID,
+                        GoId = GOID,
                         BatchNotificationUrl = "http://www.notify.cz/super",
                         Defaults = new SupercashBatchItem()
                         {
@@ -163,15 +159,8 @@ request:
                     }
                     catch (GPClientException ex)
                     {
-                        Console.WriteLine("Create Supercash Coupon Batch ERROR");
-                        var err = ex.Error;
-                        DateTime date = err.DateIssued;
-                        foreach (var element in err.ErrorMessages)
-                        {
-                            //
-                        }
-                    }
-                }   
+                        //
+                    }  
     
 response:
     json: |

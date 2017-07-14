@@ -59,13 +59,9 @@ request:
             }
 
     csharp: |
-        public void GPConnectorTestCreateSupercashCoupon()
-                {
-                    var connector = new GPConnector(TestUtils.API_URL, TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);
-
                     SupercashCouponRequest couponRequest = new SupercashCouponRequest()
                     {
-                        GoId = TestUtils.GOID,
+                        GoId = GOID,
                         SubType = SubType.POSTPAID,
                         CustomId = "ID-123457",
                         Amount = 100,
@@ -88,15 +84,8 @@ request:
                     }
                     catch (GPClientException ex)
                     {
-                        Console.WriteLine("Create Supercash Coupon ERROR");
-                        var err = ex.Error;
-                        DateTime date = err.DateIssued;
-                        foreach (var element in err.ErrorMessages)
-                        {
-                            //
-                        }
-                    }
-                }    
+                       //
+                    }   
 
 response:
     json: |

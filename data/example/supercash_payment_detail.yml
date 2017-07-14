@@ -26,29 +26,19 @@ request:
 
             }
     csharp: |
-        public void GPConnectorTestFindSupercashCoupons()
-                {
-                    var connector = new GPConnector(TestUtils.API_URL, TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);
                     //long[] paymentSessionIds = new long[] { 3050857992, 3050858018 };
                     long paymentSessionIds = 3050857992;
 
                     try
                     {
-                        SupercashBatch result = connector.GetAppToken().FindSupercashCoupons(TestUtils.GOID, paymentSessionIds);
+                        SupercashBatch result = connector.GetAppToken().FindSupercashCoupons(GOID, paymentSessionIds);
                         Assert.IsNotNull(result);
                         Console.WriteLine(result.ToString());
                     }
                     catch (GPClientException ex)
                     {
-                        Console.WriteLine("Find Supercash Coupons ERROR");
-                        var err = ex.Error;
-                        DateTime date = err.DateIssued;
-                        foreach (var element in err.ErrorMessages)
-                        {
-                            //
-                        }
+                        //
                     }
-                }
 response:
     json: |
         {

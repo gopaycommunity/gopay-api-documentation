@@ -21,6 +21,9 @@ PLN | Polský złoty
 HUF | Maďarský forint
 GBP | Britská libra
 USD | Americký dolar
+RON | Rumunský nový lei
+HRK | Chorvatská kuna
+BGN | Bulharský lev
 
 ##scope
 Parametr popisující množinu získaných práv
@@ -111,6 +114,7 @@ RU| Ruština
 PL| Polština
 HU| Maďarština
 FR| Francouzština
+RO| Rumunština
 
 ##payment_instrument
 Kódy platebních metod

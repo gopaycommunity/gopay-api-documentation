@@ -21,6 +21,9 @@ PLN | Polish złoty
 HUF | Hungarian forint
 GBP | British pound
 USD | US dollar
+RON | Romanian Leu
+HRK | Kuna
+BGN | Bulgarian Lev
 
 ##scope
 Parameter describing group of acquired rights
@@ -111,6 +114,7 @@ RU| Russian
 PL| Polish
 HU| Hungarian
 FR| French
+RO| Romanian
 
 ##payment_instrument
 Payment method codes

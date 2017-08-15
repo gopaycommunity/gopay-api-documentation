@@ -46,6 +46,7 @@ request:
                     'celk_trzba' => -119990,
                     'zakl_dan1' => -99160,
                     'dan1' => -20830,
+                    'mena' => Currency::CZECH_CROWNS
             ]
         ]);
 response:

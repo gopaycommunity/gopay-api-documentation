@@ -24,7 +24,7 @@ response:
                               "card_brand":"VISA",
                               "card_issuer_country":"CZE",
                               "card_issuer_bank":"AIR BANK, A.S.",
-                              "card_token":"6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcb"
+                              "card_token":"6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcb",
                               "3ds_result":"Y/Y"
                               },
                    "contact":{"first_name":"Zbynek",

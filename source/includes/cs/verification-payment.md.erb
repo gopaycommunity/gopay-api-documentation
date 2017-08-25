@@ -1,0 +1,166 @@
+# Verifikační platba
+
+Verifikační platba platební kartou umožňuje zajistit, že zákazník bude platby na e-shopu provádět platební kartou,
+ke které má aktivní přístup a může platby danou platební kartou autorizovat.
+Fukcionalita dále zajištuje unikátnost dané platební karty v rámci konkrétního e-shopu (GoID).
+
+<aside class='notice'>
+Pro aktivaci funkce verifikační platby je nutné kontaktovat technickou podporu GoPay na e-mailu integrace@gopay.cz.
+</aside>
+
+## Prvotní ověřovací platba
+
+Požadavek založení ověřovací platby vychází ze standardního požadavku, který je rozšířený o parametr "verify_pin".
+V případě provedení platby zákazníkem je tento parametr uvedený u prováděné transakce
+v internetovém bankovnictví spojeného s danou platební kartou. Zadáním hodnoty parametru "verify_pin" na e-shopu
+je možné po zákazníkovi požadovat dodatečné ověření pro provedení ověření držitele platební karty.
+
+
+V případě předautorizované platby lze blokované prostředky následně strhnout pomocí API voláním [stržení předautorizované platby](#stržení-předautorizované-platby),
+případně odblokovat pomocí [zrušení předautorizace platby](#zrušení-předautorizace-platby).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized_verify.request } %>
+
+###Request
+```POST /api/payments/payment```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+Název parametru | Popis parametru | Povinný | Datový typ
+----------------|-----------------|---------|--------
+[payer](#payer)|Objekt popisující plátce platby|ANO| Objekt
+[target](#target)|Objekt popisující příjemce platby|ANO| Objekt
+amount| Částka v haléřích|ANO| long > 0
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO|string, může nabývat hodnot viz [currency](#currency)
+order_number|Identifikace objednávky v rámci prodejního místa|ANO| string, pouze alfanumerické znaky (128 znaků)
+order_description|Popis objednávky|NE| string, pouze alfanumerické znaky (256 znaků)
+[items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Pole objektů
+preauthorization|Aktivace předautorizované platby|ANO| bool
+[additional_params](#additional_params)|Doplňkové parametry platby|NE| Pole objektů
+[callback](#callback)|Návratové URL a notifikační URL pro oznámení změny stavu platby|ANO| Objekt
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized_verify.response } %>
+
+###Response
+  
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-------
+id|ID platby|long
+order_number| ID objednávky| string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby| string, může nabývat hodnot viz [state](#stavy-plateb)
+amount|Částka v haléřích|long > 0
+[payer](#payer)| Objekt popisující plátce platby| Objekt
+[target](#target)| Objekt popisující příjemce platby| Objekt
+[preauthorization](#preauthorization)| Objekt popisující předautorizaci| Objekt
+[additional_params](#additional_params)| Volitelné parametry platby| Pole objektů
+[lang](#lang)|Jazyk platby| string, může nabývat hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány| string
+
+## Stav platby
+
+Funkcionalita stav platby umožní prodejnímu místu zjistit jaký je aktuální stav dříve vytvořené platby. Standardně je stav platby dotazován po doručení notifikace o změně stavu platby.
+   
+Podrobnější informace k dotazu na stav platby naleznete v našem [centru nápovědy](https://help.gopay.com/cs/s/h3).
+
+Pro potřeby [verifikační platby](#verifikační-platba) obsahuje odpověď požadavku dotazu na stav platby parametry "card_token" a "3ds_result" v objektu [payment_card](#payment_card).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.status_verify.request } %>
+
+###Request
+
+```GET /api/payments/payment/{id}```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/x-www-form-urlencoded|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+> Response.
+
+<%= partial "includes/examples", :locals => { :example => data.example.status_verify.response } %>
+
+###Response
+
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+id|ID platby|long
+order_number|Identifikace objednávky v rámci prodejního místa|string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby| string, nabývající hodnot viz [state](#stavy-plateb)
+[sub_state](#podstav-plateb)|Podstav platby| string, nabývající hodnot viz [sub_state](#podstav-plateb)
+amount|Částka v haléřích|long > 0
+[currency](#currency)|Měna platby| string, nabývající hodnot viz [currency](#currency)
+[payment_instrument](#payment_instrument)| Kód zvolené platební metody | string, nabývající hodnot viz [payment_instrument](#payment_instrument)
+[payer](#payer)|Objekt popisující plátce platby | Objekt
+[target](#target)| Objekt popisující příjemce platby | Objekt
+[recurrence](#recurrence)| Objekt popisující opakovanou platbu| Objekt
+[additional_params](#additional_params)|Volitelné parametry platby|Pole objektů
+[lang](#lang)|Jazyk platby|string, nabývající hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány|string
+
+## Následná ověřovací platba
+
+Požadavek založení následné platby s využitím verifikace vychází z požadavku [založení standardní platby](#založení-platby),
+který je rozšířený o parametr "allowed_card_token". Parametr "allowed_card_token" je získán
+z odpovědi dotazu na stav platby [prvotní ověřovací platby](#prvotní-ověřovací-platba).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.request } %>    
+
+###Request
+```POST /api/payments/payment```
+
+###Hlavička požadavku
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization| Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+Název parametru | Popis parametru | Povinný | Datový typ
+----------------|-----------------|---------|-----------
+[payer](#payer)|Objekt popisující plátce platby|ANO| Objekt
+[target](#target)|Objekt popisující příjemce platby|ANO| Objekt
+amount|Částka v haléřích|ANO| long > 0
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO| string
+order_number|Identifikace objednávky v rámci prodejního místa|ANO| string, pouze alfanumerické znaky (128 znaků)
+order_description|Popis objednávky|NE|string, pouze alfanumerické znaky (256 znaků)
+[items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Objekt
+[callback](#callback)|Návratové URL a notifikační URL pro oznámení změny stavu platby|ANO| Objekt
+[additional_params](#additional_params)|Doplňkové parametry platby|NE| Pole objektů
+[lang](#lang)|Parametr definuje jazyk platby|NE| string, může nabývat hodnot viz [lang](#lang)
+
+>Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.response } %>                   
+                
+###Response 
+  
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+id|ID platby|long
+order_number|ID objednávky| string, pouze alfanumerické znaky (128 znaků)
+[state](#stavy-plateb)|Stav platby| string, může nabývat hodnot viz [state](#stavy-plateb)
+amount|Částka v haléřích| long > 0
+[currency](#currency)|Měna platby| string, může nabývat hodnot viz [currency](#currency)
+[payer](#payer)| Objekt popisující plátce platby| Objekt
+[target](#target)| Objekt popisující příjemce platby| Objekt
+[additional_params](#additional_params)|Doplňkové parametry platby| Pole objektů
+[lang](#lang)|Parametr definuje jazyk platby| string, může nabývat hodnot viz [lang](#lang)
+gw_url|URL pro inicializaci platební brány|string

@@ -24,6 +24,8 @@ Parameter´s name|Parameter´s description| Data´s type
 [bank_account](#bank_account)|Bank account´s information|Object
 [payment_card](#payment_card)|Payment card´s information|Object
 [contact](#contact)|Customer´s data|Object
+verify_pin|PIN for [verification payment](#verification-payment) purposes|String, 4 digits
+allowed_card_token|Token for [verification payment](#verification-payment) purposes|String
 
 ##bank_account
 Bank account´s information
@@ -64,6 +66,8 @@ card_expiration|Expiration date|string, 4 characters
 card_brand|Payment card´s type|string, 50 characters
 card_issuer_country|Country code of issuing bank|string, 3 characters
 card_issuer_bank|Issuing bank|string, 80 characters
+card_token|Token for [verification payment](#verification-payment) purposes|string
+[3ds_result](#3ds_result)|3D Secure authorization's result|string
 
 ##contact
 Customer´s information

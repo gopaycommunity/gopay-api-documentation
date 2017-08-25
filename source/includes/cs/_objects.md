@@ -24,6 +24,8 @@ Název parametru|Popis parametru|Datový typ
 [bank_account](#bank_account)|Údaje o bankovním účtu plátce|Objekt
 [payment_card](#payment_card)|Údaje o použité platební kartě|Objekt
 [contact](#contact)|Údaje o zákaníkovi|Objekt
+verify_pin|PIN pro účely [verifikační platby](#verifikační-platba)|String, 4 číslice
+allowed_card_token|Token pro účely [verifikační platby](#verifikační-platba)|String
 
 ##bank_account
 Údaje o bankovním účtu plátce
@@ -64,6 +66,8 @@ card_expiration|Datum expirace|string, 4 znaky
 card_brand|Typ platební karty|string, 50 znaků
 card_issuer_country|Kód země vydavatelské banky|string, 3 znaky
 card_issuer_bank|Vydavatelská banka|string, 80 znaků
+card_token|Token platební karty pro účely [verifikační platby](#verifikační-platba)|string
+[3ds_result](#3ds_result)|Výsledek 3D Secure autorizace|string
 
 ##contact
 Zákaznické informace

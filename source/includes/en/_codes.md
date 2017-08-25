@@ -252,3 +252,13 @@ Parameter's value|Description
 ------------------|-----
 POSTPAID|Coupon suitable for one-time payment. Payment is generated with coupon creation.
 PREPAID|Coupon suitable for multiple payments. Payment is generated after each customer's payment.
+
+##3ds_result
+3D Secure authorization’s result
+
+Parameter's value|Description
+------------------|-----
+"N/"|The payment card doesn't support 3D Secure authorization
+"Y/Y"|Full 3D Secure authorization
+"Y/A"|Partial 3D Secure authorization
+"X/X"|3D Secure authorization was not made

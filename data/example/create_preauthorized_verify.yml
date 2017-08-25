@@ -1,0 +1,73 @@
+
+request:
+    shell: |
+        curl -v -N https://gw.sandbox.gopay.com/api/payments/payment \
+        -X "POST" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer xzZnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p" \
+        -d '{
+            "payer": {
+                    "allowed_payment_instruments":["PAYMENT_CARD"],
+                    "contact":{
+                                "first_name":"Zbynek",
+                                "last_name":"Zak",
+                                "email":"test@test.cz",
+                                "phone_number":"+420777456123",
+                                "city":"C.Budejovice",
+                                "street":"Plana 67",
+                                "postal_code":"373 01",
+                                "country_code":"CZE"
+                                },
+                    "verify_pin":"1234"
+                    },
+            "target": {"type":"ACCOUNT",
+                       "goid":"8123456789"
+                      },
+            "amount":"1000",
+            "currency":"CZK",
+            "order_number":"001",
+            "order_description":"pojisteni01",
+            "items":[{"name":"item01","amount":"500"},
+                     {"name":"item02","amount":"500"}],
+            "preauthorization":"true",
+            "additional_params":[{"name":"invoicenumber",
+                                  "value":"2015001003"
+                                }],
+            "callback":{
+                        "return_url":"http://www.eshop.cz/return",
+                        "notification_url":"http://www.eshop.cz/notify"
+                       }
+        }'
+
+response:
+    json: |
+        {
+          "id":3000006542,
+          "order_number":"001",
+          "state":"CREATED",
+          "amount":1000,
+          "currency":"CZK",
+          "payer":{
+                   "contact":{"first_name":"Zbynek",
+                              "last_name":"Zak",
+                              "email":" test@test.cz ",
+                              "phone_number":"+420777456123",
+                              "city":"C.Budejovice",
+                              "street":"Plana 67",
+                              "postal_code":"37301",
+                              "country_code":"CZE"
+                            }
+                  },
+          "target":{"type":"ACCOUNT",
+                    "goid":8123456789
+                  },
+          "preauthorization":{"requested":true,
+                              "state":"REQUESTED"
+                            },
+          "additional_params":[{"name":"invoicenumber",
+                                "value":"2015001003"
+                              }],
+          "lang":"_LOCALE_",
+          "gw_url":" https://gw.sandbox.gopay.com/gw/v3/bCcvmwTKK5hrJx2aGG8ZnFyBJhAvF "
+        }

@@ -257,3 +257,13 @@ Hodnota parametru|Popis
 ------------------|-----
 POSTPAID|Kupón určený pro jednorázové uhrazení. Při vytvoření vzniká platba.
 PREPAID|Kupón určený pro vícenásobné uhrazení. Platba vzniká po první úhradě zákazníkem.
+
+##3ds_result
+Výsledek 3D Secure autorizace
+
+Hodnota parametru|Popis
+------------------|-----
+"N/"|Platební karta nepodporuje 3D Secure ověření
+"Y/Y"|Plné 3D Secure ověření
+"Y/A"|Částečné 3D Secure ověření
+"X/X"|3D Secure ověření nebylo provedeno

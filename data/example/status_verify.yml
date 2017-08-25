@@ -1,0 +1,48 @@
+
+request:
+    shell: |
+        curl -v -N https://gw.sandbox.gopay.com/api/payments/payment/3000006542 \
+        -X "GET" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/x-www-form-urlencoded" \
+        -H "Authorization: Bearer AAArt6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcbNyUTvQtCv45R969"
+
+response:
+    json: |
+        {
+          "id":3000006542,
+          "order_number":"001",
+          "state":"AUTHORIZED",
+          "sub_state":"_3002",
+          "amount":1000,
+          "currency":"CZK",
+          "payment_instrument":"PAYMENT_CARD",
+          "payer":{
+                   "payment_card": {
+                              "card_number":"444444******4448",
+                              "card_expiration":"1909",
+                              "card_brand":"VISA",
+                              "card_issuer_country":"CZE",
+                              "card_issuer_bank":"AIR BANK, A.S.",
+                              "card_token":"6RuTM69kX6UUGZ6p9hyMPrTUVXmMDdkC4BNnQvQcb"
+                              "3ds_result":"Y/Y"
+                              },
+                   "contact":{"first_name":"Zbynek",
+                              "last_name":"Zak",
+                              "email":" test@test.cz ",
+                              "phone_number":"+420777456123",
+                              "city":"C.Budejovice",
+                              "street":"Plana 67",
+                              "postal_code":"37301",
+                              "country_code":"CZE"
+                             }
+                  },
+          "target":{"type":"ACCOUNT",
+                    "goid":8123456789
+                  },
+          "additional_params":[{"name":"invoicenumber",
+                                "value":"2015001003"
+                              }],
+          "lang":"cs",
+          "gw_url":" https://gw.sandbox.gopay.com/gw/v3/bCcvmwTKK5hrJx2aGG8ZnFyBJhAvF"
+        }  

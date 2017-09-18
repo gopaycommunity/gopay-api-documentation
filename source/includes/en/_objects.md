@@ -258,7 +258,7 @@ Parameter´s name|Parameter´s description| Data´s type
 [recurrence_cycle](#recurrence_cycle)|Time period of recurring|string, can gain values see [recurrence_cycle](#recurrence_cycle)
 recurrence_period|Recurring period of recurring payment| long
 recurrence_date_to|The period of validity recurring payment| string yyyy-mm-dd
-recurrence_state|Describes state of recurring payment| string, can gain values REQUESTED, STARTED, STOPPED 
+recurrence_state|Describes [state](#status-of-the-payment) of recurring payment| string, can gain values REQUESTED, STARTED, STOPPED 
 
 ##groups
 Name of every group corresponds to group [codes](#group-codes)

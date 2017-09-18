@@ -254,7 +254,7 @@ Název parametru|Popis parametru|Datový typ
 [recurrence_cycle](#recurrence_cycle)|Časový úsek opakování|string, nabývá hodnot viz [recurrence_cycle](#recurrence_cycle)
 recurrence_period|Perioda opakování opakované platby| long
 recurrence_date_to|Doba platnosti opakované platby| string yyyy-mm-dd
-recurrence_state|Popis stavu opakované platby| string, nabývá hodnot REQUESTED, STARTED, STOPPED 
+recurrence_state|Popis [stavu](#stav-platby) opakované platby| string, nabývá hodnot REQUESTED, STARTED, STOPPED 
 
 ##groups   
 Název každé skupiny odpovídá [kódům](#group-codes) skupin

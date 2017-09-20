@@ -35,7 +35,9 @@ $lang-select-active-bg: $examples-bg; // feel free to change this to blue or som
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
 $main-bg: #fff;
 $aside-notice-bg: #8fbcd4;
-$aside-warning-bg: rgb(244, 126, 0);
+//$aside-notice-bg: #1999D6; // barva pozadí
+//$aside-warning-bg: rgb(244, 126, 0);
+$aside-warning-bg: #f47e00;
 $aside-success-bg: #6ac174;
 $search-notice-bg: #c97a7e;
 $table-bg: #F5F5F5;
@@ -43,7 +45,7 @@ $table-bg: #F5F5F5;
 
 // TEXT COLORS
 ////////////////////
-$main-text: #6D6D6D; // main content text color
+$main-text: #4B4B4B; // main content text color
 $nav-text: $color-primary;
 $nav-active-text: #fff;
 $lang-select-text: #fff; // color of unselected language tab text

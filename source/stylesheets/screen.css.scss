@@ -494,9 +494,11 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    color: black; //text barva
 
     &.warning {
       background-color: $aside-warning-bg;
+      color: black; //text barva
     }
 
     &.success {

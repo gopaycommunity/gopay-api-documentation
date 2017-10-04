@@ -143,6 +143,7 @@ BREXCZPP| mBank
 FIOBCZPP| FIO Banka
 CEKOCZPP| ČSOB
 CEKOCZPP-ERA| ERA
+BACXCZPP| Unicredit Bank CZ
 SUBASKBX| Všeobecná úverová banka
 TATRSKBX| Tatra Banka
 UNCRSKBX| Unicredit Bank SK

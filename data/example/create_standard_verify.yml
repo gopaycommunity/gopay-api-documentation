@@ -47,7 +47,7 @@ response:
           "order_number":"001",
           "state":"CREATED",
           "amount":1000,"currency":"CZK",
-          "payer":{,
+          "payer":{
                    "allowed_payment_instruments":["PAYMENT_CARD"],
                    "contact":{"first_name":"Zbynek",
                               "last_name":"Zak",

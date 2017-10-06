@@ -115,7 +115,7 @@ goid|Jedinečný identifikátor eshopu v systému platební brány|long
 Jednotlivé položky objednávky
 
 ```json
-[
+{
     "type":"ITEM", 
     "name":"obuv",
     "product_url":"https://www.eshop.cz/boty/lodicky", 
@@ -123,13 +123,13 @@ Jednotlivé položky objednávky
     "amount":119990,
     "count":1,
     "vat_rate":21
-]
+}
 ```
 
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 [type](#type)|Typ položky|enum, nabývá hodnot viz [type](#type)
-product_url|URL adresa produktu|string
+product_url|URL adresa produktu|string, (255 znaků)
 ean|[EAN kód produktu](https://cs.wikipedia.org/wiki/European_Article_Number)|varchar, (13 znaků)
 count|Počet položek produktu| long > 0
 name|Název produktu|string, alfanumerické znaky (256 znaků)
@@ -140,14 +140,14 @@ amount|Součet cen položek s DPH v haléřích| long, kladná nebo záporná ce
 Parametry pro elektronickou evidenci tržeb (EET)
 
 ```json
-[
+{
     "celk_trzba":139950,
     "zakl_dan1":99165,
     "dan1":20825,
     "zakl_dan2":17357,
     "dan2":2604,
     "mena":"CZK"
-]
+}
 ```
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
@@ -268,7 +268,7 @@ cs | Český název skupiny platebních metod
 Názvy skupin platebních metod
 
 ```json
-"groups":{
+{
     "card-payment":{
       "label":{
         "cs":"Platební karta"}
@@ -300,33 +300,16 @@ others| Ostatní platební metody
 Název každého objektu odpovídá [kódům platebních metod](#payment_instrument)
 
 ```json
-  "enabledPaymentInstruments":[{
-            "paymentInstrument":"PAYMENT_CARD",
-                "label":{
-                    "cs":"Platební karta"
-                },
-                "image":{
-                    "normal":"https://gate.gopay.cz/images/checkout/payment_card.png",
-                    "large":"https://gate.gopay.cz/images/checkout/payment_card@2x.png"},
-                "group":"card-payment",
-                "enabledSwifts":null
-                },
-            {"paymentInstrument":"BANK_ACCOUNT",
-                "label":{
-                    "cs":"Rychlý bankovní převod"},
-                "image":{
-                    "normal":"https://gate.gopay.cz/images/checkout/bank_account.png",
-                    "large":"https://gate.gopay.cz/images/checkout/bank_account@2x.png"},
-                "group":"bank-transfer",
-                "enabledSwifts":[{
-                    "swift":"GIBACZPX",
-                        "label":{"cs":"Platba 24"},
-                        "image":{
-                            "normal":"https://gate.gopay.cz/images/checkout/GIBACZPX.png",
-                            "large":"https://gate.gopay.cz/images/checkout/GIBACZPX@2x.png"},
-                        "isOnline":true},
-                ...
-            }]
+{
+    "paymentInstrument":"PAYMENT_CARD",
+      "label":{
+        "cs":"Platební karta"},
+      "image":{
+        "normal":"https://gate.gopay.cz/images/checkout/payment_card.png",
+        "large":"https://gate.gopay.cz/images/checkout/payment_card@2x.png"},
+      "group":"card-payment",
+      "enabledSwifts":null
+}
 ```
 
 Název parametru|Popis parametru|
@@ -340,16 +323,15 @@ image| Logo platební metody dostupné ve dvou formátech - normal, large
 Název každého objektu odpovídá [SWIFT](#swift) kódům bank 
 
 ```json
-"enabledSwifts":[{
+{
     "swift":"GIBACZPX",
         "label":{
           "cs":"Platba 24"},
         "image":{
           "normal":"https://gate.gopay.cz/images/checkout/GIBACZPX.png",
           "large":"https://gate.gopay.cz/images/checkout/GIBACZPX@2x.png"},
-        "isOnline":true},
-    ...
-    }]
+        "isOnline":true
+}
 ```
 
 Název parametru|Popis parametru|
@@ -362,7 +344,7 @@ isOnline| Stav symbolizující zda banka podporuje online převod
 Výchozí hodnoty superCASH kupónů
 
 ```json
-"defaults":{
+{
     "sub_type":"POSTPAID",
     "amounts":[300,400,500,600,700,800,900,1000],
     "order_description":"supercash batch test"
@@ -385,25 +367,25 @@ notification_url|URL adresa pro odeslání asynchronní notifikace v případě 
 Specifické hodnoty superCASH kupónů
 
 ```json
-"coupons":[
-                {
-                    "buyer_email":"zakaznik1@example.com",
-                    "custom_id":"ID-123457",
-                    "buyer_phone":"+420777666111",
-                    "amounts":[100]
-                },
-                {
-                    "buyer_email":"zakaznik2@example.com",
-                    "custom_id":"ID-123458",
-                    "buyer_phone":"+420777666222",
-                    "amounts":[200]
-                },
-                {
-                    "buyer_email":"zakaznik3@example.com",
-                    "custom_id":"ID-123459",
-                    "buyer_phone":"+420777666333"
-                }
-            ]
+[
+    {
+        "buyer_email":"zakaznik1@example.com",
+        "custom_id":"ID-123457",
+        "buyer_phone":"+420777666111",
+        "amounts":[100]
+        },
+    {
+        "buyer_email":"zakaznik2@example.com",
+        "custom_id":"ID-123458",
+        "buyer_phone":"+420777666222",
+        "amounts":[200]
+        },
+    {
+        "buyer_email":"zakaznik3@example.com",
+        "custom_id":"ID-123459",
+        "buyer_phone":"+420777666333"
+        }
+]
 ```
 
 Název parametru|Popis parametru|

@@ -116,7 +116,7 @@ Each item of the order
 
 
 ```json
-[
+{
     "type":"ITEM", 
     "name":"obuv",
     "product_url":"https://www.eshop.cz/boty/lodicky", 
@@ -124,13 +124,13 @@ Each item of the order
     "amount":119990,
     "count":1,
     "vat_rate":21
-]
+}
 ```
 
 Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 [type](#type)|Type of row, for registration of sales|enum, can gain values see [type](#type)
-product_url|URL address of the product|string
+product_url|URL address of the product|string, (255 characters)
 ean|[EAN code of the product](https://cs.wikipedia.org/wiki/European_Article_Number)|varchar, (13 characters)
 count|Number of items| long > 0
 name|Product name|string, alphanumeric characters (256 characters)
@@ -141,14 +141,14 @@ amount|Total price of items in cents| long, positive or negative integers
 Parameters for registration of sales
 
 ```json
-[
+{
     "celk_trzba":139950,
     "zakl_dan1":99165,
     "dan1":20825,
     "zakl_dan2":17357,
     "dan2":2604,
     "mena":"CZK"
-]
+}
 ```
 
 Parameter´s name|Parameter´s description| Data´s type
@@ -261,7 +261,7 @@ recurrence_date_to|The period of validity recurring payment| string yyyy-mm-dd
 recurrence_state|Describes [state](#status-of-the-payment) of recurring payment| string, can gain values REQUESTED, STARTED, STOPPED 
 
 ##groups
-Name of every group corresponds to group [codes](#group-codes)
+Name of each group corresponds to group [codes](#group-codes)
 
 Parameter´s name|Parameter´s description|
 ---------------|---------------
@@ -272,7 +272,7 @@ cs | Czech name of payment group
 Names of payment method groups
 
 ```json
-"groups":{
+{
     "card-payment":{
       "label":{
         "cs":"Platební karta"}
@@ -303,33 +303,16 @@ others| Other payment methods
 Name of every object coresponds to [payment method codes](#payment_instrument)
 
 ```json
-  "enabledPaymentInstruments":[{
-            "paymentInstrument":"PAYMENT_CARD",
-                "label":{
-                    "cs":"Platební karta"
-                },
-                "image":{
-                    "normal":"https://gate.gopay.cz/images/checkout/payment_card.png",
-                    "large":"https://gate.gopay.cz/images/checkout/payment_card@2x.png"},
-                "group":"card-payment",
-                "enabledSwifts":null
-                },
-            {"paymentInstrument":"BANK_ACCOUNT",
-                "label":{
-                    "cs":"Rychlý bankovní převod"},
-                "image":{
-                    "normal":"https://gate.gopay.cz/images/checkout/bank_account.png",
-                    "large":"https://gate.gopay.cz/images/checkout/bank_account@2x.png"},
-                "group":"bank-transfer",
-                "enabledSwifts":[{
-                    "swift":"GIBACZPX",
-                        "label":{"cs":"Platba 24"},
-                        "image":{
-                            "normal":"https://gate.gopay.cz/images/checkout/GIBACZPX.png",
-                            "large":"https://gate.gopay.cz/images/checkout/GIBACZPX@2x.png"},
-                        "isOnline":true},
-                ...
-            }]
+{
+    "paymentInstrument":"PAYMENT_CARD",
+      "label":{
+        "cs":"Platební karta"},
+      "image":{
+        "normal":"https://gate.gopay.cz/images/checkout/payment_card.png",
+        "large":"https://gate.gopay.cz/images/checkout/payment_card@2x.png"},
+      "group":"card-payment",
+      "enabledSwifts":null
+}
 ```
 
 Parameter´s name|Parameter´s description|
@@ -344,16 +327,15 @@ image| Logo of payment method avaliable in two formats - normal, large
 Name of each object coresponds to [SWIFT](#swift) codes 
 
 ```json
-"enabledSwifts":[{
+{
     "swift":"GIBACZPX",
         "label":{
           "cs":"Platba 24"},
         "image":{
           "normal":"https://gate.gopay.cz/images/checkout/GIBACZPX.png",
           "large":"https://gate.gopay.cz/images/checkout/GIBACZPX@2x.png"},
-        "isOnline":true},
-    ...
-    ]}
+        "isOnline":true
+}
 ```
 
 Parameter´s name|Parameter´s description|
@@ -366,7 +348,7 @@ isOnline| State that symbolise if bank supports online bank transfers
 Default values of superCASH coupons
 
 ```json
-"defaults":{
+{
     "sub_type":"POSTPAID",
     "amounts":[300,400,500,600,700,800,900,1000],
     "order_description":"supercash batch test"
@@ -389,25 +371,25 @@ notification_url|URL address for sending asynchronous notification in the case o
 Specific values of superCASH coupons
 
 ```json
-"coupons":[
-                {
-                    "buyer_email":"zakaznik1@example.com",
-                    "custom_id":"ID-123457",
-                    "buyer_phone":"+420777666111",
-                    "amounts":[100]
-                },
-                {
-                    "buyer_email":"zakaznik2@example.com",
-                    "custom_id":"ID-123458",
-                    "buyer_phone":"+420777666222",
-                    "amounts":[200]
-                },
-                {
-                    "buyer_email":"zakaznik3@example.com",
-                    "custom_id":"ID-123459",
-                    "buyer_phone":"+420777666333"
-                }
-            ]
+[
+    {
+        "buyer_email":"zakaznik1@example.com",
+        "custom_id":"ID-123457",
+        "buyer_phone":"+420777666111",
+        "amounts":[100]
+        },
+    {
+        "buyer_email":"zakaznik2@example.com",
+        "custom_id":"ID-123458",
+        "buyer_phone":"+420777666222",
+        "amounts":[200]
+        },
+    {
+        "buyer_email":"zakaznik3@example.com",
+        "custom_id":"ID-123459",
+        "buyer_phone":"+420777666333"
+        }
+]
 ```
 
 Parameter´s name|Parameter´s description|

@@ -130,7 +130,7 @@ Each item of the order
 Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 [type](#type)|Type of row, for registration of sales|enum, can gain values see [type](#type)
-product_url|URL address of the product|string, (255 characters)
+product_url|URL address of the product|string, (256 characters)
 ean|[EAN code of the product](https://cs.wikipedia.org/wiki/European_Article_Number)|varchar, (13 characters)
 count|Number of items| long > 0
 name|Product name|string, alphanumeric characters (256 characters)

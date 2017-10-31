@@ -150,7 +150,6 @@ UNCRSKBX| Unicredit Bank SK
 GIBASKBX| Slovenská spořitelna
 POBNSKBA| Poštová Banka
 CEKOSKBX| ČSOB SK
-LUBASKBX| Sberbank Slovensko
 OTHERS| Speciální swift bez předvýběru konkrétní banky
 BREXPLPW|mBank
 CITIPLPX|Citi Handlowy

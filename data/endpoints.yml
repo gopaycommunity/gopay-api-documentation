@@ -9,11 +9,14 @@
 - recurrence-void
 - preauthorized-void
 - preauthorized-capture
+- partial-preauthorized-capture
 - payment-method-list
 - statement
 - create-standard-eet
+- create-preauthorized-eet
 - create-recurrent-eet
 - recurrence-ondemand-eet
+- partial-preauthorized-capture-eet
 - status-eet
 - refund-eet
 - eet-payment-receipt

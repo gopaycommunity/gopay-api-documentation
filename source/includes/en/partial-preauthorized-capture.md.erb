@@ -1,0 +1,37 @@
+##Partial charge of pre-authorized payment
+The functionality enables partial charging of pre-authorized funds previously created by
+pre-authorized payment. The rest of blocked amount is unblocked back to customer's payment card.
+
+Additional information about pre-authorized payments you can find in [help center](https://help.gopay.com/en/s/uT).
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.partial_preauthorized_capture.request } %>
+
+###Request
+```POST /api/payments/payment/{id}/capture```
+
+###Header of request
+
+Parameter's name|Parameter's description| Required
+----------------|-----------------|--------
+Accept|application/json|YES
+Content-Type|application/x-www-form-urlencoded|YES
+Authorization|Bearer [```<access-token>```](#access-token)|YES
+
+###Body of request
+
+Parameter's name|Parameter's description| Required| Data's type
+---------------|---------------|-------|-------
+amount|Refunded amount|YES|long > 0
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.partial_preauthorized_capture.response } %>
+
+###Response
+
+Parameter's name|Parameter's description| Data's type
+---------------|---------------|----------
+id|payment ID|long
+[result](#result)|Object describing the request status| Object

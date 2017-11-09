@@ -1,0 +1,33 @@
+
+request:
+    shell: |
+        curl -v -N https://gw.sandbox.gopay.com/api/payments/payment/3000006542/capture
+        -X "POST"
+        -H "Accept: application/json"
+        -H "Content-Type:application/json"
+        -H "Authorization: Bearer Xcb5Ghha9SQ0Zykj+u9zCBf8o9BUBITiRWCmgswS/Gmb1DvpkkWSsRaUtdDLArmT/vzzJD0/IAn6f2yx6x90Bw0dB+3UiPxIndKbQRZhZ9Q=" \
+        -d '{
+        "amount":500,
+        "items":[{
+            "type":"ITEM",
+            "name":"lodicky",
+            "product_url":"https://www.eshop.cz/boty/damske/lodicky-cervene",
+            "ean":1234567890123,
+            "amount":500,
+            "count":1,
+            "vat_rate":21
+            }],
+        "eet":{
+            "celk_trzba":500,
+            "zakl_dan1":413,
+            "dan1":87,
+            "mena":"CZK"
+            }
+        }'
+
+response:
+    json: |
+        { 
+            "id":3000006542,
+            "result":"FINISHED"
+        }

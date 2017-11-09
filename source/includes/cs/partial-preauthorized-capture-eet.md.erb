@@ -1,0 +1,45 @@
+##Částečné stržení předautorizované platby
+Pomocí volání je možné strhnout pouze určitou část předautorizace finančních prostředků dříve vytvořené
+předautorizované platby. Zbylé prostředky jsou zákazníkovi uvolněny zpět na platební kartu.
+
+Původní EET data předautorizované platby jsou přepsána novým objektem [eet](#eet) předaným ve volání částečného stržení předautorizované platby.
+   
+Podrobné informace k předautorizovaným platbám naleznete v [centru nápovědy](https://help.gopay.com/cs/s/hV).
+
+<aside class="notice">
+  Pro aktivaci funkce částečného stržení předautorizovaných plateb je nutné kontaktovat technickou podporu GoPay na integrace@gopay.cz. 
+</aside>
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.partial_preauthorized_capture_eet.request } %>
+
+###Request
+```POST /api/payments/payment/{id}/capture```
+
+###Hlavička požadavku
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Accept|application/json|ANO
+Content-Type|application/json|ANO
+Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+
+###Tělo požadavku
+
+Název parametru|Popis parametru|Povinný| Datový typ
+---------------|---------------|-------|-------
+amount|Refundovaná částka|ANO|long > 0
+[items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Objekt
+[eet](#eet)|Parametry pro elektronickou evidenci tržeb|ANO|Objekt
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.partial_preauthorized_capture_eet.response } %>
+
+###Response
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|----------
+id|ID platby|long
+[result](#result)|Objekt popisující stav požadavku| Objekt

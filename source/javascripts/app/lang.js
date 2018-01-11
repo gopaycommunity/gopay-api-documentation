@@ -48,7 +48,7 @@ under the License.
     if (hash) {
       hash = hash.replace(/^#+/, '');
     }
-    history.pushState({}, '', '?' + language + '#' + hash);
+    history.pushState({}, '', '?lang=' + language + '#' + hash);
 
     // save language as next default
     localStorage.setItem("language", language);
@@ -83,7 +83,9 @@ under the License.
       return false;
     });
     window.onpopstate = function(event) {
-      activateLanguage(window.location.search.substr(1));
+      var lang = window.location.search.match(/lang=([^&]*)/)[1];
+      if (typeof lang == "undefined") return;
+      activateLanguage(lang);
     };
   });
 })(window);

@@ -130,6 +130,7 @@ SUPERCASH|superCASH
 GOPAY|GoPay účet
 PAYPAL|PayPal účet
 BITCOIN| Platba bitcoiny
+MASTERPASS| Masterpass
 
 ##SWIFT
 Kódy jednotlivých bank

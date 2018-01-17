@@ -130,6 +130,7 @@ SUPERCASH|superCASH
 GOPAY|GoPay account
 PAYPAL|PayPal account
 BITCOIN| Bitcoin payment
+MASTERPASS| Masterpass
 
 ##SWIFT
 Bank SWIFT codes

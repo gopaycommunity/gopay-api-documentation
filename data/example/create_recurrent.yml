@@ -24,7 +24,7 @@ request:
               "amount":"1000",
               "currency":"CZK",
               "order_number":"001",
-              "order_description":"pojisteni01",
+              "order_description":"objednavka01",
               "items": [{
                         "type":"ITEM", 
                         "name":"obuv",
@@ -77,7 +77,7 @@ request:
             'amount' => 1000,
             'currency' => Currency::CZECH_CROWNS,
             'order_number' => '001',
-            'order_description' => 'pojisteni01',
+            'order_description' => 'objednavka01',
             'items' => [
                         [
                          'type' => 'ITEM', 

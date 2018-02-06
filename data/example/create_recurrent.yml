@@ -25,9 +25,24 @@ request:
               "currency":"CZK",
               "order_number":"001",
               "order_description":"pojisteni01",
-              "items":[{"name":"item01","amount":"500"},
-                       {"name":"item02","amount":"500"}
-                      ],
+              "items": [{
+                        "type":"ITEM", 
+                        "name":"obuv",
+                        "product_url":"https://www.eshop.cz/boty/lodicky", 
+                        "ean":1234567890123,
+                        "amount":700,
+                        "count":1,
+                        "vat_rate":21
+                      }, 
+                      {
+                        "type":"ITEM", 
+                        "name":"oprava podpatku",
+                        "product_url":"https://www.eshop.cz/boty/opravy", 
+                        "ean":1234567890189,
+                        "amount":300,
+                        "count":1,
+                        "vat_rate":15
+                      }],
               "recurrence":{"recurrence_cycle":"DAY",
                             "recurrence_period":"7",
                             "recurrence_date_to":"2015-12-31"},
@@ -64,8 +79,24 @@ request:
             'order_number' => '001',
             'order_description' => 'pojisteni01',
             'items' => [
-                ['name' => 'item01', 'amount' => 50],
-                ['name' => 'item02', 'amount' => 100],
+                        [
+                         'type' => 'ITEM', 
+                         'name' => 'obuv',
+                         'product_url' => 'https://www.eshop.cz/boty/lodicky', 
+                         'ean' => 1234567890123,
+                         'amount' => 700,
+                         'count' => 1,
+                         'vat_rate' => VatRate::RATE_4
+                        ], 
+                        [
+                         'type' => 'ITEM', 
+                         'name' => 'oprava podpatku',
+                         'product_url' => 'https://www.eshop.cz/boty/opravy', 
+                         'ean' => 1234567890189,
+                         'amount' => 300,
+                         'count' => 1,
+                         'vat_rate' => VatRate::RATE_3
+                        ],
             ],
             'recurrence' => [
                 'recurrence_cycle' => Recurrence::DAILY,

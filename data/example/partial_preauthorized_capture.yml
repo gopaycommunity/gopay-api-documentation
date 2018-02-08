@@ -1,10 +1,10 @@
 
 request:
     shell: |
-        curl -v -N https://gw.sandbox.gopay.com/api/payments/payment/3000006542/capture
-        -X "POST"
-        -H "Accept: application/json"
-        -H "Content-Type:application/json"
+        curl -v -N https://gw.sandbox.gopay.com/api/payments/payment/3000006542/capture \
+        -X "POST" \
+        -H "Accept: application/json" \
+        -H "Content-Type:application/json" \
         -H "Authorization: Bearer Xcb5Ghha9SQ0Zykj+u9zCBf8o9BUBITiRWCmgswS/Gmb1DvpkkWSsRaUtdDLArmT/vzzJD0/IAn6f2yx6x90Bw0dB+3UiPxIndKbQRZhZ9Q=" \
         -d '{
         "amount":500

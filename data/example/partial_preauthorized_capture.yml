@@ -8,6 +8,15 @@ request:
         -H "Authorization: Bearer Xcb5Ghha9SQ0Zykj+u9zCBf8o9BUBITiRWCmgswS/Gmb1DvpkkWSsRaUtdDLArmT/vzzJD0/IAn6f2yx6x90Bw0dB+3UiPxIndKbQRZhZ9Q=" \
         -d '{
         "amount":500
+        "items":[{
+            "type":"ITEM",
+            "name":"lodicky",
+            "product_url":"https://www.eshop.cz/boty/damske/lodicky-cervene",
+            "ean":1234567890123,
+            "amount":500,
+            "count":1,
+            "vat_rate":21
+            }]
         }'
 
 response:

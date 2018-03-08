@@ -187,7 +187,7 @@ SOGEPLPW|Eurobank
 PBPBPLPW|POLSKI BANK PRZEDSIEBIORCZOSCI SPOLKA AKCYJNA
 
 ##format
-Format of account statement file
+Format of account [statement](https://help.gopay.com/en/s/cj) file
 
 Parameter's value|Description
 ------------------|-----
@@ -199,6 +199,7 @@ XLS_A | XLS type A
 XLS_B | XLS type B
 XLS_C | XLS type C
 ABO_A | ABO (.gpc)
+ABO_B | ABO (.gpc)
 
 ##type
 Type of row for the registration of sales

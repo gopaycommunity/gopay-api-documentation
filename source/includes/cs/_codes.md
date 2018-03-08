@@ -188,7 +188,7 @@ PBPBPLPW|POLSKI BANK PRZEDSIEBIORCZOSCI SPOLKA AKCYJNA
 
 
 ##format
-Formát souboru generovaného výpisu
+Formát souboru generovaného [výpisu](https://help.gopay.com/cs/s/er)
 
 Hodnota parametru|Popis
 ------------------|-----
@@ -199,7 +199,8 @@ CSV_D | CSV typ D
 XLS_A | XLS typ A
 XLS_B | XLS typ B
 XLS_C | XLS typ C
-ABO_A | ABO (.gpc)
+ABO_A | ABO vnější formát (.gpc)
+ABO_B | ABO vnitřní formát (.gpc)
 
 ##type
 Typ položky

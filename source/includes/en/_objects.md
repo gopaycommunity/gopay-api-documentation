@@ -130,7 +130,7 @@ Each item of the order
 Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 [type](#type)|Type of row, for registration of sales|enum, can gain values see [type](#type)
-product_url|URL address of the product|string, (256 characters)
+product_url|URL address of the product|string, (512 characters)
 ean|[EAN code of the product](https://cs.wikipedia.org/wiki/European_Article_Number)|varchar, (13 characters)
 count|Number of items| long > 0
 name|Product name|string, alphanumeric characters (256 characters)
@@ -198,8 +198,8 @@ Definition of callback and notification URL
 
 Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
-return_url|URL address for return to e-shop (with protocol)|string
-notification_url|URL address for sending  asynchronous notification in the case of changes in the payment status (with protocol)|string
+return_url|URL address for return to e-shop (with protocol)|string, (512 characters)
+notification_url|URL address for sending  asynchronous notification in the case of changes in the payment status (with protocol)|string, (512 characters)
 
 
 ##additional_params

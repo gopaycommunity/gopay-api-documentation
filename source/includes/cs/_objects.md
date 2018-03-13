@@ -129,7 +129,7 @@ Jednotlivé položky objednávky
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 [type](#type)|Typ položky|enum, nabývá hodnot viz [type](#type)
-product_url|URL adresa produktu|string, (256 znaků)
+product_url|URL adresa produktu|string, (512 znaků)
 ean|[EAN kód produktu](https://cs.wikipedia.org/wiki/European_Article_Number)|varchar, (13 znaků)
 count|Počet položek produktu| long > 0
 name|Název produktu|string, alfanumerické znaky (256 znaků)
@@ -196,8 +196,8 @@ Definice návratové a notifikační URL
 
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
-return_url|URL adresa pro návrat na eshop (včetně protokolu)|string
-notification_url|URL adresa pro odeslání asynchronní notifikace v případě změny stavu platby (včetně protokolu)|string
+return_url|URL adresa pro návrat na eshop (včetně protokolu)|string, (512 znaků)
+notification_url|URL adresa pro odeslání asynchronní notifikace v případě změny stavu platby (včetně protokolu)|string, (512 znaků)
 
 
 ##additional_params

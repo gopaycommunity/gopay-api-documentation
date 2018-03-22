@@ -41,7 +41,7 @@
     };
 
   var makeToc = function() {
-    var selectors = 'h1, h2, h3';
+    var selectors = 'h1, h2, h3, h4';
     fixHeadingIds(selectors);
     global.toc = $("#toc").tocify({
       selectors: selectors,

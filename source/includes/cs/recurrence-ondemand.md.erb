@@ -28,8 +28,8 @@ Název parametru|Popis parametru|Povinný|Datový typ
 ---------------|---------------|-------|-------
 amount|Částka|ANO|long > 0
 [currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO|string, nabývající hodnot viz [currency](#currency)
-order_number|ID objednávky|Identifikace objednávky v rámci prodejního místa|string, pouze alfanumerické znaky (128 znaků)
-order_description|Popis objednávky|ANO|string, pouze alfanumerické znaky (256 znaků)
+order_number|Identifikace objednávky v rámci prodejního místa|ANO|string, pouze alfanumerické znaky (128 znaků)
+order_description|Popis objednávky|NE|string, pouze alfanumerické znaky (256 znaků)
 [items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO|Objekt
 [additional_params](#additional_params)|Doplňkové parametry platby|NE|Objekt
 

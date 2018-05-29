@@ -1,34 +1,38 @@
-# Verification payment
+## Identification payment
 
-The function of verification payment via payment card allow to making payments on the e-shop with customers's unique payment card.
+The function of identification payment via payment card allow to making payments on the e-shop with customers's unique payment card.
 The functionality also guarantee that the customer has got full access to authorize transactions with the payment card.
 
 <aside class='notice'>
-For activation of verification payment functionality please contact GoPay technical support on integrace@gopay.cz.
+For activation of identification payment functionality please <a href="mailto:integrace@gopay.cz?subject=GoPay - identification payment"><font color="black">contact</font></a> technical support GoPay.
 </aside>
 
-## The first verification payment
+### The initiating payment
 
-The request for creation of verification payment is based on standard payment creation. The verification payment uses added parameter "verify_pin".
-When the payment is made the value of "verify_pin" parameter is available at transaction list in customer's internet banking connected with the payment card.
+The request for creation of verification payment is based on standard payment creation. The verification payment uses added parameter ```verify_pin```.
+When the payment is made the value of ```verify_pin``` parameter is available at transaction list in customer's internet banking connected with the payment card.
 The e-shop can require fill in the value of verification PIN to authorize the payment card's owner.
-When the payment is created as pre-authorized you need to make [charge](#charge-of-pre-authorized-payment) or [cancellation](#cancellation-of-the-pre-authorized-payment) of pre-authorized payment.
+
+When the payment is created as pre-authorized you need to make [charge](#charge-of-pre-authorization) or [cancellation](#cancellation-of-pre-authorization) of pre-authorized payment.
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized_verify.request } %>
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/payments/payment```
 
-###Header of request
+<h5>Header of request</h5>
+
 Parameter's name | Parameter's description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
 Authorization|Bearer [```<access-token>```](#access-token)|YES
 
-###Body of request
+<h5>Body of request</h5>
+
 Parameter's name | Parameter's description | Required | Data's type
 ----------------|-----------------|---------|--------
 [payer](#payer)|Object describing the payer of the payment|YES| Object
@@ -39,14 +43,14 @@ order_number|Order identification within the point of sale|YES| string, alphanum
 order_description|Description of goods / service|NO| string, alphanumeric characters only (256 characters)
 [items](#items)|Itemized in detail each item of the order|YES| Object array
 preauthorization|Activation of pre-authorized payment|YES| bool
-[additional_params](#additional_params)|Additional parameters of the payment|NO| Object array
+[additional_params](#additional-params)|Additional parameters of the payment|NO| Object array
 [callback](#callback)|Callback URL and notification URL for change in the payment status|YES| Object
 
 > Response
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized_verify.response } %>
 
-###Response
+<h5>Response</h5>
   
 Parameter's name|Parameter's description|Data's type
 ---------------|---------------|-------
@@ -57,76 +61,33 @@ amount|Amount in cents|long > 0
 [payer](#payer)| Object describing the payer of the payment| Object
 [target](#target)| Object describing the target of the payment (payee)| Object
 [preauthorization](#preauthorization)| Object describing the pre-authorization| Object
-[additional_params](#additional_params)| Additional parameters of the payment| Object array
+[additional_params](#additional-params)| Additional parameters of the payment| Object array
 [lang](#lang)|Payment language| string, can gain values see [lang](#lang)
 gw_url|URL to initiate the payment gateway| string
 
-## Status of the payment
+### The next payment
 
-The payment status funcionality allows the point of sale to determine, whether the payment was successfully paid or not. By default, the payment status is queried after receiving of a notification about the payment status change.
-
-More information about payment state you can find in help center.
-
-For the [verification payment](#verification-payment) functionality the response of payment status contains "card_token" a "3ds_result" parameters in [payment_card](#payment_card) object.
-
-> Request
-
-<%= partial "includes/examples", :locals => { :example => data.example.status_verify.request } %>
-
-###Request
-
-```GET /api/payments/payment/{id}```
-
-###Header of request
-
-Parameter's name|Parameter's description| Required
-----------------|-----------------|--------
-Accept|application/json|YES
-Content-Type|application/x-www-form-urlencoded|YES
-Authorization|Bearer [```<access-token>```](#access-token)|YES
-
-> Response.
-
-<%= partial "includes/examples", :locals => { :example => data.example.status_verify.response } %>
-
-###Response
-
-Parameter's name|Parameter's description|Data's type
----------------|---------------|-----------
-id|Payment ID|long
-order_number|Order identification within the point of sale|string, alphanumeric characters only (128 characters)
-[state](#payment-status)|Payment status| string, can gain values see [state](#payment-status)
-[sub_state](#payment-substate)|Payment substate| string, can gain values see [sub_state](#payment-substate)
-amount|Amount in cents|long > 0
-[currency](#currency)|Payment currency| string, can gain values see [currency](#currency)
-[payment_instrument](#payment_instrument)| Code of chosen payment method | string, can gain values see [payment_instrument](#payment_instrument)
-[payer](#payer)|Object describing the payer of payment | Object
-[target](#target)| Object describing the target of payment (payee) | Object
-[recurrence](#recurrence)| Object describing the recurring payment| Object
-[additional_params](#additional_params)|Additional parameters of the payment|Object array
-[lang](#lang)|Payment language|string, can gain values see [lang](#lang)
-gw_url|URL for redirecting to the payment gateway|string
-
-## The next verification payment
-
-The request for creation of the next verification payment is based on standard payment creation with use of 
-"allowed_card_token" parameter that is returned in payment status response of the first verification payment.
+The request for creation of the next identification payment is based on standard payment creation with use of 
+```allowed_card_token``` parameter that is returned in [payment status](#status-of-the-payment) response of the first identification payment.
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.request } %>    
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/payments/payment```
 
-###Header of request
+<h5>Header of request</h5>
+
 Parameter's name | Parameter's description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
 Authorization| Bearer [```<access-token>```](#access-token)|YES
 
-###Body of request
+<h5>Body of request</h5>
+
 Parameter's name| Parameter's description | Required | Data's type
 ----------------|-----------------|---------|-----------
 [payer](#payer)|The object describing the payer of the payment|YES| Object
@@ -137,14 +98,14 @@ order_number|Identification of the order within the point of sale|YES| string, a
 order_description|Description of goods / service|NO|string, alphanumeric characters only (256 characters)
 [items](#items)|Itemized in detail each item of the order|YES| Object
 [callback](#callback)|Callback URL for processing of the payment result / Notification URL for processing of change of payment status|YES| Object
-[additional_params](#additional_params)|Additional payment parameters|No| According to object
+[additional_params](#additional-params)|Additional payment parameters|No| According to object
 [lang](#lang)|Parameters defines language of the payment|NO| string, can gain values see [lang](#lang)
 
 >Response
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.response } %>                   
                 
-###Response 
+<h5>Response</h5> 
   
 Parameter's name|Parameter's description| Data's type
 ---------------|---------------|-----------
@@ -155,6 +116,6 @@ amount|Amount in cents| long > 0
 [currency](#currency)|Specifies the currency of payment| string, can gain values see [currency](#currency)
 [payer](#payer)| Object describing the payer of the payment| Object
 [target](#target)| Object describing the target of the payment (payee)| Object
-[additional_params](#additional_params)|Additional parameters of payments| Object array
+[additional_params](#additional-params)|Additional parameters of payments| Object array
 [lang](#lang)|Parameter defines payment language| string, can gain values see [lang](#lang)
 gw_url|URL for initiation of the payment gate|string

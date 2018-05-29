@@ -1,13 +1,16 @@
-##Refund of the payment (cancelation)
+### EET refundation
+
+Refundation of the EET payment back to the customer.
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.refund_eet.request } %>
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/payments/payment/{id}/refund```
 
-###Header of request
+<h5>Header of request</h5>
 
 Parameter's name|Parameter's description| Required
 ----------------|-----------------|--------
@@ -15,7 +18,7 @@ Accept|application/json|YES
 Content-Type|application/json|YES
 Authorization|Bearer [```<access-token>```](#access-token)|YES
 
-###Body of request
+<h5>Body of request</h5>
 
 Parameter's name|Parameter's description| Required| Data's type
 ---------------|---------------|-------|-------
@@ -27,7 +30,8 @@ amount|Refunded amount|YES|long > 0
 
 <%= partial "includes/examples", :locals => { :example => data.example.refund_eet.response } %>
 
-###Response 
+<h5>Response</h5>
+
 Parameter's name|Parameter's description| Data's type
 ---------------|---------------|-------
 id|Payment ID|long

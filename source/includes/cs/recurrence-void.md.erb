@@ -1,6 +1,6 @@
-##Zrušení opakování platby
+###Zrušení opakování platby
 
-Umožňuje zrušit opakování dříve [vytvořené platby](#opakovaná-platba). Uživatel má stejnou možnost
+Umožňuje zrušit opakování dříve [vytvořené platby](#opakovana-platba). Uživatel má stejnou možnost
 v přihlášeném GoPay účtu.   
    
 Podrobné informace k provádění opakovaných plateb naleznete v našem [centru nápovědy](https://help.gopay.com/cs/s/hT).
@@ -9,23 +9,23 @@ Podrobné informace k provádění opakovaných plateb naleznete v našem [centr
 
 <%= partial "includes/examples", :locals => { :example => data.example.recurrence_void.request } %>
 
-###Request
+<h5>Request</h5>
 
 ```POST /api/payments/payment/{id}/void-recurrence```
 
-###Hlavička požadavku
+<h5>Hlavička požadavku</h5>
 
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
 Accept|application/json|ANO
 Content-Type|application/x-www-form-urlencoded|ANO
-Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
 > Response
 
 <%= partial "includes/examples", :locals => { :example => data.example.recurrence_void.response } %>
 
-###Response
+<h5>Response</h5>
 
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------

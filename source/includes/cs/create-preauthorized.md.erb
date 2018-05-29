@@ -2,45 +2,55 @@
 
 Předautorizace umožní při platbě kartou zablokovat po dobu 4 dnů prostředky na účtu zákazníka. Předautorizovanou platbu založíte nastavením parametru ```preauthorization``` na ```true``` .
 
-Blokované prostředky lze následně [částečně strhnout](#Částečné-stržení-předautorizované-platby), či strhnout [v plné výši](#stržení-předautorizované-platby) pomocí API volání.
+Blokované prostředky lze následně [částečně strhnout](#castecne-strzeni-predautorizovane-platby), či strhnout [v plné výši](#strzeni-predautorizovane-platby) pomocí API volání.
 
-Pro uvolnění blokovaných prostředků je nutné provést [zrušení předautorizace platby](#zrušení-předautorizace-platby).
-   
-Podrobný popis kroků nutných k provedení předautorizované platby naleznete v [centru nápovědy](https://help.gopay.com/cs/s/hV).
+Pro uvolnění blokovaných prostředků je nutné provést [zrušení předautorizace platby](#zruseni-predautorizace-platby).
+
+<aside class='notice'>
+Podrobný popis kroků nutných k provedení předautorizované platby naleznete v <a href="https://help.gopay.com/cs/s/hV"><font color="black">centru nápovědy</font></a>.
+</aside>
+
+<b>EET</b>
+
+Pro potřeby [EET](#evidence-trzeb-eet) je požadavek založení platby rozšířený o objekt [eet](#eet).
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized.request } %>
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/payments/payment```
 
-###Hlavička požadavku
+<h5>Hlavička požadavku</h5>
+
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
 Accept|application/json|ANO
 Content-Type|application/json|ANO
-Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
-###Tělo požadavku
+<h5>Tělo požadavku</h5>
+
 Název parametru | Popis parametru | Povinný | Datový typ
 ----------------|-----------------|---------|--------
 [payer](#payer)|Objekt popisující plátce platby|NE| Objekt
 [target](#target)|Objekt popisující příjemce platby|ANO| Objekt
 amount| Částka v haléřích|ANO| long > 0
-[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO|string, může nabývat hodnot viz [currency](#currency)
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO| string
 order_number|Identifikace objednávky v rámci prodejního místa|ANO| string, pouze alfanumerické znaky (128 znaků)
 order_description|Popis objednávky|NE| string, pouze alfanumerické znaky (256 znaků)
 [items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Pole objektů
+[eet](#eet)|EET údaje (povinné pro funkci [EET](#evidence-trzeb-eet))|NE|Objekt
 preauthorization|Aktivace předautorizované platby|ANO| bool
-[additional_params](#additional_params)|Doplňkové parametry platby|NE| Pole objektů
+[additional_params](#additional-params)|Doplňkové parametry platby|NE| Pole objektů
 [callback](#callback)|Návratové URL a notifikační URL pro oznámení změny stavu platby|ANO| Objekt
 
 > Response
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized.response } %>
 
-###Response
+<h5>Response</h5>
   
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
@@ -51,6 +61,6 @@ amount|Částka v haléřích|long > 0
 [payer](#payer)| Objekt popisující plátce platby| Objekt
 [target](#target)| Objekt popisující příjemce platby| Objekt
 [preauthorization](#preauthorization)| Objekt popisující předautorizaci| Objekt
-[additional_params](#additional_params)| Volitelné parametry platby| Pole objektů
+[additional_params](#additional-params)| Volitelné parametry platby| Pole objektů
 [lang](#lang)|Jazyk platby| string, může nabývat hodnot viz [lang](#lang)
 gw_url|URL pro inicializaci platební brány| string

@@ -1,4 +1,12 @@
-##List of avaliable payment methods
+# Payment methods
+
+You can make additional operations with payment methods, e.g. get a list of allowed payment methods that you can offer to your customers in e-shop's shopping cart. 
+
+<aside class='notice'>
+You can find recommended payment method selection in our <a href="https://help.gopay.com/en/s/w7"><font color="black">help center</font></a>.
+</aside>
+
+##Allowed payment methods
 
 Retruns ```JSON``` structure of all avaliable payment methods on eshop profile.
 GoID of eshop and code of currency must be passed in URL.
@@ -7,22 +15,22 @@ GoID of eshop and code of currency must be passed in URL.
 
 <%= partial "includes/examples", :locals => { :example => data.example.payment_method_list.request } %>
 
-###REQUEST
+<h5>Request</h5>
 
 ```GET /api/eshops/eshop/{GoID}/payment-instruments/{currency}```
 
-###HEADER OF THE REQUEST
+<h5>HEADER OF THE REQUEST</h5>
 
 Parameter's name|Parameter's description|Required
 --------------|---------------------|--------
 Accept|application/json|ANO
-Authorization|Bearer [<access-token>](#oauth)|ANO
+Authorization| Bearer [```<access-token>```](#access-token)|YES
 
 > Response
 
 <%= partial "includes/examples", :locals => { :example => data.example.payment_method_list.response } %>
 
-###RESPONSE
+<h5>Response</h5>
 
 Parameter's name|Parameter's description
 ---------------|---------------

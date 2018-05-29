@@ -25,7 +25,7 @@ request:
                         "type":"ACCOUNT",
                         "goid":"8123456789"
                       },
-            "amount":"1000",
+            "amount":"139951",
             "currency":"CZK",
             "order_number":"001",
             "order_description":"objednavka01",
@@ -34,19 +34,27 @@ request:
                         "name":"obuv",
                         "product_url":"https://www.eshop.cz/boty/lodicky", 
                         "ean":1234567890123,
-                        "amount":700,
+                        "amount":119990,
                         "count":1,
                         "vat_rate":21
-                      }, 
-                      {
+                        }, 
+                    {
                         "type":"ITEM", 
                         "name":"oprava podpatku",
                         "product_url":"https://www.eshop.cz/boty/opravy", 
                         "ean":1234567890189,
-                        "amount":300,
+                        "amount":19961,
                         "count":1,
                         "vat_rate":15
-                      }],
+                        }],
+            "eet":{
+                        "celk_trzba":139951,
+                        "zakl_dan1":99160,
+                        "dan1":20830,
+                        "zakl_dan2":17358,
+                        "dan2":2603,
+                        "mena":"CZK"
+                    },
             "additional_params":[{"name":"invoicenumber",
                                   "value":"2015001003"
                                 }],
@@ -58,58 +66,67 @@ request:
         }'
     php: |
         <?php
+        use GoPay\Definition\Language;
         use GoPay\Definition\Payment\Currency;
         use GoPay\Definition\Payment\PaymentInstrument;
         use GoPay\Definition\Payment\BankSwiftCode;
-
+        use GoPay\Definition\Payment\VatRate;
+        use GoPay\Definition\Payment\PaymentItemType;
+        
         $response = $gopay->createPayment([
             'payer' => [
-                'default_payment_instrument' => PaymentInstrument::BANK_ACCOUNT,
-                'allowed_payment_instruments' => [PaymentInstrument::BANK_ACCOUNT],
-                'default_swift' => BankSwiftCode::FIO_BANKA,
-                'allowed_swifts' => [BankSwiftCode::FIO_BANKA, BankSwiftCode::MBANK],
-                'contact' => [
-                    'first_name' => 'Zbynek',
-                    'last_name' => 'Zak',
-                    'email' => 'test@test.cz',
-                    'phone_number' => '+420777456123',
-                    'city' => 'C.Budejovice',
-                    'street' => 'Plana 67',
-                    'postal_code' => '373 01',
-                    'country_code' => 'CZE',
-                ],
+                    'default_payment_instrument' => PaymentInstrument::BANK_ACCOUNT,
+                    'allowed_payment_instruments' => [PaymentInstrument::BANK_ACCOUNT],
+                    'default_swift' => BankSwiftCode::FIO_BANKA,
+                    'allowed_swifts' => [BankSwiftCode::FIO_BANKA, BankSwiftCode::MBANK],
+                    'contact' => ['first_name' => 'Zbynek',
+                            'last_name' => 'Zak',
+                            'email' => 'test@test.cz',
+                            'phone_number' => '+420777456123',
+                            'city' => 'C.Budejovice',
+                            'street' => 'Plana 67',
+                            'postal_code' => '373 01',
+                            'country_code' => 'CZE'
+                    ]
             ],
-            'amount' => 1000,
+            'amount' => 139951,
             'currency' => Currency::CZECH_CROWNS,
             'order_number' => '001',
-            'order_description' => 'objednavka01',
-            'items' => [
-                        [
-                         'type' => 'ITEM', 
-                         'name' => 'obuv',
-                         'product_url' => 'https://www.eshop.cz/boty/lodicky', 
-                         'ean' => 1234567890123,
-                         'amount' => 700,
-                         'count' => 1,
-                         'vat_rate' => VatRate::RATE_4
-                        ], 
-                        [
-                         'type' => 'ITEM', 
-                         'name' => 'oprava podpatku',
-                         'product_url' => 'https://www.eshop.cz/boty/opravy', 
-                         'ean' => 1234567890189,
-                         'amount' => 300,
-                         'count' => 1,
-                         'vat_rate' => VatRate::RATE_3
-                        ],
-            ],    
-            'additional_params' => [
-                array('name' => 'invoicenumber', 'value' => '2015001003')
+            'order_description' => 'obuv',
+            'items' => [[
+                    'type' => 'ITEM',
+                    'name' => 'obuv',
+                    'product_url' => 'https://www.eshop.cz/boty/lodicky',
+                    'ean' => 1234567890123,
+                    'amount' => 119990,
+                    'count' => 1,
+                    'vat_rate' => VatRate::RATE_4
             ],
+                    [
+                    'type' => PaymentItemType::ITEM,
+                    'name' => 'oprava podpatku',
+                    'product_url' => 'https://www.eshop.cz/boty/opravy',
+                    'ean' => 1234567890189,
+                    'amount' => 19961,
+                    'count' => 1,
+                    'vat_rate' => VatRate::RATE_3
+                    ]],
+            'eet' => [
+                    'celk_trzba' => 139951,
+                    'zakl_dan1' => 99160,
+                    'dan1' => 20830,
+                    'zakl_dan2' => 17358,
+                    'dan2' => 2603,
+                    'mena' => Currency::CZECH_CROWNS
+            ],
+            'additional_params' => [['name' => 'invoicenumber',
+                    'value' => '2015001003'
+            ]],
             'callback' => [
-                'return_url' => 'http://www.your-url.tld/return',
-                'notification_url' => 'http://www.your-url.tld/notify'
-            ]
+                    'return_url' => 'https://www.eshop.cz/return',
+                    'notification_url' => 'https://www.eshop.cz/notify'
+            ],
+            'lang' => Language::CZECH
         ]);
     python: |
         from gopay.enums import PaymentInstrument, BankSwiftCode, Currency
@@ -131,13 +148,13 @@ request:
                     'country_code': 'CZE',
                 },
             },
-            'amount': 150,
+            'amount': 139951,
             'currency': Currency.CZECH_CROWNS,
             'order_number': '001',
             'order_description': 'pojisteni01',
             'items': [
-                {'name': 'item01', 'amount': 50},
-                {'name': 'item02', 'amount': 100},
+                {'name': 'item01', 'amount': 119990},
+                {'name': 'item02', 'amount': 19961},
             ],
             'additional_params': [
                 {'name': 'invoicenumber', 'value': '2015001003'}
@@ -149,7 +166,7 @@ request:
         })
     objective_c: |
         GPPaymentRequest *payment = [[GPPaymentRequest alloc] init];
-        payment.amount = 20;
+        payment.amount = 139951;
         payment.currency = @"CZK";
         payment.order_number = @"001";
         payment.order_description = @"test";
@@ -219,7 +236,7 @@ request:
                 Currency = <Currency>,
                 Lang = "ENG",
                 OrderNumber = "789456167879",
-                Amount = 7500,
+                Amount = 139951,
                 Target = new Target()
                 {
                     GoId = <GOID>,
@@ -251,7 +268,8 @@ response:
           "id":3000006529,
           "order_number":"001",
           "state":"CREATED",
-          "amount":1000,"currency":"CZK",
+          "amount":139951,
+          "currency":"CZK",
           "payer":{
                    "default_payment_instrument":"BANK_ACCOUNT",
                    "allowed_payment_instruments":["BANK_ACCOUNT"],

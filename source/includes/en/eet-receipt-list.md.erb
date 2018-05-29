@@ -1,14 +1,15 @@
-##List of EET receipts
-
+### List of receipts
+Returns list of EET receipts. Maximum range of dates is 30 days.
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.eet_receipt_list.request } %>
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/eet-receipts```
 
-###Header of request
+<h5>Header of request</h5>
 
 Parameter's name | Parameter's description | Required
 ----------------|-----------------|--------
@@ -16,7 +17,7 @@ Accept|application/json|YES
 Content-Type|application/json|YES
 Authorization| Bearer [```<access-token>```](#access-token)|YES
 
-###Body of request
+<h5>Body of request</h5>
 
 Parameter's name|Parameter's description|Required| Data's type
 ---------------|---------------|-------|-------
@@ -28,7 +29,8 @@ id_provozovny|ID of virtual workshop|YES|long
 
 <%= partial "includes/examples", :locals => { :example => data.example.eet_receipt_list.response } %>
 
-###Response 
+<h5>Response</h5>
+
 Parameter's name|Parameter's description|Data's type
 ---------------|---------------|-------
 dic_poverujiciho| DIČ of the entrustment taxpayer| varchar
@@ -50,7 +52,7 @@ payment_id|ID of payment| long
 state|Receipt delivery status|can gain values of [state](#state)
 date_last_attempt|Date and time of last attempt to registration of transaction|yyyy-MM-dd'T'HH:mm:ss.SSSZ
 date_next_attempt|Date and time of next attempt to registration of transaction|yyyy-MM-dd'T'HH:mm:ss.SSSZ
-eet_mode|EET mode variant| can gain values of [eet_mode](#eet_mode)
+eet_mode|EET mode variant| can gain values of [eet_mode](#eet-mode)
 uuid_zprava|UUID of message| string
 date_odesl|Date and time of registration of transaction|yyyy-MM-dd'T'HH:mm:ss.SSSZ
 dic_popl|DIČ of the taxpayer|varchar

@@ -1,7 +1,7 @@
-##Refundace platby (storno)
+### Refundace EET platby
 Refundace platby umožňuje navrácení finančních prostředků za již provedenou platbu zpět zákazníkovi.
 
-Požadavek provedení refundu pro elektronickou evidenci tržet (EET) se od [standardního požadavku](#refundace-platby-(storno)) liší hodnotou parametru Content-Type v hlavičce požadavku.
+Požadavek provedení refundu pro elektronickou evidenci tržet (EET) se od [standardního požadavku](#refundace-platby) liší hodnotou parametru Content-Type v hlavičce požadavku.
 
 V tělě požadavku je nutné předat objekt [items](#items) a objekt [eet](#eet).
 
@@ -9,18 +9,19 @@ V tělě požadavku je nutné předat objekt [items](#items) a objekt [eet](#eet
 
 <%= partial "includes/examples", :locals => { :example => data.example.refund_eet.request } %>
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/payments/payment/{id}/refund```
 
-###Hlavička požadavku
+<h5>Hlavička požadavku</h5>
 
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
 Accept|application/json|ANO
 Content-Type|application/json|ANO
-Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
-###Tělo požadavku
+<h5>Tělo požadavku</h5>
 
 Název parametru|Popis parametru|Povinný| Datový typ
 ---------------|---------------|-------|-------
@@ -32,7 +33,8 @@ amount|Refundovaná částka|ANO|long > 0
 
 <%= partial "includes/examples", :locals => { :example => data.example.refund_eet.response } %>
 
-###Response 
+<h5>Response</h5>
+
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 id|ID platby|long

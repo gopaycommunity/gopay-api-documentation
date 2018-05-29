@@ -1,4 +1,9 @@
-##Generování výpisu obchodního účtu
+# Obchodní účet
+
+Na obchodní účet jsou ve formě elektronických peněz připisovány platby přijaté od zákazníků.
+REST API GoPay umožňuje např. generovat výpisy pohybů z obchodního účtu spojeného s daným e-shopem.
+
+## Výpis pohybů
 Funkcionalita umožňuje generovat výpisy z GoPay obchodního účtu.
 Metoda vrací obsah souboru použitého formátu výpisu.
 Podrobný popis jednotlivých typů souborů generovaných výpisů naleznete v [centru nápovědy](https://help.gopay.com/cs/s/er).
@@ -7,19 +12,20 @@ Podrobný popis jednotlivých typů souborů generovaných výpisů naleznete v 
 
 <%= partial "includes/examples", :locals => { :example => data.example.statement.request } %>
 
-###REQUEST
+<h5>Request</h5>
 
 ```POST /api/accounts/account-statement```
 
-###HLAVIČKA POŽADAVKU
+<h5>Hlavička požadavku</h5>
 
 Název parametru|Popis parametru|Povinný
 ---------------|---------------|-------
 Accept|application/json|ANO
 Content-Type|application/json|ANO
-Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
-###Tělo požadavku
+<h5>Tělo požadavku</h5>
+
 Název parametru | Popis parametru | Povinný | Datový typ
 ----------------|-----------------|---------|-----------
 date_from|Počáteční datum výpisu|ANO| string yyyy-mm-dd
@@ -28,6 +34,6 @@ goid|Jedinečný identifikátor e-shopu v systému platební brány|ANO| long
 [currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO| string
 [format](#format)|Určuje formát souboru generovaného výpisu|ANO|string
 
-###RESPONSE
+<h5>Response</h5>
 
-Odpověď typu application/octet-stream
+```Odpověď typu application/octet-stream```

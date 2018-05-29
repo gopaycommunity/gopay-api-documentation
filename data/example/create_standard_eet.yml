@@ -136,7 +136,8 @@ response:
           "id":3000006529,
           "order_number":"001",
           "state":"CREATED",
-          "amount":139951,"currency":"CZK",
+          "amount":139951,
+          "currency":"CZK",
           "payer":{
                    "default_payment_instrument":"BANK_ACCOUNT",
                    "allowed_payment_instruments":["BANK_ACCOUNT"],

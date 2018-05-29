@@ -1,4 +1,4 @@
-##Refundace platby (storno)
+## Refundace platby
 Refundace platby umožňuje navrácení finančních prostředků za již
 provedenou platbu zpět zákazníkovi.
 
@@ -11,18 +11,19 @@ Doplňující informace k refundaci plateb naleznete v našem [centru nápovědy
 
 <%= partial "includes/examples", :locals => { :example => data.example.refund.request } %>
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/payments/payment/{id}/refund```
 
-###Hlavička požadavku
+<h5>Hlavička požadavku</h5>
 
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
 Accept|application/json|ANO
 Content-Type|application/x-www-form-urlencoded|ANO
-Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
-###Tělo požadavku
+<h5>Tělo požadavku</h5>
 
 Název parametru|Popis parametru|Povinný| Datový typ
 ---------------|---------------|-------|-------
@@ -32,7 +33,8 @@ amount|Refundovaná částka|ANO|long > 0
 
 <%= partial "includes/examples", :locals => { :example => data.example.refund.response } %>
 
-###Response 
+<h5>Response</h5>
+
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 id|ID platby|long

@@ -1,12 +1,20 @@
-## Inline option
+# Payment gateway
+To initiate the payment gateway, it is possible to use HTML form using Javascript
+initiates the payment gateway. 
 
->Form to initiate the inline payment gateway
+<aside class='notice'>
+  For further information about all steps needed to make base payment check our  <a href="https://help.gopay.com/en/s/ey"><font color="black">help center</font></a>
+</aside> 
+
+## Inline
+
+>Form to initiate the Inline payment gateway
 
 <%= partial "includes/examples", :locals => { :example => data.example.gateInit.inline } %> 
 
-Inline payment gateway is initiated directly above the point of sale, there is no redirection. 
+[Inline](https://help.gopay.com/en/s/xb) payment gateway is initiated directly above the point of sale, there is no redirection. 
 
-URL (action) form set according to ```gw_url``` from [creation of the payment](#standard-payment). 
+URL (```action```) form set according to ```gw_url``` from [creation of the payment](#standard-payment). 
 
 
 Form's parameter|Description|Required
@@ -15,19 +23,14 @@ action|gw_url of created payment|YES
 method|HTTP method|YES
 id|Form ID|YES| Always sets on gopay-payment-button
 
-<aside class='notice'>
-  For further information about all steps needed to make base payment check our  <a href="https://help.gopay.com/en/s/ey">help center</a>
-</aside>
+## Redirect
 
-## Redirect option
-
->Form to redirect to "redirect" the payment gateway
+>Form of redirection to "Redirect" payment gateway
 
 <%= partial "includes/examples", :locals => { :example => data.example.gateInit.redirect } %>   
 
-The payment gateway can also be operated in the option with redirection. You can use the form below 
-or redirect to the URL obtained during [creation of the payment](#standard-payment) ```gw_url```.
-
+The payment gateway can also be operated in the option with [Redirect](https://help.gopay.com/en/s/xd). You can use the form below 
+or redirect to the URL (```gw_url```) obtained during [creation of the payment](#standard-payment).
 
 Form's parameter|Description|Required
 -----------------|-----|--------

@@ -1,27 +1,27 @@
-##EET účtenky platby
+### Účtenky
 Funkcionalita vrátí seznam účtenek pro danou platbu. Vrací účtenku, která se vytvořila při uhrazení platby, případně i účtenku vytvořenou při provedení refundace platby.
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.eet_payment_receipt.request } %>
 
-###Request
+<h5>Request</h5>
 
 ```GET /api/payments/payment/{id}/eet-receipts```
 
-###Hlavička požadavku
+<h5>Hlavička požadavku</h5>
 
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
 Accept|application/json|ANO
 Content-Type|application/json|ANO
-Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
 > Response
 
 <%= partial "includes/examples", :locals => { :example => data.example.eet_payment_receipt.response } %>
 
-###Response
+<h5>Response</h5>
 
 Název parametru|Popis parametru| Datový typ
 ---------------|---------------|-----------
@@ -44,7 +44,7 @@ payment_id|ID platby| long
 state|Stav doručení účtenky|nabývá hodnot [state](#state)
 date_last_attempt|Datum a čas posledního pokusu o evidenci|yyyy-MM-dd'T'HH:mm:ss.SSSZ
 date_next_attempt|Datum a čas dalšího pokusu o evidenci|yyyy-MM-dd'T'HH:mm:ss.SSSZ
-eet_mode|Varianta EET| nabývá hodnot [eet_mode](#eet_mode)
+eet_mode|Varianta EET| nabývá hodnot [eet_mode](#eet-mode)
 uuid_zprava|UUID zprávy| string
 date_odesl|Datum a čas odeslání EET účtenky|yyyy-MM-dd'T'HH:mm:ss.SSSZ
 dic_popl|DIČ poplatníka|varchar

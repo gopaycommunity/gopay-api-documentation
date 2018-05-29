@@ -1,18 +1,18 @@
-# OAuth
+# Autentizace
 
 GoPay REST API používá pro autorizaci přístupu k API principu [OAuth2.0](http://tools.ietf.org/html/rfc6749), 
 konkrétně metodu klientské autentizace viz [http://tools.ietf.org/html/rfc6749#section-4.4](http://tools.ietf.org/html/rfc6749#section-4.4)
 
 ## Přístupový token
 
-Základním prvkem veškeré komunikace přes REST API je přístupový token, který je vytvořen na základě předávaných přístupových údajů ve formě ```<Client ID>```:```<Client Secret>```.
+Základním prvkem veškeré komunikace přes REST API je přístupový token, který je vytvořen na základě předávaných přístupových údajů ve formě ```<ClientID>```:```<ClientSecret>```.
  Token je předáván jako autorizační parametr v hlavičce HTTP dotazu prostřednictvím ```Authorization: Bearer <Access-Token>```. Získaný přístupový token je předáván pro každý další požadavek na API.   
  Životnost tokenu je vždy omezena na 30 minut. Po jeho vypršení je nutné vytvořit nový přístupový token.
 <aside class="notice">
-  Pokud ještě nemáte Client ID a Client Secret, kontaktujte nás na integrace@gopay.cz.
+  Pokud ještě nemáte ClientID a ClientSecret, <a href="mailto:integrace@gopay.cz?subject=GoPay - žádost o aplikační údaje"><font color="black">kontaktujte nás</font></a>.
 </aside>
 
-###Request
+<h5>Request</h5>
 
 ```POST /api/oauth2/token```
 
@@ -20,14 +20,14 @@ Základním prvkem veškeré komunikace přes REST API je přístupový token, k
 
 <%= partial "includes/examples", :locals => { :example => data.example.oauth.request } %>
 
-###Hlavička požadavku
+<h5>Hlavička požadavku</h5>
 Název parametru|Popis parametru|Povinný
 ---------------|---------------|-------
 Accept|application/json|ANO
 Content-Type|application/x-www-form-urlencoded|ANO
-Authorization|[HTTP basic authentication](http://cs.wikipedia.org/wiki/Basic_access_authentication) pomocí níž předáváte ```<Client ID>```:```<Client Secret>```|ANO
+Authorization|[HTTP basic authentication](http://cs.wikipedia.org/wiki/Basic_access_authentication) pomocí níž předáváte ```<ClientID>```:```<ClientSecret>```|ANO
 
-###Tělo požadavku
+<h5>Tělo požadavku</h5>
 
 Název parametru|Popis parametru|Povinný
 ---------------|---------------|-------
@@ -38,7 +38,7 @@ grant_type|client_credentials|ANO
 
 <%= partial "includes/examples", :locals => { :example => data.example.oauth.response } %>
 
-###Response
+<h5>Response</h5>
 
 Název parametru|Popis parametru|Povinný
 ---------------|---------------|-------

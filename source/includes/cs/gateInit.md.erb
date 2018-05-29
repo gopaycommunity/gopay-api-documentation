@@ -1,16 +1,20 @@
-# Vyvolání platební brány
-Pro vyvolání platební brány je možné použít HTML formulář, který pomocí javascriptu
+# Platební brána
+Pro vyvolání platební brány je možné použít HTML formulář, který pomocí Javascriptu
 provede inicializaci platební brány. 
 
-## Inline varianta
+<aside class='notice'>
+  Podrobný popis všech kroků nutných k vyvolání platební brány naleznete v našem <a href="https://help.gopay.com/cs/s/i4"><font color="black">centru nápovědy</font></a>.
+</aside>
 
->Formulář pro vyvolání inline platební brány
+## Inline
+
+>Formulář pro vyvolání Inline platební brány
 
 <%= partial "includes/examples", :locals => { :example => data.example.gateInit.inline } %> 
 
-Inline platební brána je vyvolána přímo nad portálem obchodníka, nedochází tedy k přesměrování.
+[Inline](https://help.gopay.com/cs/s/iS) platební brána je vyvolána přímo nad portálem obchodníka, nedochází tedy k přesměrování.
 
-URL (action) formuláře nastavte dle ```gw_url``` z [vytvoření platby](#založení-platby).
+URL (```action```) formuláře nastavte dle ```gw_url``` z [vytvoření platby](#standardni-platba).
 
 Parametr formuláře|Popis|Povinný
 ------------------|-----|--------
@@ -18,18 +22,14 @@ action|gw_url založené platby|ANO
 method|HTTP metoda|ANO
 id|id formuláře|ANO| Vždy nastaveno na gopay-payment-button
 
-<aside class='notice'>
-  Podrobný popis všech kroků nutných k vyvolání platební brány naleznete v našem <a href="https://help.gopay.com/cs/s/i4">centru nápovědy</a>
-</aside>
-
-## Redirect varianta
+## Redirect
 
 >Formulář pro přesměrování na Redirect platební bránu
 
 <%= partial "includes/examples", :locals => { :example => data.example.gateInit.redirect } %>   
 
-Platební bránu lze provozovat i ve variantě s přesměrováním. Lze použít formulář viz níže
-nebo provést přesměrování na URL předané při [vytvoření platby](#založení-platby) ```gw_url```.
+Platební bránu lze provozovat i ve variantě [Redirect](https://help.gopay.com/cs/s/iU) (s přesměrováním). Lze použít formulář, viz příklad,
+nebo provést přesměrování na URL (```gw_url```) předané při [vytvoření platby](#standardni-platba).
 
 Parametr formuláře|Popis|Povinný
 -----------------|-----|--------

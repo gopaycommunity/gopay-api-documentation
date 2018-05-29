@@ -5,7 +5,7 @@ request:
         -X "POST" \
         -H "Accept: application/json" \
         -H "Content-Type: application/x-www-form-urlencoded" \
-        -u "<Client ID>:<Client Secret>" \
+        -u "<ClientID>:<ClientSecret>" \
         -d "grant_type=client_credentials&scope=payment-create"
     php:
         cs: |

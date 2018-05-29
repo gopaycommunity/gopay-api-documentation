@@ -17,15 +17,15 @@ Definition of the payer or the payment
 
 Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|----------
-[allowed_payment_instruments](#payment_instrument)|Array of allowed payment methods|string, can gain values of [payment_instrument](#payment_instrument)
-[default_payment_instrument](#payment_instrument)|Preferred payment method|string, can gain values of [payment_instrument](#payment_instrument)
+[allowed_payment_instruments](#payment-instrument)|Array of allowed payment methods|string, can gain values of [payment_instrument](#payment-instrument)
+[default_payment_instrument](#payment-instrument)|Preferred payment method|string, can gain values of [payment_instrument](#payment-instrument)
 [default_swift](#swift)|Preferred bank if default_payment_instrument is set to BANK_ACCOUNT, set by SWIFT code|string, can gain values of [SWIFT](#swift)
 [allowed_swifts](#swift)|Array of allowed bank codes| string, can gain values of [SWIFT](#swift)
-[bank_account](#bank_account)|Bank account´s information|Object
-[payment_card](#payment_card)|Payment card´s information|Object
+[bank_account](#bank-account)|Bank account´s information|Object
+[payment_card](#payment-card)|Payment card´s information|Object
 [contact](#contact)|Customer´s data|Object
-verify_pin|PIN for [verification payment](#verification-payment) purposes|String, 4 digits
-allowed_card_token|Token for [verification payment](#verification-payment) purposes|String
+verify_pin|PIN for [identification payment](#identification-payment) purposes|String, 4 digits
+allowed_card_token|Token for [identification payment](#identification-payment) purposes|String
 
 ##bank_account
 Bank account´s information
@@ -66,8 +66,8 @@ card_expiration|Expiration date|string, 4 characters
 card_brand|Payment card´s type|string, 50 characters
 card_issuer_country|Country code of issuing bank|string, 3 characters
 card_issuer_bank|Issuing bank|string, 80 characters
-card_token|Token for [verification payment](#verification-payment) purposes|string
-[3ds_result](#3ds_result)|3D Secure authorization's result|string
+card_token|Token for [identification payment](#identification-payment) purposes|string
+[3ds_result](#3ds-result)|3D Secure authorization's result for [identification payment](#identification-payment) purposes|string
 
 ##contact
 Customer´s information
@@ -135,7 +135,7 @@ ean|[EAN code of the product](https://cs.wikipedia.org/wiki/European_Article_Num
 count|Number of items| long > 0
 name|Product name|string, alphanumeric characters (256 characters)
 amount|Total price of items in cents| long, positive or negative integers
-[vat_rate](#vat_rate)|VAT rate, for registration of sales|can gain values see [vat_rate](#vat_rate)
+[vat_rate](#vat-rate)|VAT rate, for registration of sales|can gain values see [vat_rate](#vat-rate)
 
 ##eet
 Parameters for registration of sales
@@ -170,7 +170,7 @@ urceno_cerp_zuct| The total amount of payments designated for subsequent pumping
 cerp_zuct|The total amount of payments which are followed by pumping or settlement of the payment| long in cents
 mena|[Currency](#currency) of the parameters|string
 
-##eetCode
+##eet_code
 Information about registration of sales
 
 ```json
@@ -255,7 +255,7 @@ Setting of recurring payment
 
 Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
-[recurrence_cycle](#recurrence_cycle)|Time period of recurring|string, can gain values see [recurrence_cycle](#recurrence_cycle)
+[recurrence_cycle](#recurrence-cycle)|Time period of recurring|string, can gain values see [recurrence_cycle](#recurrence-cycle)
 recurrence_period|Recurring period of recurring payment| long
 recurrence_date_to|The period of validity recurring payment| string yyyy-mm-dd
 recurrence_state|Describes [state](#status-of-the-payment) of recurring payment| string, can gain values REQUESTED, STARTED, STOPPED 
@@ -300,7 +300,7 @@ wallet| E-wallet payments
 others| Other payment methods
 
 ##enabledPaymentInstruments  
-Name of every object coresponds to [payment method codes](#payment_instrument)
+Name of every object coresponds to [payment method codes](#payment-instrument)
 
 ```json
 {
@@ -357,7 +357,7 @@ Default values of superCASH coupons
 
 Parameter´s name|Parameter´s description|
 ---------------|---------------
-[sub_type](#sub_type)|Type of superCASH coupon
+[sub_type](#sub-type)|Type of superCASH coupon
 custom_id|Custom ID for coupon
 amounts|Array of amounts in cents
 order_number|Identification of the order within the point of sale
@@ -394,7 +394,7 @@ Specific values of superCASH coupons
 
 Parameter´s name|Parameter´s description|
 ---------------|---------------
-[sub_type](#sub_type)|Type of superCASH coupon
+[sub_type](#sub-type)|Type of superCASH coupon
 custom_id|Custom ID for coupon
 amounts|Array of amounts in cents
 order_number|Identification of the order within the point of sale

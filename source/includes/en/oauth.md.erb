@@ -1,19 +1,19 @@
-# OAuth
+# Authentication
 
 GoPay uses REST API for authorization of the access to API principal OAuth2.0,
 in specific method of client authentication, see [http://tools.ietf.org/html/rfc6749#section-4.4](http://tools.ietf.org/html/rfc6749#section-4.4)
 
 ## Access token
 
-The basic element of all communication via REST API is an access token that is created by using the access data in the form of ```<Client ID>```:```<Client Secret>```. 
+The basic element of all communication via REST API is an access token that is created by using the access data in the form of ```<ClientID>```:```<ClientSecret>```. 
 A token is set as an authorization parameter in HTTP request header through ```Authorization: Bearer <Access-Token>```. This token is set for every requirement for API. 
 Token expires after 30 minutes. After expiry of the token, it is necessary to create a new access token.
 <aside class="notice">
-If you do not have Client ID and Client Secret, please, contact us on e-mail integrace@gopay.cz.
+If you do not have ClientID and ClientSecret, please, <a href="mailto:integrace@gopay.cz?subject=GoPay - credentials request"><font color="black">contact us</font></a>.
 </aside>
 
 
-###Request
+<h5>Request</h5>
 
 ```POST /api/oauth2/token```
 
@@ -21,15 +21,14 @@ If you do not have Client ID and Client Secret, please, contact us on e-mail int
 
 <%= partial "includes/examples", :locals => { :example => data.example.oauth.request } %>
 
-
-###Header of the request
+<h5>Header of the request</h5>
 Parameter's name|Parameter's description|Required
 ---------------|---------------|-------
 Accept|application/json|YES
 Content-Type|application/x-www-form-urlencoded|YES
-Authorization|[HTTP basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) which is set as ```<Client ID>```:```<Client Secret>```|YES
+Authorization|[HTTP basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) which is set as ```<ClientID>```:```<ClientSecret>```|YES
 
-###Body of the request
+<h5>Body of the request</h5>
 
 Parameter's name|Parameter's description|Required
 ---------------|---------------|-------
@@ -41,7 +40,7 @@ grant_type|client_credentials|YES
 <%= partial "includes/examples", :locals => { :example => data.example.oauth.response } %>
 
 
-###Response
+<h5>Response</h5>
 
 Parameter's name|Parameter's description|Required
 ---------------|---------------|-------

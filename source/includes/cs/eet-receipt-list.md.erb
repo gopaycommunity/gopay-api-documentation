@@ -1,22 +1,23 @@
-##List EET účtenek
+### Seznam účtenek
 Funkcionalita vrátí seznam všech účtenek za dané období pro konkrétní provozovnu. Maximální rozsah datumů je 30 dní.
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.eet_receipt_list.request } %>
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/eet-receipts```
 
-###Hlavička požadavku
+<h5>Hlavička požadavku</h5>
 
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
 Accept|application/json|ANO
 Content-Type|application/json|ANO
-Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
-###Tělo požadavku
+<h5>Tělo požadavku</h5>
 
 Název parametru|Popis parametru|Povinný| Datový typ
 ---------------|---------------|-------|-------
@@ -28,7 +29,8 @@ id_provozovny|Označení provozovny|ANO|long
 
 <%= partial "includes/examples", :locals => { :example => data.example.eet_receipt_list.response } %>
 
-###Response 
+<h5>Response</h5>
+
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 dic_poverujiciho| DIČ pověřujícího poplatníka| varchar
@@ -50,7 +52,7 @@ payment_id|ID platby| long
 state|Stav doručení účtenky|nabývá hodnot [state](#state)
 date_last_attempt|Datum a čas posledního pokusu o evidenci|yyyy-MM-dd'T'HH:mm:ss.SSSZ
 date_next_attempt|Datum a čas dalšího pokusu o evidenci|yyyy-MM-dd'T'HH:mm:ss.SSSZ
-eet_mode|Varianta EET| nabývá hodnot [eet_mode](#eet_mode)
+eet_mode|Varianta EET| nabývá hodnot [eet_mode](#eet-mode)
 uuid_zprava|UUID zprávy| string
 date_odesl|Datum a čas odeslání EET účtenky|yyyy-MM-dd'T'HH:mm:ss.SSSZ
 dic_popl|DIČ poplatníka|varchar

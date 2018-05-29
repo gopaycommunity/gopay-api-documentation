@@ -1,10 +1,10 @@
-# Založení platby
+# Platby
 
-Před vyvoláním platební brány je nutné provést založení platby. Ve výsledku volání vám zopakujeme parametry platby spolu s parametrem ```gw_url```, který použijete pro inicializaci [inline](#inline-varianta) nebo [redirect](#redirect-varianta) platební brány.   
+Před vyvoláním platební brány je nutné provést založení platby. Ve výsledku volání vám zopakujeme parametry platby spolu s parametrem ```gw_url```, který použijete pro inicializaci [inline](#inline) nebo [redirect](#redirect) platební brány.   
   
 Příjemce platby je identifikován ```goid``` v objektu [target](#target). Získáte jej při integraci platební brány pro identifikaci konkrétního prodejního místa, např. [www.goshop.cz](http://www.goshop.cz).
 <aside class='notice'>
-Pokud ještě nemáte goid, kontaktujte nás na integrace@gopay.cz
+Pokud ještě nemáte GoID, <a href="mailto:integrace@gopay.cz?subject=GoPay - žádost o aplikační údaje"><font color="black">kontaktujte nás</font></a>.
 </aside>
   
 Platící strana je v rámci platby popsána objektem [payer](#payer), který identifikuje platícího, a případně určuje množinu povolených platebních metod, včetně metody defaultní.  
@@ -14,21 +14,32 @@ Platba je určena pro úhradu objednávky platební kartou, bankovním převodem
 
 Podrobný popis kroků nutných pro provedení standardní platby naleznete v [centru nápovědy](https://help.gopay.com/cs/s/i4).
 
+<aside class='notice'>
+Pro vytvoření platby je nutné použít přístupový token vytvořený ve scope payment-create, nebo payment-all.
+</aside>
+
+<b>EET</b>
+
+Pro potřeby [EET](#evidence-trzeb-eet) je požadavek založení platby rozšířený o objekt [eet](#eet).
+
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_standard.request } %>    
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/payments/payment```
 
-###Hlavička požadavku
+<h5>Hlavička požadavku</h5>
+
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
 Accept|application/json|ANO
 Content-Type|application/json|ANO
-Authorization| Bearer [```<access-token>```](#přístupový-token)|ANO
+Authorization| Bearer [```<access-token>```](#pristupovy-token)|ANO
 
-###Tělo požadavku
+<h5>Tělo požadavku</h5>
+
 Název parametru | Popis parametru | Povinný | Datový typ
 ----------------|-----------------|---------|-----------
 [payer](#payer)|Objekt popisující plátce platby|NE| Objekt
@@ -38,15 +49,18 @@ amount|Částka v haléřích|ANO| long > 0
 order_number|Identifikace objednávky v rámci prodejního místa|ANO| string, pouze alfanumerické znaky (128 znaků)
 order_description|Popis objednávky|NE|string, pouze alfanumerické znaky (256 znaků)
 [items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Objekt
+[eet](#eet)|EET údaje (povinné pro funkci [EET](#evidence-trzeb-eet))|NE|Objekt
 [callback](#callback)|Návratové URL a notifikační URL pro oznámení změny stavu platby|ANO| Objekt
-[additional_params](#additional_params)|Doplňkové parametry platby|NE| Pole objektů
+[additional_params](#additional-params)|Doplňkové parametry platby|NE| Pole objektů
 [lang](#lang)|Parametr definuje jazyk platby|NE| string, může nabývat hodnot viz [lang](#lang)
+
+                 
+                
+<h5>Response</h5> 
 
 >Response
 
-<%= partial "includes/examples", :locals => { :example => data.example.create_standard.response } %>                   
-                
-###Response 
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard.response } %>  
   
 Název parametru|Popis parametru| Datový typ
 ---------------|---------------|-----------
@@ -57,10 +71,6 @@ amount|Částka v haléřích| long > 0
 [currency](#currency)|Měna platby| string, může nabývat hodnot viz [currency](#currency)
 [payer](#payer)| Objekt popisující plátce platby| Objekt
 [target](#target)| Objekt popisující příjemce platby| Objekt
-[additional_params](#additional_params)|Doplňkové parametry platby| Pole objektů
+[additional_params](#additional-params)|Doplňkové parametry platby| Pole objektů
 [lang](#lang)|Parametr definuje jazyk platby| string, může nabývat hodnot viz [lang](#lang)
 gw_url|URL pro inicializaci platební brány|string
-
-<aside class='notice'>
-Pro vytvoření platby je nutné použít přístupový token vytvořený ve scope payment-create, nebo payment-all.
-</aside>

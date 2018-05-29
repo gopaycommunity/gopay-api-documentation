@@ -1,36 +1,48 @@
-##Partial charge of pre-authorized payment
+###Partial charge of pre-authorized payment
 The functionality enables partial charging of pre-authorized funds previously created by
 pre-authorized payment. The rest of blocked amount is unblocked back to customer's payment card.
 
 Additional information about pre-authorized payments you can find in [help center](https://help.gopay.com/en/s/uT).
 
+<b>EET</b>
+
+For the [registration of sales](#registration-of-sales-eet) functionality the request is expanded by object [eet](#eet).
+
+Original EET parameters of pre-authorized payment are rewrited by new ```eet``` object sent in partial charge of pre-authorized payment API call.
+
+<aside class="notice">
+For activation of partial charge of pre-authorized payments functionality, please, <a href="mailto:integrace@gopay.cz?subject=GoPay - partial charge of pre-authorized payment"><font color="black">contact</font></a> technical support GoPay. 
+</aside>
+
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.partial_preauthorized_capture.request } %>
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/payments/payment/{id}/capture```
 
-###Header of request
+<h5>Header of request</h5>
 
 Parameter's name|Parameter's description| Required
 ----------------|-----------------|--------
 Accept|application/json|YES
-Content-Type|application/x-www-form-urlencoded|YES
+Content-Type|application/json|YES
 Authorization|Bearer [```<access-token>```](#access-token)|YES
 
-###Body of request
+<h5>Body of request</h5>
 
 Parameter's name|Parameter's description| Required| Data's type
 ---------------|---------------|-------|-------
 amount|Refunded amount|YES|long > 0
 [items](#items)|Itemized in detail each item of the order|YES| Object
+[eet](#eet)|EET parameters (required for [registration of sales](#registration-of-sales-eet) functionality)|NO|Object
 
 > Response
 
 <%= partial "includes/examples", :locals => { :example => data.example.partial_preauthorized_capture.response } %>
 
-###Response
+<h5>Response</h5>
 
 Parameter's name|Parameter's description| Data's type
 ---------------|---------------|----------

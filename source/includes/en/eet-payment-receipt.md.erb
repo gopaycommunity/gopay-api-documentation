@@ -1,15 +1,16 @@
-##EET payment receipts
+### Receipts
 
+Returns payment's EET receipts.
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.eet_payment_receipt.request } %>
 
-###Request
+<h5>Request</h5>
 
 ```GET /api/payments/payment/{id}/eet-receipts```
 
-###Header of request
+<h5>Header of request</h5>
 
 Parameter's name | Parameter's description | Required
 ----------------|-----------------|--------
@@ -21,7 +22,7 @@ Authorization| Bearer [```<access-token>```](#access-token)|YES
 
 <%= partial "includes/examples", :locals => { :example => data.example.eet_payment_receipt.response } %>
 
-###Response
+<h5>Response</h5>
 
 Parameter's name|Parameter's description|Data's type
 ---------------|---------------|-----------
@@ -44,7 +45,7 @@ payment_id|ID of payment| long
 state|Receipt delivery status|can gain values of [state](#state)
 date_last_attempt|Date and time of last attempt to registration of transaction|yyyy-MM-dd'T'HH:mm:ss.SSSZ
 date_next_attempt|Date and time of next attempt to registration of transaction|yyyy-MM-dd'T'HH:mm:ss.SSSZ
-eet_mode|EET mode variant| can gain values of [eet_mode](#eet_mode)
+eet_mode|EET mode variant| can gain values of [eet_mode](#eet-mode)
 uuid_zprava|UUID of message| string
 date_odesl|Date and time of registration of transaction|yyyy-MM-dd'T'HH:mm:ss.SSSZ
 dic_popl|DIČ of the taxpayer|varchar

@@ -1,4 +1,9 @@
-##Generating of account statement
+# Merchant account
+
+GoPay merchant account is a basic tool to view and check all your payments within the GoPay payment system. 
+REST API functions allow you to e.g. generate movement statement from GoPay merchant account.
+
+## Account statement
 The funcionality generates statements from GoPay business account.
 It returns content of account statement file.
 More information about file types specification you can find in [help center](https://help.gopay.com/en/s/cj).
@@ -7,11 +12,11 @@ More information about file types specification you can find in [help center](ht
 
 <%= partial "includes/examples", :locals => { :example => data.example.statement.request } %>
 
-###REQUEST
+<h5>Request</h5>
 
 ```POST /api/accounts/account-statement```
 
-###HHeader of request
+<h5>Header of request</h5>
 
 Parameter's name|Parameter's description|Required
 ---------------|---------------|-------
@@ -19,15 +24,16 @@ Accept|application/json|YES
 Content-Type|application/json|YES
 Authorization|Bearer [```<access-token>```](#access-token)|YES
 
-###Body of request
+<h5>Body of request</h5>
+
 Parameter's name|Parameter's description|Required|Data's type
 ----------------|-----------------|---------|-----------
 date_from|Statement start date|YES| string yyyy-mm-dd
 date_to|Statement end date|YES| string yyyy-mm-dd
 goid|Unique identifier of an e-shop in the payment gateway system|YES| long
-[currency](#currency)|Specifies the currency, currency format corresponds to ISO 4217|YES| string
+[currency](#currency)|Specifies the currency, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|YES| string
 [format](#format)|Specifies format type of generated statement|YES|string
 
-###RESPONSE
+<h5>Response</h5>
 
-Response in type application/octet-stream
+```Response in type application/octet-stream```

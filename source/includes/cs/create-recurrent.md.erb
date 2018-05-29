@@ -1,37 +1,47 @@
 ## Opakovaná platba
 Opakovaná platba je funkcionalita, která umožňuje přijímat platby kartou od zákazníka na pravidelné bázi.
-Založení opakované platby je rozšířeno o parametr ```recurrence```.  Po úspěšném založení inicializační platby jsou platby prováděny automatizovaně, např. s denní periodou ```DAY``` nebo na vyžádání ```ON_DEMAND```.
+Založení opakované platby je rozšířeno o parametr ```recurrence```.  Po úspěšném založení inicializační platby jsou platby prováděny automatizovaně, např. s denní periodou ```DAY```, nebo na vyžádání ```ON_DEMAND```.
 
-Podrobný popis kroků nutných k provedení opakované platby naleznete v [centru nápovědy](https://help.gopay.com/cs/s/hT).
+V případě platby na vyžádání (```ON_DEMAND```) je následná platba provedena API voláním [opakování platby](#opakovani-na-vyzadani)
 
-V případě platby na vyžádání je následná platba provedena  API voláním [opakování platby](#opakování-platby-(na-vyžádání))
+<aside class='notice'>
+Podrobný popis kroků nutných k provedení opakované platby naleznete v <a href="https://help.gopay.com/cs/s/hT"><font color="black">centru nápovědy</font></a>.
+</aside>
+
+<b>EET</b>
+
+Pro potřeby [EET](#evidence-trzeb-eet) je požadavek založení platby rozšířený o objekt [eet](#eet).
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_recurrent.request } %>
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/payments/payment```
 
-###Hlavička požadavku
+<h5>Hlavička požadavku</h5>
+
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
 Accept|application/json|ANO
 Content-Type|application/json|ANO
-Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
-###Tělo požadavku
+<h5>Tělo požadavku</h5>
+
 Název parametru | Popis parametru | Povinný | Datový typ
 ----------------|-----------------|---------|--------
 [payer](#payer)|Objekt popisující plátce platby|NE| Objekt
 [target](#target)|Objekt popisující příjemce platby|ANO| Objekt
 amount|Částka v haléřích|ANO| long > 0
-[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO|string, může nabývat hodnot viz [currency](#currency)
+[currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO| string
 order_number|Identifikace objednávky v rámci prodejního místa|ANO|string, pouze alfanumerické znaky (128 znaků)
 order_description|Popis objednávky|NE|string, pouze alfanumerické znaky (256 znaků)
 [items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO|Pole objektů
+[eet](#eet)|EET údaje (povinné pro funkci [EET](#evidence-trzeb-eet))|NE|Objekt
 [recurrence](#recurrence)|Objekt popisující opakovanou platbu|ANO| Objekt
-[additional_params](#additional_params)|Doplňkové parametry platby|NE|Pole objektů
+[additional_params](#additional-params)|Doplňkové parametry platby|NE|Pole objektů
 [callback](#callback)|Návratové URL a notifikační URL pro oznámení změny stavu platby|ANO|Objekt
 
 
@@ -39,7 +49,8 @@ order_description|Popis objednávky|NE|string, pouze alfanumerické znaky (256 z
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_recurrent.response } %>
 
-###Response 
+<h5>Response</h5>
+
 Název parametru|Popis parametru| Datový typ
 ---------------|---------------|-------
 id|ID platby|long
@@ -49,6 +60,6 @@ amount|Částka v haléřích|long > 0
 [payer](#payer)| Objekt popisující plátce platby| Objekt
 [target](#target)| Objekt popisující příjemce platby| Objekt
 [recurrence](#recurrence)| Objekt popisující opakovanou platbu| Objekt
-[additional_params](#additional_params)| Volitelné parametry platby| Pole objektů
+[additional_params](#additional-params)| Volitelné parametry platby| Pole objektů
 [lang](#lang)|Parametr popisující jazyk platby| string, může nabývat hodnot viz [lang](#lang)
 gw_url|URL pro inicializaci platební brány| string

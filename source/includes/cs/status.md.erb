@@ -1,31 +1,38 @@
-#Další platební operace
-
 ##Stav platby
 Funkcionalita stav platby umožní prodejnímu místu zjistit jaký je aktuální stav dříve vytvořené platby. Standardně je stav platby dotazován po doručení notifikace o změně stavu platby.
    
 Podrobnější informace k dotazu na stav platby naleznete v našem [centru nápovědy](https://help.gopay.com/cs/s/h3).
 
+<b>EET</b>
+
+Pro potřeby [EET](#evidence-trzeb-eet) obsahuje odpověď požadavku dotazu na stav platby objekt [eet_code](#eet-code). Obsahem objektu [eet_code](#eet-code) jsou údaje Fiskální identifikační kód (FIK), Bezpečnostní kód poplatníka (BKP) a Podpisový kód poplatníka (PKP).
+
+
+<b>Identifikační platba</b>
+
+Pro účely [identifikační platby](#identifikacni-platba) obsahuje odpověď požadavku dotazu na stav platby parametry ```card_token``` a ```3ds_result``` vlastnosti [payment_card](#payment-card), objektu [payer](#payer).
+
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.status.request } %>
 
-###Request
+<h5>Request</h5>
 
 ```GET /api/payments/payment/{id}```
 
-###Hlavička požadavku
+<h5>Hlavička požadavku</h5>
 
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
 Accept|application/json|ANO
 Content-Type|application/x-www-form-urlencoded|ANO
-Authorization|Bearer [```<access-token>```](#přístupový-token)|ANO
+Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
 > Response.
 
 <%= partial "includes/examples", :locals => { :example => data.example.status.response } %>
 
-###Response
+<h5>Response</h5>
 
 Název parametru|Popis parametru| Datový typ
 ---------------|---------------|-----------
@@ -35,10 +42,11 @@ order_number|Identifikace objednávky v rámci prodejního místa|string, pouze 
 [sub_state](#podstav-plateb)|Podstav platby| string, nabývající hodnot viz [sub_state](#podstav-plateb)
 amount|Částka v haléřích|long > 0
 [currency](#currency)|Měna platby| string, nabývající hodnot viz [currency](#currency)
-[payment_instrument](#payment_instrument)| Kód zvolené platební metody | string, nabývající hodnot viz [payment_instrument](#payment_instrument)
+[payment_instrument](#payment-instrument)| Kód zvolené platební metody | string, nabývající hodnot viz [payment_instrument](#payment-instrument)
 [payer](#payer)|Objekt popisující plátce platby | Objekt
 [target](#target)| Objekt popisující příjemce platby | Objekt
 [recurrence](#recurrence)| Objekt popisující opakovanou platbu| Objekt
-[additional_params](#additional_params)|Volitelné parametry platby|Pole objektů
+[additional_params](#additional-params)|Volitelné parametry platby|Pole objektů
+[eet_code](#eet-code)|Kódy účtenky pro účely [EET](#evidence-trzeb-eet)|Objekt
 [lang](#lang)|Jazyk platby|string, nabývající hodnot viz [lang](#lang)
 gw_url|URL pro inicializaci platební brány|string

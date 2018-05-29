@@ -1,29 +1,32 @@
-# Advanced features of superCASH
+## superCASH
 
 Advanced features of superCASH payment method allow to create a group (a batch) of coupons for getting the payment information
 including barcodes. The customer therefore doesn´t operate with GoPay payment gateway. You can display all important information for offline
 payment via superCASH payment method for example to the customer's invoice for the order.
 
-## Creation of superCASH batch
+### Creation of batch
 
-The function will create a group (a batch) of superCASH coupons. When the creation is complete, notification URL specified in "batch_completed_notification_url" parameter is called.
+The function will create a group (a batch) of superCASH coupons. When the creation is complete, notification URL specified in ```batch_completed_notification_url``` parameter is called.
 Default parameters of coupons are specified in "[defaults](#defaults)" object specific parameters then in "[coupons](#coupons)" object.
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_supercash_batch.request } %>    
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/supercash/coupon/batch```
 
-###Header of request
+<h5>Header of request</h5>
+
 Parameter's name | Parameter's description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
 Authorization| Bearer [```<access-token>```](#access-token)|YES
 
-###Body of request
+<h5>Body of request</h5>
+
 Parameter's name| Parameter's description | Required | Data's type
 ----------------|-----------------|---------|-----------
 go_id|Unique identifier of an e-shop in the payment gateway system|YES|long
@@ -35,36 +38,39 @@ batch_completed_notification_url|URL address for sending asynchronous notificati
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_supercash_batch.response } %>                   
                 
-###Response 
+<h5>Response</h5> 
   
 Parameter's name|Parameter's description| Data's type
 ---------------|---------------|-----------
 batch_request_id|Coupons batch's ID|long
 
 
-## Creation of superCASH coupon
+### Creation of coupon
 
-The function will create a single superCASH coupon. When the creation is complete, notification URL specified in "notification_url" is called.
+The function will create a single superCASH coupon. When the creation is complete, notification URL specified in ```notification_url``` is called.
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_supercash_coupon.request } %>    
 
-###Request
+<h5>Request</h5>
+
 ```POST /api/supercash/coupon```
 
-###Header of request
+<h5>Header of request</h5>
+
 Parameter's name | Parameter's description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
 Authorization| Bearer [```<access-token>```](#access-token)|YES
 
-###Body of request
+<h5>Body of request</h5>
+
 Parameter's name| Parameter's description | Required | Data's type
 ----------------|-----------------|---------|-----------
 go_id|Unique identifier of an e-shop in the payment gateway system|YES|long
-[sub_type](#sub_type)|Type of superCASH coupon|YES|Can gain values of [sub_type](#sub_type)
+[sub_type](#sub-type)|Type of superCASH coupon|YES|Can gain values of [sub_type](#sub-type)
 custom_id|Custom ID for coupon|NO|string, alphanumeric characters only
 amount|Amount in cents|YES|long > 0
 order_number|Identification of the order within the point of sale|NO| string, alphanumeric characters only
@@ -78,7 +84,7 @@ notification_url|URL address for sending asynchronous notification in the case o
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_supercash_coupon.response } %>                   
                 
-###Response 
+<h5>Response</h5> 
   
 Parameter's name|Parameter's description| Data's type
 ---------------|---------------|-----------
@@ -93,18 +99,20 @@ payment_session_id_list|List of payments' IDs|string
 
 
 
-## Status of the batch
+### Batch creation's status
 
-The funcionality allows the to determine the status of superCASH batch.
+The funcionality returns the status of superCASH batch's creation.
 
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.supercash_batch_status.request } %>    
 
-###Request
+<h5>Request</h5>
+
 ```GET /api/batch/{id_of_batch}```
 
-###Header of request
+<h5>Header of request</h5>
+
 Parameter's name | Parameter's description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
@@ -115,7 +123,7 @@ Authorization| Bearer [```<access-token>```](#access-token)|YES
 
 <%= partial "includes/examples", :locals => { :example => data.example.supercash_batch_status.response } %>                   
                 
-###Response 
+<h5>Response</h5> 
   
 Parameter's name|Parameter's description| Data's type
 ---------------|---------------|-----------
@@ -124,18 +132,43 @@ batch_completed|Batch completed|boolean
 items_finished|Number of finished items|long
 items_count|Total count of items|long
 
-## Details of superCASH coupons for the batch
+### Details
 
-The function lists details of superCASH coupons for the batch. The ID of batch is specified in GET parameter of request URL.
+The functionality allow you to get details of superCASH coupons.
+Each function is differentiated via ```GET``` parameters of called URL, see requests below.
+
+<b>Coupons</b>
+<br>
+The function returns details of specific superCASH coupon.
+
+<b>Batch</b>
+<br>
+The function returns details of superCASH coupons of the batch. The ID of batch is specified in GET parameter of request URL.
+
+<b>Payments</b>
+<br>
+The function returns details of superCASH coupons for the payment. The ID of payment is specified in GET parameter of request URL.
+<br>More payments are separated with comma separator.
 
 > Request
 
-<%= partial "includes/examples", :locals => { :example => data.example.supercash_batch_detail.request } %>    
+<%= partial "includes/examples", :locals => { :example => data.example.supercash_coupon_detail.request } %>    
 
-###Request
-```GET /api/supercash/coupon/find?batch_request_id={id_of_batch}&go_id={goid_of_eshop}```
+<h5>Request of coupon</h5>
 
-###Header of request
+	```GET /api/supercash/coupon/{id_kuponu}```
+
+<h5>Request of batch</h5>
+
+	```GET /api/supercash/coupon/find?batch_request_id={id_batche}&go_id={goid_eshopu}```
+
+<h5>Request of payment</h5>
+
+	```GET /api/supercash/coupon/find?payment_session_id_list={id_platby}&go_id={goid_eshopu}```
+
+
+<h5>Header of request</h5>
+
 Parameter's name | Parameter's description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
@@ -146,78 +179,7 @@ Authorization| Bearer [```<access-token>```](#access-token)|YES
 
 <%= partial "includes/examples", :locals => { :example => data.example.supercash_batch_detail.response } %>                   
                 
-###Response 
-  
-Parameter's name|Parameter's description| Data's type
----------------|---------------|-----------
-supercash_coupon_id|superCASH coupon's ID|string
-custom_id|Custom ID for coupon|string
-barcode_image_url|superCASH barcode in JPG format|string
-supercash_number|superCASH number|string
-barcode|Barcode|string
-date_created|Date of coupon's creation|yyyy-MM-dd’T'HH:mm:ss.SSSZ
-date_valid_to|Date of the coupon's validity|string, yyyy-mm-dd
-payment_session_id_list|List of payments' IDs|string
-
-## Details of superCASH coupons for the payment
-
-The function lists details of superCASH coupons for the payment. The ID of payment is specified in GET parameter of request URL.
-More payments are separated with comma separator.
-
-> Request
-
-<%= partial "includes/examples", :locals => { :example => data.example.supercash_payment_detail.request } %>    
-
-###Request
-```GET /api/supercash/coupon/find?payment_session_id_list={id_of_payment}&go_id={goid_of_eshop}```
-
-###Header of request
-Parameter's name | Parameter's description | Required
-----------------|-----------------|--------
-Accept|application/json|YES
-Content-Type|application/x-www-form-urlencoded|YES
-Authorization| Bearer [```<access-token>```](#access-token)|YES
-
->Response
-
-<%= partial "includes/examples", :locals => { :example => data.example.supercash_payment_detail.response } %>                   
-                
-###Response 
-  
-Parameter's name|Parameter's description| Data's type
----------------|---------------|-----------
-supercash_coupon_id|superCASH coupon's ID|string
-custom_id|Custom ID for coupon|string
-barcode_image_url|superCASH barcode in JPG format|string
-supercash_number|superCASH number|string
-barcode|Barcode|string
-date_created|Date of coupon's creation|yyyy-MM-dd’T'HH:mm:ss.SSSZ
-date_valid_to|Date of the coupon's validity|string, yyyy-mm-dd
-payment_session_id_list|List of payments' IDs|string
-
-## Details of superCASH coupon
-
-The function lists details of superCASH coupons.
-
-> Request
-
-<%= partial "includes/examples", :locals => { :example => data.example.supercash_coupon_detail.request } %>    
-
-###Request
-```GET /api/supercash/coupon/{id_of_coupon}```
-
-###Header of request
-Parameter's name | Parameter's description | Required
-----------------|-----------------|--------
-Accept|application/json|YES
-Content-Type|application/x-www-form-urlencoded|YES
-Authorization| Bearer [```<access-token>```](#access-token)|YES
-
->Response
-
-<%= partial "includes/examples", :locals => { :example => data.example.supercash_coupon_detail.response } %>                   
-                
-###Response 
+<h5>Response</h5> 
   
 Parameter's name|Parameter's description| Data's type
 ---------------|---------------|-----------

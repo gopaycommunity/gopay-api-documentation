@@ -17,15 +17,15 @@ Definice plátce platby
 
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|----------
-[allowed_payment_instruments](#payment_instrument)|Pole povolených platebních metod|string, nabývající hodnot viz [payment_instrument](#payment_instrument)
-[default_payment_instrument](#payment_instrument)|Preferovaná platební metoda|string, nabývající hodnot viz [payment_instrument](#payment_instrument)
+[allowed_payment_instruments](#payment-instrument)|Pole povolených platebních metod|string, nabývající hodnot viz [payment_instrument](#payment-instrument)
+[default_payment_instrument](#payment-instrument)|Preferovaná platební metoda|string, nabývající hodnot viz [payment_instrument](#payment-instrument)
 [default_swift](#swift)|Preferová banka pokud je default_payment_instrument nastaveno na BANK_ACCOUNT, nastaveno pomocí SWIFT kódu banky|string, nabývající hodnot viz [SWIFT](#swift)
 [allowed_swifts](#swift)|Pole povolených kódů bank| string, nabývající hodnot viz [SWIFT](#swift)
-[bank_account](#bank_account)|Údaje o bankovním účtu plátce|Objekt
-[payment_card](#payment_card)|Údaje o použité platební kartě|Objekt
+[bank_account](#bank-account)|Údaje o bankovním účtu plátce|Objekt
+[payment_card](#payment-card)|Údaje o použité platební kartě|Objekt
 [contact](#contact)|Údaje o zákaníkovi|Objekt
-verify_pin|PIN pro účely [verifikační platby](#verifikační-platba)|String, 4 číslice
-allowed_card_token|Token pro účely [verifikační platby](#verifikační-platba)|String
+verify_pin|PIN pro účely [identifikační platby](#identifikacni-platba)|String, 4 číslice
+allowed_card_token|Token pro účely [identifikační platby](#identifikacni-platba)|String
 
 ##bank_account
 Údaje o bankovním účtu plátce
@@ -66,8 +66,8 @@ card_expiration|Datum expirace|string, 4 znaky
 card_brand|Typ platební karty|string, 50 znaků
 card_issuer_country|Kód země vydavatelské banky|string, 3 znaky
 card_issuer_bank|Vydavatelská banka|string, 80 znaků
-card_token|Token platební karty pro účely [verifikační platby](#verifikační-platba)|string
-[3ds_result](#3ds_result)|Výsledek 3D Secure autorizace|string
+card_token|Token platební karty pro účely [identifikační platby](#identifikacni-platba)|string
+[3ds_result](#3ds-result)|Výsledek 3D Secure autorizace pro účely [identifikační platby](#identifikacni-platba)|string
 
 ##contact
 Zákaznické informace
@@ -134,7 +134,7 @@ ean|[EAN kód produktu](https://cs.wikipedia.org/wiki/European_Article_Number)|v
 count|Počet položek produktu| long > 0
 name|Název produktu|string, alfanumerické znaky (256 znaků)
 amount|Součet cen položek s DPH v haléřích| long, kladná nebo záporná celá čísla
-[vat_rate](#vat_rate)|Sazba daně, pro potřeby EET|nabývá hodnot viz [vat_rate](#vat_rate)
+[vat_rate](#vat-rate)|Sazba daně, pro potřeby EET|nabývá hodnot viz [vat_rate](#vat-rate)
 
 ##eet
 Parametry pro elektronickou evidenci tržeb (EET)
@@ -251,7 +251,7 @@ Nastavení opakované platby
 
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
-[recurrence_cycle](#recurrence_cycle)|Časový úsek opakování|string, nabývá hodnot viz [recurrence_cycle](#recurrence_cycle)
+[recurrence_cycle](#recurrence-cycle)|Časový úsek opakování|string, nabývá hodnot viz [recurrence_cycle](#recurrence-cycle)
 recurrence_period|Perioda opakování opakované platby| long
 recurrence_date_to|Doba platnosti opakované platby| string yyyy-mm-dd
 recurrence_state|Popis [stavu](#stav-platby) opakované platby| string, nabývá hodnot REQUESTED, STARTED, STOPPED 
@@ -297,7 +297,7 @@ others| Ostatní platební metody
 
 
 ##enabledPaymentInstruments  
-Název každého objektu odpovídá [kódům platebních metod](#payment_instrument)
+Název každého objektu odpovídá [kódům platebních metod](#payment-instrument)
 
 ```json
 {
@@ -353,7 +353,7 @@ Výchozí hodnoty superCASH kupónů
 
 Název parametru|Popis parametru|
 ---------------|---------------
-[sub_type](#sub_type)|Typ superCASH kupónu
+[sub_type](#sub-type)|Typ superCASH kupónu
 custom_id|Vlastní ID pro kupón
 amounts|Pole částek v haléřích
 order_number|Identifikace objednávky v rámci prodejního místa
@@ -390,7 +390,7 @@ Specifické hodnoty superCASH kupónů
 
 Název parametru|Popis parametru|
 ---------------|---------------
-[sub_type](#sub_type)|Typ superCASH kupónu
+[sub_type](#sub-type)|Typ superCASH kupónu
 custom_id|Vlastní ID pro kupón
 amounts|Pole částek v haléřích
 order_number|Identifikace objednávky v rámci prodejního místa

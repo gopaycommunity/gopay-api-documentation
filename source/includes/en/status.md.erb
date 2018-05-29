@@ -1,20 +1,26 @@
-#Other payment operations
-
 ##Status of the payment
 The payment status funcionality allows the point of sale to determine, whether the payment was successfully paid or not. 
 By default, the payment status is queried after receiving of a notification about the payment status change.
 
 More information about payment state you can find in [help center](https://help.gopay.com/en/s/3).
 
+<b>EET</b>
+
+For the [registration of sales](#registration-of-sales-eet) functionality the response is expanded by object [eet_code](#eet-code).
+
+<b>Identification payment</b>
+
+For the [identification payment](#identification-payment) functionality the response is expanded by objects ```card_token``` and ```3ds_result``` of [payment_card](#payment-card) in [payer](#payer) object.
+
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.status.request } %>
 
-###Request
+<h5>Request</h5>
 
 ```GET /api/payments/payment/{id}```
 
-###Header of request
+<h5>Header of request</h5>
 
 Parameter's name|Parameter's description| Required
 ----------------|-----------------|--------
@@ -26,7 +32,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 <%= partial "includes/examples", :locals => { :example => data.example.status.response } %>
 
-###Response
+<h5>Response</h5>
 
 Parameter's name|Parameter's description|Data's type
 ---------------|---------------|-----------
@@ -36,10 +42,10 @@ order_number|Order identification within the point of sale|string, alphanumeric 
 [sub_state](#payment-substate)|Payment substate| string, can gain values see [sub_state](#payment-substate)
 amount|Amount in cents|long > 0
 [currency](#currency)|Payment currency| string, can gain values see [currency](#currency)
-[payment_instrument](#payment_instrument)| Code of chosen payment method | string, can gain values see [payment_instrument](#payment_instrument)
+[payment_instrument](#payment-instrument)| Code of chosen payment method | string, can gain values see [payment_instrument](#payment-instrument)
 [payer](#payer)|Object describing the payer of payment | Object
 [target](#target)| Object describing the target of payment (payee) | Object
 [recurrence](#recurrence)| Object describing the recurring payment| Object
-[additional_params](#additional_params)|Additional parameters of the payment|Object array
+[additional_params](#additional-params)|Additional parameters of the payment|Object array
 [lang](#lang)|Payment language|string, can gain values see [lang](#lang)
 gw_url|URL for redirecting to the payment gateway|string

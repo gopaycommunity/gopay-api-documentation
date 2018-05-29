@@ -83,7 +83,9 @@ under the License.
       return false;
     });
     window.onpopstate = function(event) {
-      var lang = window.location.search.match(/lang=([^&]*)/)[1];
+      var search = window.location.search;
+      if (typeof search == "undefined") return;
+      var lang = search.match(/lang=([^&]*)/)[1];
       if (typeof lang == "undefined") return;
       activateLanguage(lang);
     };

@@ -203,13 +203,18 @@ html, body {
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
     }
 
     // for embossed look:
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
+    }
+
+    @for $i from 2 through 6 {
+      &[data-tag="#{$i}"] .tocify-item > a {
+        padding-left: $nav-padding + $i * $nav-indent;
+      }
     }
   }
 

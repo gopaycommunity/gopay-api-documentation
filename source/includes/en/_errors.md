@@ -1,4 +1,4 @@
-# Errors
+# Error codes
 
 ##HTTP result codes
 HTTP code|Meaning of code

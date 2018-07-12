@@ -115,6 +115,8 @@ PL| Polish
 HU| Hungarian
 FR| French
 RO| Romanian
+BG| Bulgarian
+HR| Croatian
 
 ##payment_instrument
 Payment method codes

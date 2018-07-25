@@ -41,14 +41,16 @@
     cs: |
         PHP SDK
 
-        * [https://github.com/gopaycommunity/gopay-php-api](https://github.com/gopaycommunity/gopay-php-api)
+        * GitHub: [`https://github.com/gopaycommunity/gopay-php-api`](https://github.com/gopaycommunity/gopay-php-api)
         * Požadavky: `PHP >= 5.4.0`
+        * Stažení Composeru: [`https://getcomposer.org`](https://getcomposer.org)
         * Instalace: **`composer require gopay/payments-sdk-php`**
     en: |
         PHP SDK
 
-        * [https://github.com/gopaycommunity/gopay-php-api](https://github.com/gopaycommunity/gopay-php-api)
+        * GitHub: [`https://github.com/gopaycommunity/gopay-php-api`](https://github.com/gopaycommunity/gopay-php-api)
         * Requirements: `PHP >= 5.4.0`
+        * Composer download: [`https://getcomposer.org`](https://getcomposer.org)
         * Installation: **`composer require gopay/payments-sdk-php`**
 
 - language: python

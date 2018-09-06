@@ -117,6 +117,7 @@ FR| French
 RO| Romanian
 BG| Bulgarian
 HR| Croatian
+IT| Italian
 
 ##payment_instrument
 Payment method codes

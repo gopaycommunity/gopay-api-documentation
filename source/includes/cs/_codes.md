@@ -117,6 +117,7 @@ FR| Francouzština
 RO| Rumunština
 BG| Bulharština
 HR| Chorvatština
+IT| Italština
 
 ##payment_instrument
 Kódy platebních metod

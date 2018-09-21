@@ -84,10 +84,10 @@ under the License.
     });
     window.onpopstate = function(event) {
       var search = window.location.search;
-      if (typeof search == "undefined") return;
-      var lang = search.match(/lang=([^&]*)/)[1];
-      if (typeof lang == "undefined") return;
-      activateLanguage(lang);
+      if (!search) return;
+      var lang = search.match(/lang=([^&]*)/);
+      if (null === lang) return;
+      activateLanguage(lang[1]);
     };
   });
 })(window);

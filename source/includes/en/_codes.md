@@ -66,6 +66,7 @@ _102|Payment pending. We are waiting for the offline payment to be made.
 _3001|Bank payment confirmed by letter of advice.
 _3002|Bank payment confirmed by statement.
 _3003|Bank payment not authorised.
+_5001|Approved with zero amount
 _5002|Payment declined by the customer's bank authorization centre. The payment card limit had been reached.
 _5003|Payment declined by the customer's bank authorization centre. There are some issues at the card issuer side.
 _5004|Payment declined by the customer's bank authorization centre. Issues at the card issuer side.
@@ -79,6 +80,7 @@ _5011, _5036|Payment declined by the customer's bank authorization centre. There
 _5012|Payment declined by the customer's bank authorization centre. There are some technical issues in the customer's bank authorization centre.
 _5013|Payment declined by the customer's bank authorization centre. The customer entered an incorrect card number. 
 _5016|Payment declined by the customer's bank authorization centre. The customer's card had not been authorized to make the payment.
+_5020|Unknown seller
 _5021|Payment declined by the customer's bank authorization centre. The card limits had been exceeded.
 _5022|A technical issue occured in the customer's bank authorization centre. 
 _5023, _5038|Payment not made. 
@@ -94,6 +96,8 @@ _5033|SMS failed to be received.
 _5035|Card issued in a region where the card payments are not supported. 
 _5037|Cardholder cancelled the payment. 
 _5039|Payment declined by the customer's bank authorization centre. The payment card is blocked. 
+_5040|Duplicate reversal
+_5041|Duplicate transaction
 _5042|Bank transfer declined. 
 _5043|Payment cancelled by user.
 _5044|SMS has been sent. It has not been delivered yet. 

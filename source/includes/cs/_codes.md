@@ -66,6 +66,7 @@ _102|Čekáme na provedení offline platby.
 _3001|Bankovní platba potvrzena avízem.
 _3002|Bankovní platba potvrzena výpisem.
 _3003|Bankovní platba nebyla potvrzena.
+_5001|Schváleno s nulovou částkou
 _5002|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu dosažení limitů na platební kartě.
 _5003|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu problémů na straně vydavatele platební karty.
 _5004|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu problému na straně vydavatele platební karty.
@@ -79,6 +80,7 @@ _5011, _5036|Zamítnutí platby v autorizačním centru banky zákazníka z dův
 _5012|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu technických problémů v autorizačním centru banky zákazníka.
 _5013|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu chybného zadání čísla platební karty.
 _5016|Zamítnutí platby v autorizačním centru banky zákazníka, platba nebyla povolena na platební kartě zákazníka.
+_5020|Neznámá konfigurace
 _5021|Zamítnutí platby v autorizačním centru banky zákazníka z důvodu dosažení nastavených limitů na platební kartě.
 _5022|Nastal technický problém spojený s autorizačním centrem banky zákazníka.
 _5023, _5038|Platba nebyla provedena.
@@ -94,6 +96,8 @@ _5033|SMS se nepodařilo doručit.
 _5035|Platební karta je vydaná v regionu, ve kterém nejsou podporovány platby kartou.
 _5037|Držitel platební karty zrušil platbu.
 _5039|Platba byla zamítnuta v autorizačním centru banky zákazníka z důvodu zablokované platební karty.
+_5040|Duplicitni reversal transakce
+_5041|Duplicitní transakce
 _5042|Bankovní platba byla zamítnuta.
 _5043|Platba zrušena uživatelem.
 _5044|SMS byla odeslána. Zatím se ji nepodařilo doručit.

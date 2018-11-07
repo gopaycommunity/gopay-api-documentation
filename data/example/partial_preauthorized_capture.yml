@@ -7,7 +7,7 @@ request:
         -H "Content-Type:application/json" \
         -H "Authorization: Bearer Xcb5Ghha9SQ0Zykj+u9zCBf8o9BUBITiRWCmgswS/Gmb1DvpkkWSsRaUtdDLArmT/vzzJD0/IAn6f2yx6x90Bw0dB+3UiPxIndKbQRZhZ9Q=" \
         -d '{
-        "amount":500
+        "amount":500,
         "items":[{
             "type":"ITEM",
             "name":"lodicky",

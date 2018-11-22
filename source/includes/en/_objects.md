@@ -142,7 +142,7 @@ Parameters for registration of sales
 
 ```json
 {
-    "celk_trzba":139950,
+    "celk_trzba":139951,
     "zakl_dan1":99165,
     "dan1":20825,
     "zakl_dan2":17357,

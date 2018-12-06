@@ -138,6 +138,7 @@ GOPAY|GoPay účet
 PAYPAL|PayPal účet
 BITCOIN| Platba bitcoiny
 MASTERPASS| Masterpass
+GPAY| Google Pay
 
 ##SWIFT
 Kódy jednotlivých bank

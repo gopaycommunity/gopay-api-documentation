@@ -138,6 +138,7 @@ GOPAY|GoPay account
 PAYPAL|PayPal account
 BITCOIN| Bitcoin payment
 MASTERPASS| Masterpass
+GPAY| Google Pay
 
 ##SWIFT
 Bank SWIFT codes

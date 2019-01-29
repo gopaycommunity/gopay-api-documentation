@@ -2,6 +2,8 @@
 The functionality enables partial charging of pre-authorized funds previously created by
 pre-authorized payment. The rest of blocked amount is unblocked back to customer's payment card.
 
+Required amount of capture must not has to be bigger then the  original amount of pre-authorized payment.
+
 Additional information about pre-authorized payments you can find in [help center](https://help.gopay.com/en/s/uT).
 
 <b>EET</b>
@@ -9,6 +11,7 @@ Additional information about pre-authorized payments you can find in [help cente
 For the [registration of sales](#registration-of-sales-eet) functionality the request is expanded by object [eet](#eet).
 
 Original EET parameters of pre-authorized payment are rewrited by new ```eet``` object sent in partial charge of pre-authorized payment API call.
+
 
 <aside class="notice">
 For activation of partial charge of pre-authorized payments functionality, please, <a href="mailto:integrace@gopay.cz?subject=GoPay - partial charge of pre-authorized payment"><font color="black">contact</font></a> technical support GoPay. 
@@ -34,7 +37,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 Parameter's name|Parameter's description| Required| Data's type
 ---------------|---------------|-------|-------
-amount|Refunded amount|YES|long > 0
+amount|Required amount of the capture|YES|long > 0
 [items](#items)|Itemized in detail each item of the order|YES| Object
 [eet](#eet)|EET parameters (required for [registration of sales](#registration-of-sales-eet) functionality)|NO|Object
 

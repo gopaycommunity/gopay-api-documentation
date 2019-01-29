@@ -1,6 +1,8 @@
 ###Částečné stržení předautorizované platby
 Pomocí volání je možné strhnout pouze určitou část předautorizace finančních prostředků dříve vytvořené
 [předautorizované platby](#predautorizovana-platba). Zbylé prostředky jsou zákazníkovi uvolněny zpět na platební kartu.
+
+Požadovaná částka stržení nesmí být vyšší než původní částka předautorizované platby.
    
 Podrobné informace k částečnému stržení předautorizované platby naleznete v [centru nápovědy](https://help.gopay.com/cs/s/xF).
 
@@ -9,6 +11,8 @@ Podrobné informace k částečnému stržení předautorizované platby nalezne
 Pro potřeby [EET](#evidence-trzeb-eet) je požadavek založení platby rozšířený o objekt [eet](#eet).
 
 Původní EET data předautorizované platby jsou přepsána novým objektem ```eet``` předaným ve volání částečného stržení předautorizované platby.
+
+
 
 <aside class="notice">
   Pro aktivaci funkce částečného stržení předautorizovaných plateb je nutné <a href="mailto:integrace@gopay.cz?subject=GoPay - částečné stržení předautorizované platby"><font color="black">kontaktovat</font></a> technickou podporu GoPay. 
@@ -34,7 +38,7 @@ Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
 Název parametru|Popis parametru|Povinný| Datový typ
 ---------------|---------------|-------|-------
-amount|Refundovaná částka|ANO|long > 0
+amount|Požadovaná částka stržení|ANO|long > 0
 [items](#items)|Detailně rozepsané jednotlivé položky objednávky|ANO| Objekt
 [eet](#eet)|EET údaje (povinné pro funkci [EET](#evidence-trzeb-eet))|NE|Objekt
 

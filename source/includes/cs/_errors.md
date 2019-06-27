@@ -86,4 +86,5 @@ Kód|popis
 302|Platbu nelze provést
 303|Platba v chybném stavu
 304|Platba nebyla nalezena
+305|E-shop byl deaktivován
 

@@ -122,6 +122,7 @@ RO| Romanian
 BG| Bulgarian
 HR| Croatian
 IT| Italian
+ES| Spanish
 
 ##payment_instrument
 Payment method codes

@@ -87,4 +87,5 @@ Code|Description
 302|Not possible to make a payment
 303|Payment in wrong state
 304|Payment not found
+305|E-shop deactivated
 

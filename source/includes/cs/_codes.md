@@ -122,6 +122,7 @@ RO| Rumunština
 BG| Bulharština
 HR| Chorvatština
 IT| Italština
+ES| Španělština
 
 ##payment_instrument
 Kódy platebních metod

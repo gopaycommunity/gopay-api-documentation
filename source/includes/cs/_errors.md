@@ -87,4 +87,5 @@ Kód|popis
 303|Platba v chybném stavu
 304|Platba nebyla nalezena
 305|E-shop byl deaktivován
+321|Příjemce nemůže přijmout platbu
 

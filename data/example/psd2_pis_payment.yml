@@ -1,0 +1,44 @@
+
+request:
+    shell: |
+        curl -v -N "https://gw.sandbox.gopay.com/api/wallet/payments/payment" \
+        -X POST \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer AAAnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p" \   
+        -d '{
+            "payer": {
+                    "payment_instrument":"ACCOUNT",
+                    "email":"z14@test.gopay.cz"
+                    },
+            "target": {
+                    "type":"ACCOUNT",
+                    "email":"target@test.gopay.cz"
+                    },
+            "amount":"12",
+            "currency":"CZK"
+        }'
+
+
+response:
+    json: |
+        {
+            "id": 3000004423,
+            "state": "PAYMENT_METHOD_CHOSEN",
+            "sub_state": "_101",
+            "amount": 1000,
+            "currency": "CZK",
+            "payer": {
+                    "payment_instrument": "ACCOUNT",
+                    "email": "z14@test.gopay.cz",
+                    "contact": {
+                    "email": "14@test.gopay.cz"
+                    }
+                },
+            "target": {
+                    "type": "ACCOUNT",
+                    "email": "target@test.gopay.cz"
+                }
+        }
+
+

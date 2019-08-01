@@ -1,6 +1,41 @@
 #Objekty
 Popis jednotlivých objektů použitých při komunikaci s platební bránou
 
+##accounts
+Údaje účtu elektronických peněz
+
+```json
+{
+    "id": 100001660,
+    "balance": 0,
+    "currency": "EUR"
+}
+```
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|----------
+id| ID účtu
+balance| Zůstatek účtu
+[currency](#currency)| Měna, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)
+
+##address
+Adresa/sídlo
+
+```json
+{
+  "street": "Planá 67",
+  "postal_code": "37001",
+  "city": "Planá",
+  "country": "cz"
+}
+```
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|----------
+street| Ulice | string
+postal_code| Poštovní směrovací číslo | string
+city| Město | string
+country| Kód státu| string [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
+
 ##payer
 Definice plátce platby
 
@@ -110,6 +145,7 @@ Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 type|Popis příjemce platby|string, nastaveno na ACCOUNT
 goid|Jedinečný identifikátor eshopu v systému platební brány|long
+email|E-mail (pouze pro účely [PSD2 API](#psd2-api))
 
 ##items
 Jednotlivé položky objednávky

@@ -1,6 +1,41 @@
 #Objects
 Description of each object used within the communication with the payment gateway. 
 
+##accounts
+Information about electronic money account
+
+```json
+{
+    "id": 100001660,
+    "balance": 0,
+    "currency": "EUR"
+}
+```
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|----------
+id| ID of account
+balance| Balance of account
+[currency](#currency)|Currency of payment, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)
+
+##address
+Address
+
+```json
+{
+  "street": "Planá 67",
+  "postal_code": "37001",
+  "city": "Planá",
+  "country": "cz"
+}
+```
+Parameter´s name|Parameter´s description| Data´s type
+---------------|---------------|----------
+street| Street | string
+postal_code| Postal code | string
+city| City | string
+country| Country code| string [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
+
 ##payer
 Definition of the payer or the payment
 
@@ -110,6 +145,7 @@ Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 type|Description of payee|string, set to ACCOUNT
 goid|Unique identifier of an e-shop in the payment gateway system|long
+email|E-mail (for purposes of [PSD2 API](#psd2-api) only)
 
 ##items
 Each item of the order

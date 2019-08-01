@@ -1,0 +1,33 @@
+
+request:
+    shell: |
+        curl -v -N "https://gw.sandbox.gopay.com/api/wallets/8123456789/wallet-info" \
+        -X GET \
+        -H "Accept: application/json" \
+        -H "Authorization: Bearer AAAnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p" \
+
+
+response:
+    json: |
+        {
+            "id": 8006849543,
+            "email": "test@test.cz",
+            "name": "Zbynek Zak",
+            "state": "ACTIVATED",
+            "go_id": 1234567890,
+            "phone_number": "+420724668889",
+            "verification_level": "UNVERIFIED",
+            "accounts": [
+                {
+                    "id": 100001660,
+                    "balance": 0,
+                    "currency": "EUR"
+                },
+                {
+                    "id": 100001649,
+                    "balance": 0,
+                    "currency": "CZK"
+                    }
+                ]
+            } 
+

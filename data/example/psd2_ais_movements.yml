@@ -1,0 +1,43 @@
+
+request:
+    shell: |
+        curl -v -N "https://gw.sandbox.gopay.com/api/accounts/account/161959391/account-movements?date_from=2019-06-13&page=0&page_size=2" \
+        -X GET |
+        -H "Accept: application/json" \ 
+        -H "Authorization: Bearer AAAnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p" \
+
+
+response:
+    json: |
+        {
+        "account_movements": [
+                {
+                "id": 8598332611,
+                "amount": -12,
+                "currency": "CZK",
+                "variable_symbol": "8035442195-425153467",
+                "date_performed": "2019-06-13T13:26:30.892+0200",
+                "counterparty": {
+                                "type": "ACCOUNT",
+                                "value": "goshop.com"
+                                },
+                "account_id": 161959391,
+                "transaction_id": 1493186585
+                    },
+                {
+                "id": 8598332600,
+                "amount": 12,
+                "currency": "CZK",
+                "variable_symbol": "8035442195-425153467",
+                "date_performed": "2019-06-13T13:26:30.884+0200",
+                "counterparty": {
+                                "type": "PAYMENT_CARD",
+                                "value": "459654******3575"
+                                },
+                "account_id": 161959391,
+                "transaction_id": 1493186574
+                }
+            ]
+        }
+
+

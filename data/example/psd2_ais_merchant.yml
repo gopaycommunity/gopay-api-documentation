@@ -1,0 +1,40 @@
+
+request:
+    shell: |
+        curl -v -N "https://gw.sandbox.gopay.com/api/merchants/1084957522/merchant-info" \
+        -X GET \
+        -H "Accept: application/json" \ 
+        -H "Authorization: Bearer AAAnu3YnAHRk298EsmyttFQMcbCcvmwTKK5hrJx2aGG8ZnFyBJhAvFWNmbWVSD7p" \
+
+
+response:
+    json: |
+        {
+            "evidence_number": "1084957522",
+            "current_state": "BUSINESS_FINISHED",
+            "subject_type": "LEGAL_ENTITY",
+            "name": "GOPAY s.r.o.",
+            "first_name": null,
+            "registration_number": "26046768",
+            "vat_registration_number": "CZ26046768",
+            "address":{
+                        "street": "Planá 67",
+                        "postal_code": "37001",
+                        "city": "Planá",
+                        "country": "cz"
+                        },
+            "accounts": [
+                    {
+                        "id": 100201670,
+                        "balance": 0,
+                        "currency": "EUR"
+                    },
+                    {
+                        "id": 100201669,
+                        "balance": 0,
+                        "currency": "CZK"
+                    }
+                ]
+        }
+ 
+

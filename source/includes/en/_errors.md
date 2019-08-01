@@ -88,4 +88,4 @@ Code|Description
 303|Payment in wrong state
 304|Payment not found
 305|E-shop deactivated
-
+321|Payee can not accept payment

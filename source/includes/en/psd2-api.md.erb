@@ -1,0 +1,234 @@
+# PSD2 API
+
+The GoPay PSD2 services offer to the Third Party Providers (`TPP`) read the information (account state, account statement) about the owner of electronic money account or create payments with the owner's consent to another electronic money account.
+
+GoPay PSD2 API offers 2 basic types of services:
+
+- [AIS](#ais) (Account information service)
+- [PIS](#pis) (Payment initiation service)
+
+## AIS
+
+<b>AIS (Account information service)</b>
+
+### Personal account's information
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.psd2_ais_wallet.request } %>
+
+<h5>Request</h5>
+
+```GET /api/wallets/{GoID}/wallet-info```
+
+<aside class='notice'>
+For creating of the access-token, you need to use a token created in scope of account-info.
+</aside>
+
+<h5>Header of request</h5>
+
+Parameter's name | Parameter's description | Required
+---------------|---------------|-------
+Accept|application/json|YES
+Authorization|Bearer [```<access-token>```](#access-token)|YES
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.psd2_ais_wallet.response } %>
+
+<h5>Response</h5>
+
+Parameter's name | Parameter's description
+---------------|---------------|
+id| ID of account
+email| E-mail contact
+name| Name of owner
+[state](#account-state)| Account state
+go_id| Unique identifier
+phone_number| Phone number
+verification_level| Verification level
+[accounts](#accounts)| Connected electronic money accounts
+
+
+### Merchant account's information
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.psd2_ais_merchant.request } %>
+
+<h5>Request</h5>
+
+```GET /api/merchants/{EVC}/merchant-info```
+
+<aside class='notice'>
+For creating of the access-token, you need to use a token created in scope of account-info.
+</aside>
+
+<h5>Header of request</h5>
+
+Parameter's name | Parameter's description | Required
+---------------|---------------|-------
+Accept|application/json|YES
+Authorization|Bearer [```<access-token>```](#access-token)|YES
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.psd2_ais_merchant.response } %>
+
+<h5>Response</h5>
+
+Název parametru|Popis parametru|
+---------------|---------------|
+evidence_number| Evidence number (EVC)
+[current_state](#)| Account state
+[subject_type](#)| Subject type
+name| Name
+first_name| First name
+registration_number| Registration number
+vat_registration_number| VAT registration number
+[address](#address)| Address
+[accounts](#accounts)| Connected electronic money accounts
+
+### Account movements
+
+You can use GET parameters:
+
+- `date_from` - date from
+- `date_to` - date to
+- `page` - page (numbered from 0)
+- `page_size` - page size (max. 25)
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.psd2_ais_movements.request } %>
+
+<h5>Request</h5>
+
+```GET /api/accounts/account/{EVC}/account-movements```
+
+<aside class='notice'>
+For creating of the access-token, you need to use a token created in scope of account-info.
+</aside>
+
+<h5>Header of request</h5>
+
+Parameter's name | Parameter's description | Required
+---------------|---------------|-------
+Accept|application/json|YES
+Authorization|Bearer [```<access-token>```](#access-token)|YES
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.psd2_ais_movements.response } %>
+
+<h5>Response</h5>
+
+Parameter's name | Parameter's description
+---------------|---------------|
+id| ID of movement
+amount|Amount in cents|YES| long > 0
+[currency](#currency)|Currency of payment, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|YES| string
+variable_symbol| Variable symbol / Order ID
+date_performed| Date (yyyy-mm-dd HH:MM:SS:MS)
+[counterparty](#counterparty)| Counterparty
+account_id| ID of electronic money account
+transaction_id| ID of the transaction
+
+## PIS
+
+<b>PIS (Payment initiation service)</b>
+
+
+### Create of payment
+
+The function will create a payment with the owner's consent to another electronic money account. The payment need to be [confirmed](#confirmation-of-the-payment) then.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.psd2_pis_payment.request } %>
+
+<h5>Request</h5>
+
+```POST /api/wallet/payments/payment```
+
+<aside class='notice'>
+For creating of the access-token, you need to use a token created in scope of payment-all.
+</aside>
+
+<h5>Header of request</h5>
+
+Parameter's name | Parameter's description | Required
+---------------|---------------|-------
+Accept|application/json|YES
+Content-Type|application/json|YES
+Authorization|Bearer [```<access-token>```](#access-token)|YES
+
+<h5>Body of request</h5>
+
+Parameter's name | Parameter's description | Required
+---------------|---------------|-------
+payer| Object describing the payer of the payment|YES
+[target](#target)|Object describing the target of the payment (payee)|YES
+amount|Amount in cents|YES
+[currency](#currency)|Currency of payment, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|YES
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.psd2_pis_payment.response } %>
+
+<h5>Response</h5>
+
+Parameter's name | Parameter's description |
+---------------|---------------|
+id|ID of payment
+[state](#payment-status)|Payment status
+[sub_state](#payment-substate)|Payment substate
+amount|Amount in cents 
+[currency](#currency)|Currency of payment, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)
+[payer](#payer)| Object describing the payer of the payment
+[target](#target)| Object describing the target of the payment (payee)
+
+
+### Confirmation of the payment
+
+The confirmation of the [created payment](#create-of-payment) can results in following states: 
+
+- *PAID* - payment fully finished (low value transactions),
+- *PAYMENT_METHOD_CHOOSEN* - with `gw_url` setted. GoPay requires interaction by owner of electronic money account, e.g. finish the authorisation of payment by account's owner,
+- *error* - e.g. unable to receive the payment or not enough money on the payer's side, etc.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.psd2_pis_payment_confirmation.request } %>
+
+<h5>Request</h5>
+
+```POST /api/wallet/payments/payment/{ID}/confirm```
+
+<aside class='notice'>
+For creating of the access-token, you need to use a token created in scope of payment-all.
+</aside>
+
+<h5>Header of request</h5>
+
+Parameter's name | Parameter's description | Required
+---------------|---------------|-------
+Accept|application/json|YES
+Content-Type|application/x-www-form-urlencoded|YES
+Authorization|Bearer [```<access-token>```](#access-token)|YES
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.psd2_pis_payment_confirmation.response } %>
+
+<h5>Response</h5>
+
+Parameter's name | Parameter's description |
+---------------|---------------|
+id|ID of payment
+[state](#payment-status)|Payment status
+[sub_state](#payment-substate)|Payment substate
+amount|Amount in cents 
+[currency](#currency)|Currency of payment, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)
+[payer](#payer)| Object describing the payer of the payment
+[target](#target)| Object describing the target of the payment (payee)

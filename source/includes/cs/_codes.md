@@ -135,7 +135,6 @@ BANK_ACCOUNT| Bankovní převody
 PRSMS|Premium SMS
 MPAYMENT|Mplatba
 PAYSAFECARD|paysafecard
-SUPERCASH|superCASH
 GOPAY|GoPay účet
 PAYPAL|PayPal účet
 BITCOIN| Platba bitcoiny
@@ -160,7 +159,6 @@ TATRSKBX| Tatra Banka
 UNCRSKBX| Unicredit Bank SK
 GIBASKBX| Slovenská spořitelna
 POBNSKBA| Poštová Banka
-CEKOSKBX| ČSOB SK
 OTHERS| Speciální swift bez předvýběru konkrétní banky
 BREXPLPW|mBank
 CITIPLPX|Citi Handlowy
@@ -247,28 +245,6 @@ Hodnota parametru|Popis
 ------------------|-----
 AUTO|varianta A
 EET|varianta B
-
-
-##stav superCASH batche
-Stav dokončení skupiny (batche) superCASH kupónů
-
-Hodnota parametru|Popis
-------------------|-----
-CREATED|Vytvořen
-RUNNING|Probíhá
-QUEUED|Čeká ve frontě
-SCHEDULED|Naplánován
-COMPLETED|Dokončen
-STOPPED|Zastaven
-FAILED|Selhal
-
-##sub_type
-Typ superCASH kupónu
-
-Hodnota parametru|Popis
-------------------|-----
-POSTPAID|Kupón určený pro jednorázové uhrazení. Při vytvoření vzniká platba.
-PREPAID|Kupón určený pro vícenásobné uhrazení. Platba vzniká po první úhradě zákazníkem.
 
 ##3ds_result
 Výsledek 3D Secure autorizace

@@ -135,7 +135,6 @@ BANK_ACCOUNT| Bank transfer
 PRSMS|Premium SMS
 MPAYMENT|mPayment
 PAYSAFECARD|Paysafecard
-SUPERCASH|superCASH
 GOPAY|GoPay account
 PAYPAL|PayPal account
 BITCOIN| Bitcoin payment
@@ -160,7 +159,6 @@ TATRSKBX| Tatra Banka
 UNCRSKBX| Unicredit Bank SK
 GIBASKBX| Slovenská spořitelna
 POBNSKBA| Poštová Banka
-CEKOSKBX| ČSOB SK
 OTHERS| Special SWIFT without specific bank selected
 BREXPLPW|mBank
 CITIPLPX|Citi Handlowy
@@ -244,26 +242,6 @@ Parameter's value|Description
 ------------------|-----
 AUTO|variant A
 EET|variant B
-
-##state of superCASH batch
-
-Parameter's value|Description
-------------------|-----
-CREATED|Created
-RUNNING|Running
-QUEUED|Queued
-SCHEDULED|Scheduled
-COMPLETED|Completed
-STOPPED|Stopped
-FAILED|Failed
-
-##sub_type
-Type of superCASH coupon
-
-Parameter's value|Description
-------------------|-----
-POSTPAID|Coupon suitable for one-time payment. Payment is generated with coupon creation.
-PREPAID|Coupon suitable for multiple payments. Payment is generated after each customer's payment.
 
 ##3ds_result
 3D Secure authorization’s result

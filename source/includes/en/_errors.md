@@ -71,6 +71,7 @@ Code|Description
 ###Payment
 Code|Description
 ---|-----
+360|Sum of amounts of the [items](#items) does not equal to amount of payment
 350|Charged of payment failed 
 351|Charged of payment was successful
 352|Cancel of pre-authorization failed 

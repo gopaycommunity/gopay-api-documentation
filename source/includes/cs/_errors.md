@@ -70,6 +70,7 @@ Kód|popis
 ###Payment
 Kód|popis
 ---|-----
+360|Součet částek položek objednávky [items](#items) nesouhlasí s částkou platby
 350|Stržení platby selhalo
 351|Stržení platby provedeno
 352|Zrušení přeautorizace selhalo

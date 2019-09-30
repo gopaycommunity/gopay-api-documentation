@@ -32,7 +32,6 @@ Parameter's value|Description
 -------|-----
 payment-create|Allows only the establishment of payments
 payment-all|Allows all operations
-account-info| Allows to get account information (for [PSD2 AIS](#ais) purposes only)
 
 ##result
 Result of operation

@@ -145,7 +145,6 @@ Parameter´s name|Parameter´s description| Data´s type
 ---------------|---------------|-------
 type|Description of payee|string, set to ACCOUNT
 goid|Unique identifier of an e-shop in the payment gateway system|long
-email|E-mail (for purposes of [PSD2 API](#psd2-api) only)
 
 ##items
 Each item of the order

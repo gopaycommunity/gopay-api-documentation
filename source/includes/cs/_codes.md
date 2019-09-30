@@ -32,7 +32,6 @@ Hodnota|Popis
 -------|-----
 payment-create|Umožňuje pouze zakládání plateb
 payment-all|Umožňuje provádět veškeré operace
-account-info| Umožňuje získat informace o účtu (pro účely [PSD2 AIS](#ais))
 
 ##result
 Výsledek operace

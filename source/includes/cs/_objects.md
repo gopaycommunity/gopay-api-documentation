@@ -145,7 +145,6 @@ Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 type|Popis příjemce platby|string, nastaveno na ACCOUNT
 goid|Jedinečný identifikátor eshopu v systému platební brány|long
-email|E-mail (pouze pro účely [PSD2 API](#psd2-api))
 
 ##items
 Jednotlivé položky objednávky

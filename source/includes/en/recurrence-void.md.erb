@@ -5,6 +5,10 @@ The user has the same opportunity as logged into GoPay​ account.
    
 More information about recurring payments you can find in [help center](https://help.gopay.com/en/s/uR).
 
+<aside class='notice'>
+We recommend at least 3 tries to make recurrence on parent payment. If they are all unsuccessful you can cancel the recurrence.
+</aside>
+
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.recurrence_void.request } %>

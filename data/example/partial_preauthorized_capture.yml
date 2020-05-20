@@ -18,7 +18,15 @@ request:
             "vat_rate":21
             }]
         }'
-
+    python: |
+        response = api.capture_authorization_partial(3000006542,
+            {
+                "amount": 1500,
+                'items': [
+                    {'name': 'item01', 'amount': 500},
+                    {'name': 'item02', 'amount': 1000},
+                ],
+            })
 response:
     json: |
         { 

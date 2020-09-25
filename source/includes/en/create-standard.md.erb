@@ -1,19 +1,25 @@
 #Payments
 
-Before initiating the payment gateway, it is necessary to establish the payment. In effect of calling, we repeat parameters of the payment including the parameter ```gw_url```, which you can initiate to [inline](#inline) or [redirect](#redirect) payment gateway.  
-   
+Before initiating the payment gateway, it is necessary to establish the payment. In effect of calling, we repeat parameters of the payment including the parameter ```gw_url```, which you can initiate to [inline](#inline) or [redirect](#redirect) payment gateway.
+
 The payee of the payment is identified by ```goid``` in object [target](#target). You can get it, when you integrate the payment gateway for identification of specific point of sale, e.g. [www.goshop.cz](http://www.goshop.cz).
 <aside class='notice'>
 If you do not have GoID, please, make your <a href="https://help.gopay.com/en/s/bu" target="_blank"><font color="black">registration</font></a>.
-</aside> 
+</aside>
 
-Within the payment, the paying party is described by an object [payer](#payer), which identifies the payer and determines the set of permitted payment method, including the default method. 
+Within the payment, the paying party is described by an object [payer](#payer), which identifies the payer and determines the set of permitted payment method, including the default method.
 
 ## Standard payment
 
-The payment is determined for paying of an order by credit card, bank transfer, GoPay account and other payment methods.  
+The payment is determined for paying of an order by credit card, bank transfer, GoPay account and other payment methods.
 
 For further information about all steps needed to make base payment check our [help center](https://help.gopay.com/en/s/uY).
+
+<aside class="warning">
+<b>Update 09/2020:</b></br>
+Due to update to 3DSv2, it is now mandatory to pass the <a href="#payer"><font color="black">payer</font></a> object in every payment creation request. The object has to contain true information about the payer.
+Every parameter of the <a href="#payer"><font color="black">payer</font></a> object is required.
+</aside>
 
 <aside class='notice'>
 For creating of the payment, you need to use a token created in scope of payment-create, or payment-all.
@@ -43,7 +49,7 @@ Authorization| Bearer [```<access-token>```](#access-token)|YES
 
 Parameter's name| Parameter's description | Required | Data's type
 ----------------|-----------------|---------|-----------
-[payer](#payer)|The object describing the payer of the payment|NO| Object
+[payer](#payer)|The object describing the payer of the payment|YES| Object
 [target](#target)|The object describing the target of the payment (payee)|YES| Object
 amount|Amount in cents|YES| long > 0
 [currency](#currency)|Currency of payment, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|YES| string
@@ -57,10 +63,10 @@ order_description|Description of goods / service|NO|string, alphanumeric charact
 
 >Response
 
-<%= partial "includes/examples", :locals => { :example => data.example.create_standard.response } %>                   
-                
-<h5>Response</h5> 
-  
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard.response } %>
+
+<h5>Response</h5>
+
 Parameter's name|Parameter's description| Data's type
 ---------------|---------------|-----------
 id|Payment ID|long

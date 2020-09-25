@@ -1,8 +1,15 @@
 ## Opakovaná platba
+
 Opakovaná platba je funkcionalita, která umožňuje přijímat platby kartou od zákazníka na pravidelné bázi.
 Založení opakované platby je rozšířeno o parametr ```recurrence```.  Po úspěšném založení inicializační platby jsou platby prováděny automatizovaně, např. s denní periodou ```DAY```, nebo na vyžádání ```ON_DEMAND```.
 
 V případě platby na vyžádání (```ON_DEMAND```) je následná platba provedena API voláním [opakování platby](#opakovani-na-vyzadani)
+
+<aside class='warning'>
+<b>Aktualizace k 09/2020:</b></br>
+V souvislosti s přechodem na 3DSv2 je nyní nově nutné předávat objekt <a href="#payer"><font color="black">payer</font></a> u založení každé platby a v něm skutečné údaje o klientovi.
+Povinné jsou všechny parametry objektu <a href="#payer"><font color="black">payer</font></a>.
+</aside>
 
 <aside class='notice'>
 Podrobný popis kroků nutných k provedení opakované platby naleznete v <a href="https://help.gopay.com/cs/s/hT"><font color="black">centru nápovědy</font></a>.
@@ -32,7 +39,7 @@ Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
 Název parametru | Popis parametru | Povinný | Datový typ
 ----------------|-----------------|---------|--------
-[payer](#payer)|Objekt popisující plátce platby|NE| Objekt
+[payer](#payer)|Objekt popisující plátce platby|ANO| Objekt
 [target](#target)|Objekt popisující příjemce platby|ANO| Objekt
 amount|Částka v haléřích|ANO| long > 0
 [currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO| string

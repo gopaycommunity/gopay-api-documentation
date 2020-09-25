@@ -6,6 +6,12 @@ Blocked funds can be [partially received](#partial-charge-of-pre-authorized-paym
 
 For unblok funds it is necessary to make API [calling of cancellation](#cancellation-of-pre-authorization) of the pre-authorized payment.
 
+<aside class="warning">
+<b>Update 09/2020:</b></br>
+Due to update to 3DSv2, it is now mandatory to pass the <a href="#payer"><font color="black">payer</font></a> object in every payment creation request. The object has to contain true information about the payer.
+Every parameter of the <a href="#payer"><font color="black">payer</font></a> object is required.
+</aside>
+
 <aside class='notice'>
 Additional information about pre-authorized payments you can find in our <a href="https://help.gopay.com/en/s/uT"><font color="black">help center</font></a>.
 </aside>
@@ -34,7 +40,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 Parameter's name | Parameter's description | Required | Data's type
 ----------------|-----------------|---------|--------
-[payer](#payer)|Object describing the payer of the payment|NO| Object
+[payer](#payer)|Object describing the payer of the payment|YES| Object
 [target](#target)|Object describing the target of the payment (payee)|YES| Object
 amount| Amount in cents|YES| long > 0
 [currency](#currency)|Currency of payment, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|YES| string
@@ -51,7 +57,7 @@ preauthorization|Activation of pre-authorized payment|YES| bool
 <%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized.response } %>
 
 <h5>Response</h5>
-  
+
 Parameter's name|Parameter's description|Data's type
 ---------------|---------------|-------
 id|Payment ID|long

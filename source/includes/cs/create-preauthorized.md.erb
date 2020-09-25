@@ -6,6 +6,12 @@ Blokované prostředky lze následně [částečně strhnout](#castecne-strzeni-
 
 Pro uvolnění blokovaných prostředků je nutné provést [zrušení předautorizace platby](#zruseni-predautorizace-platby).
 
+<aside class='warning'>
+<b>Aktualizace k 09/2020:</b></br>
+V souvislosti s přechodem na 3DSv2 je nyní nově nutné předávat objekt <a href="#payer"><font color="black">payer</font></a> u založení každé platby a v něm skutečné údaje o klientovi.
+Povinné jsou všechny parametry objektu <a href="#payer"><font color="black">payer</font></a>.
+</aside>
+
 <aside class='notice'>
 Podrobný popis kroků nutných k provedení předautorizované platby naleznete v <a href="https://help.gopay.com/cs/s/hV"><font color="black">centru nápovědy</font></a>.
 </aside>
@@ -34,7 +40,7 @@ Authorization|Bearer [```<access-token>```](#pristupovy-token)|ANO
 
 Název parametru | Popis parametru | Povinný | Datový typ
 ----------------|-----------------|---------|--------
-[payer](#payer)|Objekt popisující plátce platby|NE| Objekt
+[payer](#payer)|Objekt popisující plátce platby|ANO| Objekt
 [target](#target)|Objekt popisující příjemce platby|ANO| Objekt
 amount| Částka v haléřích|ANO| long > 0
 [currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO| string
@@ -51,7 +57,7 @@ preauthorization|Aktivace předautorizované platby|ANO| bool
 <%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized.response } %>
 
 <h5>Response</h5>
-  
+
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 id|ID platby|long

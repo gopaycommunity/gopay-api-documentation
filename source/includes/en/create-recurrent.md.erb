@@ -1,8 +1,14 @@
 ## Recurring payment
-Recurring payment is a functionality that allows accepting the payment via credit cards from the customer on a regular basis. 
+Recurring payment is a functionality that allows accepting the payment via credit cards from the customer on a regular basis.
 Establishment of the payment is extended to recurrence parameter ```recurrence```. After the successful establishment of the initiation payment, payments are made automatically, e.g. on daily basis ```DAY```  or on demand  ```ON_DEMAND```.
 
 In the case of the ```ON_DEMAND``` payment, the subsequent payment is made by API calling [recurrence payment](#recurring-on-demand).
+
+<aside class="warning">
+<b>Update 09/2020:</b></br>
+Due to update to 3DSv2, it is now mandatory to pass the <a href="#payer"><font color="black">payer</font></a> object in every payment creation request. The object has to contain true information about the payer.
+Every parameter of the <a href="#payer"><font color="black">payer</font></a> object is required.
+</aside>
 
 <aside class='notice'>
 Another information about recurring payments you can find in our <a href="https://help.gopay.com/en/s/uR"><font color="black">help center</font></a>.
@@ -32,7 +38,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 Parameter's name | Parameter's description | Required| Data's type
 ----------------|-----------------|---------|--------
-[payer](#payer)|Object describing the payer of the payment|NO| Object
+[payer](#payer)|Object describing the payer of the payment|YES| Object
 [target](#target)|Object describing the target of the payment (payee) 	|YES| Object
 amount|Amount in cents|YES| long > 0
 [currency](#currency)|Currency of payment, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|YES| string

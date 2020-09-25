@@ -15,6 +15,12 @@ The e-shop can require fill in the value of verification PIN to authorize the pa
 
 When the payment is created as pre-authorized you need to make [charge](#charge-of-pre-authorization) or [cancellation](#cancellation-of-pre-authorization) of pre-authorized payment.
 
+<aside class="warning">
+<b>Update 09/2020:</b></br>
+Due to update to 3DSv2, it is now mandatory to pass the <a href="#payer"><font color="black">payer</font></a> object in every payment creation request. The object has to contain true information about the payer.
+Every parameter of the <a href="#payer"><font color="black">payer</font></a> object is required.
+</aside>
+
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized_verify.request } %>
@@ -51,7 +57,7 @@ preauthorization|Activation of pre-authorized payment|YES| bool
 <%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized_verify.response } %>
 
 <h5>Response</h5>
-  
+
 Parameter's name|Parameter's description|Data's type
 ---------------|---------------|-------
 id|Payment ID|long
@@ -67,12 +73,18 @@ gw_url|URL to initiate the payment gateway| string
 
 ### The next payment
 
-The request for creation of the next identification payment is based on standard payment creation with use of 
+The request for creation of the next identification payment is based on standard payment creation with use of
 ```allowed_card_token``` parameter that is returned in [payment status](#status-of-the-payment) response of the first identification payment.
+
+<aside class="warning">
+<b>Update 09/2020:</b></br>
+Due to update to 3DSv2, it is now mandatory to pass the <a href="#payer"><font color="black">payer</font></a> object in every payment creation request. The object has to contain true information about the payer.
+Every parameter of the <a href="#payer"><font color="black">payer</font></a> object is required.
+</aside>
 
 > Request
 
-<%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.request } %>    
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.request } %>
 
 <h5>Request</h5>
 
@@ -103,10 +115,10 @@ order_description|Description of goods / service|NO|string, alphanumeric charact
 
 >Response
 
-<%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.response } %>                   
-                
-<h5>Response</h5> 
-  
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.response } %>
+
+<h5>Response</h5>
+
 Parameter's name|Parameter's description| Data's type
 ---------------|---------------|-----------
 id|Payment ID|long

@@ -18,6 +18,12 @@ je možné po zákazníkovi požadovat dodatečné ověření pro provedení ov�
 V případě předautorizované platby lze blokované prostředky následně strhnout pomocí API voláním [stržení předautorizované platby](#strzeni-predautorizovane-platby),
 případně odblokovat pomocí [zrušení předautorizace platby](#zruseni-predautorizace-platby).
 
+<aside class='warning'>
+<b>Aktualizace k 09/2020:</b></br>
+V souvislosti s přechodem na 3DSv2 je nyní nově nutné předávat objekt <a href="#payer"><font color="black">payer</font></a> u založení každé platby a v něm skutečné údaje o klientovi.
+Povinné jsou všechny parametry objektu <a href="#payer"><font color="black">payer</font></a>.
+</aside>
+
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized_verify.request } %>
@@ -54,7 +60,7 @@ preauthorization|Aktivace předautorizované platby|ANO| bool
 <%= partial "includes/examples", :locals => { :example => data.example.create_preauthorized_verify.response } %>
 
 <h5>Response</h5>
-  
+
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|-------
 id|ID platby|long
@@ -76,9 +82,15 @@ který je rozšířený o parametr ```allowed_card_token```.
 
 Parametr ```allowed_card_token``` je získán z odpovědi [dotazu na stav platby](#stav-platby) prvotní identifikační platby.
 
+<aside class='warning'>
+<b>Aktualizace k 09/2020:</b></br>
+V souvislosti s přechodem na 3DSv2 je nyní nově nutné předávat objekt <a href="#payer"><font color="black">payer</font></a> u založení každé platby a v něm skutečné údaje o klientovi.
+Povinné jsou všechny parametry objektu <a href="#payer"><font color="black">payer</font></a>.
+</aside>
+
 > Request
 
-<%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.request } %>    
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.request } %>
 
 <h5>Request</h5>
 
@@ -109,10 +121,10 @@ order_description|Popis objednávky|NE|string, pouze alfanumerické znaky (256 z
 
 >Response
 
-<%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.response } %>                   
-                
-<h5>Response</h5> 
-  
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard_verify.response } %>
+
+<h5>Response</h5>
+
 Název parametru|Popis parametru| Datový typ
 ---------------|---------------|-----------
 id|ID platby|long

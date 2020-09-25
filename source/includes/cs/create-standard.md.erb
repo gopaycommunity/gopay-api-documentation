@@ -1,18 +1,25 @@
 # Platby
 
-Před vyvoláním platební brány je nutné provést založení platby. Ve výsledku volání vám zopakujeme parametry platby spolu s parametrem ```gw_url```, který použijete pro inicializaci [inline](#inline) nebo [redirect](#redirect) platební brány.   
-  
+Před vyvoláním platební brány je nutné provést založení platby. Ve výsledku volání vám zopakujeme parametry platby spolu s parametrem ```gw_url```, který použijete pro inicializaci [inline](#inline) nebo [redirect](#redirect) platební brány.
+
 Příjemce platby je identifikován ```goid``` v objektu [target](#target). Získáte jej při integraci platební brány pro identifikaci konkrétního prodejního místa, např. [www.goshop.cz](http://www.goshop.cz).
 <aside class='notice'>
 Pokud ještě nemáte GoID, postupujte dle <a href="https://help.gopay.com/cs/s/dy" target="_blank"><font color="black">návodu</font></a>.
 </aside>
-  
-Platící strana je v rámci platby popsána objektem [payer](#payer), který identifikuje platícího, a případně určuje množinu povolených platebních metod, včetně metody defaultní.  
+
+Platící strana je v rámci platby popsána objektem [payer](#payer), který identifikuje platícího, a případně určuje množinu povolených platebních metod, včetně metody defaultní.
 
 ## Standardní platba
-Platba je určena pro úhradu objednávky platební kartou, bankovním převodem, GoPay účtem a jinými platebními metodami.  
+
+Platba je určena pro úhradu objednávky platební kartou, bankovním převodem, GoPay účtem a jinými platebními metodami.
 
 Podrobný popis kroků nutných pro provedení standardní platby naleznete v [centru nápovědy](https://help.gopay.com/cs/s/i4).
+
+<aside class='warning'>
+<b>Aktualizace k 09/2020:</b></br>
+V souvislosti s přechodem na 3DSv2 je nyní nově nutné předávat objekt <a href="#payer"><font color="black">payer</font></a> u založení každé platby a v něm skutečné údaje o klientovi.
+Povinné jsou všechny parametry objektu <a href="#payer"><font color="black">payer</font></a>.
+</aside>
 
 <aside class='notice'>
 Pro vytvoření platby je nutné použít přístupový token vytvořený ve scope payment-create, nebo payment-all.
@@ -24,7 +31,7 @@ Pro potřeby [EET](#evidence-trzeb-eet) je požadavek založení platby rozší�
 
 > Request
 
-<%= partial "includes/examples", :locals => { :example => data.example.create_standard.request } %>    
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard.request } %>
 
 <h5>Request</h5>
 
@@ -42,7 +49,7 @@ Authorization| Bearer [```<access-token>```](#pristupovy-token)|ANO
 
 Název parametru | Popis parametru | Povinný | Datový typ
 ----------------|-----------------|---------|-----------
-[payer](#payer)|Objekt popisující plátce platby|NE| Objekt
+[payer](#payer)|Objekt popisující plátce platby|ANO| Objekt
 [target](#target)|Objekt popisující příjemce platby|ANO| Objekt
 amount|Částka v haléřích|ANO| long > 0
 [currency](#currency)|Určuje měnu platby, formát měny odpovídá [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|ANO| string
@@ -54,14 +61,14 @@ order_description|Popis objednávky|NE|string, pouze alfanumerické znaky (256 z
 [additional_params](#additional-params)|Doplňkové parametry platby|NE| Pole objektů
 [lang](#lang)|Parametr definuje jazyk platby|NE| string, může nabývat hodnot viz [lang](#lang)
 
-                 
-                
-<h5>Response</h5> 
+
+
+<h5>Response</h5>
 
 >Response
 
-<%= partial "includes/examples", :locals => { :example => data.example.create_standard.response } %>  
-  
+<%= partial "includes/examples", :locals => { :example => data.example.create_standard.response } %>
+
 Název parametru|Popis parametru| Datový typ
 ---------------|---------------|-----------
 id|ID platby|long

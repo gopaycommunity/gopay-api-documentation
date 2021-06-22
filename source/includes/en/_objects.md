@@ -12,7 +12,7 @@ Information about electronic money account
 }
 ```
 
-Název parametru|Popis parametru|Datový typ
+Parameter name|Description| Type
 ---------------|---------------|----------
 id| ID of account
 balance| Balance of account
@@ -29,7 +29,7 @@ Address
   "country": "cz"
 }
 ```
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|----------
 street| Street | string
 postal_code| Postal code | string
@@ -50,20 +50,20 @@ Definition of the payer or the payment
  }
 ```
 
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|----------
 [allowed_payment_instruments](#payment-instrument)|Array of allowed payment methods|string, can gain values of [payment_instrument](#payment-instrument)
 [default_payment_instrument](#payment-instrument)|Preferred payment method|string, can gain values of [payment_instrument](#payment-instrument)
 [default_swift](#swift)|Preferred bank if default_payment_instrument is set to BANK_ACCOUNT, set by SWIFT code|string, can gain values of [SWIFT](#swift)
 [allowed_swifts](#swift)|Array of allowed bank codes| string, can gain values of [SWIFT](#swift)
-[bank_account](#bank-account)|Bank account´s information|Object
-[payment_card](#payment-card)|Payment card´s information|Object
-[contact](#contact)|Customer´s data|Object
+[bank_account](#bank-account)|Bank account information|Object
+[payment_card](#payment-card)|Payment card information|Object
+[contact](#contact)|Customer data|Object
 verify_pin|PIN for [identification payment](#identification-payment) purposes|String, 4 digits
 allowed_card_token|Token for [identification payment](#identification-payment) purposes|String
 
 ##bank_account
-Bank account´s information
+Bank account information
 
 ```json
 {
@@ -73,7 +73,7 @@ Bank account´s information
     "account_name":"JAN NOVAK"
 }
 ```
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|-------
 iban|International bank account number|string, 50 characters
 bic|Business identification code (SWIFT)|string, 11 characters
@@ -83,7 +83,7 @@ bank_code|Bank account code|string, 8 characters
 account_name|Bank account name|string, 70 characters
 
 ##payment_card
-Payment card´s information
+Payment card information
 
 ```json
 {
@@ -94,18 +94,18 @@ Payment card´s information
     "card_issuer_bank":"AIR BANK, A.S."
 }
 ```
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|-------
-card_number|Masked payment card´s number|string, 16 characters
+card_number|Masked payment card number|string, 16 characters
 card_expiration|Expiration date|string, 4 characters
-card_brand|Payment card´s type|string, 50 characters
+card_brand|Payment card type|string, 50 characters
 card_issuer_country|Country code of issuing bank|string, 3 characters
 card_issuer_bank|Issuing bank|string, 80 characters
 card_token|Token for [identification payment](#identification-payment) purposes|string
-[3ds_result](#3ds-result)|3D Secure authorization's result for [identification payment](#identification-payment) purposes|string
+[3ds_result](#3ds-result)|3D Secure authorization result for [identification payment](#identification-payment) purposes|string
 
 ##contact
-Customer´s information
+Customer information
 
 ```json
 {
@@ -120,7 +120,7 @@ Customer´s information
 }
 ```
 
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|-------
 first_name|First name|string, 256 characters
 last_name|Last name|string, 256 characters
@@ -141,7 +141,7 @@ Identification of the payee
 }
 ```
 
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|-------
 type|Description of payee|string, set to ACCOUNT
 goid|Unique identifier of an e-shop in the payment gateway system|long
@@ -162,7 +162,7 @@ Each item of the order
 }
 ```
 
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|-------
 [type](#type)|Type of row, for registration of sales|enum, can gain values see [type](#type)
 product_url|URL address of the product|string, (512 characters)
@@ -186,7 +186,7 @@ Parameters for registration of sales
 }
 ```
 
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|-------
 dic_poverujiciho| DIČ of the entrustment taxpayer| varchar
 celk_trzba| The total amount| long in cents
@@ -215,7 +215,7 @@ Information about registration of sales
     "pkp":"Ca8sTbURReQjjgcy/znXBKjPOnZof3AxWK5WySpyMrUXF0o7cz1BP6a....."
 }
 ```
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|-------
 fik| Fiscal identification code (FIK)| varchar, 39 characters
 bkp| Security code of the taxpayer (BKP)| varchar, 44 characters
@@ -231,7 +231,7 @@ Definition of callback and notification URL
 }
 ```
 
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|-------
 return_url|URL address for return to e-shop (with protocol)|string, (512 characters)
 notification_url|URL address for sending  asynchronous notification in the case of changes in the payment status (with protocol)|string, (512 characters)
@@ -247,7 +247,7 @@ Additional parameters of the payment
 ]
 ```
 
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|-------
 name|Parameter name|string
 value|Value of optional parameter|string
@@ -288,7 +288,7 @@ Setting of recurring payment
 ```
 
 
-Parameter´s name|Parameter´s description| Data´s type
+Parameter name|Description| Type
 ---------------|---------------|-------
 [recurrence_cycle](#recurrence-cycle)|Time period of recurring|string, can gain values see [recurrence_cycle](#recurrence-cycle)
 recurrence_period|Recurring period of recurring payment| long
@@ -298,7 +298,7 @@ recurrence_state|Describes [state](#status-of-the-payment) of recurring payment|
 ##groups
 Name of each group corresponds to group [codes](#group-codes)
 
-Parameter´s name|Parameter´s description|
+Parameter name|Description|
 ---------------|---------------
 label| Object that contains localised name of payment group
 cs | Czech name of payment group
@@ -327,7 +327,7 @@ Names of payment method groups
     }
 ```
 
-Group name|Group description|
+Group name|Description|
 -------------|--------------
 card-payment| Payment card payments
 bank-transfer| Bank transfers
@@ -350,7 +350,7 @@ Name of every object coresponds to [payment method codes](#payment-instrument)
 }
 ```
 
-Parameter´s name|Parameter´s description|
+Parameter name|Description|
 ---------------|--------------
 label| Object that contains localised name of payment method
 image| Logo of payment method avaliable in two formats - normal, large 
@@ -373,7 +373,7 @@ Name of each object coresponds to [SWIFT](#swift) codes
 }
 ```
 
-Parameter´s name|Parameter´s description|
+Parameter name|Description| 
 ---------------|---------------
 label| Object that contains localised name of bank 
 image| Logo of bank avaliable in two formats - normal, large 

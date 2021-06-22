@@ -2,7 +2,7 @@
 ##recurrence_cycle
 Cycle of recurring payment
 
-Parameter's value|Description
+Parameter value|Description
 -----------------|-----
 DAY| Daily recurring
 WEEK| Weekly recurring
@@ -13,7 +13,7 @@ ON_DEMAND| Set only at manual recurring payments
 ##currency
 Payment currency
 
-Parameter's value|Description
+Parameter value|Description
 ------------------|-----
 CZK | Czech crowns
 EUR | Euros
@@ -28,7 +28,7 @@ BGN | Bulgarian Lev
 ##scope
 Parameter describing group of acquired rights
 
-Parameter's value|Description
+Parameter value|Description
 -------|-----
 payment-create|Allows only the establishment of payments
 payment-all|Allows all operations
@@ -36,7 +36,7 @@ payment-all|Allows all operations
 ##result
 Result of operation
 
-Parameter's name|Parameter's description
+Parameter's name|Description
 ---------------|---------------
 ACCEPTED| Request accepted 
 FINISHED| Operation finished
@@ -45,7 +45,7 @@ FAILED| Operation failed
 ##Payment status 
 Payment can gain values following status
 
-Parameter's name|Parameter's description
+Parameter's name|Description
 -----------|---------------------
 CREATED|Payment created 
 PAYMENT_METHOD_CHOSEN|Payment method chosen
@@ -59,7 +59,7 @@ PARTIALLY_REFUNDED|Payment partially refunded
 ##Payment substate
 Payment can gain values following substates
 
-Parameter's value|Parameter's description
+Parameter value|Description
 -----------|---------------------
 _101|Payment pending. We are waiting for the online payment to be made.
 _102|Payment pending. We are waiting for the offline payment to be made.
@@ -196,7 +196,7 @@ PBPBPLPW|POLSKI BANK PRZEDSIEBIORCZOSCI SPOLKA AKCYJNA
 ##format
 Format of account [statement](https://help.gopay.com/en/s/cj) file
 
-Parameter's value|Description
+Parameter value|Description
 ------------------|-----
 CSV_A | CSV type A
 CSV_B | CSV type B
@@ -211,7 +211,7 @@ ABO_B | ABO (.gpc)
 ##type
 Type of row for the registration of sales
 
-Parameter's value|Description
+Parameter value|Description
 ------------------|-----
 ITEM|Item
 DELIVERY|Delivery
@@ -220,7 +220,7 @@ DISCOUNT|Discount
 ##vat_rate
 VAT rate for the registration of sales
 
-Parameter's value|Description
+Parameter value|Description
 ------------------|-----
 0| VAT rate 0 %
 10| VAT rate 10 %
@@ -229,7 +229,7 @@ Parameter's value|Description
 
 ##state
 
-Parameter's value|Description
+Parameter value|Description
 ------------------|-----
 CREATED|Created
 DELIVERY_FAILED|Delivery failed
@@ -237,7 +237,7 @@ DELIVERED|Delivered
 
 ##eet_mode
 
-Parameter's value|Description
+Parameter value|Description
 ------------------|-----
 AUTO|variant A
 EET|variant B
@@ -245,7 +245,7 @@ EET|variant B
 ##3ds_result
 3D Secure authorization’s result
 
-Parameter's value|Description
+Parameter value|Description
 ------------------|-----
 "N/"|The payment card doesn't support 3D Secure authorization
 "Y/Y"|Full 3D Secure authorization

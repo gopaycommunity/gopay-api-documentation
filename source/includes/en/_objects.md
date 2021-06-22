@@ -154,7 +154,7 @@ Order items
 {
     "type":"ITEM", 
     "name":"obuv",
-    "product_url":"https://www.eshop.cz/boty/lodicky", 
+    "product_url":"https://www.example.com/boty/lodicky", 
     "ean":1234567890123,
     "amount":119990,
     "count":1,
@@ -226,8 +226,8 @@ Definition of return and notification URLs
 
 ```json
 {
-   "return_url":"http://www.eshop.cz/return",
-   "notification_url":"http://www.eshop.cz/notify"
+   "return_url":"http://www.example.com/return",
+   "notification_url":"http://www.example.com/notify"
 }
 ```
 

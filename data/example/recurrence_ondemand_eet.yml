@@ -14,7 +14,7 @@ request:
             {
                 "type":"ITEM", 
                 "name":"lodicky",
-                "product_url":"https://www.eshop.cz/boty//lodicky", 
+                "product_url":"https://www.example.com/boty//lodicky", 
                 "ean":1234567890123,
                 "amount":119990,
                 "count":1,
@@ -48,7 +48,7 @@ request:
                     [
                             'type' => PaymentItemType::ITEM,
                             'name' => 'lodicky',
-                            'product_url' => 'https://www.eshop.cz/boty//lodicky',
+                            'product_url' => 'https://www.example.com/boty//lodicky',
                             'ean' => 1234567890123,
                             'amount' => 119990,
                             'count' => 1,

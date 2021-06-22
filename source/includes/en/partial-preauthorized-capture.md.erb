@@ -1,6 +1,6 @@
 ###Partial charge of pre-authorized payment
 The functionality enables partial charging of pre-authorized funds previously created by
-pre-authorized payment. The rest of blocked amount is unblocked back to customer's payment card.
+pre-authorized payment. The rest of blocked amount is unblocked back to customer payment card.
 
 Required amount of capture must not has to be bigger then the  original amount of pre-authorized payment.
 
@@ -27,7 +27,7 @@ For activation of partial charge of pre-authorized payments functionality, pleas
 
 <h5>Header of request</h5>
 
-Parameter's name|Parameter's description| Required
+Parameter name|Description| Required
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
@@ -35,7 +35,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 <h5>Body of request</h5>
 
-Parameter's name|Parameter's description| Required| Data's type
+Parameter name|Description| Required| Type
 ---------------|---------------|-------|-------
 amount|Required amount of the capture in cents|YES|long > 0
 [items](#items)|Itemized in detail each item of the order|YES| Object
@@ -47,7 +47,7 @@ amount|Required amount of the capture in cents|YES|long > 0
 
 <h5>Response</h5>
 
-Parameter's name|Parameter's description| Data's type
+Parameter name|Description| Type
 ---------------|---------------|----------
 id|payment ID|long
 [result](#result)|Object describing the request status| Object

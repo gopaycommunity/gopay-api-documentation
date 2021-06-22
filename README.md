@@ -1,5 +1,5 @@
 
-# GoPay's REST API Documentations
+# GoPay REST API Documentations
 
 * [Czech version](https://doc.gopay.cz/)
 * [English version](https://doc.gopay.com/)

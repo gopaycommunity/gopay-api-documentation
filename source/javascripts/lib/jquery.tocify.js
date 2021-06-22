@@ -58,7 +58,7 @@
             ignoreSelector: null,
 
             // **selectors**: Accepts an Array of Strings: Any jQuery selectors
-            // The element's used to generate the table of contents.  The order is very important since it will determine the table of content's nesting structure
+            // The elements used to generate the table of contents.  The order is very important since it will determine the table of contents nesting structure
             selectors: "h1, h2, h3",
 
             // **showAndHide**: Accepts a boolean: true or false
@@ -135,7 +135,7 @@
             hashGenerator: "compact",
 
             // **highlightDefault**: Accepts a boolean: true or false
-            // Set's the first TOC item as active if no other TOC item is active.
+            // Sets the first TOC item as active if no other TOC item is active.
             highlightDefault: true
 
         },
@@ -323,7 +323,7 @@
 
             if(hash.length) {
 
-                // Removes highlighting from all of the list item's
+                // Removes highlighting from all of the list items
                 self.element.find("." + self.focusClass).removeClass(self.focusClass);
 
                 // Highlights the current list item that was clicked
@@ -341,7 +341,7 @@
 
             else {
 
-                // Removes highlighting from all of the list item's
+                // Removes highlighting from all of the list items
                 self.element.find("." + self.focusClass).removeClass(self.focusClass);
 
                 if(!hash.length && pageload && self.options.highlightDefault) {
@@ -389,7 +389,7 @@
             hashValue = this._generateHashValue(arr, self, index);
 
             // ADDED BY ROBERT
-            // actually add the hash value to the element's id
+            // actually add the hash value to the element id
             // self.attr("id", "link-" + hashValue);
 
             // Appends a list item HTML element to the last unordered list HTML element found within the HTML element calling the plugin
@@ -532,7 +532,7 @@
             // Stores the plugin context in the self variable
             var self = this,
 
-                // Instantiates a new variable that will be used to hold a specific element's context
+                // Instantiates a new variable that will be used to hold a specific element context
                 $self,
 
                 // Instantiates a new variable that will be used to determine the smoothScroll animation time duration
@@ -547,7 +547,7 @@
 
                 }
 
-                // Removes highlighting from all of the list item's
+                // Removes highlighting from all of the list items
                 self.element.find("." + self.focusClass).removeClass(self.focusClass);
 
                 // Highlights the current list item that was clicked
@@ -566,7 +566,7 @@
 
             });
 
-            // Mouseenter and Mouseleave event handlers for the list item's within the HTML element calling the plugin
+            // Mouseenter and Mouseleave event handlers for the list items within the HTML element calling the plugin
             this.element.find("li").on({
 
                 // Mouseenter event handler
@@ -641,7 +641,7 @@
                                 // Gets the top offset of the page header that is linked to the last toc item
                                 lastElemOffset = lastElem.offset().top;
 
-                                // Appends a div to the bottom of the page and sets the height to the difference of the window scrollTop and the last element's position top offset
+                                // Appends a div to the bottom of the page and sets the height to the difference of the window scrollTop and the last elements position top offset
                                 $(self.options.context).append($("<div />", {
 
                                     "class": extendPageClassName,
@@ -700,13 +700,13 @@
                         // If the `highlightOnScroll` option is true and a next element is found
                         if(self.options.highlightOnScroll && elem.length && !elem.hasClass(self.focusClass)) {
 
-                            // Removes highlighting from all of the list item's
+                            // Removes highlighting from all of the list items
                             self.element.find("." + self.focusClass).removeClass(self.focusClass);
 
                             // Highlights the corresponding list item
                             elem.addClass(self.focusClass);
 
-                            // Scroll to highlighted element's header
+                            // Scroll to highlighted elements header
                             var tocifyWrapper = self.tocifyWrapper;
                             var scrollToElem = $(elem).closest('.tocify-header');
 
@@ -923,7 +923,7 @@
 
             var self = this;
 
-            // If the current element's parent is a header element or the next element is a nested subheader element
+            // If the current element parent is a header element or the next element is a nested subheader element
             if(elem.parent().is(headerClass) || elem.next().is(subheaderClass)) {
 
                 // Shows the next sub-header element
@@ -931,7 +931,7 @@
 
             }
 
-            // If the current element's parent is a subheader element
+            // If the current element parent is a subheader element
             else if(elem.parent().is(subheaderClass)) {
 
                 // Shows the parent sub-header element
@@ -1021,7 +1021,7 @@
                 // Animates the html and body element scrolltops
                 $("html, body").animate({
 
-                    // Sets the jQuery `scrollTop` to the top offset of the HTML div tag that matches the current list item's `data-unique` tag
+                    // Sets the jQuery `scrollTop` to the top offset of the HTML div tag that matches the current list items `data-unique` tag
                     "scrollTop": $('div[data-unique="' + elem.attr("data-unique") + '"]').next().offset().top - ($.isFunction(scrollTo) ? scrollTo.call() : scrollTo) + "px"
 
                 }, {

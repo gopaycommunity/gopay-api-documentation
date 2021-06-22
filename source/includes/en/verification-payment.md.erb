@@ -10,8 +10,8 @@ For activation of identification payment functionality please <a href="mailto:in
 ### The initiating payment
 
 The request for creation of verification payment is based on standard payment creation. The verification payment uses added parameter ```verify_pin```.
-When the payment is made the value of ```verify_pin``` parameter is available at transaction list in customer's internet banking connected with the payment card.
-The e-shop can require fill in the value of verification PIN to authorize the payment card's owner.
+When the payment is made the value of ```verify_pin``` parameter is available at transaction list in customer internet banking connected with the payment card.
+The e-shop can require fill in the value of verification PIN to authorize the payment card owner.
 
 When the payment is created as pre-authorized you need to make [charge](#charge-of-pre-authorization) or [cancellation](#cancellation-of-pre-authorization) of pre-authorized payment.
 
@@ -31,7 +31,7 @@ Every parameter of the <a href="#payer"><font color="black">payer</font></a> obj
 
 <h5>Header of request</h5>
 
-Parameter's name | Parameter's description | Required
+Parameter name | Description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
@@ -39,7 +39,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 <h5>Body of request</h5>
 
-Parameter's name | Parameter's description | Required | Data's type
+Parameter name | Description | Required | Type
 ----------------|-----------------|---------|--------
 [payer](#payer)|Object describing the payer of the payment|YES| Object
 [target](#target)|Object describing the target of the payment (payee)|YES| Object
@@ -58,7 +58,7 @@ preauthorization|Activation of pre-authorized payment|YES| bool
 
 <h5>Response</h5>
 
-Parameter's name|Parameter's description|Data's type
+Parameter name|Description|Type
 ---------------|---------------|-------
 id|Payment ID|long
 order_number| order ID| string, alphanumeric characters only (128 characters)
@@ -92,7 +92,7 @@ Every parameter of the <a href="#payer"><font color="black">payer</font></a> obj
 
 <h5>Header of request</h5>
 
-Parameter's name | Parameter's description | Required
+Parameter name | Description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
@@ -100,7 +100,7 @@ Authorization| Bearer [```<access-token>```](#access-token)|YES
 
 <h5>Body of request</h5>
 
-Parameter's name| Parameter's description | Required | Data's type
+Parameter name| Description | Required | Type
 ----------------|-----------------|---------|-----------
 [payer](#payer)|The object describing the payer of the payment|YES| Object
 [target](#target)|The object describing the target of the payment (payee)|YES| Object
@@ -119,7 +119,7 @@ order_description|Description of goods / service|NO|string, alphanumeric charact
 
 <h5>Response</h5>
 
-Parameter's name|Parameter's description| Data's type
+Parameter name|Description| Type
 ---------------|---------------|-----------
 id|Payment ID|long
 order_number|Identification of order| string, alphanumeric characters only (128 characters)

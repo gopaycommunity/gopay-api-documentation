@@ -1,8 +1,8 @@
 #Objects
-Description of each object used within the communication with the payment gateway. 
+Objects used for communication with the payment gateway. 
 
 ##accounts
-Information about electronic money account
+Information about digital currency account
 
 ```json
 {
@@ -14,8 +14,8 @@ Information about electronic money account
 
 Parameter name|Description| Type
 ---------------|---------------|----------
-id| ID of account
-balance| Balance of account
+id| ID of the account
+balance| Account balance
 [currency](#currency)|Currency of payment, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)
 
 ##address
@@ -37,7 +37,7 @@ city| City | string
 country| Country code| string [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
 
 ##payer
-Definition of the payer or the payment
+Payer information
 
 ```json
  {
@@ -63,7 +63,7 @@ verify_pin|PIN for [identification payment](#identification-payment) purposes|St
 allowed_card_token|Token for [identification payment](#identification-payment) purposes|String
 
 ##bank_account
-Bank account information
+Payer bank account information
 
 ```json
 {
@@ -80,7 +80,7 @@ bic|Business identification code (SWIFT)|string, 11 characters
 prefix|Bank account prefix|string, 64 characters
 account_number|Bank account number|string, 128 characters
 bank_code|Bank account code|string, 8 characters
-account_name|Bank account name|string, 70 characters
+account_name|Account holder name|string, 70 characters
 
 ##payment_card
 Payment card information
@@ -147,7 +147,7 @@ type|Description of payee|string, set to ACCOUNT
 goid|Unique identifier of an e-shop in the payment gateway system|long
 
 ##items
-Each item of the order
+Order items
 
 
 ```json
@@ -222,7 +222,7 @@ bkp| Security code of the taxpayer (BKP)| varchar, 44 characters
 pkp| Signature code of the taxpayer (PKP)| varchar, 344 characters
 
 ##callback
-Definition of callback and notification URL
+Definition of return and notification URLs
 
 ```json
 {
@@ -290,7 +290,7 @@ Setting of recurring payment
 
 Parameter name|Description| Type
 ---------------|---------------|-------
-[recurrence_cycle](#recurrence-cycle)|Time period of recurring|string, can gain values see [recurrence_cycle](#recurrence-cycle)
+[recurrence_cycle](#recurrence-cycle)|Time period of recurring|string, can gain values of [recurrence_cycle](#recurrence-cycle)
 recurrence_period|Recurring period of recurring payment| long
 recurrence_date_to|The period of validity recurring payment| string yyyy-mm-dd
 recurrence_state|Describes [state](#status-of-the-payment) of recurring payment| string, can gain values REQUESTED, STARTED, STOPPED 
@@ -335,7 +335,7 @@ wallet| E-wallet payments
 others| Other payment methods
 
 ##enabledPaymentInstruments  
-Name of every object coresponds to [payment method codes](#payment-instrument)
+Name of each object coresponds to [payment method codes](#payment-instrument)
 
 ```json
 {

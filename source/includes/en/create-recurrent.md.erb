@@ -28,7 +28,7 @@ For the [registration of sales](#registration-of-sales-eet) functionality the re
 
 <h5>Header of request</h5>
 
-Parameter's name | Parameter's description | Required
+Parameter name | Description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
@@ -36,7 +36,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 <h5>Body of request</h5>
 
-Parameter's name | Parameter's description | Required| Data's type
+Parameter name | Description | Required| Type
 ----------------|-----------------|---------|--------
 [payer](#payer)|Object describing the payer of the payment|YES| Object
 [target](#target)|Object describing the target of the payment (payee) 	|YES| Object
@@ -57,7 +57,7 @@ order_description| 	Description of goods/service|NO|string, alphanumeric charact
 
 <h5>Response</h5>
 
-Parameter's name|Parameter's description| Data's type
+Parameter name|Description| Type
 ---------------|---------------|-------
 id|Payment ID|long
 order_number|Order ID| string, alphanumeric characters only (128 characters)

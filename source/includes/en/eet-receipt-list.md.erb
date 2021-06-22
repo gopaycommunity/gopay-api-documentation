@@ -11,7 +11,7 @@ Returns list of EET receipts. Maximum range of dates is 30 days.
 
 <h5>Header of request</h5>
 
-Parameter's name | Parameter's description | Required
+Parameter name | Description | Required
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
@@ -19,7 +19,7 @@ Authorization| Bearer [```<access-token>```](#access-token)|YES
 
 <h5>Body of request</h5>
 
-Parameter's name|Parameter's description|Required| Data's type
+Parameter name|Description|Required| Type
 ---------------|---------------|-------|-------
 date_from|The start date|YES|string yyyy-mm-dd
 date_to|The end date|YES|string yyyy-mm-dd
@@ -31,7 +31,7 @@ id_provozovny|ID of virtual workshop|YES|long
 
 <h5>Response</h5>
 
-Parameter's name|Parameter's description|Data's type
+Parameter name|Description|Type
 ---------------|---------------|-------
 dic_poverujiciho| DIČ of the entrustment taxpayer| varchar
 celk_trzba| The total amount| long in cents

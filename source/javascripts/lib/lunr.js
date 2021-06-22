@@ -904,7 +904,7 @@ lunr.Index.prototype.ref = function (refName) {
  * Add a document to the index.
  *
  * This is the way new documents enter the index, this function will run the
- * fields from the document through the index's pipeline and then add it to
+ * fields from the document through the index pipeline and then add it to
  * the index, it will then show up in search results.
  *
  * An 'add' event is emitted with the document that has been added and the index

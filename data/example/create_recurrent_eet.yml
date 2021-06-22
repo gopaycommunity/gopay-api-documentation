@@ -28,7 +28,7 @@ request:
                         "items": [{
                         "type":"ITEM", 
                         "name":"obuv",
-                        "product_url":"https://www.eshop.cz/boty/lodicky", 
+                        "product_url":"https://www.example.com/boty/lodicky", 
                         "ean":1234567890123,
                         "amount":119990,
                         "count":1,
@@ -37,7 +37,7 @@ request:
                         {
                         "type":"ITEM", 
                         "name":"oprava podpatku",
-                        "product_url":"https://www.eshop.cz/boty/opravy", 
+                        "product_url":"https://www.example.com/boty/opravy", 
                         "ean":1234567890189,
                         "amount":19961,
                         "count":1,
@@ -58,8 +58,8 @@ request:
                                     "value":"2015001003"
                                   }],
               "callback":{
-                          "return_url":"http://www.eshop.cz/return",
-                          "notification_url":"http://www.eshop.cz/notify"
+                          "return_url":"http://www.example.com/return",
+                          "notification_url":"http://www.example.com/notify"
                          }
         }'
     php: |
@@ -88,7 +88,7 @@ request:
             'items' => [[
                     'type' => 'ITEM',
                     'name' => 'obuv',
-                    'product_url' => 'https=>//www.eshop.cz/boty/lodicky',
+                    'product_url' => 'https=>//www.example.com/boty/lodicky',
                     'ean' => 1234567890123,
                     'amount' => 119990,
                     'count' => 1,
@@ -97,7 +97,7 @@ request:
                     [
                     'type' => PaymentItemType::ITEM,
                     'name' => 'oprava podpatku',
-                    'product_url' => 'https=>//www.eshop.cz/boty/opravy',
+                    'product_url' => 'https=>//www.example.com/boty/opravy',
                     'ean' => 1234567890189,
                     'amount' => 19961,
                     'count' => 1,
@@ -118,8 +118,8 @@ request:
                     'value' => '2015001003'
             ]],
             'callback' => [
-                    'return_url' => 'http://www.eshop.cz/return',
-                    'notification_url' => 'http://www.eshop.cz/notify'
+                    'return_url' => 'http://www.example.com/return',
+                    'notification_url' => 'http://www.example.com/notify'
             ]
         ]);
 response:

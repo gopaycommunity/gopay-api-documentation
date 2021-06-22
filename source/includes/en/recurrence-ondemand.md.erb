@@ -19,7 +19,7 @@ For the [registration of sales](#registration-of-sales-eet) functionality the re
 
 <h5>Header of request</h5>
 
-Parameter's name|Parameter's description| Required|
+Parameter name|Description| Required|
 ----------------|-----------------|--------
 Accept|application/json|YES
 Content-Type|application/json|YES
@@ -27,7 +27,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 <h5>Body of request</h5>
 
-Parameter's name|Parameter's description| Required| Data's type
+Parameter name|Description| Required| Type
 ---------------|---------------|-------|-------
 amount|Amount|YES|long > 0
 [currency](#currency)|Currency of payment, format corresponds to [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm)|YES| string
@@ -43,7 +43,7 @@ order_description| 	Description of goods/service|YES|string, alphanumeric charac
 
 <h5>Response</h5>
   
-Parameter's name|Parameter's description| Data's type
+Parameter name|Description| Type
 ---------------|---------------|-------
 id|Payment ID|long
 parent_id|Parent payment ID|long

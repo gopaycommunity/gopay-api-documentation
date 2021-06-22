@@ -11,7 +11,7 @@ request:
         "items":[{
             "type":"ITEM",
             "name":"lodicky",
-            "product_url":"https://www.eshop.cz/boty/damske/lodicky-cervene",
+            "product_url":"https://www.example.com/boty/damske/lodicky-cervene",
             "ean":1234567890123,
             "amount":500,
             "count":1,

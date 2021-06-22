@@ -34,8 +34,8 @@ request:
                                   "value":"2015001003"
                                 }],
             "callback":{
-                        "return_url":"http://www.eshop.cz/return",
-                        "notification_url":"http://www.eshop.cz/notify"
+                        "return_url":"http://www.example.com/return",
+                        "notification_url":"http://www.example.com/notify"
                       },
             "lang":"_LOCALE_"
         }'

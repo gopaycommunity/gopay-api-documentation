@@ -11,7 +11,7 @@ GoPay PSD2 API offers 2 basic types of services:
 
 <b>AIS (Account information service)</b>
 
-### Personal account's information
+### Personal account information
 
 > Request
 
@@ -27,7 +27,7 @@ For creating of the access-token, you need to use a token created in scope of ac
 
 <h5>Header of request</h5>
 
-Parameter's name | Parameter's description | Required
+Parameter name | Description | Required
 ---------------|---------------|-------
 Accept|application/json|YES
 Authorization|Bearer [```<access-token>```](#access-token)|YES
@@ -38,7 +38,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 <h5>Response</h5>
 
-Parameter's name | Parameter's description
+Parameter name | Description
 ---------------|---------------|
 id| ID of account
 email| E-mail contact
@@ -50,7 +50,7 @@ verification_level| Verification level
 [accounts](#accounts)| Connected electronic money accounts
 
 
-### Merchant account's information
+### Merchant account information
 
 > Request
 
@@ -66,7 +66,7 @@ For creating of the access-token, you need to use a token created in scope of ac
 
 <h5>Header of request</h5>
 
-Parameter's name | Parameter's description | Required
+Parameter name | Description | Required
 ---------------|---------------|-------
 Accept|application/json|YES
 Authorization|Bearer [```<access-token>```](#access-token)|YES
@@ -112,7 +112,7 @@ For creating of the access-token, you need to use a token created in scope of ac
 
 <h5>Header of request</h5>
 
-Parameter's name | Parameter's description | Required
+Parameter name | Description | Required
 ---------------|---------------|-------
 Accept|application/json|YES
 Authorization|Bearer [```<access-token>```](#access-token)|YES
@@ -123,7 +123,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 <h5>Response</h5>
 
-Parameter's name | Parameter's description
+Parameter name | Description
 ---------------|---------------|
 id| ID of movement
 amount|Amount in cents|YES| long > 0
@@ -157,7 +157,7 @@ For creating of the access-token, you need to use a token created in scope of pa
 
 <h5>Header of request</h5>
 
-Parameter's name | Parameter's description | Required
+Parameter name | Description | Required
 ---------------|---------------|-------
 Accept|application/json|YES
 Content-Type|application/json|YES
@@ -165,7 +165,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 <h5>Body of request</h5>
 
-Parameter's name | Parameter's description | Required
+Parameter name | Description | Required
 ---------------|---------------|-------
 payer| Object describing the payer of the payment|YES
 [target](#target)|Object describing the target of the payment (payee)|YES
@@ -178,7 +178,7 @@ amount|Amount in cents|YES
 
 <h5>Response</h5>
 
-Parameter's name | Parameter's description |
+Parameter name | Description |
 ---------------|---------------|
 id|ID of payment
 [state](#payment-status)|Payment status
@@ -194,8 +194,8 @@ amount|Amount in cents
 The confirmation of the [created payment](#create-of-payment) can results in following states: 
 
 - *PAID* - payment fully finished (low value transactions),
-- *PAYMENT_METHOD_CHOOSEN* - with `gw_url` setted. GoPay requires interaction by owner of electronic money account, e.g. finish the authorisation of payment by account's owner,
-- *error* - e.g. unable to receive the payment or not enough money on the payer's side, etc.
+- *PAYMENT_METHOD_CHOOSEN* - with `gw_url` setted. GoPay requires interaction by owner of electronic money account, e.g. finish the authorisation of payment by account owner,
+- *error* - e.g. unable to receive the payment or not enough money on the payer side, etc.
 
 > Request
 
@@ -211,7 +211,7 @@ For creating of the access-token, you need to use a token created in scope of pa
 
 <h5>Header of request</h5>
 
-Parameter's name | Parameter's description | Required
+Parameter name | Description | Required
 ---------------|---------------|-------
 Accept|application/json|YES
 Content-Type|application/x-www-form-urlencoded|YES
@@ -223,7 +223,7 @@ Authorization|Bearer [```<access-token>```](#access-token)|YES
 
 <h5>Response</h5>
 
-Parameter's name | Parameter's description |
+Parameter name | Description |
 ---------------|---------------|
 id|ID of payment
 [state](#payment-status)|Payment status
